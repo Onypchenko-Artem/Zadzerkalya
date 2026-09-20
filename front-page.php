@@ -117,6 +117,9 @@ $blog_posts = new WP_Query(
 	<?php get_template_part( 'template-parts/section', 'help' ); ?>
 	<?php get_template_part( 'template-parts/section', 'services-showcase' ); ?>
 	<?php get_template_part( 'template-parts/section', 'numbers' ); ?>
+	<?php get_template_part( 'template-parts/section', 'benefits' ); ?>
+	<?php get_template_part( 'template-parts/section', 'reviews' ); ?>
+	<?php get_template_part( 'template-parts/section', 'faq' ); ?>
 
 	<?php
 	while ( have_posts() ) :

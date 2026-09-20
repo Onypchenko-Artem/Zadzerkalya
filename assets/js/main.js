@@ -101,3 +101,54 @@
 
 	document.querySelectorAll('.lottie-button').forEach(initButton);
 })();
+
+(() => {
+	document.querySelectorAll('[data-reviews]').forEach((section) => {
+		const viewport = section.querySelector('.reviews__viewport');
+		const track = section.querySelector('.reviews__track');
+		const previous = section.querySelector('.reviews__arrow--prev');
+		const next = section.querySelector('.reviews__arrow--next');
+
+		if (!viewport || !track || !previous || !next) {
+			return;
+		}
+
+		const scrollStep = () => {
+			const card = track.querySelector('.reviews__card');
+			const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+			return card ? card.getBoundingClientRect().width + gap : viewport.clientWidth;
+		};
+
+		const updateControls = () => {
+			const maximum = viewport.scrollWidth - viewport.clientWidth;
+			previous.disabled = viewport.scrollLeft <= 1;
+			next.disabled = viewport.scrollLeft >= maximum - 1;
+		};
+
+		previous.addEventListener('click', () => {
+			viewport.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+		});
+
+		next.addEventListener('click', () => {
+			viewport.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+		});
+
+		viewport.addEventListener('scroll', updateControls, { passive: true });
+		window.addEventListener('resize', updateControls);
+		updateControls();
+
+		section.querySelectorAll('.reviews__more').forEach((button) => {
+			button.addEventListener('click', () => {
+				const card = button.closest('.reviews__card');
+				const label = button.querySelector('span');
+				if (!card || !label) {
+					return;
+				}
+
+				const expanded = card.classList.toggle('is-expanded');
+				button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+				label.textContent = expanded ? button.dataset.expandedLabel : button.dataset.collapsedLabel;
+			});
+		});
+	});
+})();
