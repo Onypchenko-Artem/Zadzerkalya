@@ -13,28 +13,6 @@ $hero_btn   = zadzerkalya_theme_mod( 'hero_btn', __( 'Забронювати п�
 $kicker     = zadzerkalya_theme_mod( 'hero_kicker' );
 $hero_id    = (int) get_theme_mod( 'zadzerkalya_hero_image' );
 $hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
-
-$specialists = zadzerkalya_query_latest( 'specialist', 4 );
-$events = new WP_Query(
-	array(
-		'post_type'      => 'event',
-		'posts_per_page' => 3,
-		'meta_key'       => '_zdk_event_date',
-		'orderby'        => array(
-			'meta_value' => 'DESC',
-			'date'       => 'DESC',
-		),
-		'no_found_rows'  => true,
-	)
-);
-$blog_posts = new WP_Query(
-	array(
-		'post_type'           => 'post',
-		'posts_per_page'      => 3,
-		'ignore_sticky_posts' => true,
-		'no_found_rows'       => true,
-	)
-);
 ?>
 <main id="content" class="site-main">
 	<section class="hero">
@@ -120,89 +98,7 @@ $blog_posts = new WP_Query(
 	<?php get_template_part( 'template-parts/section', 'benefits' ); ?>
 	<?php get_template_part( 'template-parts/section', 'reviews' ); ?>
 	<?php get_template_part( 'template-parts/section', 'faq' ); ?>
-
-	<?php
-	while ( have_posts() ) :
-		the_post();
-		if ( get_the_content() ) :
-			?>
-			<section class="section">
-				<div class="container prose">
-					<?php the_content(); ?>
-				</div>
-			</section>
-			<?php
-		endif;
-	endwhile;
-	?>
-
-	<section class="section section--alt">
-		<div class="container">
-			<div class="section-head">
-				<h2><?php esc_html_e( 'Спеціалісти', 'zadzerkalya' ); ?></h2>
-				<a class="text-link" href="<?php echo esc_url( get_post_type_archive_link( 'specialist' ) ); ?>"><?php esc_html_e( 'Усі спеціалісти', 'zadzerkalya' ); ?></a>
-			</div>
-			<?php if ( $specialists->have_posts() ) : ?>
-				<div class="cards-grid cards-grid--4">
-					<?php
-					while ( $specialists->have_posts() ) :
-						$specialists->the_post();
-						get_template_part( 'template-parts/card', 'specialist' );
-					endwhile;
-					wp_reset_postdata();
-					?>
-				</div>
-			<?php else : ?>
-				<p class="muted"><?php esc_html_e( 'Додайте спеціалістів у адмінці: Спеціалісти → Додати.', 'zadzerkalya' ); ?></p>
-			<?php endif; ?>
-		</div>
-	</section>
-
-	<section class="section">
-		<div class="container">
-			<div class="section-head">
-				<h2><?php esc_html_e( 'Події', 'zadzerkalya' ); ?></h2>
-				<a class="text-link" href="<?php echo esc_url( get_post_type_archive_link( 'event' ) ); ?>"><?php esc_html_e( 'Усі події', 'zadzerkalya' ); ?></a>
-			</div>
-			<?php if ( $events->have_posts() ) : ?>
-				<div class="cards-grid">
-					<?php
-					while ( $events->have_posts() ) :
-						$events->the_post();
-						get_template_part( 'template-parts/card', 'event' );
-					endwhile;
-					wp_reset_postdata();
-					?>
-				</div>
-			<?php else : ?>
-				<p class="muted"><?php esc_html_e( 'Додайте події в адмінці: Події → Додати.', 'zadzerkalya' ); ?></p>
-			<?php endif; ?>
-		</div>
-	</section>
-
-	<section class="section section--alt">
-		<div class="container">
-			<div class="section-head">
-				<h2><?php esc_html_e( 'Блог', 'zadzerkalya' ); ?></h2>
-				<a class="text-link" href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>"><?php esc_html_e( 'Усі статті', 'zadzerkalya' ); ?></a>
-			</div>
-			<?php if ( $blog_posts->have_posts() ) : ?>
-				<div class="cards-grid">
-					<?php
-					while ( $blog_posts->have_posts() ) :
-						$blog_posts->the_post();
-						get_template_part( 'template-parts/card', 'post' );
-					endwhile;
-					wp_reset_postdata();
-					?>
-				</div>
-			<?php else : ?>
-				<p class="muted"><?php esc_html_e( 'Додайте записи блогу: Записи → Додати.', 'zadzerkalya' ); ?></p>
-			<?php endif; ?>
-		</div>
-	</section>
-
-	<?php get_template_part( 'template-parts/section', 'cta' ); ?>
+	<?php get_template_part( 'template-parts/section', 'form-home' ); ?>
 </main>
 <?php
 get_footer();

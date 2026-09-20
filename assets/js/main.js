@@ -14,6 +14,43 @@
 })();
 
 (() => {
+	const header = document.querySelector('.site-header');
+
+	if (!header) {
+		return;
+	}
+
+	let previousY = Math.max(window.scrollY, 0);
+	let ticking = false;
+
+	const updateHeader = () => {
+		const currentY = Math.max(window.scrollY, 0);
+		const delta = currentY - previousY;
+		const navigationOpen = document.body.classList.contains('nav-open');
+
+		if (currentY <= 16 || delta < -4 || navigationOpen || header.contains(document.activeElement)) {
+			header.classList.remove('is-hidden');
+		} else if (delta > 4 && currentY > header.offsetHeight) {
+			header.classList.add('is-hidden');
+		}
+
+		previousY = currentY;
+		ticking = false;
+	};
+
+	window.addEventListener(
+		'scroll',
+		() => {
+			if (!ticking) {
+				window.requestAnimationFrame(updateHeader);
+				ticking = true;
+			}
+		},
+		{ passive: true }
+	);
+})();
+
+(() => {
 	if (typeof lottie === 'undefined' || typeof zadzerkalyaLottie === 'undefined') {
 		return;
 	}

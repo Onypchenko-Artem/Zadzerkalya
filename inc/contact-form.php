@@ -30,8 +30,14 @@ function zadzerkalya_handle_contact_form() {
 	$message = isset( $_POST['zadzerkalya_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['zadzerkalya_message'] ) ) : '';
 	$source  = isset( $_POST['zadzerkalya_form_source'] ) ? sanitize_key( wp_unslash( $_POST['zadzerkalya_form_source'] ) ) : 'contacts';
 	$is_hero = 'hero' === $source;
+	$is_home = 'home' === $source;
 
-	if ( ! $name || ( $is_hero && ! $phone ) || ( ! $is_hero && ( ! is_email( $email ) || ! $message ) ) ) {
+	if (
+		! $name
+		|| ( $is_hero && ! $phone )
+		|| ( $is_home && ( ! $phone || ! is_email( $email ) || ! $message ) )
+		|| ( ! $is_hero && ! $is_home && ( ! is_email( $email ) || ! $message ) )
+	) {
 		wp_safe_redirect( add_query_arg( 'contact', 'error', wp_get_referer() ? wp_get_referer() : home_url( '/' ) ) );
 		exit;
 	}
@@ -41,7 +47,7 @@ function zadzerkalya_handle_contact_form() {
 	}
 
 	$to      = zadzerkalya_theme_mod( 'email', get_option( 'admin_email' ) );
-	$subject = $is_hero
+	$subject = $is_hero || $is_home
 		? sprintf( __( 'Первинна консультація: %s', 'zadzerkalya' ), $name )
 		: sprintf( __( 'Заявка з сайту від %s', 'zadzerkalya' ), $name );
 	$body    = sprintf(

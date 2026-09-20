@@ -100,3 +100,7 @@ function zadzerkalya_excerpt_length() {
 	return 28;
 }
 add_filter( 'excerpt_length', 'zadzerkalya_excerpt_length' );
+
+// Використовуємо класичні редактори замість Gutenberg.
+add_filter( 'use_block_editor_for_post', '__return_false', 100 );
+add_filter( 'use_widgets_block_editor', '__return_false' );

@@ -34,6 +34,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-benefits'    => array( 'file' => '/assets/css/components/benefits.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-reviews'     => array( 'file' => '/assets/css/components/reviews.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-faq'         => array( 'file' => '/assets/css/components/faq.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-form-home'   => array( 'file' => '/assets/css/components/form-home.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
 		'zadzerkalya-footer'      => array( 'file' => '/assets/css/components/footer.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-forms'       => array( 'file' => '/assets/css/components/forms.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-content'=> array( 'file' => '/assets/css/pages/content.css', 'deps' => array( 'zadzerkalya-base' ) ),

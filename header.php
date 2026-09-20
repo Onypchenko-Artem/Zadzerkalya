@@ -23,7 +23,6 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 </head>
 <body <?php body_class(); ?>>
 <?php zadzerkalya_body_open(); ?>
-<a class="skip-link" href="#content"><?php esc_html_e( 'Перейти до вмісту', 'zadzerkalya' ); ?></a>
 
 <header class="site-header" role="banner">
 	<div class="header-bar">

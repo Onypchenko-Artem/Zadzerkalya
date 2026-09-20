@@ -36,6 +36,7 @@ function zadzerkalya_customize_register( $wp_customize ) {
 		'instagram' => __( 'Instagram URL', 'zadzerkalya' ),
 		'facebook'  => __( 'Facebook URL', 'zadzerkalya' ),
 		'telegram'  => __( 'Telegram URL', 'zadzerkalya' ),
+		'tiktok'    => __( 'TikTok URL', 'zadzerkalya' ),
 	);
 
 	foreach ( $contact_fields as $key => $label ) {
