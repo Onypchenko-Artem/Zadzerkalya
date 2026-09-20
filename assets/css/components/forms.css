@@ -1,0 +1,37 @@
+.contact-form-wrap {
+	background: var(--color-chewing-gum);
+	padding: calc(26 * var(--u));
+	border-radius: calc(20 * var(--u));
+	box-shadow: var(--shadow);
+}
+
+.contact-form label {
+	display: block;
+	margin-bottom: calc(6 * var(--u));
+	font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+	width: 100%;
+	border: 1px solid var(--color-night-sky);
+	border-radius: calc(12 * var(--u));
+	padding: calc(11 * var(--u)) calc(13 * var(--u));
+	font: inherit;
+	background: var(--color-surface-warm);
+	color: var(--color-text);
+}
+
+.hp-field {
+	position: absolute;
+	left: -9999px;
+}
+
+.form-notice {
+	padding: calc(13 * var(--u)) calc(16 * var(--u));
+	border-radius: calc(12 * var(--u));
+	margin-bottom: calc(16 * var(--u));
+}
+
+.form-notice--success { background: var(--color-gentle-blue); }
+.form-notice--error { background: var(--color-lemon-cream); border: 1px solid var(--color-grey-hug); }

@@ -1,0 +1,85 @@
+a.lottie-button:hover {
+	color: var(--color-night-sky);
+}
+
+.lottie-button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: var(--color-night-sky);
+	text-decoration: none;
+	cursor: pointer;
+	width: var(--lottie-btn-w);
+	height: var(--lottie-btn-h);
+	flex-shrink: 0;
+}
+
+.lottie-button--primary {
+	--lottie-btn-w: calc(447 * var(--u));
+	--lottie-btn-h: calc(94 * var(--u));
+}
+
+.lottie-button--secondary {
+	--lottie-btn-w: calc(242 * var(--u));
+	--lottie-btn-h: calc(94 * var(--u));
+}
+
+.lottie-button__anim {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.lottie-button__anim svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.lottie-button__label {
+	position: relative;
+	z-index: 1;
+	padding: 0 calc(24 * var(--u));
+	white-space: nowrap;
+	font-family: var(--text-button-family);
+	font-size: var(--text-button-size);
+	font-weight: var(--text-button-weight);
+	line-height: var(--text-button-line);
+	letter-spacing: var(--text-button-tracking);
+	color: var(--color-night-sky);
+}
+
+@media (max-width: 1279px) {
+	.lottie-button--primary {
+		--lottie-btn-w: 293px;
+		--lottie-btn-h: 66px;
+	}
+
+	.lottie-button--secondary {
+		--lottie-btn-w: 180px;
+		--lottie-btn-h: 66px;
+	}
+}
+
+@media (max-width: 767px) {
+	.lottie-button--primary {
+		--lottie-btn-w: 260px;
+		--lottie-btn-h: 62px;
+	}
+
+	.lottie-button--secondary {
+		--lottie-btn-w: 182px;
+		--lottie-btn-h: 58px;
+	}
+
+	.lottie-button__label {
+		white-space: normal;
+		text-align: center;
+	}
+}

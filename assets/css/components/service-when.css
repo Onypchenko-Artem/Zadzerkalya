@@ -1,0 +1,218 @@
+.service-when {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(64 * var(--u));
+	padding: 0 calc(48 * var(--u));
+	color: var(--color-night-sky);
+}
+
+.service-when__heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(32 * var(--u));
+	width: calc(1084 * var(--u));
+	max-width: 100%;
+	text-align: center;
+}
+
+.service-when__heading h2,
+.service-when__heading p,
+.service-when__card p {
+	margin: 0;
+}
+
+.service-when__heading h2 {
+	font-family: var(--font-family-heading);
+	font-size: calc(58 * var(--u));
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.04em;
+}
+
+.service-when__heading p {
+	width: calc(377 * var(--u));
+	max-width: 100%;
+	font-family: var(--text-body-l-family);
+	font-size: calc(22 * var(--u));
+	font-weight: var(--text-body-l-weight);
+	line-height: 1.35;
+}
+
+.service-when__cards {
+	display: flex;
+	flex-direction: column;
+	gap: calc(44 * var(--u));
+	width: 100%;
+}
+
+.service-when__row {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	gap: calc(38 * var(--u));
+	width: 100%;
+}
+
+.service-when__row:last-child {
+	gap: calc(44 * var(--u));
+}
+
+.service-when__card {
+	flex: 0 0 calc(423 * var(--u));
+	height: calc(334 * var(--u));
+	padding: calc(12 * var(--u));
+	border: 1px solid var(--color-night-sky);
+	border-radius: calc(20 * var(--u));
+}
+
+.service-when__card-inner {
+	display: flex;
+	flex-direction: column;
+	gap: calc(16 * var(--u));
+	width: 100%;
+	height: 100%;
+	padding: calc(8 * var(--u)) calc(12 * var(--u));
+	overflow: hidden;
+	background: var(--color-gentle-blue);
+	border-radius: calc(16 * var(--u));
+}
+
+.service-when__line {
+	flex: 0 0 calc(9 * var(--u));
+	width: 100%;
+	height: calc(9 * var(--u));
+}
+
+.service-when__line--bottom {
+	transform: scaleX(-1);
+}
+
+.service-when__card-content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 0;
+}
+
+.service-when__number {
+	display: flex;
+	flex: 0 0 calc(60 * var(--u));
+	justify-content: center;
+	align-items: center;
+	width: calc(60 * var(--u));
+	height: calc(60 * var(--u));
+	font-family: var(--text-number-big-family);
+	font-size: calc(40 * var(--u));
+	font-weight: var(--text-number-big-weight);
+	line-height: 0.8;
+	text-align: center;
+	background: var(--color-chewing-gum);
+	border: 1px solid var(--color-night-sky);
+	border-radius: calc(8 * var(--u));
+}
+
+.service-when__card p {
+	align-self: stretch;
+	font-family: var(--text-body-l-family);
+	font-size: calc(22 * var(--u));
+	font-weight: var(--text-body-l-weight);
+	line-height: 1.35;
+}
+
+@media (max-width: 1279px) {
+	.service-when {
+		gap: 48px;
+		padding: 0 32px;
+	}
+
+	.service-when__heading {
+		gap: 24px;
+		width: 760px;
+	}
+
+	.service-when__heading h2 {
+		font-size: var(--text-h2-size);
+	}
+
+	.service-when__heading p,
+	.service-when__card p {
+		font-size: var(--text-body-l-size);
+	}
+
+	.service-when__heading p {
+		width: 360px;
+	}
+
+	.service-when__cards {
+		gap: 32px;
+	}
+
+	.service-when__row,
+	.service-when__row:last-child {
+		flex-wrap: wrap;
+		gap: 32px;
+	}
+
+	.service-when__card {
+		flex-basis: min(423px, calc(50% - 16px));
+		height: 334px;
+		padding: 12px;
+		border-radius: 20px;
+	}
+
+	.service-when__card-inner {
+		gap: 16px;
+		padding: 8px 12px;
+		border-radius: 16px;
+	}
+
+	.service-when__line {
+		flex-basis: 9px;
+		height: 9px;
+	}
+
+	.service-when__number {
+		flex-basis: 60px;
+		width: 60px;
+		height: 60px;
+		font-size: 40px;
+		border-radius: 8px;
+	}
+}
+
+@media (max-width: 767px) {
+	.service-when {
+		gap: 32px;
+		padding: 0 20px;
+	}
+
+	.service-when__heading {
+		gap: 16px;
+	}
+
+	.service-when__heading p {
+		width: 290px;
+	}
+
+	.service-when__cards,
+	.service-when__row,
+	.service-when__row:last-child {
+		gap: 20px;
+	}
+
+	.service-when__card {
+		flex-basis: min(100%, 423px);
+		height: 300px;
+	}
+
+	.service-when__number {
+		flex-basis: 48px;
+		width: 48px;
+		height: 48px;
+		font-size: 32px;
+	}
+}

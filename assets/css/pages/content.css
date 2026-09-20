@@ -1,0 +1,37 @@
+.section {
+	padding: calc(64 * var(--u)) 0;
+}
+
+.section--alt {
+	background: var(--color-surface-warm);
+}
+
+.section-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: calc(16 * var(--u));
+	margin-bottom: calc(29 * var(--u));
+}
+
+.page-header {
+	margin-bottom: calc(32 * var(--u));
+}
+
+.page-intro {
+	max-width: calc(640 * var(--u));
+}
+
+.prose {
+	max-width: calc(672 * var(--u));
+}
+
+.prose p,
+.prose li {
+	color: var(--color-text-secondary);
+}
+
+.empty-state {
+	text-align: center;
+	padding: calc(48 * var(--u)) 0;
+}

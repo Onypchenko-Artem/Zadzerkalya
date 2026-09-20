@@ -1,0 +1,38 @@
+.price-box {
+	background: var(--color-chewing-gum);
+	padding: calc(18 * var(--u)) calc(19 * var(--u));
+	border-radius: calc(16 * var(--u));
+	margin: calc(19 * var(--u)) 0;
+}
+
+.price-table {
+	background: var(--color-chewing-gum);
+	border-radius: calc(20 * var(--u));
+	overflow: hidden;
+	box-shadow: var(--shadow);
+}
+
+.price-table__head,
+.price-table__row {
+	display: grid;
+	grid-template-columns: 1.6fr 0.8fr 0.8fr;
+	gap: calc(16 * var(--u));
+	padding: calc(16 * var(--u)) calc(21 * var(--u));
+}
+
+.price-table__head {
+	background: var(--color-night-sky);
+	color: var(--color-chewing-gum);
+	font-weight: 600;
+}
+
+.price-table__row + .price-table__row {
+	border-top: 1px solid color-mix(in srgb, var(--color-line) 28%, transparent);
+}
+
+@media (max-width: 980px) {
+	.price-table__head,
+	.price-table__row {
+		grid-template-columns: 1fr;
+	}
+}

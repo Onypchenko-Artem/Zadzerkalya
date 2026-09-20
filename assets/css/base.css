@@ -1,0 +1,111 @@
+:root {
+	--radius: calc(18 * var(--u));
+	--shadow: 0 calc(16 * var(--u)) calc(40 * var(--u)) color-mix(in srgb, var(--color-night-sky) 8%, transparent);
+	--container: calc(1180 * var(--u));
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	font-family: var(--text-body-m-family);
+	font-size: var(--text-body-m-size);
+	font-weight: var(--text-body-m-weight);
+	line-height: var(--text-body-m-line);
+	letter-spacing: var(--text-body-m-tracking);
+	color: var(--color-text);
+	background: var(--color-chewing-gum);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--color-accent);
+}
+
+h1, h2, h3 {
+	margin: 0 0 0.4em;
+}
+
+h1 {
+	font-family: var(--text-h1-family);
+	font-size: var(--text-h1-size);
+	font-weight: var(--text-h1-weight);
+	line-height: var(--text-h1-line);
+	letter-spacing: var(--text-h1-tracking);
+	text-transform: var(--text-h1-transform);
+}
+
+h2 {
+	font-family: var(--text-h2-family);
+	font-size: var(--text-h2-size);
+	font-weight: var(--text-h2-weight);
+	line-height: var(--text-h2-line);
+	letter-spacing: var(--text-h2-tracking);
+}
+
+h3 {
+	font-family: var(--text-h3-family);
+	font-size: var(--text-h3-size);
+	font-weight: var(--text-h3-weight);
+	line-height: var(--text-h3-line);
+	letter-spacing: var(--text-h3-tracking);
+}
+
+p { margin: 0 0 1em; }
+
+.container {
+	width: min(calc(100% - calc(40 * var(--u))), var(--container));
+	margin-inline: auto;
+}
+
+.skip-link {
+	position: absolute;
+	left: calc(16 * var(--u));
+	top: calc(-40 * var(--u));
+	background: var(--color-night-sky);
+	color: var(--color-chewing-gum);
+	padding: calc(8 * var(--u)) calc(13 * var(--u));
+	z-index: 100;
+}
+
+.skip-link:focus {
+	top: calc(16 * var(--u));
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.text-link {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+.muted { color: var(--color-text-secondary); }
+
+.nav-pagination,
+.pagination {
+	margin-top: calc(32 * var(--u));
+}

@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.5/theme.json",
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1180px"
+		},
+		"color": {
+			"palette": [
+				{ "slug": "night-sky", "color": "#0F1A2D", "name": "Night sky" },
+				{ "slug": "grey-hug", "color": "#596270", "name": "Grey hug" },
+				{ "slug": "gentle-blue", "color": "#D2E9F9", "name": "Gentle blue" },
+				{ "slug": "sky-blue", "color": "#88BBF2", "name": "Sky blue" },
+				{ "slug": "lemon-cream", "color": "#F4EFEB", "name": "Lemon cream" },
+				{ "slug": "chewing-gum", "color": "#FFFFFF", "name": "Chewing gum" }
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"slug": "heading",
+					"name": "M PLUS Rounded 1c",
+					"fontFamily": "\"M PLUS Rounded 1c\", sans-serif"
+				},
+				{
+					"slug": "body",
+					"name": "Inter Tight",
+					"fontFamily": "\"Inter Tight\", sans-serif"
+				},
+				{
+					"slug": "display",
+					"name": "Amatic SC",
+					"fontFamily": "\"Amatic SC\", cursive"
+				}
+			]
+		}
+	}
+}

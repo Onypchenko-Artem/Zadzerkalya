@@ -1,0 +1,22 @@
+/**
+ * Колекція Colors — 6 змінних, 1 режим.
+ * Зміна значення змінної оновлює гайд автоматично.
+ */
+
+:root {
+	--color-night-sky: #0f1a2d;
+	--color-grey-hug: #596270;
+	--color-gentle-blue: #d2e9f9;
+	--color-sky-blue: #88bbf2;
+	--color-lemon-cream: #f4efeb;
+	--color-chewing-gum: #ffffff;
+
+	/* Ролі за гайдом */
+	--color-text: var(--color-night-sky);
+	--color-text-secondary: var(--color-grey-hug);
+	--color-line: var(--color-grey-hug);
+	--color-surface: var(--color-chewing-gum);
+	--color-surface-warm: var(--color-lemon-cream);
+	--color-spot: var(--color-gentle-blue);
+	--color-accent: var(--color-sky-blue);
+}

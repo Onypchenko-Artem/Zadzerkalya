@@ -1,0 +1,10 @@
+.cta {
+	background: var(--color-spot);
+	color: var(--color-night-sky);
+	text-align: center;
+	padding: calc(64 * var(--u)) 0;
+}
+
+.cta p {
+	color: var(--color-text-secondary);
+}
