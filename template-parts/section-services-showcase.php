@@ -41,8 +41,8 @@ for ( $index = count( $items ); $index < 7; ++$index ) {
 	</div>
 
 	<div class="services-showcase__grid">
-		<div class="services-showcase__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Місце для ілюстрації', 'zadzerkalya' ); ?>">
-			<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+		<div class="services-showcase__illustration-placeholder">
+			<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/alice.png' ); ?>" alt="" aria-hidden="true">
 		</div>
 
 		<?php foreach ( $items as $item ) : ?>

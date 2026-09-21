@@ -25,8 +25,8 @@ $benefits = array(
 		<div class="benefits__intro">
 			<p><?php esc_html_e( 'Ми створюємо простір, де є все для розвитку дитини — від унікальних методик до турботливих сердець фахівців!', 'zadzerkalya' ); ?></p>
 
-			<div class="benefits__image-placeholder" role="img" aria-label="<?php esc_attr_e( 'Місце для ілюстрації', 'zadzerkalya' ); ?>">
-				<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+			<div class="benefits__image-placeholder">
+				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/rabbit.png' ); ?>" alt="" aria-hidden="true">
 			</div>
 
 			<?php

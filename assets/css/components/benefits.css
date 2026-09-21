@@ -56,15 +56,12 @@
 	width: calc(400 * var(--u));
 	max-width: 100%;
 	height: calc(400 * var(--u));
-	color: var(--color-grey-hug);
-	background: color-mix(in srgb, var(--color-gentle-blue) 55%, transparent);
-	border: 1px dashed var(--color-grey-hug);
-	border-radius: 48% 48% calc(28 * var(--u)) calc(28 * var(--u));
 }
 
-.benefits__image-placeholder span {
-	font-family: var(--text-body-s-family);
-	font-size: var(--text-body-s-size);
+.benefits__image-placeholder img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .benefits__intro .lottie-button {
@@ -128,11 +125,11 @@
 	flex: 0 0 calc(136 * var(--u));
 	width: calc(136 * var(--u));
 	height: calc(55 * var(--u));
-	background: url("../../images/benefit-number-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/right–spiral.svg") center / 100% 100% no-repeat;
 }
 
 .benefits__number-line--left {
-	transform: scaleX(-1);
+	background-image: url("../../images/left–spiral.svg");
 }
 
 .benefits__item p {

@@ -85,10 +85,6 @@
 	height: calc(9 * var(--u));
 }
 
-.service-when__line--bottom {
-	transform: scaleX(-1);
-}
-
 .service-when__card-content {
 	display: flex;
 	flex: 1;

@@ -149,15 +149,15 @@
 }
 
 .reviews__card-header--green {
-	background: repeating-linear-gradient(90deg, #e5f5e9 0, #e5f5e9 calc(36 * var(--u)), #f4fbf5 calc(36 * var(--u)), #f4fbf5 calc(70 * var(--u)));
+	background: url("../../images/review-green.png") center / cover no-repeat;
 }
 
 .reviews__card-header--orange {
-	background: repeating-linear-gradient(90deg, #fce8d0 0, #fce8d0 calc(36 * var(--u)), #fff4e7 calc(36 * var(--u)), #fff4e7 calc(70 * var(--u)));
+	background: url("../../images/review-orange.png") center / cover no-repeat;
 }
 
 .reviews__card-header--pink {
-	background: repeating-linear-gradient(90deg, #f7e1e8 0, #f7e1e8 calc(36 * var(--u)), #fdf1f5 calc(36 * var(--u)), #fdf1f5 calc(70 * var(--u)));
+	background: url("../../images/review-pink.png") center / cover no-repeat;
 }
 
 .reviews__counter {
@@ -177,11 +177,9 @@
 
 .reviews__counter::before {
 	position: absolute;
-	inset: calc(1 * var(--u));
+	inset: 0;
 	content: "";
-	border: 1px solid var(--color-night-sky);
-	border-radius: calc(8 * var(--u));
-	transform: rotate(-2deg);
+	background: url("../../images/counter-border.svg") center / 100% 100% no-repeat;
 }
 
 .reviews__counter strong {

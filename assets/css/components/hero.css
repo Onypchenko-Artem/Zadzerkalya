@@ -1,5 +1,6 @@
 .hero {
-	padding: calc(32 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	margin-top: calc(-118 * var(--u));
+	padding: calc(150 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
 	background: var(--color-lemon-cream);
 }
 
@@ -209,7 +210,8 @@
 
 @media (max-width: 1279px) {
 	.hero {
-		padding: 24px;
+		margin-top: -88px;
+		padding: 112px 24px 24px;
 	}
 
 	.hero-top-lines {
@@ -311,7 +313,8 @@
 
 @media (max-width: 767px) {
 	.hero {
-		padding: 20px 16px 28px;
+		margin-top: -64px;
+		padding: 84px 16px 28px;
 	}
 
 	.hero-layout {

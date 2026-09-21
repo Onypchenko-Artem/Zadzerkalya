@@ -80,29 +80,30 @@
 	position: relative;
 	display: flex;
 	flex: 0 0 calc(842 * var(--u));
-	justify-content: center;
+	justify-content: space-between;
 	align-items: flex-start;
+	gap: calc(68 * var(--u));
 	height: calc(838 * var(--u));
+	isolation: isolate;
 }
 
 .help__divider {
-	position: absolute;
-	top: 0;
+	position: relative;
+	z-index: 1;
+	flex: 0 0 auto;
 	width: calc(50 * var(--u));
 	height: 100%;
 }
 
-.help__divider--left {
-	left: 0;
-}
-
 .help__divider--right {
-	right: 0;
-	transform: scaleX(-1);
+	width: calc(35 * var(--u));
 }
 
 .help__consultation-content {
+	position: relative;
+	z-index: 1;
 	display: flex;
+	flex: 0 0 calc(516 * var(--u));
 	flex-direction: column;
 	align-items: center;
 	gap: calc(24 * var(--u));
@@ -141,12 +142,12 @@
 	width: 100%;
 	height: calc(8 * var(--u));
 	content: "";
-	background: url("../../images/service-card-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/list-line.svg") center / 100% 100% no-repeat;
 }
 
 .help__reasons li {
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: calc(34 * var(--u)) minmax(0, 1fr);
 	align-items: center;
 	column-gap: calc(12 * var(--u));
 	width: 100%;
@@ -162,6 +163,7 @@
 }
 
 .help__reasons li:not(:last-child)::after {
+	grid-column: 1 / -1;
 	margin-top: calc(12 * var(--u));
 }
 
@@ -197,15 +199,17 @@
 
 .help__bottle {
 	position: absolute;
-	right: calc(60 * var(--u));
-	bottom: calc(37 * var(--u));
-	z-index: 2;
+	top: calc(575 * var(--u));
+	left: calc(530 * var(--u));
+	z-index: 0;
 	width: calc(260 * var(--u));
 	height: calc(260 * var(--u));
+	transform: rotate(21.25deg);
 	pointer-events: none;
 }
 
 .help__consultation .lottie-button {
+	--lottie-btn-w: calc(453 * var(--u));
 	z-index: 3;
 }
 
@@ -221,6 +225,11 @@
 	.help__consultation {
 		flex: 1 1 0;
 		height: 650px;
+	}
+
+	.help__consultation {
+		justify-content: center;
+		gap: 0;
 	}
 
 	.help__support {
@@ -252,10 +261,20 @@
 	}
 
 	.help__divider {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 40px;
 	}
 
+	.help__divider--right {
+		right: 0;
+		left: auto;
+		width: 28px;
+	}
+
 	.help__consultation-content {
+		flex-basis: calc(100% - 96px);
 		gap: 18px;
 		width: calc(100% - 96px);
 		height: auto;
@@ -273,6 +292,7 @@
 	}
 
 	.help__reasons li {
+		grid-template-columns: 28px minmax(0, 1fr);
 		font-size: var(--text-body-l-size);
 	}
 
@@ -305,10 +325,16 @@
 	}
 
 	.help__bottle {
+		top: auto;
 		right: 30px;
 		bottom: -10px;
+		left: auto;
 		width: 170px;
 		height: 170px;
+	}
+
+	.help__consultation .lottie-button {
+		--lottie-btn-w: 293px;
 	}
 }
 
@@ -345,10 +371,20 @@
 	}
 
 	.help__divider {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 30px;
 	}
 
+	.help__divider--right {
+		right: 0;
+		left: auto;
+		width: 22px;
+	}
+
 	.help__consultation-content {
+		flex-basis: 100%;
 		gap: 20px;
 		width: 100%;
 	}
@@ -360,5 +396,9 @@
 	.help__bottle {
 		right: 16px;
 		bottom: -20px;
+	}
+
+	.help__consultation .lottie-button {
+		--lottie-btn-w: 260px;
 	}
 }

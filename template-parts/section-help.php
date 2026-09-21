@@ -25,7 +25,7 @@ $reasons = array(
 	</div>
 
 	<div class="help__consultation">
-		<img class="help__divider help__divider--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
+		<img class="help__divider help__divider--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-left-line.svg' ); ?>" alt="" aria-hidden="true">
 
 		<div class="help__consultation-content">
 			<h3><?php esc_html_e( 'Ми починаємо роботу з первинної консультації, щоб:', 'zadzerkalya' ); ?></h3>
@@ -48,7 +48,7 @@ $reasons = array(
 			?>
 		</div>
 
-		<img class="help__bottle" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-bottle.svg' ); ?>" alt="" aria-hidden="true">
-		<img class="help__divider help__divider--right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
+		<img class="help__bottle" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-bottle.png' ); ?>" alt="" aria-hidden="true">
+		<img class="help__divider help__divider--right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-right-line.svg' ); ?>" alt="" aria-hidden="true">
 	</div>
 </section>

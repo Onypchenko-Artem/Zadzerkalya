@@ -14,6 +14,60 @@
 })();
 
 (() => {
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		return;
+	}
+
+	document.querySelectorAll('.faq__item').forEach((item) => {
+		const summary = item.querySelector('summary');
+		const panel = item.querySelector('.faq__panel');
+
+		if (!summary || !panel) {
+			return;
+		}
+
+		let animation = null;
+
+		const run = (from, to, open) => {
+			if (animation) {
+				animation.cancel();
+			}
+
+			animation = panel.animate(
+				{
+					height: [`${from}px`, `${to}px`],
+					opacity: [open ? 0 : 1, open ? 1 : 0],
+				},
+				{ duration: 320, easing: 'ease' }
+			);
+
+			animation.onfinish = () => {
+				animation = null;
+				item.open = open;
+				item.classList.remove('is-collapsed');
+				panel.style.removeProperty('height');
+				panel.style.removeProperty('opacity');
+			};
+		};
+
+		summary.addEventListener('click', (event) => {
+			event.preventDefault();
+
+			if (item.open && !item.classList.contains('is-collapsed')) {
+				item.classList.add('is-collapsed');
+				run(panel.offsetHeight, 0, false);
+				return;
+			}
+
+			item.classList.remove('is-collapsed');
+			const from = item.open ? panel.offsetHeight : 0;
+			item.open = true;
+			run(from, panel.offsetHeight, true);
+		});
+	});
+})();
+
+(() => {
 	const header = document.querySelector('.site-header');
 
 	if (!header) {
@@ -150,17 +204,45 @@
 			return;
 		}
 
+		const cards = Array.from(track.querySelectorAll('.reviews__card'));
+
 		const scrollStep = () => {
 			const card = track.querySelector('.reviews__card');
 			const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
 			return card ? card.getBoundingClientRect().width + gap : viewport.clientWidth;
 		};
 
-		const updateControls = () => {
-			const maximum = viewport.scrollWidth - viewport.clientWidth;
-			previous.disabled = viewport.scrollLeft <= 1;
-			next.disabled = viewport.scrollLeft >= maximum - 1;
+		const cycleWidth = () => cards.length * scrollStep();
+
+		const jumpTo = (left) => {
+			viewport.style.scrollBehavior = 'auto';
+			viewport.scrollLeft = left;
+			viewport.style.removeProperty('scroll-behavior');
 		};
+
+		if (cards.length > 1) {
+			const before = document.createDocumentFragment();
+			const after = document.createDocumentFragment();
+
+			cards.forEach((card) => {
+				const beforeClone = card.cloneNode(true);
+				const afterClone = card.cloneNode(true);
+
+				[beforeClone, afterClone].forEach((clone) => {
+					clone.setAttribute('aria-hidden', 'true');
+					clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((element) => {
+						element.setAttribute('tabindex', '-1');
+					});
+				});
+
+				before.append(beforeClone);
+				after.append(afterClone);
+			});
+
+			track.prepend(before);
+			track.append(after);
+			jumpTo(cycleWidth());
+		}
 
 		previous.addEventListener('click', () => {
 			viewport.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
@@ -170,15 +252,48 @@
 			viewport.scrollBy({ left: scrollStep(), behavior: 'smooth' });
 		});
 
-		viewport.addEventListener('scroll', updateControls, { passive: true });
-		window.addEventListener('resize', updateControls);
-		updateControls();
+		let scrollTimer;
+		const normalizePosition = () => {
+			if (cards.length <= 1) {
+				return;
+			}
 
-		section.querySelectorAll('.reviews__more').forEach((button) => {
+			const width = cycleWidth();
+			if (viewport.scrollLeft < width - 1) {
+				jumpTo(viewport.scrollLeft + width);
+			} else if (viewport.scrollLeft >= width * 2 - 1) {
+				jumpTo(viewport.scrollLeft - width);
+			}
+		};
+
+		viewport.addEventListener(
+			'scroll',
+			() => {
+				clearTimeout(scrollTimer);
+				scrollTimer = setTimeout(normalizePosition, 120);
+			},
+			{ passive: true }
+		);
+
+		if ('onscrollend' in window) {
+			viewport.addEventListener('scrollend', normalizePosition);
+		}
+
+		let resizeTimer;
+		window.addEventListener('resize', () => {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(() => jumpTo(cycleWidth()), 150);
+		});
+
+		cards.forEach((card) => {
+			const button = card.querySelector('.reviews__more');
+			if (!button) {
+				return;
+			}
+
 			button.addEventListener('click', () => {
-				const card = button.closest('.reviews__card');
 				const label = button.querySelector('span');
-				if (!card || !label) {
+				if (!label) {
 					return;
 				}
 

@@ -44,12 +44,12 @@ $rows = array_chunk( array_values( $section['items'] ), 4 );
 				<?php foreach ( $row as $item ) : ?>
 					<article class="service-when__card">
 						<div class="service-when__card-inner">
-							<img class="service-when__line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-card-line.svg' ); ?>" alt="" aria-hidden="true">
+							<img class="service-when__line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/top-line.svg' ); ?>" alt="" aria-hidden="true">
 							<div class="service-when__card-content">
 								<span class="service-when__number" aria-hidden="true"><?php echo esc_html( $number ); ?></span>
 								<p><?php echo esc_html( $item ); ?></p>
 							</div>
-							<img class="service-when__line service-when__line--bottom" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-card-line.svg' ); ?>" alt="" aria-hidden="true">
+							<img class="service-when__line service-when__line--bottom" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/bottom-line.svg' ); ?>" alt="" aria-hidden="true">
 						</div>
 					</article>
 					<?php

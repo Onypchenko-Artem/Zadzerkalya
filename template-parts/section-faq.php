@@ -71,8 +71,8 @@ $items = $args['items'] ?? array(
 ?>
 <section class="faq" aria-labelledby="faq-title">
 	<div class="faq__media">
-		<div class="faq__image-placeholder" role="img" aria-label="<?php esc_attr_e( 'Місце для ілюстрації', 'zadzerkalya' ); ?>">
-			<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+		<div class="faq__image-placeholder">
+			<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/faq-bottle.png' ); ?>" alt="" aria-hidden="true">
 		</div>
 	</div>
 
@@ -81,14 +81,16 @@ $items = $args['items'] ?? array(
 
 		<div class="faq__list">
 			<?php foreach ( $items as $index => $item ) : ?>
-				<details class="faq__item"<?php echo $index < 3 ? ' open' : ''; ?>>
+				<details class="faq__item"<?php echo 0 === $index ? ' open' : ''; ?>>
 					<summary>
 						<h3><?php echo esc_html( $item['question'] ); ?></h3>
 						<span class="faq__toggle" aria-hidden="true"></span>
 					</summary>
 					<div class="faq__panel">
-						<span class="faq__line" aria-hidden="true"></span>
-						<p><?php echo esc_html( $item['answer'] ); ?></p>
+						<div class="faq__panel-inner">
+							<span class="faq__line" aria-hidden="true"></span>
+							<p><?php echo esc_html( $item['answer'] ); ?></p>
+						</div>
 					</div>
 				</details>
 			<?php endforeach; ?>
