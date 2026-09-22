@@ -64,7 +64,12 @@ $render_stat_card = static function ( $stat ) {
 		</div>
 	</div>
 
-	<div class="numbers__photo-placeholder" role="img" aria-label="<?php esc_attr_e( 'Місце для фото команди', 'zadzerkalya' ); ?>">
-		<span><?php esc_html_e( 'Фото команди', 'zadzerkalya' ); ?></span>
+	<div class="numbers__photo">
+		<img
+			src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/team.jpg' ); ?>"
+			width="1824"
+			height="674"
+			alt="<?php esc_attr_e( 'Команда центру «Задзеркалля»', 'zadzerkalya' ); ?>"
+		>
 	</div>
 </section>

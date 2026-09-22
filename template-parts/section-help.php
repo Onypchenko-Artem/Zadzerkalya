@@ -17,11 +17,12 @@ $reasons = array(
 ?>
 <section class="help">
 	<div class="help__support">
-		<div class="help__support-content">
-			<h2><?php esc_html_e( 'Ви — не одні!', 'zadzerkalya' ); ?></h2>
-			<img class="help__rabbit" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-rabbit.svg' ); ?>" alt="" aria-hidden="true">
-			<p><?php esc_html_e( 'Ми поруч, щоб вислухати, зрозуміти та допомогти', 'zadzerkalya' ); ?></p>
-		</div>
+		<img
+			src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/help-banner.png' ); ?>"
+			width="816"
+			height="816"
+			alt="<?php esc_attr_e( 'Ви — не одні! Ми поруч, щоб вислухати, зрозуміти та допомогти', 'zadzerkalya' ); ?>"
+		>
 	</div>
 
 	<div class="help__consultation">

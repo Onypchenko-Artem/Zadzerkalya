@@ -10,70 +10,21 @@
 }
 
 .help__support {
-	position: relative;
 	flex: 0 0 calc(816 * var(--u));
 	height: calc(816 * var(--u));
 	overflow: hidden;
-	background-color: var(--color-gentle-blue);
-	background-image:
-		linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
-		repeating-linear-gradient(
-			90deg,
-			rgba(255, 255, 255, 0.5) 0,
-			rgba(255, 255, 255, 0.5) calc(64 * var(--u)),
-			rgba(210, 233, 249, 0.45) calc(64 * var(--u)),
-			rgba(210, 233, 249, 0.45) calc(128 * var(--u))
-		);
 	border-radius: calc(32 * var(--u));
 }
 
-.help__support::before {
-	position: absolute;
-	inset: calc(20 * var(--u));
-	content: "";
-	background: var(--color-chewing-gum);
-	border-radius: 50%;
+.help__support img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
-.help__support-content {
-	position: absolute;
-	top: calc(157 * var(--u));
-	left: 50%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: calc(16 * var(--u));
-	width: calc(452 * var(--u));
-	transform: translateX(-50%);
-	text-align: center;
-}
-
-.help__support h2,
-.help__support p,
 .help__consultation h3 {
 	margin: 0;
-}
-
-.help__support h2 {
-	font-family: var(--font-family-heading);
-	font-size: calc(58 * var(--u));
-	font-weight: 500;
-	line-height: 1.06;
-	letter-spacing: -0.04em;
-}
-
-.help__rabbit {
-	width: calc(349 * var(--u));
-	height: calc(349 * var(--u));
-	object-fit: contain;
-}
-
-.help__support p {
-	width: calc(280 * var(--u));
-	font-family: var(--text-body-l-family);
-	font-size: calc(22 * var(--u));
-	font-weight: var(--text-body-l-weight);
-	line-height: 1.35;
 }
 
 .help__consultation {
@@ -236,30 +187,6 @@
 		border-radius: 24px;
 	}
 
-	.help__support::before {
-		inset: 16px;
-	}
-
-	.help__support-content {
-		top: 100px;
-		gap: 12px;
-		width: calc(100% - 48px);
-	}
-
-	.help__support h2 {
-		font-size: var(--text-h2-size);
-	}
-
-	.help__rabbit {
-		width: 300px;
-		height: 300px;
-	}
-
-	.help__support p {
-		width: 260px;
-		font-size: var(--text-body-l-size);
-	}
-
 	.help__divider {
 		position: absolute;
 		top: 0;
@@ -352,17 +279,8 @@
 	}
 
 	.help__support {
-		height: min(100vw, 520px);
-		min-height: 430px;
-	}
-
-	.help__support-content {
-		top: 64px;
-	}
-
-	.help__rabbit {
-		width: 230px;
-		height: 230px;
+		height: auto;
+		aspect-ratio: 1;
 	}
 
 	.help__consultation {

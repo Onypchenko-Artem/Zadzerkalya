@@ -154,22 +154,19 @@
 	display: none;
 }
 
-.numbers__photo-placeholder {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.numbers__photo {
 	width: 100%;
 	height: calc(674 * var(--u));
-	color: var(--color-grey-hug);
-	background:
-		linear-gradient(135deg, rgba(210, 233, 249, 0.75), rgba(244, 239, 235, 0.9));
-	border: 1px dashed var(--color-grey-hug);
+	overflow: hidden;
 	border-radius: calc(20 * var(--u));
 }
 
-.numbers__photo-placeholder span {
-	font-family: var(--text-body-l-family);
-	font-size: var(--text-body-l-size);
+.numbers__photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 
 @media (max-width: 1279px) {
@@ -254,7 +251,7 @@
 		font-size: 72px;
 	}
 
-	.numbers__photo-placeholder {
+	.numbers__photo {
 		height: 480px;
 		border-radius: 16px;
 	}
@@ -320,7 +317,7 @@
 		letter-spacing: 0.08em;
 	}
 
-	.numbers__photo-placeholder {
+	.numbers__photo {
 		height: 280px;
 	}
 }

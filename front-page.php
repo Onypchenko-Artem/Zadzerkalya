@@ -35,11 +35,11 @@ $hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
 								<p><?php echo nl2br( esc_html( $hero_text ) ); ?></p>
 							<?php endif; ?>
 
-							<div class="hero-illustration<?php echo $hero_illustration_id ? '' : ' hero-placeholder'; ?>">
+							<div class="hero-illustration">
 								<?php if ( $hero_illustration_id ) : ?>
 									<?php echo wp_get_attachment_image( $hero_illustration_id, 'medium' ); ?>
 								<?php else : ?>
-									<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+									<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-rabbit.png' ); ?>" alt="" aria-hidden="true">
 								<?php endif; ?>
 							</div>
 						</div>
@@ -78,11 +78,11 @@ $hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
 
 				<div class="hero-divider" aria-hidden="true"></div>
 
-				<div class="hero-media<?php echo $hero_id ? '' : ' hero-placeholder'; ?>">
+				<div class="hero-media">
 					<?php if ( $hero_id ) : ?>
 						<?php echo wp_get_attachment_image( $hero_id, 'zadzerkalya-hero' ); ?>
 					<?php else : ?>
-						<span><?php esc_html_e( 'Фото головного банера', 'zadzerkalya' ); ?></span>
+						<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-img.png' ); ?>" alt="<?php echo esc_attr( $hero_title ); ?>">
 					<?php endif; ?>
 				</div>
 			</div>
