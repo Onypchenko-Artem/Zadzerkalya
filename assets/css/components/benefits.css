@@ -25,6 +25,7 @@
 	align-items: center;
 	gap: calc(65 * var(--u));
 	width: 100%;
+	min-width: 0;
 	height: calc(704 * var(--u));
 }
 
@@ -74,6 +75,8 @@
 	flex-direction: column;
 	gap: calc(16 * var(--u));
 	width: calc(1368 * var(--u));
+	min-width: 0;
+	max-width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -94,6 +97,8 @@
 	align-items: center;
 	gap: calc(80 * var(--u));
 	width: 100%;
+	min-width: 0;
+	max-width: 100%;
 	height: calc(164 * var(--u));
 	padding: calc(44 * var(--u));
 	background: var(--color-gentle-blue);
@@ -109,6 +114,7 @@
 	align-items: center;
 	gap: calc(62 * var(--u));
 	width: calc(413 * var(--u));
+	min-width: 0;
 	height: calc(76 * var(--u));
 	color: var(--color-grey-hug);
 }
@@ -135,6 +141,7 @@
 .benefits__item p {
 	flex: 0 0 calc(639 * var(--u));
 	width: calc(639 * var(--u));
+	min-width: 0;
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
@@ -194,7 +201,7 @@
 	}
 
 	.benefits__number {
-		flex-basis: 280px;
+		flex: 1 1 280px;
 		gap: 24px;
 		width: 280px;
 		height: 64px;
@@ -205,13 +212,13 @@
 	}
 
 	.benefits__number-line {
-		flex-basis: 100px;
+		flex: 1 1 100px;
 		width: 100px;
 		height: 46px;
 	}
 
 	.benefits__item p {
-		flex: 1 1 0;
+		flex: 1 1 180px;
 		width: auto;
 		font-size: var(--text-body-l-size);
 	}

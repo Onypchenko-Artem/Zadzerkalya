@@ -1,18 +1,26 @@
 <?php
 /**
- * Головна сторінка.
+ * Template Name: Головна
  *
  * @package Zadzerkalya
  */
 
 get_header();
 
-$hero_title = zadzerkalya_theme_mod( 'hero_title', get_bloginfo( 'name' ) );
-$hero_text  = zadzerkalya_theme_mod( 'hero_text', get_bloginfo( 'description' ) );
-$hero_btn   = zadzerkalya_theme_mod( 'hero_btn', __( 'Забронювати первинну консультацію', 'zadzerkalya' ) );
-$kicker     = zadzerkalya_theme_mod( 'hero_kicker' );
-$hero_id    = (int) get_theme_mod( 'zadzerkalya_hero_image' );
-$hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
+$hero_kicker        = function_exists( 'get_field' ) ? get_field( 'hero_kicker' ) : '';
+$hero_title         = function_exists( 'get_field' ) ? get_field( 'hero_title' ) : '';
+$hero_text          = function_exists( 'get_field' ) ? get_field( 'hero_text' ) : '';
+$hero_btn           = function_exists( 'get_field' ) ? get_field( 'hero_btn' ) : '';
+$hero_image         = function_exists( 'get_field' ) ? get_field( 'hero_image' ) : null;
+$hero_illustration  = function_exists( 'get_field' ) ? get_field( 'hero_illustration' ) : null;
+
+if ( ! $hero_title ) {
+	$hero_title = __( 'Ми віримо в кожну дитину!', 'zadzerkalya' );
+}
+
+if ( ! $hero_btn ) {
+	$hero_btn = __( 'Забронювати первинну консультацію', 'zadzerkalya' );
+}
 ?>
 <main id="content" class="site-main">
 	<section class="hero">
@@ -24,21 +32,21 @@ $hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
 
 			<div class="hero-layout">
 				<div class="hero-copy">
-					<?php if ( $kicker ) : ?>
-						<p class="hero-kicker"><?php echo esc_html( $kicker ); ?></p>
+					<?php if ( $hero_kicker ) : ?>
+						<p class="hero-kicker"><?php echo esc_html( $hero_kicker ); ?></p>
 					<?php endif; ?>
 					<h1><?php echo esc_html( $hero_title ); ?></h1>
 
 					<div class="hero-details">
 						<div class="hero-description">
 							<?php if ( $hero_text ) : ?>
-								<p><?php echo nl2br( esc_html( $hero_text ) ); ?></p>
+								<p><?php echo wp_kses_post( nl2br( $hero_text ) ); ?></p>
 							<?php endif; ?>
 
 							<div class="hero-illustration">
-								<?php if ( $hero_illustration_id ) : ?>
-									<?php echo wp_get_attachment_image( $hero_illustration_id, 'medium' ); ?>
-								<?php else : ?>
+								<?php
+								if ( ! zadzerkalya_acf_image( $hero_illustration, 'medium' ) ) :
+									?>
 									<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-rabbit.png' ); ?>" alt="" aria-hidden="true">
 								<?php endif; ?>
 							</div>
@@ -79,9 +87,9 @@ $hero_illustration_id = (int) get_theme_mod( 'zadzerkalya_hero_illustration' );
 				<div class="hero-divider" aria-hidden="true"></div>
 
 				<div class="hero-media">
-					<?php if ( $hero_id ) : ?>
-						<?php echo wp_get_attachment_image( $hero_id, 'zadzerkalya-hero' ); ?>
-					<?php else : ?>
+					<?php
+					if ( ! zadzerkalya_acf_image( $hero_image, 'zadzerkalya-hero', array( 'alt' => $hero_title ) ) ) :
+						?>
 						<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-img.png' ); ?>" alt="<?php echo esc_attr( $hero_title ); ?>">
 					<?php endif; ?>
 				</div>

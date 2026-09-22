@@ -34,7 +34,7 @@
 .form-home__background-right {
 	top: 0;
 	right: calc(-124 * var(--u));
-	width: calc(787 * var(--u));
+	/*width: calc(787 * var(--u));*/
 	height: calc(2290 * var(--u));
 }
 

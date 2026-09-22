@@ -1,0 +1,116 @@
+[
+    {
+        "key": "group_zadzerkalya_service_when",
+        "title": "Головна: коли варто звернутися",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_service_when_title",
+                "label": "Заголовок",
+                "name": "service_when_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Коли варто звернутися до спеціалістів?",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_when_subtitle",
+                "label": "Підзаголовок",
+                "name": "service_when_subtitle",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Помітили хоча б один із цих симптомів? Важливо діяти швидко!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_when_items",
+                "label": "Картки",
+                "name": "service_when_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Номер картки ставиться автоматично за порядком. На десктопі перші 4 в одному ряду, решта — в наступному.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "table",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_service_when_item_text",
+                "button_label": "Додати картку",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_service_when_item_text",
+                        "label": "Текст",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 3,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_service_when_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок «Коли варто звернутися до спеціалістів?» на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "modified": 1758568800
+    }
+]

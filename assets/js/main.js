@@ -68,129 +68,87 @@
 })();
 
 (() => {
-	const header = document.querySelector('.site-header');
+	let started = false;
 
-	if (!header) {
-		return;
-	}
-
-	let previousY = Math.max(window.scrollY, 0);
-	let ticking = false;
-
-	const updateHeader = () => {
-		const currentY = Math.max(window.scrollY, 0);
-		const delta = currentY - previousY;
-		const navigationOpen = document.body.classList.contains('nav-open');
-
-		if (currentY <= 16 || delta < -4 || navigationOpen || header.contains(document.activeElement)) {
-			header.classList.remove('is-hidden');
-		} else if (delta > 4 && currentY > header.offsetHeight) {
-			header.classList.add('is-hidden');
-		}
-
-		previousY = currentY;
-		ticking = false;
-	};
-
-	window.addEventListener(
-		'scroll',
-		() => {
-			if (!ticking) {
-				window.requestAnimationFrame(updateHeader);
-				ticking = true;
-			}
-		},
-		{ passive: true }
-	);
-})();
-
-(() => {
-	if (typeof lottie === 'undefined' || typeof zadzerkalyaLottie === 'undefined') {
-		return;
-	}
-
-	const cache = {};
-	const path = zadzerkalyaLottie.path;
-	const hoverMq = window.matchMedia('(hover: hover) and (min-width: 1025px) and (prefers-reduced-motion: no-preference)');
-
-	const breakpoint = () => {
-		const width = window.innerWidth;
-		if (width <= 767) {
-			return 'mobile';
-		}
-		if (width <= 1024) {
-			return 'tablet';
-		}
-		return 'desktop';
-	};
-
-	const loadJson = async (name) => {
-		if (!cache[name]) {
-			cache[name] = fetch(path + name + '.json').then((response) => response.json());
-		}
-		return cache[name];
-	};
-
-	const initButton = (button) => {
-		const variant = button.dataset.variant || 'primary';
-		const container = button.querySelector('.lottie-button__anim');
-		if (!container) {
+	const boot = () => {
+		if (started || typeof lottie === 'undefined' || typeof zadzerkalyaButtonAnims === 'undefined') {
 			return;
 		}
+		started = true;
 
-		let animation = null;
-		let currentName = '';
+		const hoverMq = window.matchMedia('(hover: hover) and (min-width: 1025px) and (prefers-reduced-motion: no-preference)');
 
-		const mount = async () => {
-			const name = `button-${variant}-${breakpoint()}`;
-			if (name === currentName) {
-				return;
+		const breakpoint = () => {
+			const width = window.innerWidth;
+			if (width <= 767) {
+				return 'mobile';
 			}
-			currentName = name;
-
-			if (animation) {
-				animation.destroy();
-				animation = null;
-				container.replaceChildren();
+			if (width <= 1024) {
+				return 'tablet';
 			}
-
-			const data = await loadJson(name);
-			if (currentName !== name) {
-				return;
-			}
-
-			animation = lottie.loadAnimation({
-				container,
-				renderer: 'svg',
-				loop: true,
-				autoplay: false,
-				animationData: JSON.parse(JSON.stringify(data)),
-			});
-			animation.goToAndStop(0, true);
+			return 'desktop';
 		};
 
-		button.addEventListener('mouseenter', () => {
-			if (animation && hoverMq.matches) {
-				animation.goToAndPlay(0, true);
+		const initButton = (button) => {
+			const variant = button.dataset.variant || 'primary';
+			const container = button.querySelector('.lottie-button__anim');
+			if (!container) {
+				return;
 			}
-		});
 
-		button.addEventListener('mouseleave', () => {
-			if (animation) {
+			let animation = null;
+			let currentName = '';
+
+			const mount = () => {
+				const name = `button-${variant}-${breakpoint()}`;
+				const data = zadzerkalyaButtonAnims[name];
+				if (!data || name === currentName) {
+					return;
+				}
+				currentName = name;
+
+				if (animation) {
+					animation.destroy();
+					animation = null;
+					container.replaceChildren();
+				}
+
+				animation = lottie.loadAnimation({
+					container,
+					renderer: 'svg',
+					loop: true,
+					autoplay: false,
+					animationData: JSON.parse(JSON.stringify(data)),
+				});
 				animation.goToAndStop(0, true);
-			}
-		});
+			};
 
-		mount();
+			button.addEventListener('mouseenter', () => {
+				if (animation && hoverMq.matches) {
+					animation.goToAndPlay(0, true);
+				}
+			});
 
-		let timer;
-		window.addEventListener('resize', () => {
-			clearTimeout(timer);
-			timer = setTimeout(mount, 200);
-		});
+			button.addEventListener('mouseleave', () => {
+				if (animation) {
+					animation.goToAndStop(0, true);
+				}
+			});
+
+			mount();
+
+			let timer;
+			window.addEventListener('resize', () => {
+				clearTimeout(timer);
+				timer = setTimeout(mount, 200);
+			});
+		};
+
+		document.querySelectorAll('.lottie-button').forEach(initButton);
 	};
 
-	document.querySelectorAll('.lottie-button').forEach(initButton);
+	boot();
+	window.addEventListener('load', boot);
 })();
 
 (() => {

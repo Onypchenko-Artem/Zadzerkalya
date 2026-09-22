@@ -1,0 +1,164 @@
+[
+    {
+        "key": "group_zadzerkalya_hero",
+        "title": "Головна: баннер",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_hero_kicker",
+                "label": "Надзаголовок",
+                "name": "hero_kicker",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Центр психології та логопедії «Задзеркалля»",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_title",
+                "label": "Заголовок",
+                "name": "hero_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ми віримо в кожну дитину!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_text",
+                "label": "Текст",
+                "name": "hero_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "«Задзеркалля» — це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 4,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_btn",
+                "label": "Текст кнопки",
+                "name": "hero_btn",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Кнопка відправляє форму запису на консультацію.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_illustration",
+                "label": "Ілюстрація",
+                "name": "hero_illustration",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Кролик біля тексту. Якщо порожньо — використовується стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_hero_image",
+                "label": "Фото банера",
+                "name": "hero_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Велике фото справа. Якщо порожньо — використовується стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Контент головного банера на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "modified": 1758568200
+    }
+]

@@ -130,3 +130,58 @@ function zadzerkalya_button( $args = array() ) {
 
 	return $html;
 }
+
+/**
+ * Вивід ACF-зображення (id, масив або URL).
+ *
+ * @param mixed  $field Значення поля.
+ * @param string $size  Розмір.
+ * @param array  $attr  Атрибути img.
+ * @return bool Чи було виведено зображення.
+ */
+function zadzerkalya_acf_image( $field, $size = 'full', $attr = array() ) {
+	if ( empty( $field ) ) {
+		return false;
+	}
+
+	if ( is_numeric( $field ) ) {
+		$html = wp_get_attachment_image( (int) $field, $size, false, $attr );
+		if ( $html ) {
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			return true;
+		}
+		return false;
+	}
+
+	if ( is_array( $field ) ) {
+		$id = isset( $field['ID'] ) ? (int) $field['ID'] : 0;
+		if ( $id ) {
+			$html = wp_get_attachment_image( $id, $size, false, $attr );
+			if ( $html ) {
+				echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				return true;
+			}
+		}
+		$url = $field['url'] ?? '';
+		if ( $url ) {
+			printf(
+				'<img src="%s" alt="%s">',
+				esc_url( $url ),
+				esc_attr( $attr['alt'] ?? ( $field['alt'] ?? '' ) )
+			);
+			return true;
+		}
+		return false;
+	}
+
+	if ( is_string( $field ) ) {
+		printf(
+			'<img src="%s" alt="%s">',
+			esc_url( $field ),
+			esc_attr( $attr['alt'] ?? '' )
+		);
+		return true;
+	}
+
+	return false;
+}

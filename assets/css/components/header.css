@@ -5,12 +5,6 @@
 	padding: 0;
 	background: transparent;
 	overflow: visible;
-	transition: transform 280ms ease;
-	will-change: transform;
-}
-
-.site-header.is-hidden {
-	transform: translateY(calc(-100% - 32px));
 }
 
 .header-bar {
@@ -285,8 +279,3 @@
 	}
 }
 
-@media (prefers-reduced-motion: reduce) {
-	.site-header {
-		transition: none;
-	}
-}

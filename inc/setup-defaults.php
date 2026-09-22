@@ -45,7 +45,7 @@ function zadzerkalya_setup_defaults() {
 		return;
 	}
 
-	$home_id    = zadzerkalya_create_page( 'home', __( 'Головна', 'zadzerkalya' ) );
+	$home_id    = zadzerkalya_create_page( 'home', __( 'Головна', 'zadzerkalya' ), 'page-templates/home.php' );
 	$about_id   = zadzerkalya_create_page( 'about', __( 'Про нас', 'zadzerkalya' ), 'page-templates/about.php' );
 	$prices_id  = zadzerkalya_create_page( 'prices', __( 'Вартість послуг', 'zadzerkalya' ), 'page-templates/prices.php' );
 	$contacts_id = zadzerkalya_create_page( 'contacts', __( 'Контакти', 'zadzerkalya' ), 'page-templates/contacts.php' );
@@ -198,11 +198,13 @@ function zadzerkalya_apply_header_design() {
 
 		if ( ! empty( $item['object'] ) ) {
 			$args['menu-item-object']    = 'page';
-			$args['menu-item-object-id'] = $item['object'];
+			$args['menu-item-object-id'] = (int) $item['object'];
 			$args['menu-item-type']      = 'post_type';
-		} else {
+		} elseif ( ! empty( $item['url'] ) ) {
 			$args['menu-item-type'] = 'custom';
 			$args['menu-item-url']  = $item['url'];
+		} else {
+			continue;
 		}
 
 		wp_update_nav_menu_item( $menu_id, 0, $args );
@@ -256,3 +258,26 @@ function zadzerkalya_apply_hero_design_defaults() {
 	update_option( 'zadzerkalya_hero_design_v1', 1 );
 }
 add_action( 'init', 'zadzerkalya_apply_hero_design_defaults', 25 );
+
+function zadzerkalya_apply_home_page_template() {
+	if ( get_option( 'zadzerkalya_home_template_v1' ) ) {
+		return;
+	}
+
+	$home_id = (int) get_option( 'page_on_front' );
+	if ( ! $home_id ) {
+		$home = get_page_by_path( 'home' );
+		$home_id = $home ? (int) $home->ID : zadzerkalya_create_page( 'home', __( 'Головна', 'zadzerkalya' ), 'page-templates/home.php' );
+		if ( $home_id ) {
+			update_option( 'show_on_front', 'page' );
+			update_option( 'page_on_front', $home_id );
+		}
+	}
+
+	if ( $home_id ) {
+		update_post_meta( $home_id, '_wp_page_template', 'page-templates/home.php' );
+	}
+
+	update_option( 'zadzerkalya_home_template_v1', 1 );
+}
+add_action( 'init', 'zadzerkalya_apply_home_page_template', 20 );

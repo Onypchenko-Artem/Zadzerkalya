@@ -55,7 +55,7 @@ function zadzerkalya_enqueue_assets() {
 
 	wp_enqueue_script(
 		'lottie-web',
-		'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js',
+		ZADZERKALYA_URI . '/assets/js/vendor/lottie.min.js',
 		array(),
 		'5.12.2',
 		array(
@@ -65,9 +65,9 @@ function zadzerkalya_enqueue_assets() {
 	);
 
 	wp_enqueue_script(
-		'zadzerkalya-main',
-		ZADZERKALYA_URI . '/assets/js/main.js',
-		array( 'lottie-web' ),
+		'zadzerkalya-button-anims',
+		ZADZERKALYA_URI . '/assets/js/button-animations.js',
+		array(),
 		ZADZERKALYA_VERSION,
 		array(
 			'strategy'  => 'defer',
@@ -75,11 +75,14 @@ function zadzerkalya_enqueue_assets() {
 		)
 	);
 
-	wp_localize_script(
+	wp_enqueue_script(
 		'zadzerkalya-main',
-		'zadzerkalyaLottie',
+		ZADZERKALYA_URI . '/assets/js/main.js',
+		array( 'lottie-web', 'zadzerkalya-button-anims' ),
+		ZADZERKALYA_VERSION,
 		array(
-			'path' => ZADZERKALYA_URI . '/assets/animations/button/',
+			'strategy'  => 'defer',
+			'in_footer' => true,
 		)
 	);
 
@@ -96,7 +99,6 @@ function zadzerkalya_resource_hints( $urls, $relation_type ) {
 			'crossorigin' => 'anonymous',
 		);
 		$urls[] = 'https://fonts.gstatic.com';
-		$urls[] = 'https://cdnjs.cloudflare.com';
 	}
 
 	return $urls;
