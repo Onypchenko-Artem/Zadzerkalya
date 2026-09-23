@@ -42,6 +42,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-article'=> array( 'file' => '/assets/css/pages/article.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-contacts'=> array( 'file' => '/assets/css/pages/contacts.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-prices' => array( 'file' => '/assets/css/pages/prices.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-page-about'  => array( 'file' => '/assets/css/pages/about.css', 'deps' => array( 'zadzerkalya-base' ) ),
 	);
 
 	foreach ( $styles as $handle => $style ) {
@@ -85,6 +86,19 @@ function zadzerkalya_enqueue_assets() {
 			'in_footer' => true,
 		)
 	);
+
+	if ( is_page_template( 'page-templates/about.php' ) ) {
+		wp_enqueue_script(
+			'zadzerkalya-about',
+			ZADZERKALYA_URI . '/assets/js/about.js',
+			array(),
+			ZADZERKALYA_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
