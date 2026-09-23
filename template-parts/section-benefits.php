@@ -18,7 +18,8 @@ $benefits = array(
 	__( 'Підтримка родини на кожному етапі розвитку дитини.', 'zadzerkalya' ),
 );
 ?>
-<section class="benefits" aria-labelledby="benefits-title">
+<div class="benefits-scroll" data-pinned-list>
+<section class="benefits" aria-labelledby="benefits-title" data-scroll-section>
 	<h2 id="benefits-title"><?php esc_html_e( 'Переваги звернення до центру «Задзеркалля»', 'zadzerkalya' ); ?></h2>
 
 	<div class="benefits__content">
@@ -40,7 +41,7 @@ $benefits = array(
 			?>
 		</div>
 
-		<ol class="benefits__list">
+		<ol class="benefits__list" data-scroll-list>
 			<?php foreach ( $benefits as $index => $benefit ) : ?>
 				<li class="benefits__item">
 					<div class="benefits__number" aria-hidden="true">
@@ -54,3 +55,4 @@ $benefits = array(
 		</ol>
 	</div>
 </section>
+</div>

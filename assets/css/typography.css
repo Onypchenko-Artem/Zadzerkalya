@@ -9,124 +9,124 @@
 	--font-family-display: "Amatic SC", cursive;
 
 	--text-h1-uppercase-family: var(--font-family-heading);
-	--text-h1-uppercase-weight: 500;
+	--text-h1-uppercase-weight: 400;
 	--text-h1-uppercase-size: clamp(calc(84px * 1280 / 1920), calc(84 * 100vw / 1920), 84px);
 	--text-h1-uppercase-line: 0.92;
 	--text-h1-uppercase-tracking: -0.01em;
 	--text-h1-uppercase-transform: uppercase;
 
 	--text-h1-family: var(--font-family-heading);
-	--text-h1-weight: 500;
+	--text-h1-weight: 400;
 	--text-h1-size: clamp(calc(84px * 1280 / 1920), calc(84 * 100vw / 1920), 84px);
 	--text-h1-line: 0.92;
 	--text-h1-tracking: -0.01em;
 	--text-h1-transform: none;
 
 	--text-h2-family: var(--font-family-heading);
-	--text-h2-weight: 500;
+	--text-h2-weight: 400;
 	--text-h2-size: clamp(calc(50px * 1280 / 1920), calc(50 * 100vw / 1920), 50px);
 	--text-h2-line: 0.92;
 	--text-h2-tracking: -0.04em;
 
 	--text-h3-family: var(--font-family-body);
-	--text-h3-weight: 400;
+	--text-h3-weight: 300;
 	--text-h3-size: clamp(calc(32px * 1280 / 1920), calc(32 * 100vw / 1920), 32px);
 	--text-h3-line: 1.2;
 	--text-h3-tracking: 0;
 
 	--text-h3-med-family: var(--font-family-body);
-	--text-h3-med-weight: 500;
+	--text-h3-med-weight: 400;
 	--text-h3-med-size: clamp(calc(32px * 1280 / 1920), calc(32 * 100vw / 1920), 32px);
 	--text-h3-med-line: 1.2;
 	--text-h3-med-tracking: 0;
 
 	--text-lineup-family: var(--font-family-body);
-	--text-lineup-weight: 400;
+	--text-lineup-weight: 300;
 	--text-lineup-size: clamp(calc(24px * 1280 / 1920), calc(24 * 100vw / 1920), 24px);
 	--text-lineup-line: 1.3;
 	--text-lineup-tracking: 0;
 
 	--text-body-l-family: var(--font-family-body);
-	--text-body-l-weight: 400;
+	--text-body-l-weight: 300;
 	--text-body-l-size: clamp(calc(24px * 1280 / 1920), calc(24 * 100vw / 1920), 24px);
 	--text-body-l-line: 1.3;
 	--text-body-l-tracking: 0;
 
 	--text-body-l-med-family: var(--font-family-body);
-	--text-body-l-med-weight: 500;
+	--text-body-l-med-weight: 400;
 	--text-body-l-med-size: clamp(calc(23px * 1280 / 1920), calc(23 * 100vw / 1920), 23px);
 	--text-body-l-med-line: 1.4;
 	--text-body-l-med-tracking: -0.01em;
 
 	--text-body-m-family: var(--font-family-body);
-	--text-body-m-weight: 400;
+	--text-body-m-weight: 300;
 	--text-body-m-size: clamp(calc(21px * 1280 / 1920), calc(21 * 100vw / 1920), 21px);
 	--text-body-m-line: 1.3;
 	--text-body-m-tracking: -0.005em;
 
 	--text-body-s-family: var(--font-family-body);
-	--text-body-s-weight: 400;
+	--text-body-s-weight: 300;
 	--text-body-s-size: clamp(calc(18px * 1280 / 1920), calc(18 * 100vw / 1920), 18px);
 	--text-body-s-line: 1.4;
 	--text-body-s-tracking: -0.005em;
 
 	--text-body-xs-family: var(--font-family-body);
-	--text-body-xs-weight: 300;
+	--text-body-xs-weight: 200;
 	--text-body-xs-size: clamp(calc(16px * 1280 / 1920), calc(16 * 100vw / 1920), 16px);
 	--text-body-xs-line: 1.4;
 	--text-body-xs-tracking: -0.005em;
 
 	--text-menu-family: var(--font-family-body);
-	--text-menu-weight: 400;
+	--text-menu-weight: 300;
 	--text-menu-size: clamp(calc(18px * 1280 / 1920), calc(18 * 100vw / 1920), 18px);
 	--text-menu-line: 1.4;
 	--text-menu-tracking: 0;
 
 	--text-button-family: var(--font-family-body);
-	--text-button-weight: 400;
+	--text-button-weight: 300;
 	--text-button-size: clamp(calc(18px * 1280 / 1920), calc(18 * 100vw / 1920), 18px);
 	--text-button-line: 1.3;
 	--text-button-tracking: 0;
 
 	--text-footer-family: var(--font-family-body);
-	--text-footer-weight: 400;
+	--text-footer-weight: 300;
 	--text-footer-size: clamp(calc(16px * 1280 / 1920), calc(16 * 100vw / 1920), 16px);
 	--text-footer-line: 1.4;
 	--text-footer-tracking: -0.01em;
 	--text-footer-transform: uppercase;
 
 	--text-logo-sub-family: var(--font-family-body);
-	--text-logo-sub-weight: 400;
+	--text-logo-sub-weight: 300;
 	--text-logo-sub-size: clamp(calc(16px * 1280 / 1920), calc(16 * 100vw / 1920), 16px);
 	--text-logo-sub-line: 1.4;
 	--text-logo-sub-tracking: 0;
 
 	--text-number-big-2-family: var(--font-family-display);
-	--text-number-big-2-weight: 400;
+	--text-number-big-2-weight: 300;
 	--text-number-big-2-size: clamp(calc(90px * 1280 / 1920), calc(90 * 100vw / 1920), 90px);
 	--text-number-big-2-line: normal;
 	--text-number-big-2-tracking: 0.001em;
 
 	--text-logo-display-family: var(--font-family-display);
-	--text-logo-display-weight: 400;
+	--text-logo-display-weight: 300;
 	--text-logo-display-size: clamp(calc(40px * 1280 / 1920), calc(40 * 100vw / 1920), 40px);
 	--text-logo-display-line: normal;
 	--text-logo-display-tracking: 0.006em;
 
 	--text-number-big-family: var(--font-family-display);
-	--text-number-big-weight: 700;
+	--text-number-big-weight: 600;
 	--text-number-big-size: clamp(calc(40px * 1280 / 1920), calc(40 * 100vw / 1920), 40px);
 	--text-number-big-line: 0.9;
 	--text-number-big-tracking: 0;
 
 	--text-number-family: var(--font-family-display);
-	--text-number-weight: 400;
+	--text-number-weight: 300;
 	--text-number-size: clamp(calc(20px * 1280 / 1920), calc(20 * 100vw / 1920), 20px);
 	--text-number-line: normal;
 	--text-number-tracking: 0.03em;
 
 	--text-slider-family: var(--font-family-display);
-	--text-slider-weight: 700;
+	--text-slider-weight: 600;
 	--text-slider-size: clamp(calc(20px * 1280 / 1920), calc(20 * 100vw / 1920), 20px);
 	--text-slider-line: normal;
 	--text-slider-tracking: 0.033em;

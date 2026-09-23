@@ -69,7 +69,8 @@ $items = $args['items'] ?? array(
 	),
 );
 ?>
-<section class="faq" aria-labelledby="faq-title">
+<div class="faq-scroll" data-pinned-list>
+<section class="faq" aria-labelledby="faq-title" data-scroll-section>
 	<div class="faq__media">
 		<div class="faq__image-placeholder">
 			<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/faq-bottle.png' ); ?>" alt="" aria-hidden="true">
@@ -79,7 +80,7 @@ $items = $args['items'] ?? array(
 	<div class="faq__content">
 		<h2 id="faq-title"><?php echo esc_html( $title ); ?></h2>
 
-		<div class="faq__list">
+		<div class="faq__list" data-scroll-list>
 			<?php foreach ( $items as $index => $item ) : ?>
 				<details class="faq__item"<?php echo 0 === $index ? ' open' : ''; ?>>
 					<summary>
@@ -97,3 +98,4 @@ $items = $args['items'] ?? array(
 		</div>
 	</div>
 </section>
+</div>

@@ -1,3 +1,17 @@
+.faq-scroll.is-scroll-driven {
+	position: relative;
+	height: var(--pinned-list-height);
+}
+
+.faq-scroll.is-scroll-driven .faq {
+	position: sticky;
+	top: calc(150 * var(--u));
+}
+
+.faq-scroll.is-scroll-driven .faq__list {
+	overflow-y: hidden;
+}
+
 .faq {
 	display: flex;
 	align-items: flex-end;
@@ -151,6 +165,10 @@
 }
 
 @media (max-width: 1279px) {
+	.faq-scroll.is-scroll-driven .faq {
+		top: 88px;
+	}
+
 	.faq {
 		align-items: stretch;
 		gap: 32px;
@@ -203,6 +221,18 @@
 }
 
 @media (max-width: 767px) {
+	.faq-scroll.is-scroll-driven {
+		height: auto;
+	}
+
+	.faq-scroll.is-scroll-driven .faq {
+		position: static;
+	}
+
+	.faq-scroll.is-scroll-driven .faq__list {
+		overflow-y: auto;
+	}
+
 	.faq {
 		flex-direction: column;
 		align-items: center;

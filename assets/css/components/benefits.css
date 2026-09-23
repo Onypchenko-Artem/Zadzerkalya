@@ -1,3 +1,17 @@
+.benefits-scroll.is-scroll-driven {
+	position: relative;
+	height: var(--pinned-list-height);
+}
+
+.benefits-scroll.is-scroll-driven .benefits {
+	position: sticky;
+	top: calc(150 * var(--u));
+}
+
+.benefits-scroll.is-scroll-driven .benefits__list {
+	overflow-y: hidden;
+}
+
 .benefits {
 	display: flex;
 	flex-direction: column;
@@ -24,7 +38,7 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: calc(65 * var(--u));
-	width: 100%;
+	/*width: 100%;*/
 	min-width: 0;
 	height: calc(704 * var(--u));
 }
@@ -150,6 +164,10 @@
 }
 
 @media (max-width: 1279px) {
+	.benefits-scroll.is-scroll-driven .benefits {
+		top: 88px;
+	}
+
 	.benefits {
 		gap: 48px;
 		height: auto;
@@ -225,6 +243,18 @@
 }
 
 @media (max-width: 767px) {
+	.benefits-scroll.is-scroll-driven {
+		height: auto;
+	}
+
+	.benefits-scroll.is-scroll-driven .benefits {
+		position: static;
+	}
+
+	.benefits-scroll.is-scroll-driven .benefits__list {
+		overflow-y: auto;
+	}
+
 	.benefits {
 		gap: 32px;
 		padding: 0 20px;

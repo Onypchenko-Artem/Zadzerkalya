@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: calc(36 * var(--u));
-	height: calc(962 * var(--u));
+	height: calc(858 * var(--u));
 	padding: 0 calc(48 * var(--u));
 	color: var(--color-night-sky);
 }
@@ -49,7 +49,7 @@
 	align-items: center;
 	gap: calc(40 * var(--u));
 	width: 100%;
-	height: calc(773 * var(--u));
+	height: calc(669 * var(--u));
 }
 
 .reviews__controls {
@@ -104,7 +104,7 @@
 
 .reviews__viewport {
 	width: 100%;
-	height: calc(702 * var(--u));
+	height: calc(598 * var(--u));
 	overflow-x: auto;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
@@ -123,17 +123,35 @@
 }
 
 .reviews__card {
+	position: relative;
 	display: flex;
 	flex: 0 0 calc(558 * var(--u));
 	flex-direction: column;
-	align-items: stretch;
-	gap: calc(48 * var(--u));
+	align-items: flex-start;
+	gap: 0;
 	width: calc(558 * var(--u));
-	height: calc(702 * var(--u));
+	height: calc(598 * var(--u));
 	padding: calc(32 * var(--u));
+	background: #fff;
 	border: 1px solid var(--color-night-sky);
 	border-radius: calc(44 * var(--u));
 	scroll-snap-align: start;
+}
+
+.reviews__card-header + .reviews__line {
+	margin-top: calc(32 * var(--u));
+}
+
+.reviews__line + .reviews__text {
+	margin-top: calc(24 * var(--u));
+}
+
+.reviews__text + .reviews__line {
+	margin-top: calc(24 * var(--u));
+}
+
+.reviews__line--reverse + .reviews__more {
+	margin-top: calc(32 * var(--u));
 }
 
 .reviews__card-header {
@@ -208,7 +226,9 @@
 
 .reviews__text {
 	display: -webkit-box;
-	flex: 1 1 auto;
+	flex: 0 0 calc(240 * var(--u));
+	width: 100%;
+	height: calc(240 * var(--u));
 	overflow: hidden;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
@@ -328,11 +348,20 @@
 
 	.reviews__card {
 		flex-basis: min(520px, calc(50vw - 44px));
-		gap: 32px;
 		width: min(520px, calc(50vw - 44px));
 		height: 620px;
 		padding: 28px;
 		border-radius: 36px;
+	}
+
+	.reviews__card-header + .reviews__line,
+	.reviews__line--reverse + .reviews__more {
+		margin-top: 32px;
+	}
+
+	.reviews__line + .reviews__text,
+	.reviews__text + .reviews__line {
+		margin-top: 24px;
 	}
 
 	.reviews__card-header {
@@ -361,6 +390,8 @@
 	}
 
 	.reviews__text {
+		flex: 1 1 auto;
+		height: auto;
 		font-size: var(--text-body-l-size);
 	}
 
@@ -395,11 +426,15 @@
 
 	.reviews__card {
 		flex-basis: calc(100vw - 40px);
-		gap: 24px;
 		width: calc(100vw - 40px);
 		height: 540px;
 		padding: 20px;
 		border-radius: 28px;
+	}
+
+	.reviews__text + .reviews__line,
+	.reviews__line--reverse + .reviews__more {
+		margin-top: 24px;
 	}
 
 	.reviews__card-header {

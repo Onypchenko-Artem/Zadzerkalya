@@ -124,7 +124,7 @@
 }
 
 .numbers__love {
-	width: calc(1743 * var(--u));
+	width: calc(1696 * var(--u));
 	max-width: 100%;
 	height: calc(234 * var(--u));
 }
@@ -146,7 +146,7 @@
 	font-family: var(--text-number-big-2-family);
 	font-size: 80px;
 	font-weight: var(--text-number-big-2-weight);
-	letter-spacing: 0.1em;
+	letter-spacing: 0;
 	fill: var(--color-night-sky);
 }
 
@@ -244,7 +244,7 @@
 
 	.numbers__love {
 		height: auto;
-		aspect-ratio: 1743 / 234;
+		aspect-ratio: 1696 / 234;
 	}
 
 	.numbers__love text {
