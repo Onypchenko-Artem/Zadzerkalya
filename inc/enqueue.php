@@ -43,6 +43,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-contacts'=> array( 'file' => '/assets/css/pages/contacts.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-prices' => array( 'file' => '/assets/css/pages/prices.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-about'  => array( 'file' => '/assets/css/pages/about.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-page-specialists' => array( 'file' => '/assets/css/pages/specialists.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-page-about' ) ),
 	);
 
 	foreach ( $styles as $handle => $style ) {
@@ -87,7 +88,7 @@ function zadzerkalya_enqueue_assets() {
 		)
 	);
 
-	if ( is_page_template( 'page-templates/about.php' ) ) {
+	if ( is_page_template( 'page-templates/about.php' ) || is_page_template( 'page-templates/specialists.php' ) || is_post_type_archive( 'specialist' ) ) {
 		wp_enqueue_script(
 			'zadzerkalya-about',
 			ZADZERKALYA_URI . '/assets/js/about.js',

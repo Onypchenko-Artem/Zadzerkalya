@@ -41,18 +41,20 @@ $benefits = array(
 			?>
 		</div>
 
-		<ol class="benefits__list" data-scroll-list>
-			<?php foreach ( $benefits as $index => $benefit ) : ?>
-				<li class="benefits__item">
-					<div class="benefits__number" aria-hidden="true">
-						<span class="benefits__number-line benefits__number-line--left"></span>
-						<span><?php echo esc_html( $index + 1 ); ?></span>
-						<span class="benefits__number-line"></span>
-					</div>
-					<p><?php echo esc_html( $benefit ); ?></p>
-				</li>
-			<?php endforeach; ?>
-		</ol>
+		<div class="benefits__list" data-scroll-list>
+			<ol class="benefits__track" data-scroll-track>
+				<?php foreach ( $benefits as $index => $benefit ) : ?>
+					<li class="benefits__item">
+						<div class="benefits__number" aria-hidden="true">
+							<span class="benefits__number-line benefits__number-line--left"></span>
+							<span><?php echo esc_html( $index + 1 ); ?></span>
+							<span class="benefits__number-line"></span>
+						</div>
+						<p><?php echo esc_html( $benefit ); ?></p>
+					</li>
+				<?php endforeach; ?>
+			</ol>
+		</div>
 	</div>
 </section>
 </div>

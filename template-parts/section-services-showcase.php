@@ -36,7 +36,11 @@ for ( $index = count( $items ); $index < 7; ++$index ) {
 ?>
 <section class="services-showcase" aria-labelledby="services-showcase-title">
 	<div class="services-showcase__heading">
-		<h2 id="services-showcase-title"><?php esc_html_e( 'Понад 25 корекційних, освітніх та реабілітаційних послуг, зібраних в одному центрі!', 'zadzerkalya' ); ?></h2>
+		<h2 id="services-showcase-title">
+			<?php esc_html_e( 'Понад 25 корекційних, освітніх', 'zadzerkalya' ); ?><br>
+			<?php esc_html_e( 'та реабілітаційних послуг,', 'zadzerkalya' ); ?><br>
+			<?php esc_html_e( 'зібраних в одному центрі!', 'zadzerkalya' ); ?>
+		</h2>
 		<p><?php esc_html_e( 'В «Задзеркаллі» пропонуємо як психоемоційну, так і фізичну корекцію в межах одного простору для вашої зручності.', 'zadzerkalya' ); ?></p>
 	</div>
 

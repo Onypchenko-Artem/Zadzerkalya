@@ -1,0 +1,73 @@
+{
+    "key": "group_zadzerkalya_about_ending",
+    "title": "Про нас: Завершення",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_about_ending_rabbit",
+            "label": "Зображення кролика",
+            "name": "about_ending_rabbit",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Якщо поле порожнє, використовується зображення теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_about_ending_message",
+            "label": "Фінальна фраза",
+            "name": "about_ending_message",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Текст відображається на декоративній кривій.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "ЦЕ НАША ІСТОРІЯ — І ВОНА ТІЛЬКИ ПОЧИНАЄТЬСЯ!",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/about.php"
+            }
+        ]
+    ],
+    "menu_order": 5,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Контент завершального блоку.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790273133
+}

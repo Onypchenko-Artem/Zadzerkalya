@@ -33,7 +33,7 @@ $reasons = array(
 			<ul class="help__reasons">
 				<?php foreach ( $reasons as $reason ) : ?>
 					<li>
-						<span class="help__bullet" aria-hidden="true"></span>
+						<img class="help__bullet" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/marker.svg' ); ?>" alt="" aria-hidden="true">
 						<span><?php echo esc_html( $reason ); ?></span>
 					</li>
 				<?php endforeach; ?>

@@ -31,7 +31,7 @@ a.lottie-button:hover {
 
 .lottie-button__anim {
 	position: absolute;
-	inset: 0;
+	inset: calc(-6 * var(--u));
 	pointer-events: none;
 }
 
@@ -42,17 +42,30 @@ a.lottie-button:hover {
 	overflow: visible;
 }
 
+.lottie-button--primary:hover .lottie-button__anim path[fill],
+.lottie-button--primary:focus-visible .lottie-button__anim path[fill] {
+	fill: var(--color-lemon-cream);
+}
+
 .lottie-button__label {
 	position: relative;
 	z-index: 1;
-	padding: 0 calc(24 * var(--u));
+	max-width: 100%;
 	white-space: nowrap;
 	font-family: var(--text-button-family);
-	font-size: var(--text-button-size);
-	font-weight: var(--text-button-weight);
-	line-height: var(--text-button-line);
+	font-size: calc(22 * var(--u));
+	font-weight: 400;
+	line-height: 1.35;
 	letter-spacing: var(--text-button-tracking);
 	color: var(--color-night-sky);
+}
+
+.lottie-button--primary .lottie-button__label {
+	padding-inline: calc(38 * var(--u));
+}
+
+.lottie-button--secondary .lottie-button__label {
+	padding-inline: calc(2 * var(--u));
 }
 
 @media (max-width: 1279px) {
@@ -65,11 +78,27 @@ a.lottie-button:hover {
 		--lottie-btn-w: 180px;
 		--lottie-btn-h: 66px;
 	}
+
+	.lottie-button__anim {
+		inset: -6px;
+	}
+
+	.lottie-button__label {
+		font-size: 14px;
+	}
+
+	.lottie-button--primary .lottie-button__label {
+		padding-inline: 18px;
+	}
+
+	.lottie-button--secondary .lottie-button__label {
+		padding-inline: 2px;
+	}
 }
 
 @media (max-width: 767px) {
 	.lottie-button--primary {
-		--lottie-btn-w: 260px;
+		--lottie-btn-w: 240px;
 		--lottie-btn-h: 62px;
 	}
 
@@ -79,7 +108,20 @@ a.lottie-button:hover {
 	}
 
 	.lottie-button__label {
-		white-space: normal;
+		font-size: 13px;
+		line-height: 1.26;
 		text-align: center;
+	}
+
+	.lottie-button--primary .lottie-button__label {
+		padding-inline: 19px;
+	}
+
+	.lottie-button--primary[data-mobile-rows="2"] .lottie-button__label {
+		white-space: normal;
+	}
+
+	.lottie-button--secondary .lottie-button__label {
+		padding-inline: 3px;
 	}
 }

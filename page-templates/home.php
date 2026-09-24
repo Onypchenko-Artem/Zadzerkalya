@@ -84,7 +84,7 @@ if ( ! $hero_btn ) {
 					</div>
 				</div>
 
-				<div class="hero-divider" aria-hidden="true"></div>
+				<img class="hero-divider" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-divider.svg' ); ?>" alt="" aria-hidden="true">
 
 				<div class="hero-media">
 					<?php

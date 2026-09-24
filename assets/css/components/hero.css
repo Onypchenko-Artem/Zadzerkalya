@@ -37,7 +37,7 @@
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
-	padding: calc(8 * var(--u)) 0;
+	padding: calc(8 * var(--u)) calc(15 * var(--u)) calc(8 * var(--u)) 0;
 }
 
 .hero-kicker {
@@ -152,29 +152,17 @@
 	box-shadow: 0 0 0 2px var(--color-sky-blue);
 }
 
-.hero-form .lottie-button--primary {
-	--lottie-btn-w: calc(434 * var(--u));
-}
-
 .hero-divider {
-	position: relative;
-	height: 100%;
-}
-
-.hero-divider::before {
-	position: absolute;
-	inset: 0 auto 0 50%;
-	width: 1px;
-	background: var(--color-night-sky);
-	content: "";
-	transform: rotate(-1.7deg);
-	transform-origin: center;
+	align-self: center;
+	justify-self: center;
+	width: calc(11 * var(--u));
+	height: calc(727 * var(--u));
 }
 
 .hero-media {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 	min-width: 0;
 	height: calc(741 * var(--u));
 	overflow: hidden;
@@ -182,7 +170,7 @@
 }
 
 .hero-media img {
-	width: 100%;
+	/*width: 100%;*/
 	height: 100%;
 	object-fit: cover;
 }
@@ -271,13 +259,14 @@
 		font-size: 18px;
 	}
 
-	.hero-form .lottie-button--primary {
-		--lottie-btn-w: 100%;
-	}
-
 	.hero-media {
 		height: 620px;
 		border-radius: 28px;
+	}
+
+	.hero-divider {
+		width: 9px;
+		height: 608px;
 	}
 
 	.hero-bottom-line {
@@ -343,10 +332,6 @@
 	.hero-illustration {
 		width: 128px;
 		height: 120px;
-	}
-
-	.hero-form .lottie-button--primary {
-		--lottie-btn-h: 66px;
 	}
 
 	.hero-media {

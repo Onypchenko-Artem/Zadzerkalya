@@ -83,7 +83,7 @@
 			if (width <= 767) {
 				return 'mobile';
 			}
-			if (width <= 1024) {
+			if (width <= 1279) {
 				return 'tablet';
 			}
 			return 'desktop';
@@ -100,7 +100,11 @@
 			let currentName = '';
 
 			const mount = () => {
-				const name = `button-${variant}-${breakpoint()}`;
+				const currentBreakpoint = breakpoint();
+				const mobileRows = button.dataset.mobileRows || '1';
+				const name = variant === 'primary' && currentBreakpoint === 'mobile'
+					? `button-primary-mobile-${mobileRows}-rows`
+					: `button-${variant}-${currentBreakpoint}`;
 				const data = zadzerkalyaButtonAnims[name];
 				if (!data || name === currentName) {
 					return;
@@ -157,8 +161,9 @@
 	document.querySelectorAll('[data-pinned-list]').forEach((shell) => {
 		const section = shell.querySelector('[data-scroll-section]');
 		const list = shell.querySelector('[data-scroll-list]');
+		const track = list ? list.querySelector('[data-scroll-track]') : null;
 
-		if (!section || !list) {
+		if (!section || !list || !track) {
 			return;
 		}
 
@@ -170,12 +175,13 @@
 			frame = 0;
 
 			if (!media.matches || !scrollDistance) {
+				track.style.transform = '';
 				return;
 			}
 
 			const start = shell.getBoundingClientRect().top + window.scrollY - stickyOffset;
 			const progress = Math.min(Math.max(window.scrollY - start, 0), scrollDistance);
-			list.scrollTop = progress;
+			track.style.transform = `translate3d(0, ${-progress}px, 0)`;
 		};
 
 		const requestSync = () => {
@@ -188,14 +194,14 @@
 			if (!media.matches) {
 				shell.classList.remove('is-scroll-driven');
 				shell.style.removeProperty('--pinned-list-height');
-				list.scrollTop = 0;
+				track.style.transform = '';
 				scrollDistance = 0;
 				stickyOffset = 0;
 				return;
 			}
 
 			shell.classList.add('is-scroll-driven');
-			scrollDistance = Math.max(list.scrollHeight - list.clientHeight, 0);
+			scrollDistance = Math.max(track.offsetHeight - list.clientHeight, 0);
 			stickyOffset = Number.parseFloat(getComputedStyle(section).top) || 0;
 			shell.style.setProperty(
 				'--pinned-list-height',
@@ -213,7 +219,7 @@
 			const observer = new ResizeObserver(measure);
 			observer.observe(section);
 			observer.observe(list);
-			Array.from(list.children).forEach((item) => observer.observe(item));
+			observer.observe(track);
 		}
 
 		measure();

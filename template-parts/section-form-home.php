@@ -4,6 +4,16 @@
  *
  * @package Zadzerkalya
  */
+
+$args = wp_parse_args(
+	$args ?? array(),
+	array(
+		'title'        => __( 'Кожен день — важливий!', 'zadzerkalya' ),
+		'description'  => __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ),
+		'button_label' => __( 'забронювати первинну консультацію', 'zadzerkalya' ),
+		'source'       => 'home',
+	)
+);
 ?>
 <section class="form-home" aria-labelledby="form-home-title">
 	<div class="form-home__background" aria-hidden="true">
@@ -13,14 +23,14 @@
 
 	<div class="form-home__content">
 		<header class="form-home__heading">
-			<h2 id="form-home-title"><?php esc_html_e( 'Кожен день — важливий!', 'zadzerkalya' ); ?></h2>
-			<p><?php esc_html_e( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ); ?></p>
+			<h2 id="form-home-title"><?php echo esc_html( $args['title'] ); ?></h2>
+			<p><?php echo esc_html( $args['description'] ); ?></p>
 		</header>
 
 		<form class="form-home__form" method="post" action="">
 			<?php zadzerkalya_contact_notice(); ?>
 			<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
-			<input type="hidden" name="zadzerkalya_form_source" value="home">
+			<input type="hidden" name="zadzerkalya_form_source" value="<?php echo esc_attr( $args['source'] ); ?>">
 
 			<p class="hp-field" aria-hidden="true">
 				<label><?php esc_html_e( 'Сайт', 'zadzerkalya' ); ?>
@@ -51,7 +61,7 @@
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => __( 'забронювати первинну консультацію', 'zadzerkalya' ),
+					'label'   => $args['button_label'],
 					'variant' => 'primary',
 					'type'    => 'submit',
 					'name'    => 'zadzerkalya_contact_submit',

@@ -9,9 +9,84 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Опублікована сторінка з шаблоном «Спеціалісти».
+ *
+ * @return int
+ */
+function zadzerkalya_get_specialists_page_id() {
+	static $page_id = null;
+
+	if ( null !== $page_id ) {
+		return $page_id;
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_wp_page_template',
+			'meta_value'     => 'page-templates/specialists.php',
+		)
+	);
+
+	$page_id = $pages ? (int) $pages[0] : 0;
+
+	return $page_id;
+}
+
+/**
+ * Адреса сторінки спеціалістів або архіву, доки сторінку не створено.
+ *
+ * @return string
+ */
+function zadzerkalya_get_specialists_url() {
+	$page_id = zadzerkalya_get_specialists_page_id();
+
+	if ( $page_id ) {
+		return get_permalink( $page_id );
+	}
+
+	$archive = get_post_type_archive_link( 'specialist' );
+
+	return $archive ? $archive : home_url( '/specialists/' );
+}
+
 function zadzerkalya_get_page_url( $slug ) {
 	$page = get_page_by_path( $slug );
 	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
+}
+
+/**
+ * Поле ACF зі сторінки «Про нас».
+ *
+ * @param string $name     Імʼя поля.
+ * @param mixed  $fallback Значення, якщо поле порожнє.
+ * @return mixed
+ */
+function zadzerkalya_about_field( $name, $fallback = '' ) {
+	$page = get_page_by_path( 'about' );
+
+	if ( ! $page ) {
+		$pages = get_posts(
+			array(
+				'post_type'      => 'page',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+				'meta_key'       => '_wp_page_template',
+				'meta_value'     => 'page-templates/about.php',
+			)
+		);
+		$page_id = $pages ? (int) $pages[0] : 0;
+	} else {
+		$page_id = (int) $page->ID;
+	}
+
+	$value = ( $page_id && function_exists( 'get_field' ) ) ? get_field( $name, $page_id ) : null;
+
+	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
 }
 
 function zadzerkalya_posted_on() {
@@ -101,12 +176,16 @@ function zadzerkalya_button( $args = array() ) {
 	$label   = esc_html( $args['label'] );
 	$class   = 'lottie-button lottie-button--' . $variant;
 	$inner   = '<span class="lottie-button__anim" aria-hidden="true"></span><span class="lottie-button__label">' . $label . '</span>';
+	$text    = trim( wp_strip_all_tags( $args['label'] ) );
+	$length  = function_exists( 'mb_strlen' ) ? mb_strlen( $text ) : strlen( $text );
+	$rows    = 'primary' === $variant && $length > 25 ? '2' : '1';
 
 	if ( $args['url'] ) {
 		$html = sprintf(
-			'<a class="%1$s" data-variant="%2$s" href="%3$s">%4$s</a>',
+			'<a class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s" href="%4$s">%5$s</a>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
+			esc_attr( $rows ),
 			esc_url( $args['url'] ),
 			$inner
 		);
@@ -114,9 +193,10 @@ function zadzerkalya_button( $args = array() ) {
 		$name  = $args['name'] ? ' name="' . esc_attr( $args['name'] ) . '"' : '';
 		$value = '' !== $args['value'] ? ' value="' . esc_attr( $args['value'] ) . '"' : '';
 		$html  = sprintf(
-			'<button class="%1$s" data-variant="%2$s" type="%3$s"%4$s%5$s>%6$s</button>',
+			'<button class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s" type="%4$s"%5$s%6$s>%7$s</button>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
+			esc_attr( $rows ),
 			esc_attr( $args['type'] ),
 			$name,
 			$value,

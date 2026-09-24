@@ -42,24 +42,20 @@ add_action( 'add_meta_boxes', 'zadzerkalya_add_meta_boxes' );
 function zadzerkalya_render_specialist_meta_box( $post ) {
 	wp_nonce_field( 'zadzerkalya_save_meta', 'zadzerkalya_meta_nonce' );
 
-	$fields = array(
-		'position'   => __( 'Посада', 'zadzerkalya' ),
-		'experience' => __( 'Досвід', 'zadzerkalya' ),
-		'education'  => __( 'Освіта', 'zadzerkalya' ),
-		'phone'      => __( 'Телефон', 'zadzerkalya' ),
-		'email'      => __( 'Email', 'zadzerkalya' ),
-	);
+	$position  = get_post_meta( $post->ID, '_zdk_position', true );
+	$education = get_post_meta( $post->ID, '_zdk_education', true );
 
 	echo '<div class="zdk-metabox">';
-	foreach ( $fields as $key => $label ) {
-		$value = get_post_meta( $post->ID, '_zdk_' . $key, true );
-		printf(
-			'<p><label for="zdk_%1$s"><strong>%2$s</strong></label><br /><input type="text" class="widefat" id="zdk_%1$s" name="zdk_%1$s" value="%3$s" /></p>',
-			esc_attr( $key ),
-			esc_html( $label ),
-			esc_attr( $value )
-		);
-	}
+	printf(
+		'<p><label for="zdk_position"><strong>%1$s</strong></label><br /><input type="text" class="widefat" id="zdk_position" name="zdk_position" value="%2$s" /></p>',
+		esc_html__( 'Посада', 'zadzerkalya' ),
+		esc_attr( $position )
+	);
+	printf(
+		'<p><label for="zdk_education"><strong>%1$s</strong></label><br /><textarea class="widefat" rows="4" id="zdk_education" name="zdk_education">%2$s</textarea></p>',
+		esc_html__( 'Освіта', 'zadzerkalya' ),
+		esc_textarea( $education )
+	);
 	echo '</div>';
 }
 
@@ -135,7 +131,13 @@ function zadzerkalya_save_meta_boxes( $post_id ) {
 	$map = array();
 
 	if ( 'specialist' === $type ) {
-		$map = array( 'position', 'experience', 'education', 'phone', 'email' );
+		if ( isset( $_POST['zdk_position'] ) ) {
+			update_post_meta( $post_id, '_zdk_position', sanitize_text_field( wp_unslash( $_POST['zdk_position'] ) ) );
+		}
+		if ( isset( $_POST['zdk_education'] ) ) {
+			update_post_meta( $post_id, '_zdk_education', sanitize_textarea_field( wp_unslash( $_POST['zdk_education'] ) ) );
+		}
+		return;
 	} elseif ( 'service' === $type ) {
 		$map = array( 'price', 'duration', 'price_note' );
 		$from = isset( $_POST['zdk_price_from'] ) ? '1' : '';

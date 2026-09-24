@@ -1,0 +1,161 @@
+{
+    "key": "group_zadzerkalya_about_values",
+    "title": "Про нас: Цінності",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_about_values_image",
+            "label": "Фото інтер’єру",
+            "name": "about_values_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_about_values_highlight",
+            "label": "Акцентний текст",
+            "name": "about_values_highlight",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Для мене важливо не лише допомагати дітям, а й створювати середовище, в якому зростають і фахівці. Я завжди піклуюся про свою команду, адже вірю, що турбота про співробітників — це запорука якісної роботи.",
+            "rows": 8,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_about_values_left",
+            "label": "Ліва колонка",
+            "name": "about_values_left",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Кожен абзац додавайте окремим рядком.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Додати абзац",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_about_values_left_text",
+                    "label": "Абзац",
+                    "name": "about_values_left_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_zadzerkalya_about_values_left"
+                }
+            ]
+        },
+        {
+            "key": "field_zadzerkalya_about_values_conclusion",
+            "label": "Фінальний текст",
+            "name": "about_values_conclusion",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Кожен абзац додавайте окремим рядком.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Додати абзац",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_about_values_conclusion_text",
+                    "label": "Абзац",
+                    "name": "about_values_conclusion_text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "rows": 4,
+                    "new_lines": "",
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_zadzerkalya_about_values_conclusion"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/about.php"
+            }
+        ]
+    ],
+    "menu_order": 4,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Контент секції цінностей.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790273174
+}

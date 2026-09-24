@@ -9,7 +9,7 @@
 }
 
 .benefits-scroll.is-scroll-driven .benefits__list {
-	overflow-y: hidden;
+	overflow: clip;
 }
 
 .benefits {
@@ -23,7 +23,9 @@
 }
 
 .benefits > h2 {
+	flex: none;
 	width: 100%;
+	height: calc(61 * var(--u));
 	margin: 0;
 	font-family: var(--font-family-heading);
 	font-size: calc(58 * var(--u));
@@ -35,10 +37,12 @@
 
 .benefits__content {
 	display: flex;
+	flex: none;
 	justify-content: space-between;
 	align-items: center;
+	align-self: stretch;
 	gap: calc(65 * var(--u));
-	/*width: 100%;*/
+	width: 100%;
 	min-width: 0;
 	height: calc(704 * var(--u));
 }
@@ -50,12 +54,15 @@
 	justify-content: space-between;
 	align-items: center;
 	gap: calc(48 * var(--u));
+	width: calc(390 * var(--u));
 	height: 100%;
 }
 
 .benefits__intro p {
+	flex: none;
 	width: calc(375 * var(--u));
 	max-width: 100%;
+	height: calc(120 * var(--u));
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
@@ -79,25 +86,29 @@
 	object-fit: contain;
 }
 
-.benefits__intro .lottie-button {
-	--lottie-btn-w: calc(390 * var(--u));
+.benefits__intro .lottie-button--primary .lottie-button__anim path[fill] {
+	fill: #f4efeb;
 }
 
 .benefits__list {
-	display: flex;
 	flex: 0 0 calc(1368 * var(--u));
-	flex-direction: column;
-	gap: calc(16 * var(--u));
 	width: calc(1368 * var(--u));
 	min-width: 0;
 	max-width: 100%;
 	height: 100%;
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.benefits__track {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: calc(16 * var(--u));
+	width: 100%;
 	margin: 0;
 	padding: 0;
-	overflow-y: auto;
-	overscroll-behavior: contain;
 	list-style: none;
-	scrollbar-width: none;
 }
 
 .benefits__list::-webkit-scrollbar {
@@ -175,6 +186,7 @@
 	}
 
 	.benefits > h2 {
+		height: auto;
 		font-size: var(--text-h2-size);
 	}
 
@@ -187,10 +199,12 @@
 	.benefits__intro {
 		flex-basis: 300px;
 		gap: 28px;
+		width: 300px;
 	}
 
 	.benefits__intro p {
 		width: 100%;
+		height: auto;
 		font-size: var(--text-body-l-size);
 	}
 
@@ -199,10 +213,6 @@
 		width: 300px;
 		height: 300px;
 		border-radius: 48% 48% 24px 24px;
-	}
-
-	.benefits__intro .lottie-button {
-		--lottie-btn-w: 293px;
 	}
 
 	.benefits__list {
@@ -269,6 +279,7 @@
 	.benefits__intro {
 		flex-basis: auto;
 		gap: 24px;
+		width: 100%;
 		height: auto;
 	}
 
@@ -278,16 +289,15 @@
 		height: 260px;
 	}
 
-	.benefits__intro .lottie-button {
-		--lottie-btn-w: 260px;
-	}
-
 	.benefits__list {
 		flex: none;
 		width: 100%;
 		height: 520px;
-		gap: 12px;
 		scroll-snap-type: y proximity;
+	}
+
+	.benefits__track {
+		gap: 12px;
 	}
 
 	.benefits__item {

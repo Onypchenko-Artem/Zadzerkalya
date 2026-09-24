@@ -48,7 +48,7 @@ if ( ! $privacy_url ) {
 				<?php if ( $address ) : ?>
 					<p class="site-footer__address">
 						<span><?php echo esc_html( $address ); ?></span>
-						<i aria-hidden="true"></i>
+						<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/footer-address-line.svg' ); ?>" alt="" aria-hidden="true">
 					</p>
 				<?php endif; ?>
 

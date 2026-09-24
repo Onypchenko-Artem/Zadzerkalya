@@ -60,45 +60,28 @@
 }
 
 .reviews__arrow {
-	position: relative;
 	flex: 0 0 calc(48 * var(--u));
 	width: calc(48 * var(--u));
 	height: calc(32 * var(--u));
 	padding: 0;
-	background: transparent;
+	background-color: transparent;
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 	border: 0;
-	color: var(--color-night-sky);
 	cursor: pointer;
 }
 
-.reviews__arrow::before {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: calc(47 * var(--u));
-	content: "";
-	border-top: 2px solid currentColor;
-	transform: translateY(-50%);
-}
-
-.reviews__arrow::after {
-	position: absolute;
-	top: 50%;
-	right: calc(1 * var(--u));
-	width: calc(15 * var(--u));
-	height: calc(15 * var(--u));
-	content: "";
-	border-top: 2px solid currentColor;
-	border-right: 2px solid currentColor;
-	transform: translateY(-50%) rotate(45deg);
-}
-
 .reviews__arrow--prev {
-	transform: scaleX(-1);
+	background-image: url("../../images/left-arrow.svg");
+}
+
+.reviews__arrow--next {
+	background-image: url("../../images/right-arrow.svg");
 }
 
 .reviews__arrow:disabled {
-	color: color-mix(in srgb, var(--color-grey-hug) 35%, transparent);
+	opacity: 0.35;
 	cursor: default;
 }
 
@@ -216,7 +199,7 @@
 	flex: 0 0 calc(10 * var(--u));
 	width: 100%;
 	height: calc(10 * var(--u));
-	background: url("../../images/service-card-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/review-line.svg") center / 100% 100% no-repeat;
 	opacity: 0.75;
 }
 
@@ -262,31 +245,9 @@
 }
 
 .reviews__more i {
-	position: relative;
 	width: calc(48 * var(--u));
 	height: calc(32 * var(--u));
-}
-
-.reviews__more i::before {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: calc(47 * var(--u));
-	content: "";
-	border-top: 2px solid var(--color-night-sky);
-	transform: translateY(-50%);
-}
-
-.reviews__more i::after {
-	position: absolute;
-	top: 50%;
-	right: calc(1 * var(--u));
-	width: calc(15 * var(--u));
-	height: calc(15 * var(--u));
-	content: "";
-	border-top: 2px solid var(--color-night-sky);
-	border-right: 2px solid var(--color-night-sky);
-	transform: translateY(-50%) rotate(45deg);
+	background: url("../../images/right-arrow.svg") center / 100% 100% no-repeat;
 }
 
 @media (max-width: 1279px) {
@@ -326,16 +287,6 @@
 		flex-basis: 48px;
 		width: 48px;
 		height: 32px;
-	}
-
-	.reviews__arrow::before {
-		width: 47px;
-	}
-
-	.reviews__arrow::after {
-		right: 1px;
-		width: 15px;
-		height: 15px;
 	}
 
 	.reviews__viewport {
@@ -450,9 +401,5 @@
 
 	.reviews__more i {
 		width: 40px;
-	}
-
-	.reviews__more i::before {
-		width: 39px;
 	}
 }

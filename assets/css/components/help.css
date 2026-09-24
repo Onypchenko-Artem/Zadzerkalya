@@ -119,33 +119,10 @@
 }
 
 .help__bullet {
-	position: relative;
+	display: block;
 	flex: 0 0 calc(34 * var(--u));
 	width: calc(34 * var(--u));
 	height: calc(22 * var(--u));
-}
-
-.help__bullet::before,
-.help__bullet::after {
-	position: absolute;
-	left: calc(1 * var(--u));
-	width: calc(28 * var(--u));
-	height: calc(14 * var(--u));
-	content: "";
-	border-radius: 50%;
-}
-
-.help__bullet::before {
-	top: calc(6 * var(--u));
-	background: var(--color-sky-blue);
-}
-
-.help__bullet::after {
-	top: 0;
-	width: calc(32 * var(--u));
-	background: transparent;
-	border: 1px solid var(--color-night-sky);
-	transform: rotate(-18deg);
 }
 
 .help__bottle {
@@ -160,7 +137,6 @@
 }
 
 .help__consultation .lottie-button {
-	--lottie-btn-w: calc(453 * var(--u));
 	z-index: 3;
 }
 
@@ -240,17 +216,6 @@
 		height: 18px;
 	}
 
-	.help__bullet::before {
-		top: 5px;
-		width: 23px;
-		height: 12px;
-	}
-
-	.help__bullet::after {
-		width: 27px;
-		height: 12px;
-	}
-
 	.help__bottle {
 		top: auto;
 		right: 30px;
@@ -260,9 +225,6 @@
 		height: 170px;
 	}
 
-	.help__consultation .lottie-button {
-		--lottie-btn-w: 293px;
-	}
 }
 
 @media (max-width: 767px) {
@@ -316,7 +278,4 @@
 		bottom: -20px;
 	}
 
-	.help__consultation .lottie-button {
-		--lottie-btn-w: 260px;
-	}
 }

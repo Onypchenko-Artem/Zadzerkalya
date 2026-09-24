@@ -81,20 +81,22 @@ $items = $args['items'] ?? array(
 		<h2 id="faq-title"><?php echo esc_html( $title ); ?></h2>
 
 		<div class="faq__list" data-scroll-list>
-			<?php foreach ( $items as $index => $item ) : ?>
-				<details class="faq__item"<?php echo 0 === $index ? ' open' : ''; ?>>
-					<summary>
-						<h3><?php echo esc_html( $item['question'] ); ?></h3>
-						<span class="faq__toggle" aria-hidden="true"></span>
-					</summary>
-					<div class="faq__panel">
-						<div class="faq__panel-inner">
-							<span class="faq__line" aria-hidden="true"></span>
-							<p><?php echo esc_html( $item['answer'] ); ?></p>
+			<div class="faq__track" data-scroll-track>
+				<?php foreach ( $items as $index => $item ) : ?>
+					<details class="faq__item"<?php echo 0 === $index ? ' open' : ''; ?>>
+						<summary>
+							<h3><?php echo esc_html( $item['question'] ); ?></h3>
+							<span class="faq__toggle" aria-hidden="true"></span>
+						</summary>
+						<div class="faq__panel">
+							<div class="faq__panel-inner">
+								<span class="faq__line" aria-hidden="true"></span>
+								<p><?php echo esc_html( $item['answer'] ); ?></p>
+							</div>
 						</div>
-					</div>
-				</details>
-			<?php endforeach; ?>
+					</details>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</div>
 </section>

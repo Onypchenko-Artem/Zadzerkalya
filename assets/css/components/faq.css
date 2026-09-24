@@ -9,7 +9,7 @@
 }
 
 .faq-scroll.is-scroll-driven .faq__list {
-	overflow-y: hidden;
+	overflow: clip;
 }
 
 .faq {
@@ -71,15 +71,18 @@
 }
 
 .faq__list {
+	width: 100%;
+	height: calc(918 * var(--u));
+	overflow-y: auto;
+	scrollbar-width: none;
+}
+
+.faq__track {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: calc(16 * var(--u));
 	width: 100%;
-	height: calc(918 * var(--u));
-	overflow-y: auto;
-	overscroll-behavior: contain;
-	scrollbar-width: none;
 }
 
 .faq__list::-webkit-scrollbar {
@@ -260,6 +263,9 @@
 
 	.faq__list {
 		height: 560px;
+	}
+
+	.faq__track {
 		gap: 12px;
 	}
 

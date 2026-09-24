@@ -1,0 +1,68 @@
+{
+    "key": "group_zadzerkalya_about_relocation",
+    "title": "Про нас: Переїзд",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_about_relocation_first",
+            "label": "Перший абзац",
+            "name": "about_relocation_first",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Життя внесло свої корективи — і у 2022 році наш центр пережив непростий період переїзду до Львова, за сотні кілометрів від дому. Це був справжній виклик — залишити все створене за багато років — і створити з самого початку. І ми його прийняли.",
+            "rows": 8,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_about_relocation_second",
+            "label": "Другий абзац",
+            "name": "about_relocation_second",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Тут ми не просто адаптувалися — ми виросли! Львів став для нас новим домом, місцем, де ми продовжили нашу місію. Тут ми зібрали ще більше фахівців, розширили наш простір в декілька разів, запровадили нові підходи, знайшли однодумців та зустріли так багато довіри та підтримки, які рухають нас вперед кожного дня!",
+            "rows": 8,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/about.php"
+            }
+        ]
+    ],
+    "menu_order": 3,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Контент секції про переїзд.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790273157
+}

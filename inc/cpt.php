@@ -14,26 +14,30 @@ function zadzerkalya_register_post_types() {
 		'specialist',
 		array(
 			'labels'              => array(
-				'name'               => __( 'Спеціалісти', 'zadzerkalya' ),
-				'singular_name'      => __( 'Спеціаліст', 'zadzerkalya' ),
-				'add_new'            => __( 'Додати', 'zadzerkalya' ),
-				'add_new_item'       => __( 'Додати спеціаліста', 'zadzerkalya' ),
-				'edit_item'          => __( 'Редагувати спеціаліста', 'zadzerkalya' ),
-				'new_item'           => __( 'Новий спеціаліст', 'zadzerkalya' ),
-				'view_item'          => __( 'Переглянути', 'zadzerkalya' ),
-				'search_items'       => __( 'Шукати спеціалістів', 'zadzerkalya' ),
-				'not_found'          => __( 'Спеціалістів не знайдено', 'zadzerkalya' ),
-				'all_items'          => __( 'Усі спеціалісти', 'zadzerkalya' ),
-				'menu_name'          => __( 'Спеціалісти', 'zadzerkalya' ),
+				'name'                  => __( 'Спеціалісти', 'zadzerkalya' ),
+				'singular_name'         => __( 'Спеціаліст', 'zadzerkalya' ),
+				'add_new'               => __( 'Додати', 'zadzerkalya' ),
+				'add_new_item'          => __( 'Додати спеціаліста', 'zadzerkalya' ),
+				'edit_item'             => __( 'Редагувати спеціаліста', 'zadzerkalya' ),
+				'new_item'              => __( 'Новий спеціаліст', 'zadzerkalya' ),
+				'view_item'             => __( 'Переглянути', 'zadzerkalya' ),
+				'search_items'          => __( 'Шукати спеціалістів', 'zadzerkalya' ),
+				'not_found'             => __( 'Спеціалістів не знайдено', 'zadzerkalya' ),
+				'all_items'             => __( 'Усі спеціалісти', 'zadzerkalya' ),
+				'menu_name'             => __( 'Спеціалісти', 'zadzerkalya' ),
+				'featured_image'        => __( 'Фото', 'zadzerkalya' ),
+				'set_featured_image'    => __( 'Встановити фото', 'zadzerkalya' ),
+				'remove_featured_image' => __( 'Видалити фото', 'zadzerkalya' ),
+				'use_featured_image'    => __( 'Використати як фото', 'zadzerkalya' ),
 			),
 			'public'              => true,
-			'has_archive'         => true,
+			'has_archive'         => ! zadzerkalya_get_specialists_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'specialists',
 				'with_front' => false,
 			),
 			'menu_icon'           => 'dashicons-groups',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
+			'supports'            => array( 'title', 'thumbnail', 'page-attributes' ),
 			'show_in_rest'        => true,
 			'menu_position'       => 5,
 		)
@@ -99,6 +103,33 @@ function zadzerkalya_register_post_types() {
 }
 add_action( 'init', 'zadzerkalya_register_post_types' );
 
+/**
+ * Після створення сторінки «Спеціалісти» архів поступається її адресою.
+ */
+function zadzerkalya_sync_specialists_rewrites() {
+	$route = zadzerkalya_get_specialists_page_id() ? 'page' : 'archive';
+
+	if ( get_option( 'zadzerkalya_specialists_route' ) === $route ) {
+		return;
+	}
+
+	update_option( 'zadzerkalya_specialists_route', $route );
+	flush_rewrite_rules( false );
+}
+add_action( 'init', 'zadzerkalya_sync_specialists_rewrites', 99 );
+
+/**
+ * Назва запису — імʼя спеціаліста.
+ */
+function zadzerkalya_specialist_title_placeholder( $title, $post ) {
+	if ( $post instanceof WP_Post && 'specialist' === $post->post_type ) {
+		return __( 'Імʼя', 'zadzerkalya' );
+	}
+
+	return $title;
+}
+add_filter( 'enter_title_here', 'zadzerkalya_specialist_title_placeholder', 10, 2 );
+
 function zadzerkalya_register_taxonomies() {
 	register_taxonomy(
 		'specialization',
@@ -163,7 +194,18 @@ function zadzerkalya_event_archive_query( $query ) {
 		$query->set( 'posts_per_page', 12 );
 	}
 
-	if ( $query->is_post_type_archive( 'specialist' ) || $query->is_post_type_archive( 'service' ) ) {
+	if ( $query->is_post_type_archive( 'specialist' ) ) {
+		$query->set(
+			'orderby',
+			array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			)
+		);
+		$query->set( 'posts_per_page', -1 );
+	}
+
+	if ( $query->is_post_type_archive( 'service' ) ) {
 		$query->set(
 			'orderby',
 			array(

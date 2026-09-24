@@ -1,0 +1,210 @@
+{
+  "component": "button (Figma 6102:16846)",
+  "animation": {
+    "fps": 48,
+    "frames": 36,
+    "durationMs": 750,
+    "loop": true,
+    "idleFrame": 0,
+    "stepMs": 187.5
+  },
+  "canvasPad": 6,
+  "variants": [
+    {
+      "file": "button-secondary-desktop.json",
+      "variant": "Secondary",
+      "breakpoint": "Desktop",
+      "figmaNodeId": "6102:16847",
+      "button": {
+        "w": 242,
+        "h": 94
+      },
+      "canvas": {
+        "w": 254,
+        "h": 106,
+        "inset": -6
+      },
+      "label": "Зв’яжіться з нами",
+      "text": {
+        "x": 2,
+        "y": 33,
+        "w": 237,
+        "h": 30,
+        "fontSize": 22,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 135,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 33682
+    },
+    {
+      "file": "button-secondary-tablet.json",
+      "variant": "Secondary",
+      "breakpoint": "Tablet",
+      "figmaNodeId": "7015:43292",
+      "button": {
+        "w": 180,
+        "h": 66
+      },
+      "canvas": {
+        "w": 192,
+        "h": 78,
+        "inset": -6
+      },
+      "label": "Зв’яжіться з нами",
+      "text": {
+        "x": 2,
+        "y": 24,
+        "w": 175,
+        "h": 19,
+        "fontSize": 14,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 135,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 33556
+    },
+    {
+      "file": "button-primary-desktop.json",
+      "variant": "Primary",
+      "breakpoint": "Desktop",
+      "figmaNodeId": "6102:16850",
+      "button": {
+        "w": 447,
+        "h": 94
+      },
+      "canvas": {
+        "w": 459,
+        "h": 106,
+        "inset": -6
+      },
+      "label": "забронювати первинну консультацію",
+      "text": {
+        "x": 38,
+        "y": 36.949,
+        "w": 368,
+        "h": 30,
+        "fontSize": 22,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 135,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 35415
+    },
+    {
+      "file": "button-primary-tablet.json",
+      "variant": "Primary",
+      "breakpoint": "Tablet",
+      "figmaNodeId": "7016:43295",
+      "button": {
+        "w": 293,
+        "h": 66
+      },
+      "canvas": {
+        "w": 305,
+        "h": 78,
+        "inset": -6
+      },
+      "label": "забронювати первинну консультацію",
+      "text": {
+        "x": 18,
+        "y": 25,
+        "w": 249,
+        "h": 19,
+        "fontSize": 14,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 135,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 34297
+    },
+    {
+      "file": "button-secondary-mobile.json",
+      "variant": "Secondary",
+      "breakpoint": "Mobile",
+      "figmaNodeId": "7764:73990",
+      "button": {
+        "w": 182,
+        "h": 58
+      },
+      "canvas": {
+        "w": 194,
+        "h": 70,
+        "inset": -6
+      },
+      "label": "Зв’яжіться з нами",
+      "text": {
+        "x": 3,
+        "y": 22,
+        "w": 175,
+        "h": 16,
+        "fontSize": 13,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 126,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 33521
+    },
+    {
+      "file": "button-primary-mobile-2-rows.json",
+      "variant": "Primary",
+      "breakpoint": "Mobile 2 rows",
+      "figmaNodeId": "7764:73993",
+      "button": {
+        "w": 240,
+        "h": 62
+      },
+      "canvas": {
+        "w": 252,
+        "h": 74,
+        "inset": -6
+      },
+      "label": "забронювати первинну консультацію",
+      "text": {
+        "x": 19,
+        "y": 15,
+        "w": 201,
+        "h": 32,
+        "fontSize": 13,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 126,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 34239
+    },
+    {
+      "file": "button-primary-mobile-1-rows.json",
+      "variant": "Primary",
+      "breakpoint": "Mobile 1 rows",
+      "figmaNodeId": "7954:68729",
+      "button": {
+        "w": 240,
+        "h": 62
+      },
+      "canvas": {
+        "w": 252,
+        "h": 74,
+        "inset": -6
+      },
+      "label": "переглянути всі послуги",
+      "text": {
+        "x": 19,
+        "y": 23,
+        "w": 201,
+        "h": 16,
+        "fontSize": 13,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 126,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 34239
+    }
+  ]
+}

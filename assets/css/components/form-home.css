@@ -136,10 +136,6 @@
 	resize: vertical;
 }
 
-.form-home__form .lottie-button {
-	--lottie-btn-w: calc(442 * var(--u));
-}
-
 .form-home__form .form-notice {
 	width: calc(600 * var(--u));
 	margin: 0;
@@ -268,7 +264,4 @@
 		height: 116px;
 	}
 
-	.form-home__form .lottie-button {
-		--lottie-btn-w: 280px;
-	}
 }

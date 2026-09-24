@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZADZERKALYA_VERSION', '1.4.5' );
+define( 'ZADZERKALYA_VERSION', '1.4.23' );
 define( 'ZADZERKALYA_DIR', get_template_directory() );
 define( 'ZADZERKALYA_URI', get_template_directory_uri() );
 

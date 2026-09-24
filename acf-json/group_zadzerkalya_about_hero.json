@@ -1,0 +1,93 @@
+{
+    "key": "group_zadzerkalya_about_hero",
+    "title": "Про нас: Герой",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_about_hero_title",
+            "label": "Заголовок",
+            "name": "about_hero_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Розриви рядків збережуться у заголовку.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Дізнайтеся більше про центр\nпсихології та логопедії\n«Задзеркалля»",
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_about_hero_quote",
+            "label": "Текст під заголовком",
+            "name": "about_hero_quote",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Кожна велика історія починається з рішення і волі однієї людини",
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_about_hero_scene",
+            "label": "Зображення героя",
+            "name": "about_hero_scene",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Єдине зображення для правої частини герой-блоку. Якщо поле порожнє, використовується зображення теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/about.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Контент герой-блоку сторінки «Про нас».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790273147
+}
