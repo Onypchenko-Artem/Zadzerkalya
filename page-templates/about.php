@@ -21,6 +21,7 @@ get_header();
 		$hero_title   = $about_field( 'about_hero_title', "Дізнайтеся більше про центр\nпсихології та логопедії\n«Задзеркалля»" );
 		$hero_quote   = $about_field( 'about_hero_quote', 'Кожна велика історія починається з рішення і волі однієї людини' );
 		$hero_scene   = $about_field( 'about_hero_scene' );
+		$hero_background = $about_field( 'about_hero_background' );
 		$story_photo  = $about_field( 'about_story_founder_photo' );
 		$story_name   = $about_field( 'about_story_founder_name', 'Плєхова Софія Володимирівна' );
 		$story_role   = $about_field( 'about_story_founder_role', 'Засновниця центру, психолог, АВА-терапевт, спеціаліст з терапії TOMATIS.' );
@@ -60,6 +61,7 @@ get_header();
 				'title'      => $hero_title,
 				'quote'      => $hero_quote,
 				'scene'      => $hero_scene,
+				'background' => $hero_background,
 				'current'    => __( 'Про нас', 'zadzerkalya' ),
 				'heading_id' => 'about-hero-title',
 			)
