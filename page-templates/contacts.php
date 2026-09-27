@@ -22,13 +22,13 @@ $info_title      = $field( 'contacts_info_title', "Чекаємо на вас у
 	<?php
 	get_template_part(
 		'template-parts/section',
-		'contacts-hero',
+		'page-hero',
 		array(
 			'title'      => $hero_title,
 			'photo'      => $hero_photo,
 			'background' => $hero_background,
 			'current'    => get_the_title(),
-			'heading_id' => 'contacts-hero-title',
+			'heading_id' => 'contacts-page-title',
 		)
 	);
 	?>

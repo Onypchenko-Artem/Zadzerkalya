@@ -1,0 +1,149 @@
+<?php
+/**
+ * Стаття окремої події: автор, текст, метадані.
+ *
+ * @package Zadzerkalya
+ *
+ * @var array $args {
+ *     @type mixed  $author        Запис спеціаліста (WP_Post, id) або порожньо.
+ *     @type string $date          Дата події (Y-m-d).
+ *     @type string $time          Час події.
+ *     @type string $place         Місце.
+ *     @type string $price         Вартість.
+ *     @type string $button_label  Текст кнопки.
+ *     @type string $button_url    Посилання кнопки.
+ * }
+ */
+
+$author_raw    = $args['author'] ?? null;
+$date          = $args['date'] ?? '';
+$time          = $args['time'] ?? '';
+$place         = $args['place'] ?? '';
+$price         = $args['price'] ?? '';
+$button_label  = $args['button_label'] ?? __( 'забронювати участь', 'zadzerkalya' );
+$button_url    = $args['button_url'] ?? zadzerkalya_get_page_url( 'contacts' );
+
+$author = null;
+if ( $author_raw instanceof WP_Post ) {
+	$author = $author_raw;
+} elseif ( is_numeric( $author_raw ) ) {
+	$author = get_post( (int) $author_raw );
+} elseif ( is_array( $author_raw ) && ! empty( $author_raw['ID'] ) ) {
+	$author = get_post( (int) $author_raw['ID'] );
+}
+
+$author_name     = $author ? get_the_title( $author ) : '';
+$author_position = $author ? get_post_meta( $author->ID, '_zdk_position', true ) : '';
+$author_url      = $author ? get_permalink( $author ) : '';
+
+$date_display = '';
+if ( $date ) {
+	$timestamp = strtotime( $date );
+	$date_display = $timestamp ? wp_date( 'd/m/Y', $timestamp ) : $date;
+} else {
+	$date_display = get_the_date( 'd/m/Y' );
+}
+
+$meta_rows = array();
+if ( $date_display ) {
+	$meta_rows[] = array(
+		'label' => __( 'Дата публікації:', 'zadzerkalya' ),
+		'value' => $date_display,
+	);
+}
+if ( $time ) {
+	$meta_rows[] = array(
+		'label' => __( 'Час події:', 'zadzerkalya' ),
+		'value' => $time,
+	);
+}
+if ( $place ) {
+	$meta_rows[] = array(
+		'label' => __( 'Місце:', 'zadzerkalya' ),
+		'value' => $place,
+	);
+}
+if ( $price ) {
+	$meta_rows[] = array(
+		'label' => __( 'Вартість:', 'zadzerkalya' ),
+		'value' => $price,
+	);
+}
+?>
+<section class="event-article">
+	<?php if ( $author_name ) : ?>
+		<aside class="event-article__author">
+			<?php
+			$author_photo = $author ? get_the_post_thumbnail( $author, 'zadzerkalya-portrait', array( 'alt' => $author_name ) ) : '';
+			?>
+			<?php if ( $author_url ) : ?>
+				<a class="event-article__author-photo" href="<?php echo esc_url( $author_url ); ?>">
+					<?php
+					if ( $author_photo ) {
+						echo $author_photo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					} else {
+						echo '<span class="event-article__author-photo-empty" aria-hidden="true"></span>';
+					}
+					?>
+				</a>
+			<?php else : ?>
+				<div class="event-article__author-photo">
+					<?php
+					if ( $author_photo ) {
+						echo $author_photo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					} else {
+						echo '<span class="event-article__author-photo-empty" aria-hidden="true"></span>';
+					}
+					?>
+				</div>
+			<?php endif; ?>
+
+			<div class="event-article__author-info">
+				<?php if ( $author_url ) : ?>
+					<a class="event-article__author-name" href="<?php echo esc_url( $author_url ); ?>"><?php echo esc_html( $author_name ); ?></a>
+				<?php else : ?>
+					<p class="event-article__author-name"><?php echo esc_html( $author_name ); ?></p>
+				<?php endif; ?>
+
+				<div class="event-article__author-text">
+					<span class="event-article__rule" aria-hidden="true"></span>
+					<?php if ( $author_position ) : ?>
+						<p class="event-article__author-position"><?php echo esc_html( $author_position ); ?></p>
+						<span class="event-article__rule" aria-hidden="true"></span>
+					<?php endif; ?>
+					<p class="event-article__author-role"><?php esc_html_e( 'автор статті', 'zadzerkalya' ); ?></p>
+					<span class="event-article__rule" aria-hidden="true"></span>
+				</div>
+			</div>
+		</aside>
+	<?php endif; ?>
+
+	<article class="event-article__body">
+		<?php the_content(); ?>
+	</article>
+
+	<aside class="event-article__aside">
+		<?php if ( $meta_rows ) : ?>
+			<dl class="event-article__meta">
+				<?php foreach ( $meta_rows as $row ) : ?>
+					<div class="event-article__meta-row">
+						<dt><?php echo esc_html( $row['label'] ); ?></dt>
+						<dd><?php echo esc_html( $row['value'] ); ?></dd>
+					</div>
+				<?php endforeach; ?>
+			</dl>
+		<?php endif; ?>
+
+		<?php
+		if ( $button_label && $button_url ) {
+			zadzerkalya_button(
+				array(
+					'label'   => $button_label,
+					'url'     => $button_url,
+					'variant' => 'primary',
+				)
+			);
+		}
+		?>
+	</aside>
+</section>

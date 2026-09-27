@@ -21,7 +21,7 @@ $hero_background = $field( 'prices_hero_background' );
 	<?php
 	get_template_part(
 		'template-parts/section',
-		'contacts-hero',
+		'page-hero',
 		array(
 			'title'      => $hero_title,
 			'photo'      => $hero_photo,

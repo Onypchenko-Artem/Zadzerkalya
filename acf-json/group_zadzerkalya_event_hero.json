@@ -1,14 +1,14 @@
 {
-    "key": "group_zadzerkalya_contacts_hero",
-    "title": "Контакти: Герой",
+    "key": "group_zadzerkalya_event_hero",
+    "title": "Подія: Головний банер",
     "fields": [
         {
-            "key": "field_zadzerkalya_contacts_hero_title",
+            "key": "field_zadzerkalya_event_hero_title",
             "label": "Заголовок",
-            "name": "contacts_hero_title",
+            "name": "event_hero_title",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Якщо поле порожнє, використовується назва події.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,19 +16,19 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Наші контакти",
+            "default_value": "",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_zadzerkalya_contacts_info_title",
-            "label": "Заголовок контактного блоку",
-            "name": "contacts_info_title",
+            "key": "field_zadzerkalya_event_hero_description",
+            "label": "Текст під заголовком",
+            "name": "event_hero_description",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Якщо поле порожнє, використовується анонс події.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -36,19 +36,19 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Чекаємо на вас у нашому\nЗадзеркальному просторі!",
-            "rows": 2,
+            "default_value": "",
+            "rows": 5,
             "new_lines": "",
             "maxlength": "",
             "placeholder": ""
         },
         {
-            "key": "field_zadzerkalya_contacts_hero_photo",
+            "key": "field_zadzerkalya_event_hero_photo",
             "label": "Фото",
-            "name": "contacts_hero_photo",
+            "name": "event_hero_photo",
             "aria-label": "",
             "type": "image",
-            "instructions": "Фото у правій частині головного банера.",
+            "instructions": "Фото у правій частині банера. Якщо поле порожнє, використовується головне зображення події.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -68,9 +68,9 @@
             "max_size": 0
         },
         {
-            "key": "field_zadzerkalya_contacts_hero_background",
+            "key": "field_zadzerkalya_event_hero_background",
             "label": "Фон банера",
-            "name": "contacts_hero_background",
+            "name": "event_hero_background",
             "aria-label": "",
             "type": "image",
             "instructions": "Якщо поле порожнє, фон не виводиться.",
@@ -96,9 +96,9 @@
     "location": [
         [
             {
-                "param": "page_template",
+                "param": "post_type",
                 "operator": "==",
-                "value": "page-templates\/contacts.php"
+                "value": "event"
             }
         ]
     ],
@@ -109,10 +109,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Контент головного банера сторінки «Контакти».",
+    "description": "Контент головного банера окремої події.",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790428676
+    "modified": 1790512525
 }

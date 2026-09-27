@@ -1,0 +1,153 @@
+{
+    "key": "group_zadzerkalya_event_article",
+    "title": "Подія: Стаття",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_event_author",
+            "label": "Автор",
+            "name": "event_author",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Спеціаліст, який відображається ліворуч від статті.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "specialist"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_zadzerkalya_event_time",
+            "label": "Час події",
+            "name": "event_time",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Наприклад: 15:00. Якщо поле порожнє, використовується час із блоку «Дані події».",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "15:00",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_event_place",
+            "label": "Місце",
+            "name": "event_place",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо поле порожнє, використовується місце із блоку «Дані події».",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "центр «Задзеркалля»",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_event_price",
+            "label": "Вартість",
+            "name": "event_price",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Наприклад: 500 грн. Якщо поле порожнє, рядок вартості не виводиться.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "500 грн",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_event_button_label",
+            "label": "Текст кнопки",
+            "name": "event_button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "забронювати участь",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_event_button_url",
+            "label": "Посилання кнопки",
+            "name": "event_button_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Якщо поле порожнє, кнопка веде на сторінку контактів.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Автор, час, місце, вартість і кнопка запису на сторінці події.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790515200
+}

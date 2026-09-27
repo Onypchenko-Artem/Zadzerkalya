@@ -53,7 +53,7 @@
             "name": "prices_hero_background",
             "aria-label": "",
             "type": "image",
-            "instructions": "Якщо поле порожнє, використовується стандартний блакитний фон теми.",
+            "instructions": "Якщо поле порожнє, фон не виводиться.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -94,5 +94,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790509500
+    "modified": 1790512532
 }
