@@ -72,7 +72,7 @@ function zadzerkalya_setup_defaults() {
 			array( 'title' => __( 'Послуги', 'zadzerkalya' ), 'url' => get_post_type_archive_link( 'service' ) ?: home_url( '/services/' ) ),
 			array( 'title' => __( 'Вартість', 'zadzerkalya' ), 'object' => $prices_id, 'type' => 'post_type' ),
 			array( 'title' => __( 'Спеціалісти', 'zadzerkalya' ), 'url' => zadzerkalya_get_specialists_url() ),
-			array( 'title' => __( 'Події', 'zadzerkalya' ), 'url' => get_post_type_archive_link( 'event' ) ?: home_url( '/events/' ) ),
+			array( 'title' => __( 'Події', 'zadzerkalya' ), 'url' => zadzerkalya_get_events_url() ),
 			array( 'title' => __( 'Блог', 'zadzerkalya' ), 'object' => $blog_id, 'type' => 'post_type' ),
 			array( 'title' => __( 'Контакти', 'zadzerkalya' ), 'object' => $contacts_id, 'type' => 'post_type' ),
 		);
@@ -140,7 +140,7 @@ function zadzerkalya_header_nav_items() {
 		),
 		array(
 			'title' => __( 'Події', 'zadzerkalya' ),
-			'url'   => get_post_type_archive_link( 'event' ) ?: home_url( '/events/' ),
+			'url'   => zadzerkalya_get_events_url(),
 		),
 		array(
 			'title'  => __( 'Блог', 'zadzerkalya' ),

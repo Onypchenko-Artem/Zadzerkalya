@@ -89,7 +89,7 @@ function zadzerkalya_register_post_types() {
 				'menu_name'          => __( 'Події', 'zadzerkalya' ),
 			),
 			'public'              => true,
-			'has_archive'         => true,
+			'has_archive'         => ! zadzerkalya_get_events_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'events',
 				'with_front' => false,
@@ -117,6 +117,21 @@ function zadzerkalya_sync_specialists_rewrites() {
 	flush_rewrite_rules( false );
 }
 add_action( 'init', 'zadzerkalya_sync_specialists_rewrites', 99 );
+
+/**
+ * Після створення сторінки «Події» архів поступається її адресою.
+ */
+function zadzerkalya_sync_events_rewrites() {
+	$route = zadzerkalya_get_events_page_id() ? 'page' : 'archive';
+
+	if ( get_option( 'zadzerkalya_events_route' ) === $route ) {
+		return;
+	}
+
+	update_option( 'zadzerkalya_events_route', $route );
+	flush_rewrite_rules( false );
+}
+add_action( 'init', 'zadzerkalya_sync_events_rewrites', 99 );
 
 /**
  * Назва запису — імʼя спеціаліста.

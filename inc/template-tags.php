@@ -54,6 +54,51 @@ function zadzerkalya_get_specialists_url() {
 	return $archive ? $archive : home_url( '/specialists/' );
 }
 
+/**
+ * Опублікована сторінка з шаблоном «Події».
+ *
+ * @return int
+ */
+function zadzerkalya_get_events_page_id() {
+	static $page_id = null;
+
+	if ( null !== $page_id ) {
+		return $page_id;
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_wp_page_template',
+			'meta_value'     => 'page-templates/events.php',
+		)
+	);
+
+	$page_id = $pages ? (int) $pages[0] : 0;
+
+	return $page_id;
+}
+
+/**
+ * Адреса сторінки подій або архіву, доки сторінку не створено.
+ *
+ * @return string
+ */
+function zadzerkalya_get_events_url() {
+	$page_id = zadzerkalya_get_events_page_id();
+
+	if ( $page_id ) {
+		return get_permalink( $page_id );
+	}
+
+	$archive = get_post_type_archive_link( 'event' );
+
+	return $archive ? $archive : home_url( '/events/' );
+}
+
 function zadzerkalya_get_page_url( $slug ) {
 	$page = get_page_by_path( $slug );
 	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );

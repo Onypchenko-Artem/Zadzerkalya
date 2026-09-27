@@ -1,0 +1,215 @@
+.contacts-hero {
+	position: relative;
+	box-sizing: border-box;
+	min-height: calc(750 * var(--u));
+	margin-top: calc(-118 * var(--u));
+	padding: calc(153 * var(--u)) calc(48 * var(--u)) calc(32 * var(--u));
+	overflow: hidden;
+	background-color: #eaf4fd;
+	background-image: url("../../images/blue-background.jpg");
+	background-position: center;
+	background-size: cover;
+	color: var(--color-night-sky);
+}
+
+.contacts-hero--has-background {
+	background-image: var(--contacts-hero-background);
+}
+
+.contacts-hero__inner {
+	display: grid;
+	grid-template-columns: calc(944 * var(--u)) calc(870 * var(--u));
+	gap: calc(10 * var(--u));
+	width: 100%;
+	max-width: calc(1824 * var(--u));
+	min-height: calc(565 * var(--u));
+	margin-inline: auto;
+}
+
+.contacts-hero__main {
+	display: grid;
+	grid-template-columns: minmax(0, calc(896 * var(--u))) calc(23 * var(--u));
+	align-items: stretch;
+	gap: calc(8 * var(--u));
+	min-width: 0;
+}
+
+.contacts-hero__content {
+	display: flex;
+	flex-direction: column;
+	gap: calc(204 * var(--u));
+	min-width: 0;
+}
+
+.contacts-hero__breadcrumbs {
+	display: flex;
+	align-items: center;
+	gap: calc(4 * var(--u));
+	font-family: var(--text-body-s-family);
+	font-size: calc(16 * var(--u));
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--color-grey-hug);
+}
+
+.contacts-hero__breadcrumbs a:hover {
+	color: var(--color-night-sky);
+}
+
+.contacts-hero__breadcrumbs svg {
+	width: calc(20 * var(--u));
+	height: calc(12 * var(--u));
+	overflow: visible;
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 1px;
+}
+
+.contacts-hero__title {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: calc(27 * var(--u));
+	min-height: calc(339 * var(--u));
+}
+
+.contacts-hero h1 {
+	width: 100%;
+	margin: 0;
+	font-family: var(--text-h1-family);
+	font-size: calc(64 * var(--u));
+	font-weight: 500;
+	line-height: 1.05;
+	letter-spacing: -0.05em;
+	text-transform: none;
+	color: var(--color-night-sky);
+}
+
+.contacts-hero__title img {
+	width: calc(872 * var(--u));
+	height: calc(11 * var(--u));
+	object-fit: fill;
+}
+
+.contacts-hero__vertical-line {
+	align-self: center;
+	width: calc(23 * var(--u));
+	height: calc(549 * var(--u));
+	object-fit: fill;
+}
+
+.contacts-hero__photo {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	min-width: 0;
+}
+
+.contacts-hero__photo-image {
+	display: block;
+	width: calc(817 * var(--u));
+	height: calc(496 * var(--u));
+	border-radius: calc(300 * var(--u));
+	object-fit: cover;
+}
+
+@media (max-width: 1279px) {
+	.contacts-hero {
+		min-height: 620px;
+		margin-top: -96px;
+		padding: 140px 24px 32px;
+	}
+
+	.contacts-hero__inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+		gap: 24px;
+		min-height: 448px;
+	}
+
+	.contacts-hero__main {
+		grid-template-columns: minmax(0, 1fr) 23px;
+		gap: 8px;
+	}
+
+	.contacts-hero__content {
+		gap: 120px;
+	}
+
+	.contacts-hero__breadcrumbs {
+		font-size: 15px;
+	}
+
+	.contacts-hero__breadcrumbs svg {
+		width: 20px;
+		height: 12px;
+	}
+
+	.contacts-hero__title {
+		gap: 20px;
+		min-height: 290px;
+	}
+
+	.contacts-hero h1 {
+		font-size: 48px;
+	}
+
+	.contacts-hero__title img {
+		width: 100%;
+		height: 10px;
+	}
+
+	.contacts-hero__vertical-line {
+		width: 23px;
+		height: 100%;
+	}
+
+	.contacts-hero__photo-image {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 817 / 496;
+		border-radius: 300px;
+	}
+}
+
+@media (max-width: 767px) {
+	.contacts-hero {
+		min-height: 0;
+		margin-top: -80px;
+		padding: 112px 16px 32px;
+	}
+
+	.contacts-hero__inner {
+		grid-template-columns: 1fr;
+		gap: 32px;
+		min-height: 0;
+	}
+
+	.contacts-hero__main {
+		display: block;
+	}
+
+	.contacts-hero__content {
+		gap: 56px;
+	}
+
+	.contacts-hero__title {
+		gap: 40px;
+		min-height: 0;
+	}
+
+	.contacts-hero h1 {
+		font-size: 40px;
+	}
+
+	.contacts-hero__vertical-line {
+		display: none;
+	}
+
+	.contacts-hero__photo-image {
+		border-radius: 160px;
+	}
+}
