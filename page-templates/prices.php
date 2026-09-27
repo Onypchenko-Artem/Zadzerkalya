@@ -7,63 +7,42 @@
 
 get_header();
 
-$services = new WP_Query(
-	array(
-		'post_type'      => 'service',
-		'posts_per_page' => 50,
-		'orderby'        => 'menu_order title',
-		'order'          => 'ASC',
-	)
-);
-?>
-<main id="content" class="site-main">
-	<div class="container section">
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<header class="page-header">
-				<h1 class="page-title"><?php the_title(); ?></h1>
-				<div class="page-intro prose"><?php the_content(); ?></div>
-			</header>
-			<?php
-		endwhile;
-		?>
+$field = static function ( $name, $fallback = '' ) {
+	$value = function_exists( 'get_field' ) ? get_field( $name ) : null;
 
-		<?php if ( $services->have_posts() ) : ?>
-			<div class="price-table" role="table">
-				<div class="price-table__head" role="row">
-					<span><?php esc_html_e( 'Послуга', 'zadzerkalya' ); ?></span>
-					<span><?php esc_html_e( 'Тривалість', 'zadzerkalya' ); ?></span>
-					<span><?php esc_html_e( 'Вартість', 'zadzerkalya' ); ?></span>
-				</div>
-				<?php
-				while ( $services->have_posts() ) :
-					$services->the_post();
-					$price    = zadzerkalya_service_price_html();
-					$duration = get_post_meta( get_the_ID(), '_zdk_duration', true );
-					$note     = get_post_meta( get_the_ID(), '_zdk_price_note', true );
-					?>
-					<div class="price-table__row" role="row">
-						<div>
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-							<?php if ( $note ) : ?>
-								<p class="muted"><?php echo esc_html( $note ); ?></p>
-							<?php endif; ?>
-						</div>
-						<div><?php echo $duration ? esc_html( $duration ) : '—'; ?></div>
-						<div class="price"><?php echo $price ? esc_html( $price ) : '—'; ?></div>
-					</div>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-				?>
-			</div>
-		<?php else : ?>
-			<p class="muted"><?php esc_html_e( 'Додайте послуги з полем ціни — вони зʼявляться в таблиці.', 'zadzerkalya' ); ?></p>
-		<?php endif; ?>
-	</div>
-	<?php get_template_part( 'template-parts/section', 'cta' ); ?>
+	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+};
+
+$hero_title      = $field( 'prices_hero_title', __( 'Вартість послуг', 'zadzerkalya' ) );
+$hero_photo      = $field( 'prices_hero_photo' );
+$hero_background = $field( 'prices_hero_background' );
+?>
+<main id="content" class="site-main prices-page">
+	<?php
+	get_template_part(
+		'template-parts/section',
+		'contacts-hero',
+		array(
+			'title'      => $hero_title,
+			'photo'      => $hero_photo,
+			'background' => $hero_background,
+			'current'    => get_the_title(),
+			'heading_id' => 'prices-hero-title',
+		)
+	);
+	?>
+
+	<?php get_template_part( 'template-parts/section', 'price-list' ); ?>
+
+	<?php
+	get_template_part(
+		'template-parts/section',
+		'form-home',
+		array(
+			'source' => 'prices',
+		)
+	);
+	?>
 </main>
 <?php
 get_footer();
