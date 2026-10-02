@@ -166,7 +166,7 @@
 	color: var(--color-night-sky);
 }
 
-.header-social svg {
+.header-social > svg {
 	width: 100%;
 	height: 100%;
 }
@@ -177,6 +177,18 @@
 
 .header-bar .lottie-button--secondary {
 	flex: none;
+	--lottie-btn-w: 182px;
+	--lottie-btn-h: 58px;
+}
+
+.header-bar .lottie-button__anim {
+	inset: -6px;
+}
+
+.header-bar .lottie-button--secondary .lottie-button__label {
+	padding-inline: 3px;
+	font-size: 13px;
+	line-height: 1.26;
 }
 
 .nav-toggle {

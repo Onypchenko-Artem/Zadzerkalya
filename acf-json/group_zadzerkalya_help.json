@@ -1,0 +1,207 @@
+{
+    "key": "group_zadzerkalya_help",
+    "title": "Головна: підтримка",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_help_banner",
+            "label": "Банер",
+            "name": "help_banner",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Велике зображення зліва. Якщо порожньо — стандартний банер з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_help_banner_alt",
+            "label": "Альтернативний текст банера",
+            "name": "help_banner_alt",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ви — не одні! Ми поруч, щоб вислухати, зрозуміти та допомогти",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_help_title",
+            "label": "Заголовок",
+            "name": "help_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ми починаємо роботу з первинної консультації, щоб:",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 2,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_help_reasons",
+            "label": "Пункти",
+            "name": "help_reasons",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Якщо список порожній, показуються стандартні пункти з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_help_reason_text",
+            "button_label": "Додати пункт",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_help_reason_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "rows": 2,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_zadzerkalya_help_reasons"
+                }
+            ]
+        },
+        {
+            "key": "field_zadzerkalya_help_button",
+            "label": "Текст кнопки",
+            "name": "help_button",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "забронювати первинну консультацію",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_help_button_url",
+            "label": "Посилання кнопки",
+            "name": "help_button_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Якщо порожньо, кнопка веде на сторінку контактів.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_help_bottle",
+            "label": "Ілюстрація",
+            "name": "help_bottle",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Пляшечка справа. Якщо порожньо — стандартне зображення з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/home.php"
+            }
+        ]
+    ],
+    "menu_order": 2,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Блок «Ми починаємо роботу з первинної консультації» на шаблоні «Головна».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790951652
+}

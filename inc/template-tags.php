@@ -99,6 +99,44 @@ function zadzerkalya_get_events_url() {
 	return $archive ? $archive : home_url( '/events/' );
 }
 
+/**
+ * Адреса сторінки блогу (сторінка записів).
+ *
+ * @return string
+ */
+function zadzerkalya_get_blog_url() {
+	$page_id = (int) get_option( 'page_for_posts' );
+
+	if ( $page_id ) {
+		return get_permalink( $page_id );
+	}
+
+	return home_url( '/blog/' );
+}
+
+/**
+ * Час прочитання статті в хвилинах.
+ * Бере ACF `post_reading_time`, інакше рахує з тексту (~200 слів/хв).
+ *
+ * @param int $post_id ID запису.
+ * @return int
+ */
+function zadzerkalya_reading_time_minutes( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+	if ( function_exists( 'get_field' ) ) {
+		$manual = get_field( 'post_reading_time', $post_id );
+		if ( null !== $manual && false !== $manual && '' !== $manual ) {
+			return max( 1, (int) $manual );
+		}
+	}
+
+	$plain = trim( wp_strip_all_tags( strip_shortcodes( get_post_field( 'post_content', $post_id ) ) ) );
+	$words = '' === $plain ? 0 : count( preg_split( '/\s+/u', $plain ) );
+
+	return max( 1, (int) ceil( $words / 200 ) );
+}
+
 function zadzerkalya_get_page_url( $slug ) {
 	$page = get_page_by_path( $slug );
 	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );
@@ -132,6 +170,47 @@ function zadzerkalya_about_field( $name, $fallback = '' ) {
 	$value = ( $page_id && function_exists( 'get_field' ) ) ? get_field( $name, $page_id ) : null;
 
 	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+}
+
+/**
+ * Поле ACF поточної сторінки.
+ *
+ * @param string $name     Імʼя поля.
+ * @param mixed  $fallback Значення, якщо поле порожнє.
+ * @return mixed
+ */
+function zadzerkalya_field( $name, $fallback = '' ) {
+	$value = function_exists( 'get_field' ) ? get_field( $name ) : null;
+
+	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+}
+
+/**
+ * Текстові рядки репітера ACF.
+ *
+ * @param string $name Імʼя репітера.
+ * @param string $key  Ключ підполя.
+ * @return string[]
+ */
+function zadzerkalya_field_lines( $name, $key = 'text' ) {
+	$rows = function_exists( 'get_field' ) ? get_field( $name ) : null;
+
+	if ( ! is_array( $rows ) ) {
+		return array();
+	}
+
+	$items = array();
+
+	foreach ( $rows as $row ) {
+		$text = is_array( $row ) ? ( $row[ $key ] ?? '' ) : $row;
+		$text = is_string( $text ) ? trim( $text ) : '';
+
+		if ( '' !== $text ) {
+			$items[] = $text;
+		}
+	}
+
+	return $items;
 }
 
 function zadzerkalya_posted_on() {
@@ -196,6 +275,7 @@ function zadzerkalya_body_open() {
  *     @type string $label   Текст лейбла.
  *     @type string $url     Якщо є — рендериться <a>.
  *     @type string $variant primary|secondary.
+ *     @type string $anim    Фіксована Lottie-анімація, наприклад button-secondary-mobile.
  *     @type string $type    type для <button>.
  *     @type string $name    name для <button>.
  *     @type string $value   value для <button>.
@@ -210,6 +290,7 @@ function zadzerkalya_button( $args = array() ) {
 			'label'   => '',
 			'url'     => '',
 			'variant' => 'primary',
+			'anim'    => '',
 			'type'    => 'submit',
 			'name'    => '',
 			'value'   => '',
@@ -220,6 +301,8 @@ function zadzerkalya_button( $args = array() ) {
 	$variant = in_array( $args['variant'], array( 'primary', 'secondary' ), true ) ? $args['variant'] : 'primary';
 	$label   = esc_html( $args['label'] );
 	$class   = 'lottie-button lottie-button--' . $variant;
+	$anim    = preg_replace( '/[^a-z0-9-]/', '', (string) $args['anim'] );
+	$anim_attr = $anim ? ' data-anim="' . esc_attr( $anim ) . '"' : '';
 	$inner   = '<span class="lottie-button__anim" aria-hidden="true"></span><span class="lottie-button__label">' . $label . '</span>';
 	$text    = trim( wp_strip_all_tags( $args['label'] ) );
 	$length  = function_exists( 'mb_strlen' ) ? mb_strlen( $text ) : strlen( $text );
@@ -227,10 +310,11 @@ function zadzerkalya_button( $args = array() ) {
 
 	if ( $args['url'] ) {
 		$html = sprintf(
-			'<a class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s" href="%4$s">%5$s</a>',
+			'<a class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s href="%5$s">%6$s</a>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
 			esc_attr( $rows ),
+			$anim_attr,
 			esc_url( $args['url'] ),
 			$inner
 		);
@@ -238,10 +322,11 @@ function zadzerkalya_button( $args = array() ) {
 		$name  = $args['name'] ? ' name="' . esc_attr( $args['name'] ) . '"' : '';
 		$value = '' !== $args['value'] ? ' value="' . esc_attr( $args['value'] ) . '"' : '';
 		$html  = sprintf(
-			'<button class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s" type="%4$s"%5$s%6$s>%7$s</button>',
+			'<button class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s type="%5$s"%6$s%7$s>%8$s</button>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
 			esc_attr( $rows ),
+			$anim_attr,
 			esc_attr( $args['type'] ),
 			$name,
 			$value,

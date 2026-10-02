@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: calc(36 * var(--u));
-	height: calc(858 * var(--u));
+	height: auto;
 	padding: 0 calc(48 * var(--u));
 	color: var(--color-night-sky);
 }
@@ -15,7 +15,6 @@
 	gap: calc(32 * var(--u));
 	width: calc(776 * var(--u));
 	max-width: 100%;
-	height: calc(153 * var(--u));
 	text-align: center;
 }
 
@@ -27,20 +26,22 @@
 }
 
 .reviews__heading h2 {
+	max-width: 100%;
 	font-family: var(--font-family-heading);
 	font-size: calc(58 * var(--u));
 	font-weight: 500;
 	line-height: 1.06;
 	letter-spacing: -0.04em;
+	text-wrap: balance;
 }
 
 .reviews__heading p {
-	width: calc(574 * var(--u));
-	max-width: 100%;
+	/*width: min(100%, calc(574 * var(--u)));*/
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
 	font-weight: var(--text-body-l-weight);
 	line-height: 1.35;
+	text-wrap: balance;
 }
 
 .reviews__content {
@@ -49,14 +50,16 @@
 	align-items: center;
 	gap: calc(40 * var(--u));
 	width: 100%;
-	height: calc(669 * var(--u));
+	min-width: 0;
+	height: auto;
 }
 
 .reviews__controls {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	gap: calc(32 * var(--u));
-	width: calc(128 * var(--u));
-	height: calc(31 * var(--u));
+	margin-top: calc(4 * var(--u));
 }
 
 .reviews__arrow {
@@ -260,7 +263,6 @@
 	.reviews__heading {
 		gap: 24px;
 		width: 720px;
-		height: auto;
 	}
 
 	.reviews__heading h2 {
@@ -268,19 +270,17 @@
 	}
 
 	.reviews__heading p {
-		width: 560px;
+		width: min(100%, 560px);
 		font-size: var(--text-body-l-size);
 	}
 
 	.reviews__content {
-		gap: 32px;
 		height: auto;
 	}
 
 	.reviews__controls {
 		gap: 24px;
-		width: 120px;
-		height: 32px;
+		margin-top: 8px;
 	}
 
 	.reviews__arrow {

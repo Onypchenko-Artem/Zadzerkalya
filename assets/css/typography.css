@@ -54,7 +54,7 @@
 
 	--text-body-l-med-family: var(--font-family-body);
 	--text-body-l-med-weight: 400;
-	--text-body-l-med-size: clamp(calc(23px * 1280 / 1920), calc(23 * 100vw / 1920), 23px);
+	--text-body-l-med-size: clamp(calc(22px * 1280 / 1920), calc(22 * 100vw / 1920), 22px);
 	--text-body-l-med-line: 1.4;
 	--text-body-l-med-tracking: -0.01em;
 

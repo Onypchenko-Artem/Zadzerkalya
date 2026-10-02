@@ -1,0 +1,248 @@
+{
+    "key": "group_zadzerkalya_services",
+    "title": "Головна: послуги",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_services_title",
+            "label": "Заголовок",
+            "name": "services_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Кожен рядок — новий рядок заголовка. Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Понад 25 корекційних, освітніх\nта реабілітаційних послуг,\nзібраних в одному центрі!",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_services_text",
+            "label": "Текст",
+            "name": "services_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "В «Задзеркаллі» пропонуємо як психоемоційну, так і фізичну корекцію в межах одного простору для вашої зручності.",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_services_illustration",
+            "label": "Ілюстрація",
+            "name": "services_illustration",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Аліса біля сітки. Якщо порожньо — стандартне зображення з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_services_card_button",
+            "label": "Текст кнопки картки",
+            "name": "services_card_button",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "забронювати первинну консультацію",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_services_all_label",
+            "label": "Текст кнопки «усі послуги»",
+            "name": "services_all_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "переглянути всі послуги",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_services_all_url",
+            "label": "Посилання «усі послуги»",
+            "name": "services_all_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Якщо порожньо, кнопка веде на архів послуг.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_services_items",
+            "label": "Картки послуг",
+            "name": "services_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Якщо карток немає, показуються останні послуги з розділу «Послуги», а якщо їх немає — стандартні назви з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_services_item_title",
+            "button_label": "Додати послугу",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_services_item_title",
+                    "label": "Назва",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "40",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_services_items"
+                },
+                {
+                    "key": "field_zadzerkalya_services_item_image",
+                    "label": "Фото",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "jpg,jpeg,png,webp",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium",
+                    "parent_repeater": "field_zadzerkalya_services_items"
+                },
+                {
+                    "key": "field_zadzerkalya_services_item_url",
+                    "label": "Посилання",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Якщо порожньо, кнопка веде на архів послуг.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_zadzerkalya_services_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/home.php"
+            }
+        ]
+    ],
+    "menu_order": 3,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Вітрина послуг на шаблоні «Головна».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790951652
+}

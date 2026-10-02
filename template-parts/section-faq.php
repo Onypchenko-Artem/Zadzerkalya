@@ -5,8 +5,9 @@
  * @package Zadzerkalya
  */
 
-$title = $args['title'] ?? __( 'Часті запитання', 'zadzerkalya' );
-$items = $args['items'] ?? array(
+$args = isset( $args ) && is_array( $args ) ? $args : array();
+
+$default_items = array(
 	array(
 		'question' => __( 'Чи працюєте ви по 309 постанові? Чи є у вас проживання і харчування?', 'zadzerkalya' ),
 		'answer'   => __( 'Так, ми надаємо реабілітаційні послуги дітям за 309 постановою КМУ на умовах амбулаторного відвідування. Проживання та харчування у нашому центрі не передбачені.', 'zadzerkalya' ),
@@ -68,12 +69,44 @@ $items = $args['items'] ?? array(
 		'answer'   => __( 'Залишіть заявку на сайті або зателефонуйте адміністрації. Дату консультації узгоджуємо в найближчий зручний час, а графік регулярних занять формуємо після зустрічі — з урахуванням запиту дитини та вільних слотів фахівців.', 'zadzerkalya' ),
 	),
 );
+
+$rows  = function_exists( 'get_field' ) ? get_field( 'faq_items' ) : null;
+$items = array();
+
+if ( is_array( $rows ) ) {
+	foreach ( $rows as $row ) {
+		if ( ! is_array( $row ) ) {
+			continue;
+		}
+
+		$question = isset( $row['question'] ) ? trim( (string) $row['question'] ) : '';
+		$answer   = isset( $row['answer'] ) ? trim( (string) $row['answer'] ) : '';
+
+		if ( '' === $question && '' === $answer ) {
+			continue;
+		}
+
+		$items[] = array(
+			'question' => $question,
+			'answer'   => $answer,
+		);
+	}
+}
+
+if ( ! $items ) {
+	$items = $args['items'] ?? $default_items;
+}
+
+$title = zadzerkalya_field( 'faq_title', $args['title'] ?? __( 'Часті запитання', 'zadzerkalya' ) );
+$image = zadzerkalya_field( 'faq_image' );
 ?>
 <div class="faq-scroll" data-pinned-list>
 <section class="faq" aria-labelledby="faq-title" data-scroll-section>
 	<div class="faq__media">
 		<div class="faq__image-placeholder">
-			<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/faq-bottle.png' ); ?>" alt="" aria-hidden="true">
+			<?php if ( ! zadzerkalya_acf_image( $image, 'large', array( 'alt' => '' ) ) ) : ?>
+				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/faq-bottle.png' ); ?>" alt="" aria-hidden="true">
+			<?php endif; ?>
 		</div>
 	</div>
 

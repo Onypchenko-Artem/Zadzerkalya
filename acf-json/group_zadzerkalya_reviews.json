@@ -1,0 +1,138 @@
+{
+    "key": "group_zadzerkalya_reviews",
+    "title": "Головна: відгуки",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_reviews_title",
+            "label": "Заголовок",
+            "name": "reviews_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Історії батьків, які надихають",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_reviews_text",
+            "label": "Текст",
+            "name": "reviews_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Слова тих, чиї діти вже отримали результат разом з нами — реальні відгуки, що дарують надію та підтримку.",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_reviews_items",
+            "label": "Відгуки",
+            "name": "reviews_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Якщо відгуків немає, показуються стандартні історії з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_reviews_item_name",
+            "button_label": "Додати відгук",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_reviews_item_name",
+                    "label": "Ім’я",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_reviews_items"
+                },
+                {
+                    "key": "field_zadzerkalya_reviews_item_text",
+                    "label": "Текст",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "rows": 4,
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_zadzerkalya_reviews_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/home.php"
+            }
+        ]
+    ],
+    "menu_order": 6,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Блок відгуків на шаблоні «Головна».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790951652
+}

@@ -28,6 +28,9 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-hero'    => array( 'file' => '/assets/css/components/page-hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-event-hero'  => array( 'file' => '/assets/css/components/event-hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-event-article'=> array( 'file' => '/assets/css/components/event-article.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-article-card' => array( 'file' => '/assets/css/components/article-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-articles-feed'=> array( 'file' => '/assets/css/components/articles-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card', 'zadzerkalya-button' ) ),
+		'zadzerkalya-recommend'   => array( 'file' => '/assets/css/components/recommend.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card' ) ),
 		'zadzerkalya-contacts-info'=> array( 'file' => '/assets/css/components/contacts-info.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-cards'       => array( 'file' => '/assets/css/components/cards.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-cta'         => array( 'file' => '/assets/css/components/cta.css', 'deps' => array( 'zadzerkalya-base' ) ),
@@ -47,6 +50,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-contacts'=> array( 'file' => '/assets/css/pages/contacts.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-form-home', 'zadzerkalya-contacts-info' ) ),
 		'zadzerkalya-page-prices' => array( 'file' => '/assets/css/pages/prices.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-form-home' ) ),
 		'zadzerkalya-page-about'  => array( 'file' => '/assets/css/pages/about.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-page-events' => array( 'file' => '/assets/css/pages/events.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-article-card', 'zadzerkalya-articles-feed', 'zadzerkalya-page-about' ) ),
 		'zadzerkalya-page-specialists' => array( 'file' => '/assets/css/pages/specialists.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-page-about' ) ),
 	);
 

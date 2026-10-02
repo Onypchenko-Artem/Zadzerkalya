@@ -59,7 +59,7 @@
 	justify-content: space-between;
 	gap: calc(80 * var(--u));
 	min-height: calc(118 * var(--u));
-	padding: calc(12 * var(--u));
+	padding: calc(12 * var(--u)) 0;
 	border-radius: calc(20 * var(--u));
 }
 

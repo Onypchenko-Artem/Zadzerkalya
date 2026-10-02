@@ -62,6 +62,7 @@ a.lottie-button:hover {
 
 .lottie-button--primary .lottie-button__label {
 	padding-inline: calc(38 * var(--u));
+	transform: translateY(calc(4.5 * var(--u)));
 }
 
 .lottie-button--secondary .lottie-button__label {
@@ -89,6 +90,7 @@ a.lottie-button:hover {
 
 	.lottie-button--primary .lottie-button__label {
 		padding-inline: 18px;
+		transform: translateY(2px);
 	}
 
 	.lottie-button--secondary .lottie-button__label {
@@ -115,6 +117,7 @@ a.lottie-button:hover {
 
 	.lottie-button--primary .lottie-button__label {
 		padding-inline: 19px;
+		transform: translateY(2px);
 	}
 
 	.lottie-button--primary[data-mobile-rows="2"] .lottie-button__label {

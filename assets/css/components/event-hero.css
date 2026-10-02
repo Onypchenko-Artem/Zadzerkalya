@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 	min-height: calc(900 * var(--u));
 	margin-top: calc(-118 * var(--u));
-	padding: calc(128 * var(--u)) calc(48 * var(--u)) calc(28 * var(--u));
+	padding: calc(163 * var(--u)) calc(48 * var(--u)) calc(28 * var(--u));
 	overflow: hidden;
 	background-position: center;
 	background-size: cover;
@@ -189,7 +189,7 @@
 
 .event-hero__photo-line img {
 	display: block;
-	width: calc(882 * var(--u));
+	width: calc(893 * var(--u));
 	height: calc(29 * var(--u));
 	object-fit: fill;
 }

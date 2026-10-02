@@ -1,0 +1,134 @@
+.recommend {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: calc(56 * var(--u));
+	padding: 0 calc(48 * var(--u)) calc(120 * var(--u));
+	color: var(--color-night-sky);
+}
+
+.recommend__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: calc(64 * var(--u));
+	width: 100%;
+	min-height: calc(61 * var(--u));
+}
+
+.recommend__title {
+	margin: 0;
+	font-family: var(--font-family-heading);
+	font-size: calc(58 * var(--u));
+	font-weight: 500;
+	line-height: 1.06;
+	letter-spacing: -0.04em;
+	text-transform: none;
+	color: var(--color-night-sky);
+}
+
+.recommend__controls {
+	display: flex;
+	flex: 0 0 auto;
+	align-items: center;
+	gap: calc(64 * var(--u));
+}
+
+.recommend__arrow {
+	flex: 0 0 calc(48 * var(--u));
+	width: calc(48 * var(--u));
+	height: calc(32 * var(--u));
+	padding: 0;
+	background-color: transparent;
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	border: 0;
+	cursor: pointer;
+}
+
+.recommend__arrow--prev {
+	background-image: url("../../images/left-arrow.svg");
+}
+
+.recommend__arrow--next {
+	background-image: url("../../images/right-arrow.svg");
+}
+
+.recommend__arrow:disabled {
+	opacity: 0.35;
+	cursor: default;
+}
+
+.recommend__viewport {
+	width: 100%;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+}
+
+.recommend__viewport::-webkit-scrollbar {
+	display: none;
+}
+
+.recommend__track {
+	display: flex;
+	align-items: stretch;
+	gap: calc(54 * var(--u));
+	width: max-content;
+}
+
+.recommend__track .article-card {
+	scroll-snap-align: start;
+}
+
+@media (max-width: 1279px) {
+	.recommend {
+		gap: 32px;
+		padding: 0 24px 80px;
+	}
+
+	.recommend__header {
+		gap: 24px;
+		min-height: auto;
+	}
+
+	.recommend__title {
+		font-size: var(--text-h2-size);
+	}
+
+	.recommend__controls {
+		gap: 24px;
+	}
+
+	.recommend__arrow {
+		flex-basis: 48px;
+		width: 48px;
+		height: 32px;
+	}
+
+	.recommend__track {
+		gap: 24px;
+	}
+}
+
+@media (max-width: 767px) {
+	.recommend {
+		gap: 24px;
+		padding: 0 16px 56px;
+	}
+
+	.recommend__controls {
+		gap: 16px;
+	}
+
+	.recommend__arrow {
+		flex-basis: 40px;
+		width: 40px;
+	}
+
+	.recommend__track {
+		gap: 16px;
+	}
+}

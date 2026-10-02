@@ -5,7 +5,7 @@
  * @package Zadzerkalya
  */
 
-$reviews = array(
+$default_reviews = array(
 	array(
 		'name' => 'Lena Kruhlikova',
 		'text' => __( 'Хочу висловити щиру подяку логопеду-дефектологу Марії центру «Задзеркалля» за професійну роботу та турботливе ставлення. Ми звернулися, коли моєму синові було 5 років 10 місяців із труднощами у вимові звука «Р». Завдяки знанням, терпінню та індивідуальному підходу Марії вже за короткий час вдалося отримати чудовий результат.', 'zadzerkalya' ),
@@ -39,12 +39,52 @@ $reviews = array(
 		'text' => __( 'З першої консультації стало зрозуміло, що ми потрапили до професіоналів. Отримали чіткий план, відповіді на всі запитання і найважливіше — віру в можливості нашої дитини.', 'zadzerkalya' ),
 	),
 );
+
+$rows    = function_exists( 'get_field' ) ? get_field( 'reviews_items' ) : null;
+$reviews = array();
+
+if ( is_array( $rows ) ) {
+	foreach ( $rows as $row ) {
+		if ( ! is_array( $row ) ) {
+			continue;
+		}
+
+		$name = isset( $row['name'] ) ? trim( (string) $row['name'] ) : '';
+		$text = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
+
+		if ( '' === $name && '' === $text ) {
+			continue;
+		}
+
+		$reviews[] = array(
+			'name' => $name,
+			'text' => $text,
+		);
+	}
+}
+
+if ( ! $reviews ) {
+	$reviews = $default_reviews;
+}
+
+$title = zadzerkalya_field( 'reviews_title', __( 'Історії батьків, які надихають', 'zadzerkalya' ) );
+$text  = zadzerkalya_field( 'reviews_text', __( 'Слова тих, чиї діти вже отримали результат разом з нами — реальні відгуки, що дарують надію та підтримку.', 'zadzerkalya' ) );
 $total = count( $reviews );
 ?>
 <section class="reviews" aria-labelledby="reviews-title" data-reviews>
 	<div class="reviews__heading">
-		<h2 id="reviews-title"><?php esc_html_e( 'Історії батьків, які надихають', 'zadzerkalya' ); ?></h2>
-		<p><?php esc_html_e( 'Слова тих, чиї діти вже отримали результат разом з нами — реальні відгуки, що дарують надію та підтримку.', 'zadzerkalya' ); ?></p>
+		<?php
+		$heading_tags = array(
+			'br'     => array(),
+			'strong' => array(),
+			'em'     => array(),
+			'b'      => array(),
+			'i'      => array(),
+			'span'   => array(),
+		);
+		?>
+		<h2 id="reviews-title"><?php echo wp_kses( $title, $heading_tags ); ?></h2>
+		<p><?php echo wp_kses( $text, $heading_tags ); ?></p>
 	</div>
 
 	<div class="reviews__content">

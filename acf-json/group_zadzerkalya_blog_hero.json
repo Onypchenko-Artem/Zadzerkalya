@@ -1,34 +1,14 @@
 {
-    "key": "group_zadzerkalya_event_hero",
-    "title": "Стаття: Головний банер",
+    "key": "group_zadzerkalya_blog_hero",
+    "title": "Блог: Герой",
     "fields": [
         {
-            "key": "field_zadzerkalya_event_hero_title",
+            "key": "field_zadzerkalya_blog_hero_title",
             "label": "Заголовок",
-            "name": "event_hero_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Якщо поле порожнє, використовується назва запису.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_zadzerkalya_event_hero_description",
-            "label": "Текст під заголовком",
-            "name": "event_hero_description",
+            "name": "blog_hero_title",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Якщо поле порожнє, використовується анонс запису.",
+            "instructions": "Розриви рядків збережуться у заголовку.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -36,19 +16,39 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "rows": 5,
+            "default_value": "Дізнайтеся більше про центр\nпсихології та логопедії\n«Задзеркалля»",
+            "rows": 3,
             "new_lines": "",
             "maxlength": "",
             "placeholder": ""
         },
         {
-            "key": "field_zadzerkalya_event_hero_photo",
-            "label": "Фото",
-            "name": "event_hero_photo",
+            "key": "field_zadzerkalya_blog_hero_quote",
+            "label": "Текст під заголовком",
+            "name": "blog_hero_quote",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Кожна велика історія починається з рішення і волі однієї людини",
+            "rows": 3,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_blog_hero_scene",
+            "label": "Зображення героя",
+            "name": "blog_hero_scene",
             "aria-label": "",
             "type": "image",
-            "instructions": "Фото у правій частині банера. Якщо поле порожнє, використовується головне зображення запису.",
+            "instructions": "Єдине зображення для правої частини герой-блоку. Якщо поле порожнє, використовується зображення теми.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -68,16 +68,16 @@
             "max_size": 0
         },
         {
-            "key": "field_zadzerkalya_event_hero_background",
+            "key": "field_zadzerkalya_blog_hero_background",
             "label": "Фон банера",
-            "name": "event_hero_background",
+            "name": "blog_hero_background",
             "aria-label": "",
             "type": "image",
-            "instructions": "Якщо поле порожнє, фон не виводиться.",
+            "instructions": "Фонове зображення головного банера. Якщо поле порожнє, лишається стандартний фон.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -96,16 +96,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "page_type",
                 "operator": "==",
-                "value": "event"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "post"
+                "value": "posts_page"
             }
         ]
     ],
@@ -114,12 +107,14 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+    "hide_on_screen": [
+        "the_content"
+    ],
     "active": true,
-    "description": "Контент головного банера окремої події або новини.",
+    "description": "Контент герой-блоку сторінки «Блог».",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790600000
+    "modified": 1790700000
 }

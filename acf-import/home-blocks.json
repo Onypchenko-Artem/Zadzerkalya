@@ -1,0 +1,1543 @@
+[
+    {
+        "key": "group_zadzerkalya_hero",
+        "title": "Головна: баннер",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_hero_kicker",
+                "label": "Надзаголовок",
+                "name": "hero_kicker",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Центр психології та логопедії «Задзеркалля»",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_title",
+                "label": "Заголовок",
+                "name": "hero_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ми віримо в кожну дитину!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_text",
+                "label": "Текст",
+                "name": "hero_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "«Задзеркалля» — це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 4,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_btn",
+                "label": "Текст кнопки",
+                "name": "hero_btn",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Кнопка відправляє форму запису на консультацію.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_hero_illustration",
+                "label": "Ілюстрація",
+                "name": "hero_illustration",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Кролик біля тексту. Якщо порожньо — використовується стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_hero_image",
+                "label": "Фото банера",
+                "name": "hero_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Велике фото справа. Якщо порожньо — використовується стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Контент головного банера на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790104224
+    },
+    {
+        "key": "group_zadzerkalya_service_when",
+        "title": "Головна: коли варто звернутися",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_service_when_title",
+                "label": "Заголовок",
+                "name": "service_when_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Коли варто звернутися до спеціалістів?",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_when_subtitle",
+                "label": "Підзаголовок",
+                "name": "service_when_subtitle",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Помітили хоча б один із цих симптомів? Важливо діяти швидко!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_when_items",
+                "label": "Картки",
+                "name": "service_when_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Номер картки ставиться автоматично за порядком. На десктопі перші 4 в одному ряду, решта — в наступному.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "table",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_service_when_item_text",
+                "button_label": "Додати картку",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_service_when_item_text",
+                        "label": "Текст",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 3,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_service_when_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок «Коли варто звернутися до спеціалістів?» на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "modified": 1790951652,
+        "allow_ai_access": false,
+        "ai_description": ""
+    },
+    {
+        "key": "group_zadzerkalya_help",
+        "title": "Головна: підтримка",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_help_banner",
+                "label": "Банер",
+                "name": "help_banner",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Велике зображення зліва. Якщо порожньо — стандартний банер з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_help_banner_alt",
+                "label": "Альтернативний текст банера",
+                "name": "help_banner_alt",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ви — не одні! Ми поруч, щоб вислухати, зрозуміти та допомогти",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_help_title",
+                "label": "Заголовок",
+                "name": "help_title",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ми починаємо роботу з первинної консультації, щоб:",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 2,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_help_reasons",
+                "label": "Пункти",
+                "name": "help_reasons",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Якщо список порожній, показуються стандартні пункти з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_help_reason_text",
+                "button_label": "Додати пункт",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_help_reason_text",
+                        "label": "Текст",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 2,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_help_reasons"
+                    }
+                ]
+            },
+            {
+                "key": "field_zadzerkalya_help_button",
+                "label": "Текст кнопки",
+                "name": "help_button",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_help_button_url",
+                "label": "Посилання кнопки",
+                "name": "help_button_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Якщо порожньо, кнопка веде на сторінку контактів.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_zadzerkalya_help_bottle",
+                "label": "Ілюстрація",
+                "name": "help_bottle",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Пляшечка справа. Якщо порожньо — стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 2,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок «Ми починаємо роботу з первинної консультації» на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_services",
+        "title": "Головна: послуги",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_services_title",
+                "label": "Заголовок",
+                "name": "services_title",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Кожен рядок — новий рядок заголовка. Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Понад 25 корекційних, освітніх\nта реабілітаційних послуг,\nзібраних в одному центрі!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_services_text",
+                "label": "Текст",
+                "name": "services_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "В «Задзеркаллі» пропонуємо як психоемоційну, так і фізичну корекцію в межах одного простору для вашої зручності.",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_services_illustration",
+                "label": "Ілюстрація",
+                "name": "services_illustration",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Аліса біля сітки. Якщо порожньо — стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_services_card_button",
+                "label": "Текст кнопки картки",
+                "name": "services_card_button",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_services_all_label",
+                "label": "Текст кнопки «усі послуги»",
+                "name": "services_all_label",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "переглянути всі послуги",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_services_all_url",
+                "label": "Посилання «усі послуги»",
+                "name": "services_all_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Якщо порожньо, кнопка веде на архів послуг.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_zadzerkalya_services_items",
+                "label": "Картки послуг",
+                "name": "services_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Якщо карток немає, показуються останні послуги з розділу «Послуги», а якщо їх немає — стандартні назви з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_services_item_title",
+                "button_label": "Додати послугу",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_services_item_title",
+                        "label": "Назва",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "40",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_services_items"
+                    },
+                    {
+                        "key": "field_zadzerkalya_services_item_image",
+                        "label": "Фото",
+                        "name": "image",
+                        "aria-label": "",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "30",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "id",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": "jpg,jpeg,png,webp",
+                        "allow_in_bindings": 0,
+                        "preview_size": "medium",
+                        "parent_repeater": "field_zadzerkalya_services_items"
+                    },
+                    {
+                        "key": "field_zadzerkalya_services_item_url",
+                        "label": "Посилання",
+                        "name": "url",
+                        "aria-label": "",
+                        "type": "url",
+                        "instructions": "Якщо порожньо, кнопка веде на архів послуг.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "30",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "parent_repeater": "field_zadzerkalya_services_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 3,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Вітрина послуг на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_numbers",
+        "title": "Головна: цифри",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_numbers_title",
+                "label": "Заголовок",
+                "name": "numbers_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "«Задзеркалля» у цифрах",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_numbers_text",
+                "label": "Текст",
+                "name": "numbers_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Роки досвіду, сотні щасливих історій та команда фахівців, які допомагають дітям розкривати свій потенціал!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_numbers_love",
+                "label": "Фраза на лінії",
+                "name": "numbers_love",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "і безкінечна кількість любові до своєї справи",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_numbers_photo",
+                "label": "Фото команди",
+                "name": "numbers_photo",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Якщо порожньо — стандартне фото команди з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_numbers_top",
+                "label": "Верхній ряд",
+                "name": "numbers_top",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Три картки біля заголовка. Якщо порожньо — стандартні цифри з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_numbers_top_number",
+                "button_label": "Додати цифру",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_numbers_top_number",
+                        "label": "Число",
+                        "name": "number",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "30",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_numbers_top"
+                    },
+                    {
+                        "key": "field_zadzerkalya_numbers_top_label",
+                        "label": "Підпис",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "70",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_numbers_top"
+                    }
+                ]
+            },
+            {
+                "key": "field_zadzerkalya_numbers_bottom",
+                "label": "Нижній ряд",
+                "name": "numbers_bottom",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Картки під заголовком. Якщо порожньо — стандартні цифри з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_numbers_bottom_number",
+                "button_label": "Додати цифру",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_numbers_bottom_number",
+                        "label": "Число",
+                        "name": "number",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "30",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_numbers_bottom"
+                    },
+                    {
+                        "key": "field_zadzerkalya_numbers_bottom_label",
+                        "label": "Підпис",
+                        "name": "label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "70",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_numbers_bottom"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 4,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок «Задзеркалля у цифрах» на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_benefits",
+        "title": "Головна: переваги",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_benefits_title",
+                "label": "Заголовок",
+                "name": "benefits_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Переваги звернення до центру «Задзеркалля»",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_benefits_text",
+                "label": "Текст",
+                "name": "benefits_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Ми створюємо простір, де є все для розвитку дитини — від унікальних методик до турботливих сердець фахівців!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_benefits_image",
+                "label": "Ілюстрація",
+                "name": "benefits_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Кролик біля тексту. Якщо порожньо — стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_benefits_button",
+                "label": "Текст кнопки",
+                "name": "benefits_button",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_benefits_button_url",
+                "label": "Посилання кнопки",
+                "name": "benefits_button_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Якщо порожньо, кнопка веде на сторінку контактів.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_zadzerkalya_benefits_items",
+                "label": "Переваги",
+                "name": "benefits_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Номер ставиться автоматично. Якщо список порожній, показуються стандартні пункти з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_benefits_item_text",
+                "button_label": "Додати перевагу",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_benefits_item_text",
+                        "label": "Текст",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 2,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_benefits_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок переваг на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_reviews",
+        "title": "Головна: відгуки",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_reviews_title",
+                "label": "Заголовок",
+                "name": "reviews_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Історії батьків, які надихають",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_reviews_text",
+                "label": "Текст",
+                "name": "reviews_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Слова тих, чиї діти вже отримали результат разом з нами — реальні відгуки, що дарують надію та підтримку.",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 3,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_reviews_items",
+                "label": "Відгуки",
+                "name": "reviews_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Якщо відгуків немає, показуються стандартні історії з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_reviews_item_name",
+                "button_label": "Додати відгук",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_reviews_item_name",
+                        "label": "Ім’я",
+                        "name": "name",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "30",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_reviews_items"
+                    },
+                    {
+                        "key": "field_zadzerkalya_reviews_item_text",
+                        "label": "Текст",
+                        "name": "text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "70",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 4,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_reviews_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 6,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок відгуків на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_faq",
+        "title": "Головна: запитання",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_faq_title",
+                "label": "Заголовок",
+                "name": "faq_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Часті запитання",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_faq_image",
+                "label": "Ілюстрація",
+                "name": "faq_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Пляшечка зліва. Якщо порожньо — стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_faq_items",
+                "label": "Запитання",
+                "name": "faq_items",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "Перше запитання відкрите. Якщо список порожній, показуються стандартні запитання з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "field_zadzerkalya_faq_item_question",
+                "button_label": "Додати запитання",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_faq_item_question",
+                        "label": "Запитання",
+                        "name": "question",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_faq_items"
+                    },
+                    {
+                        "key": "field_zadzerkalya_faq_item_answer",
+                        "label": "Відповідь",
+                        "name": "answer",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 4,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_faq_items"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 7,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок частих запитань на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    },
+    {
+        "key": "group_zadzerkalya_home_form",
+        "title": "Головна: форма",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_home_form_title",
+                "label": "Заголовок форми",
+                "name": "home_form_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Кожен день — важливий!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_home_form_text",
+                "label": "Опис форми",
+                "name": "home_form_text",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 4,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_home_form_button",
+                "label": "Текст кнопки",
+                "name": "home_form_button",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates/home.php"
+                }
+            ]
+        ],
+        "menu_order": 8,
+        "position": "acf_after_title",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Заголовок, опис і кнопка форми запису на шаблоні «Головна».",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1790951652
+    }
+]

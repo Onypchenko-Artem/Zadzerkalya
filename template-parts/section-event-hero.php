@@ -10,6 +10,8 @@
  *     @type mixed  $photo       Зображення ACF (id, масив або URL).
  *     @type mixed  $background  Фон банера (id, масив або URL).
  *     @type string $current     Поточний пункт хлібних крихт.
+ *     @type string $crumb_label Середній пункт хлібних крихт (напр. «Події», «Блог»).
+ *     @type string $crumb_url   URL середнього пункту.
  *     @type string $heading_id  id заголовка.
  * }
  */
@@ -19,6 +21,8 @@ $description = $args['description'] ?? '';
 $photo       = $args['photo'] ?? null;
 $background  = $args['background'] ?? null;
 $current     = $args['current'] ?? get_the_title();
+$crumb_label = $args['crumb_label'] ?? __( 'Події', 'zadzerkalya' );
+$crumb_url   = $args['crumb_url'] ?? zadzerkalya_get_events_url();
 $heading_id  = $args['heading_id'] ?? 'event-hero-title';
 
 $background_url = '';
@@ -48,7 +52,7 @@ if ( $background_url ) {
 							<svg viewBox="0 0 20 12" aria-hidden="true">
 								<path d="M1 6h17M13 1l5 5-5 5" />
 							</svg>
-							<a href="<?php echo esc_url( zadzerkalya_get_events_url() ); ?>"><?php esc_html_e( 'Події', 'zadzerkalya' ); ?></a>
+							<a href="<?php echo esc_url( $crumb_url ); ?>"><?php echo esc_html( $crumb_label ); ?></a>
 							<svg viewBox="0 0 20 12" aria-hidden="true">
 								<path d="M1 6h17M13 1l5 5-5 5" />
 							</svg>

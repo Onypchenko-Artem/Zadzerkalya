@@ -191,6 +191,30 @@ function zadzerkalya_register_taxonomies() {
 			),
 		)
 	);
+
+	register_taxonomy(
+		'event_topic',
+		array( 'event' ),
+		array(
+			'labels'            => array(
+				'name'          => __( 'Теми подій', 'zadzerkalya' ),
+				'singular_name' => __( 'Тема події', 'zadzerkalya' ),
+				'search_items'  => __( 'Шукати теми', 'zadzerkalya' ),
+				'all_items'     => __( 'Усі теми', 'zadzerkalya' ),
+				'edit_item'     => __( 'Редагувати тему', 'zadzerkalya' ),
+				'add_new_item'  => __( 'Додати тему', 'zadzerkalya' ),
+				'menu_name'     => __( 'Теми', 'zadzerkalya' ),
+			),
+			'public'            => true,
+			'hierarchical'      => true,
+			'show_admin_column' => true,
+			'show_in_rest'      => true,
+			'rewrite'           => array(
+				'slug'       => 'event-topic',
+				'with_front' => false,
+			),
+		)
+	);
 }
 add_action( 'init', 'zadzerkalya_register_taxonomies' );
 

@@ -58,6 +58,18 @@ get_header();
 				'button_url'   => $button_url,
 			)
 		);
+
+		get_template_part(
+			'template-parts/section',
+			'recommend',
+			array(
+				'title'      => __( 'Читайте також', 'zadzerkalya' ),
+				'post_type'  => 'event',
+				'count'      => 6,
+				'exclude'    => get_the_ID(),
+				'heading_id' => 'event-recommend-title',
+			)
+		);
 	endwhile;
 	?>
 </main>

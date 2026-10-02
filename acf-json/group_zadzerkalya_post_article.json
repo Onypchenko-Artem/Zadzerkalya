@@ -1,0 +1,78 @@
+{
+    "key": "group_zadzerkalya_post_article",
+    "title": "Новина: Стаття",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_post_author",
+            "label": "Автор",
+            "name": "event_author",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Спеціаліст, який відображається ліворуч від статті.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "specialist"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 1,
+            "bidirectional": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_zadzerkalya_post_reading_time",
+            "label": "Час прочитання",
+            "name": "post_reading_time",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Кількість хвилин. Якщо поле порожнє, час рахується автоматично з тексту статті.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "step": 1,
+            "placeholder": "6",
+            "prepend": "",
+            "append": "хв"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Автор і час прочитання на сторінці новини.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790680001
+}

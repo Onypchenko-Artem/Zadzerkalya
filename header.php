@@ -77,18 +77,18 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 					<?php if ( $instagram ) : ?>
 						<a class="header-social" href="<?php echo esc_url( $instagram ); ?>" target="_blank" rel="noopener noreferrer">
 							<span class="screen-reader-text">Instagram</span>
-							<?php zadzerkalya_icon( 'instagram' ); ?>
+							<?php zadzerkalya_icon( 'instagram-header' ); ?>
 						</a>
 					<?php else : ?>
-						<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( 'instagram' ); ?></span>
+						<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( 'instagram-header' ); ?></span>
 					<?php endif; ?>
 					<?php if ( $telegram ) : ?>
 						<a class="header-social" href="<?php echo esc_url( $telegram ); ?>" target="_blank" rel="noopener noreferrer">
 							<span class="screen-reader-text">Telegram</span>
-							<?php zadzerkalya_icon( 'telegram' ); ?>
+							<?php zadzerkalya_icon( 'telegram-header' ); ?>
 						</a>
 					<?php else : ?>
-						<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( 'telegram' ); ?></span>
+						<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( 'telegram-header' ); ?></span>
 					<?php endif; ?>
 				</div>
 				<?php
@@ -97,6 +97,7 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 						'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
 						'url'     => $contacts,
 						'variant' => 'secondary',
+						'anim'    => 'button-secondary-mobile',
 					)
 				);
 				?>

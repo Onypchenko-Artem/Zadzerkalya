@@ -1,0 +1,253 @@
+{
+    "key": "group_zadzerkalya_numbers",
+    "title": "Головна: цифри",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_numbers_title",
+            "label": "Заголовок",
+            "name": "numbers_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "«Задзеркалля» у цифрах",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_numbers_text",
+            "label": "Текст",
+            "name": "numbers_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Роки досвіду, сотні щасливих історій та команда фахівців, які допомагають дітям розкривати свій потенціал!",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 3,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_numbers_love",
+            "label": "Фраза на лінії",
+            "name": "numbers_love",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "і безкінечна кількість любові до своєї справи",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_numbers_photo",
+            "label": "Фото команди",
+            "name": "numbers_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Якщо порожньо — стандартне фото команди з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_numbers_top",
+            "label": "Верхній ряд",
+            "name": "numbers_top",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Три картки біля заголовка. Якщо порожньо — стандартні цифри з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_numbers_top_number",
+            "button_label": "Додати цифру",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_numbers_top_number",
+                    "label": "Число",
+                    "name": "number",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_numbers_top"
+                },
+                {
+                    "key": "field_zadzerkalya_numbers_top_label",
+                    "label": "Підпис",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_numbers_top"
+                }
+            ]
+        },
+        {
+            "key": "field_zadzerkalya_numbers_bottom",
+            "label": "Нижній ряд",
+            "name": "numbers_bottom",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Картки під заголовком. Якщо порожньо — стандартні цифри з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_numbers_bottom_number",
+            "button_label": "Додати цифру",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_numbers_bottom_number",
+                    "label": "Число",
+                    "name": "number",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_numbers_bottom"
+                },
+                {
+                    "key": "field_zadzerkalya_numbers_bottom_label",
+                    "label": "Підпис",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_numbers_bottom"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/home.php"
+            }
+        ]
+    ],
+    "menu_order": 4,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Блок «Задзеркалля у цифрах» на шаблоні «Головна».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790951652
+}

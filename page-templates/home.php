@@ -106,7 +106,18 @@ if ( ! $hero_btn ) {
 	<?php get_template_part( 'template-parts/section', 'benefits' ); ?>
 	<?php get_template_part( 'template-parts/section', 'reviews' ); ?>
 	<?php get_template_part( 'template-parts/section', 'faq' ); ?>
-	<?php get_template_part( 'template-parts/section', 'form-home' ); ?>
+	<?php
+	get_template_part(
+		'template-parts/section',
+		'form-home',
+		array(
+			'title'        => zadzerkalya_field( 'home_form_title', __( 'Кожен день — важливий!', 'zadzerkalya' ) ),
+			'description'  => zadzerkalya_field( 'home_form_text', __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ) ),
+			'button_label' => zadzerkalya_field( 'home_form_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+			'source'       => 'home',
+		)
+	);
+	?>
 </main>
 <?php
 get_footer();

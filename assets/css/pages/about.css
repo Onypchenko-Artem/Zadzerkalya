@@ -2,7 +2,7 @@
 	position: relative;
 	min-height: calc(847 * var(--u));
 	margin-top: calc(-118 * var(--u));
-	padding: calc(208 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	padding: calc(163 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
 	overflow: hidden;
 	background-color: #eaf4fd;
 	background-image:
@@ -141,22 +141,22 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: calc(40 * var(--u));
 	min-width: 0;
 	padding-left: calc(56 * var(--u));
 }
 
 .about-hero__scene {
 	width: calc(712 * var(--u));
-	height: calc(495 * var(--u));
 	margin-inline: auto;
 }
 
 .about-hero__scene-image {
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	border-radius: calc(32 * var(--u));
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .about-hero__right-line {
@@ -876,7 +876,6 @@
 
 	.about-hero__scene {
 		width: 100%;
-		height: 410px;
 	}
 
 	.about-hero__right-line {
@@ -1196,7 +1195,6 @@
 
 	.about-hero__scene {
 		max-width: 620px;
-		height: 430px;
 	}
 
 	.about-story__inner {
@@ -1317,10 +1315,6 @@
 	.about-hero__footer p {
 		max-width: 290px;
 		font-size: 16px;
-	}
-
-	.about-hero__scene {
-		height: min(95vw, 390px);
 	}
 
 	.about-hero__scene-image {

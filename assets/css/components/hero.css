@@ -1,6 +1,6 @@
 .hero {
 	margin-top: calc(-118 * var(--u));
-	padding: calc(150 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	padding: calc(163 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
 	background: var(--color-lemon-cream);
 }
 

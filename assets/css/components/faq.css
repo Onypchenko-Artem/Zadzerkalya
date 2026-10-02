@@ -128,12 +128,18 @@
 	width: 72px;
 	height: 72px;
 	background: url("../../images/faq-arrow.svg") center / 100% 100% no-repeat;
+	opacity: 1;
 	transform: scaleY(-1);
-	transition: transform 320ms ease;
+	transition: opacity 150ms ease;
 }
 
-.faq__item[open]:not(.is-collapsed) .faq__toggle {
+.faq:not(.faq--scripted) .faq__item[open]:not(.is-collapsed) .faq__toggle,
+.faq--scripted .faq__toggle.is-flipped {
 	transform: scaleY(1);
+}
+
+.faq--scripted .faq__toggle.is-hidden {
+	opacity: 0;
 }
 
 .faq__panel {

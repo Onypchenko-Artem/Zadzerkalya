@@ -81,6 +81,7 @@ if ( $background_url ) {
 				<?php
 			}
 			?>
+			<img class="about-hero__right-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-right-line.svg' ); ?>" alt="">
 		</div>
 	</div>
 </section>
