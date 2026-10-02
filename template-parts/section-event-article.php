@@ -1,16 +1,17 @@
 <?php
 /**
- * Стаття окремої події: автор, текст, метадані.
+ * Стаття окремої події / новини: автор, текст, метадані.
  *
  * @package Zadzerkalya
  *
  * @var array $args {
  *     @type mixed  $author        Запис спеціаліста (WP_Post, id) або порожньо.
- *     @type string $date          Дата події (Y-m-d).
+ *     @type string $date          Дата (Y-m-d).
  *     @type string $time          Час події.
  *     @type string $place         Місце.
  *     @type string $price         Вартість.
- *     @type string $button_label  Текст кнопки.
+ *     @type string $reading_time  Час прочитання (текст для виводу).
+ *     @type string $button_label  Текст кнопки (порожньо — без кнопки).
  *     @type string $button_url    Посилання кнопки.
  * }
  */
@@ -20,8 +21,9 @@ $date          = $args['date'] ?? '';
 $time          = $args['time'] ?? '';
 $place         = $args['place'] ?? '';
 $price         = $args['price'] ?? '';
-$button_label  = $args['button_label'] ?? __( 'забронювати участь', 'zadzerkalya' );
-$button_url    = $args['button_url'] ?? zadzerkalya_get_page_url( 'contacts' );
+$reading_time  = $args['reading_time'] ?? '';
+$button_label  = $args['button_label'] ?? '';
+$button_url    = $args['button_url'] ?? '';
 
 $author = null;
 if ( $author_raw instanceof WP_Post ) {
@@ -49,6 +51,12 @@ if ( $date_display ) {
 	$meta_rows[] = array(
 		'label' => __( 'Дата публікації:', 'zadzerkalya' ),
 		'value' => $date_display,
+	);
+}
+if ( $reading_time ) {
+	$meta_rows[] = array(
+		'label' => __( 'Час прочитання:', 'zadzerkalya' ),
+		'value' => $reading_time,
 	);
 }
 if ( $time ) {
@@ -120,6 +128,17 @@ if ( $price ) {
 
 	<article class="event-article__body">
 		<?php the_content(); ?>
+
+		<?php
+		$excerpt = has_excerpt() ? get_post_field( 'post_excerpt', get_the_ID() ) : '';
+		if ( $excerpt ) :
+			?>
+			<div class="event-article__excerpt">
+				<?php echo wp_kses_post( wpautop( $excerpt ) ); ?>
+			</div>
+			<?php
+		endif;
+		?>
 	</article>
 
 	<aside class="event-article__aside">

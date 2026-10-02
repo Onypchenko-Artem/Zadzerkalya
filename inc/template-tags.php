@@ -99,6 +99,44 @@ function zadzerkalya_get_events_url() {
 	return $archive ? $archive : home_url( '/events/' );
 }
 
+/**
+ * Адреса сторінки блогу (сторінка записів).
+ *
+ * @return string
+ */
+function zadzerkalya_get_blog_url() {
+	$page_id = (int) get_option( 'page_for_posts' );
+
+	if ( $page_id ) {
+		return get_permalink( $page_id );
+	}
+
+	return home_url( '/blog/' );
+}
+
+/**
+ * Час прочитання статті в хвилинах.
+ * Бере ACF `post_reading_time`, інакше рахує з тексту (~200 слів/хв).
+ *
+ * @param int $post_id ID запису.
+ * @return int
+ */
+function zadzerkalya_reading_time_minutes( $post_id = 0 ) {
+	$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+	if ( function_exists( 'get_field' ) ) {
+		$manual = get_field( 'post_reading_time', $post_id );
+		if ( null !== $manual && false !== $manual && '' !== $manual ) {
+			return max( 1, (int) $manual );
+		}
+	}
+
+	$plain = trim( wp_strip_all_tags( strip_shortcodes( get_post_field( 'post_content', $post_id ) ) ) );
+	$words = '' === $plain ? 0 : count( preg_split( '/\s+/u', $plain ) );
+
+	return max( 1, (int) ceil( $words / 200 ) );
+}
+
 function zadzerkalya_get_page_url( $slug ) {
 	$page = get_page_by_path( $slug );
 	return $page ? get_permalink( $page ) : home_url( '/' . $slug . '/' );

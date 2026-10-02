@@ -339,6 +339,44 @@
 })();
 
 (() => {
+	document.querySelectorAll('[data-recommend]').forEach((section) => {
+		const viewport = section.querySelector('.recommend__viewport');
+		const track = section.querySelector('.recommend__track');
+		const previous = section.querySelector('.recommend__arrow--prev');
+		const next = section.querySelector('.recommend__arrow--next');
+
+		if (!viewport || !track || !previous || !next) {
+			return;
+		}
+
+		const scrollStep = () => {
+			const card = track.querySelector('.article-card');
+			const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+			return card ? card.getBoundingClientRect().width + gap : viewport.clientWidth;
+		};
+
+		const updateState = () => {
+			const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+			previous.disabled = viewport.scrollLeft <= 1;
+			next.disabled = viewport.scrollLeft >= maxScroll - 1;
+		};
+
+		previous.addEventListener('click', () => {
+			viewport.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+		});
+
+		next.addEventListener('click', () => {
+			viewport.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+		});
+
+		viewport.addEventListener('scroll', updateState, { passive: true });
+		window.addEventListener('resize', updateState);
+		window.addEventListener('load', updateState);
+		updateState();
+	});
+})();
+
+(() => {
 	const fitLoveLine = () => {
 		document.querySelectorAll('.numbers__love').forEach((root) => {
 			const path = root.querySelector('#numbers-love-path');
