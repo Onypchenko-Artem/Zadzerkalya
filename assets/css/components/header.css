@@ -30,7 +30,7 @@
 
 .header-nav {
 	z-index: 0;
-	max-width: calc(721 * var(--u));
+	max-width: calc(800 * var(--u));
 }
 
 .header-nav .menu {

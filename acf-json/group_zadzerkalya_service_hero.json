@@ -1,0 +1,283 @@
+{
+    "key": "group_zadzerkalya_service_hero",
+    "title": "Послуга: Головний банер",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_service_hero_title",
+            "label": "Заголовок",
+            "name": "service_hero_title",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Розриви рядків збережуться у заголовку. Якщо поле порожнє, використовується назва послуги.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 4,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_show_description",
+            "label": "Показати опис",
+            "name": "service_hero_show_description",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_description",
+            "label": "Текст під заголовком",
+            "name": "service_hero_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Якщо поле порожнє, використовується анонс послуги.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_zadzerkalya_service_hero_show_description",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 4,
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_show_button",
+            "label": "Показати кнопку",
+            "name": "service_hero_show_button",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_button_label",
+            "label": "Текст кнопки",
+            "name": "service_hero_button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_zadzerkalya_service_hero_show_button",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "забронювати первинну консультацію",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_button_url",
+            "label": "Посилання кнопки",
+            "name": "service_hero_button_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Якщо поле порожнє, кнопка веде на сторінку контактів.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_zadzerkalya_service_hero_show_button",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "40",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_button_variant",
+            "label": "Вигляд кнопки",
+            "name": "service_hero_button_variant",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_zadzerkalya_service_hero_show_button",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "primary": "Primary",
+                "secondary": "Secondary"
+            },
+            "default_value": "primary",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_show_photo",
+            "label": "Показати фото",
+            "name": "service_hero_show_photo",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_photo",
+            "label": "Фото",
+            "name": "service_hero_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Фото у правій частині банера. Якщо поле порожнє, використовується головне зображення послуги.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_zadzerkalya_service_hero_show_photo",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_hero_background",
+            "label": "Фон банера",
+            "name": "service_hero_background",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Якщо поле порожнє, фон не виводиться.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "service"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Контент головного банера сторінки послуги.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791040403
+}

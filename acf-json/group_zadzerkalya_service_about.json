@@ -1,0 +1,118 @@
+{
+    "key": "group_zadzerkalya_service_about",
+    "title": "Послуга: Опис",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_service_about_illustration",
+            "label": "Ілюстрація",
+            "name": "service_about_illustration",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Зображення зліва. Якщо поле порожнє, показується Аліса.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_about_photo",
+            "label": "Фото",
+            "name": "service_about_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Широке фото під текстами.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_about_text",
+            "label": "Текст зліва",
+            "name": "service_about_text",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Менший текст.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_about_lead",
+            "label": "Текст справа",
+            "name": "service_about_lead",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Більший текст.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "service"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Секція опису послуги: ілюстрація, два тексти і фото.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791040403
+}

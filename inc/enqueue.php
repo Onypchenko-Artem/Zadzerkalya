@@ -27,6 +27,9 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-hero'        => array( 'file' => '/assets/css/components/hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-hero'    => array( 'file' => '/assets/css/components/page-hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-event-hero'  => array( 'file' => '/assets/css/components/event-hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-service-hero'=> array( 'file' => '/assets/css/components/service-hero.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-service-about'=> array( 'file' => '/assets/css/components/service-about.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-service-cta' => array( 'file' => '/assets/css/components/service-cta.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-event-article'=> array( 'file' => '/assets/css/components/event-article.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-article-card' => array( 'file' => '/assets/css/components/article-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-articles-feed'=> array( 'file' => '/assets/css/components/articles-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card', 'zadzerkalya-button' ) ),
@@ -52,6 +55,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-about'  => array( 'file' => '/assets/css/pages/about.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-events' => array( 'file' => '/assets/css/pages/events.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-article-card', 'zadzerkalya-articles-feed', 'zadzerkalya-page-about' ) ),
 		'zadzerkalya-page-specialists' => array( 'file' => '/assets/css/pages/specialists.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-page-about' ) ),
+		'zadzerkalya-page-service' => array( 'file' => '/assets/css/pages/service.css', 'deps' => array( 'zadzerkalya-base' ) ),
 	);
 
 	foreach ( $styles as $handle => $style ) {

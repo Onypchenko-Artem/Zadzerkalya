@@ -372,6 +372,55 @@
 })();
 
 (() => {
+	document.querySelectorAll('[data-service-cta]').forEach((section) => {
+		const viewport = section.querySelector('.service-cta__viewport');
+		const track = section.querySelector('.service-cta__track');
+		const previous = section.querySelector('.service-cta__arrow--prev');
+		const next = section.querySelector('.service-cta__arrow--next');
+		const current = section.querySelector('.service-cta__counter-current');
+
+		if (!viewport || !track || !previous || !next || !current) {
+			return;
+		}
+
+		const slides = Array.from(track.querySelectorAll('.service-cta__slide'));
+
+		const scrollStep = () => {
+			const slide = slides[0];
+			const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+			return slide ? slide.getBoundingClientRect().width + gap : viewport.clientWidth;
+		};
+
+		const updateState = () => {
+			const step = scrollStep();
+			const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+			const index = step ? Math.round(viewport.scrollLeft / step) : 0;
+			const safeIndex = Math.min(slides.length - 1, Math.max(0, index));
+
+			current.textContent = `${safeIndex + 1}/`;
+			previous.disabled = viewport.scrollLeft <= 1;
+			next.disabled = viewport.scrollLeft >= maxScroll - 1;
+
+			slides.forEach((slide, slideIndex) => {
+				slide.toggleAttribute('aria-hidden', slideIndex !== safeIndex);
+			});
+		};
+
+		previous.addEventListener('click', () => {
+			viewport.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+		});
+
+		next.addEventListener('click', () => {
+			viewport.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+		});
+
+		viewport.addEventListener('scroll', updateState, { passive: true });
+		window.addEventListener('resize', updateState);
+		updateState();
+	});
+})();
+
+(() => {
 	document.querySelectorAll('[data-recommend]').forEach((section) => {
 		const viewport = section.querySelector('.recommend__viewport');
 		const track = section.querySelector('.recommend__track');
