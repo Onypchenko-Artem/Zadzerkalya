@@ -49,6 +49,7 @@ get_header();
 				'author'       => $event_author,
 				'date'         => get_the_date( 'Y-m-d' ),
 				'reading_time' => $reading_time,
+				'share'        => true,
 			)
 		);
 
@@ -61,6 +62,24 @@ get_header();
 				'count'      => 6,
 				'exclude'    => get_the_ID(),
 				'heading_id' => 'post-recommend-title',
+			)
+		);
+
+		$blog_page_id = (int) get_option( 'page_for_posts' );
+		$blog_field   = static function ( $name, $fallback = '' ) use ( $blog_page_id ) {
+			$value = ( $blog_page_id && function_exists( 'get_field' ) ) ? get_field( $name, $blog_page_id ) : null;
+
+			return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+		};
+
+		get_template_part(
+			'template-parts/section',
+			'form-home',
+			array(
+				'title'        => $blog_field( 'blog_form_title', __( 'Кожен день — важливий!', 'zadzerkalya' ) ),
+				'description'  => $blog_field( 'blog_form_text', __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ) ),
+				'button_label' => $blog_field( 'blog_form_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+				'source'       => 'blog',
 			)
 		);
 	endwhile;

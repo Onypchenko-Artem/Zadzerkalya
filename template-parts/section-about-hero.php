@@ -43,9 +43,7 @@ if ( $background_url ) {
 			<div class="about-hero__heading">
 				<nav class="about-hero__breadcrumbs" aria-label="<?php esc_attr_e( 'Навігаційний ланцюжок', 'zadzerkalya' ); ?>">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Головна', 'zadzerkalya' ); ?></a>
-					<svg viewBox="0 0 20 12" aria-hidden="true">
-						<path d="M1 6h17M13 1l5 5-5 5" />
-					</svg>
+					<span class="about-hero__crumb-arrow" aria-hidden="true"></span>
 					<span aria-current="page"><?php echo esc_html( $current ); ?></span>
 				</nav>
 

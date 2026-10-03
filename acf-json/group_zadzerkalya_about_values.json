@@ -52,8 +52,8 @@
             "label": "Ліва колонка",
             "name": "about_values_left",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Кожен абзац додавайте окремим рядком.",
+            "type": "wysiwyg",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -61,43 +61,19 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Додати абзац",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_about_values_left_text",
-                    "label": "Абзац",
-                    "name": "about_values_left_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 4,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "parent_repeater": "field_zadzerkalya_about_values_left"
-                }
-            ]
+            "default_value": "<p>А ще я розумію: допомагаючи дітям, ми робимо більше, аніж просто терапію — ми формуємо майбутнє.<\/p>\n<p>Адже кожен маленький крок до самостійності однієї дитини — це крок до більш інклюзивного суспільства. Ми змінюємо не лише життя окремих сімей, а й саму культуру ставлення до дітей із особливими потребами.<\/p>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_zadzerkalya_about_values_conclusion",
             "label": "Фінальний текст",
             "name": "about_values_conclusion",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Кожен абзац додавайте окремим рядком.",
+            "type": "wysiwyg",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -105,35 +81,11 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Додати абзац",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_about_values_conclusion_text",
-                    "label": "Абзац",
-                    "name": "about_values_conclusion_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 4,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "parent_repeater": "field_zadzerkalya_about_values_conclusion"
-                }
-            ]
+            "default_value": "<p>Сьогодні «Задзеркалля» — це не просто реабілітаційний центр.<\/p>\n<p>Це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.<\/p>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
@@ -157,5 +109,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790273174
+    "modified": 1791031195
 }

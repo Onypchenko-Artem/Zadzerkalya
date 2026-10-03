@@ -104,7 +104,7 @@
 	width: 100%;
 	height: calc(20 * var(--u));
 	font-family: var(--text-body-xs-family);
-	font-size: calc(14 * var(--u));
+	font-size: calc(16 * var(--u));
 	font-weight: 300;
 	line-height: 1.4;
 	color: var(--color-night-sky);

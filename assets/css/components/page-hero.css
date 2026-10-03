@@ -15,6 +15,7 @@
 }
 
 .page-hero__inner {
+	position: relative;
 	display: grid;
 	grid-template-columns: calc(944 * var(--u)) calc(870 * var(--u));
 	gap: calc(10 * var(--u));
@@ -63,16 +64,14 @@
 	color: var(--color-night-sky);
 }
 
-.page-hero__breadcrumbs svg {
+.page-hero__crumb-arrow {
 	flex: 0 0 auto;
-	width: calc(20 * var(--u));
-	height: calc(12 * var(--u));
-	overflow: visible;
-	fill: none;
-	stroke: currentColor;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	stroke-width: 1px;
+	width: 20px;
+	aspect-ratio: 49 / 32;
+	background-color: currentColor;
+	-webkit-mask: url("../../images/right-arrow.svg") center / contain no-repeat;
+	mask: url("../../images/right-arrow.svg") center / contain no-repeat;
+	mask-mode: alpha;
 }
 
 .page-hero__title {
@@ -123,10 +122,15 @@
 }
 
 .page-hero__vertical-line {
-	align-self: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 1;
 	width: calc(23 * var(--u));
 	height: calc(549 * var(--u));
 	object-fit: fill;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
 }
 
 .page-hero__photo {
@@ -178,11 +182,6 @@
 		font-size: 15px;
 	}
 
-	.page-hero__breadcrumbs svg {
-		width: 20px;
-		height: 12px;
-	}
-
 	.page-hero__title {
 		gap: 20px;
 		min-height: 290px;
@@ -203,8 +202,10 @@
 	}
 
 	.page-hero__vertical-line {
+		top: 0;
 		width: 23px;
 		height: 100%;
+		transform: translateX(-50%);
 	}
 
 	.page-hero__photo {

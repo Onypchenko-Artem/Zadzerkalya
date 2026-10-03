@@ -91,6 +91,27 @@
             "max_width": 0,
             "max_height": 0,
             "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_blog_feed_title",
+            "label": "Заголовок стрічки",
+            "name": "blog_feed_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Заголовок блоку зі списком новин.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Дізнайтеся більше",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -116,5 +137,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790700000
+    "modified": 1791032163
 }

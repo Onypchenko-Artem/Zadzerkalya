@@ -49,13 +49,9 @@ if ( $background_url ) {
 					<div class="event-hero__breadcrumbs-container">
 						<nav class="event-hero__breadcrumbs" aria-label="<?php esc_attr_e( 'Навігаційний ланцюжок', 'zadzerkalya' ); ?>">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Головна', 'zadzerkalya' ); ?></a>
-							<svg viewBox="0 0 20 12" aria-hidden="true">
-								<path d="M1 6h17M13 1l5 5-5 5" />
-							</svg>
+							<span class="event-hero__crumb-arrow" aria-hidden="true"></span>
 							<a href="<?php echo esc_url( $crumb_url ); ?>"><?php echo esc_html( $crumb_label ); ?></a>
-							<svg viewBox="0 0 20 12" aria-hidden="true">
-								<path d="M1 6h17M13 1l5 5-5 5" />
-							</svg>
+							<span class="event-hero__crumb-arrow" aria-hidden="true"></span>
 							<span aria-current="page"><?php echo esc_html( $current ); ?></span>
 						</nav>
 
@@ -70,11 +66,9 @@ if ( $background_url ) {
 
 				<img class="event-hero__bottom-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-left-line.svg' ); ?>" alt="" aria-hidden="true">
 			</div>
-
-			<div class="event-hero__vertical-line">
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
-			</div>
 		</div>
+
+		<img class="event-hero__vertical-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
 
 		<div class="event-hero__photo">
 			<div class="event-hero__image" aria-hidden="true">

@@ -464,3 +464,57 @@
 
 	window.addEventListener('resize', fitLoveLine);
 })();
+
+(() => {
+	document.querySelectorAll('[data-copy-url]').forEach((button) => {
+		let hideTimer = 0;
+
+		button.addEventListener('click', async () => {
+			const url = button.getAttribute('data-copy-url');
+			if (!url) {
+				return;
+			}
+
+			const wrap = button.closest('.event-article__share-copy');
+			const toast = wrap?.querySelector('.event-article__share-toast');
+			const srLabel = button.querySelector('.screen-reader-text');
+			const original = srLabel ? srLabel.textContent : '';
+			const copied = button.getAttribute('data-copied') || 'Посилання скопійовано';
+
+			try {
+				if (navigator.clipboard?.writeText) {
+					await navigator.clipboard.writeText(url);
+				} else {
+					const input = document.createElement('input');
+					input.value = url;
+					document.body.appendChild(input);
+					input.select();
+					document.execCommand('copy');
+					input.remove();
+				}
+
+				if (toast) {
+					toast.textContent = copied;
+				}
+
+				if (srLabel) {
+					srLabel.textContent = copied;
+				}
+
+				wrap?.classList.add('is-copied');
+				button.classList.add('is-copied');
+
+				window.clearTimeout(hideTimer);
+				hideTimer = window.setTimeout(() => {
+					wrap?.classList.remove('is-copied');
+					button.classList.remove('is-copied');
+					if (srLabel && original) {
+						srLabel.textContent = original;
+					}
+				}, 2200);
+			} catch (error) {
+				window.prompt('', url);
+			}
+		});
+	});
+})();

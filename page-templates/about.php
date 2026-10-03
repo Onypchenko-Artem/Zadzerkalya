@@ -50,8 +50,8 @@ get_header();
 			)
 		);
 		$story_right = $about_field( 'about_story_right_column', array( array( 'about_story_right_text' => 'Саме це і стало моїм головним поштовхом до відкриття свого реабілітаційного центру. Я хотіла створити місце, де кожна дитина буде побаченою та зрозумілою, де головним інструментом роботи будуть не стандартні протоколи, а їх адаптація до реальних потреб кожного нашого клієнта. Де кожен з батьків відчує себе прийнятим у своїй особливій історії.' ) ) );
-		$values_left = $about_field( 'about_values_left', array( array( 'about_values_left_text' => 'А ще я розумію: допомагаючи дітям, ми робимо більше, аніж просто терапію — ми формуємо майбутнє.' ), array( 'about_values_left_text' => 'Адже кожен маленький крок до самостійності однієї дитини — це крок до більш інклюзивного суспільства. Ми змінюємо не лише життя окремих сімей, а й саму культуру ставлення до дітей із особливими потребами.' ) ) );
-		$values_conclusion = $about_field( 'about_values_conclusion', array( array( 'about_values_conclusion_text' => 'Сьогодні «Задзеркалля» — це не просто реабілітаційний центр.' ), array( 'about_values_conclusion_text' => 'Це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.' ) ) );
+		$values_left = $about_field( 'about_values_left', '<p>А ще я розумію: допомагаючи дітям, ми робимо більше, аніж просто терапію — ми формуємо майбутнє.</p><p>Адже кожен маленький крок до самостійності однієї дитини — це крок до більш інклюзивного суспільства. Ми змінюємо не лише життя окремих сімей, а й саму культуру ставлення до дітей із особливими потребами.</p>' );
+		$values_conclusion = $about_field( 'about_values_conclusion', '<p>Сьогодні «Задзеркалля» — це не просто реабілітаційний центр.</p><p>Це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.</p>' );
 		?>
 		<?php
 		get_template_part(
@@ -95,7 +95,7 @@ get_header();
 
 					<div class="about-story__text">
 						<div class="about-story__intro">
-							<h2 id="about-story-title"><?php echo esc_html( $story_title ); ?></h2>
+							<h2 id="about-story-title"><?php echo wp_kses( $story_title, array( 'br' => array() ) ); ?></h2>
 							<div class="about-story__lead">
 								<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/story-lead-line.svg' ); ?>" alt="" aria-hidden="true">
 								<p><?php echo esc_html( $story_lead ); ?></p>
@@ -170,20 +170,16 @@ get_header();
 					<p class="about-values__highlight"><?php echo esc_html( $values_highlight ); ?></p>
 
 					<div class="about-values__columns">
-						<div>
-							<?php foreach ( $values_left as $row ) : ?>
-								<p><?php echo esc_html( $row['about_values_left_text'] ?? '' ); ?></p>
-							<?php endforeach; ?>
+						<div class="about-values__column">
+							<?php echo wp_kses_post( $values_left ); ?>
 						</div>
 
 						<div class="about-values__conclusion">
 							<svg class="about-values__conclusion-line" viewBox="0 0 437 8" fill="none" aria-hidden="true">
 								<path d="M0.5 4.84647C1.4087 4.84647 2.31741 4.84647 40.0186 3.61925C77.7197 2.39203 152.186 -0.0624191 217.782 0.616668C283.378 1.29575 337.848 5.18275 370.124 6.69372C402.401 8.20469 410.834 7.22185 417.301 6.71553C423.767 6.20922 428.011 6.20922 430.877 6.30742C433.742 6.40562 435.101 6.60202 436.5 6.80437" />
 							</svg>
-							<div>
-								<?php foreach ( $values_conclusion as $row ) : ?>
-									<p><?php echo esc_html( $row['about_values_conclusion_text'] ?? '' ); ?></p>
-								<?php endforeach; ?>
+							<div class="about-values__column">
+								<?php echo wp_kses_post( $values_conclusion ); ?>
 							</div>
 							<svg class="about-values__conclusion-line about-values__conclusion-line--bottom" viewBox="0 0 437 8" fill="none" aria-hidden="true">
 								<path d="M0.5 4.84647C1.4087 4.84647 2.31741 4.84647 40.0186 3.61925C77.7197 2.39203 152.186 -0.0624191 217.782 0.616668C283.378 1.29575 337.848 5.18275 370.124 6.69372C402.401 8.20469 410.834 7.22185 417.301 6.71553C423.767 6.20922 428.011 6.20922 430.877 6.30742C433.742 6.40562 435.101 6.60202 436.5 6.80437" />

@@ -46,18 +46,14 @@ if ( $background_url ) {
 				<nav class="page-hero__breadcrumbs" aria-label="<?php esc_attr_e( 'Навігаційний ланцюжок', 'zadzerkalya' ); ?>">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Головна', 'zadzerkalya' ); ?></a>
 					<?php foreach ( $breadcrumbs as $breadcrumb ) : ?>
-						<svg viewBox="0 0 20 12" aria-hidden="true">
-							<path d="M1 6h17M13 1l5 5-5 5" />
-						</svg>
+						<span class="page-hero__crumb-arrow" aria-hidden="true"></span>
 						<?php if ( ! empty( $breadcrumb['url'] ) ) : ?>
 							<a href="<?php echo esc_url( $breadcrumb['url'] ); ?>"><?php echo esc_html( $breadcrumb['label'] ?? '' ); ?></a>
 						<?php else : ?>
 							<span><?php echo esc_html( $breadcrumb['label'] ?? '' ); ?></span>
 						<?php endif; ?>
 					<?php endforeach; ?>
-					<svg viewBox="0 0 20 12" aria-hidden="true">
-						<path d="M1 6h17M13 1l5 5-5 5" />
-					</svg>
+					<span class="page-hero__crumb-arrow" aria-hidden="true"></span>
 					<span aria-current="page"><?php echo esc_html( $current ); ?></span>
 				</nav>
 

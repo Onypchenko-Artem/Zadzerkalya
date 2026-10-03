@@ -12,7 +12,14 @@ $hero_quote      = zadzerkalya_about_field( 'about_hero_quote', 'Кожна ве
 $hero_scene      = zadzerkalya_about_field( 'about_hero_scene' );
 $hero_background = zadzerkalya_about_field( 'about_hero_background' );
 $paged           = max( 1, (int) get_query_var( 'paged' ) );
-$events_url      = get_post_type_archive_link( 'event' );
+$events_page_id  = zadzerkalya_get_events_page_id();
+$events_url      = $events_page_id ? get_permalink( $events_page_id ) : get_post_type_archive_link( 'event' );
+$events_field    = static function ( $name, $fallback = '' ) use ( $events_page_id ) {
+	$value = ( $events_page_id && function_exists( 'get_field' ) ) ? get_field( $name, $events_page_id ) : null;
+
+	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+};
+$feed_title      = $events_field( 'events_feed_title', __( 'Дізнайтеся більше', 'zadzerkalya' ) );
 
 $topic_slug   = isset( $_GET['topic'] ) ? sanitize_title( wp_unslash( $_GET['topic'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 $current_term = $topic_slug ? get_term_by( 'slug', $topic_slug, 'event_topic' ) : null;
@@ -60,7 +67,7 @@ $events = new WP_Query( $query_args );
 		'template-parts/section',
 		'articles-feed',
 		array(
-			'title'        => __( 'Дізнайтеся більше', 'zadzerkalya' ),
+			'title'        => $feed_title,
 			'heading_id'   => 'events-feed-title',
 			'all_label'    => __( 'Всі події', 'zadzerkalya' ),
 			'all_url'      => $events_url ? $events_url : home_url( '/events/' ),
@@ -69,6 +76,17 @@ $events = new WP_Query( $query_args );
 			'current_term' => $current_term,
 			'query'        => $events,
 			'paged'        => $paged,
+		)
+	);
+
+	get_template_part(
+		'template-parts/section',
+		'form-home',
+		array(
+			'title'        => $events_field( 'events_form_title', __( 'Кожен день — важливий!', 'zadzerkalya' ) ),
+			'description'  => $events_field( 'events_form_text', __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ) ),
+			'button_label' => $events_field( 'events_form_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+			'source'       => 'events',
 		)
 	);
 	?>

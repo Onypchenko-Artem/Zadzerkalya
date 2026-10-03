@@ -11,6 +11,7 @@
  *     @type string $place         Місце.
  *     @type string $price         Вартість.
  *     @type string $reading_time  Час прочитання (текст для виводу).
+ *     @type bool   $share         Показати блок «Поширити статтю».
  *     @type string $button_label  Текст кнопки (порожньо — без кнопки).
  *     @type string $button_url    Посилання кнопки.
  * }
@@ -22,8 +23,14 @@ $time          = $args['time'] ?? '';
 $place         = $args['place'] ?? '';
 $price         = $args['price'] ?? '';
 $reading_time  = $args['reading_time'] ?? '';
+$show_share    = ! empty( $args['share'] );
 $button_label  = $args['button_label'] ?? '';
 $button_url    = $args['button_url'] ?? '';
+
+$share_url   = $show_share ? get_permalink() : '';
+$share_title = $show_share ? get_the_title() : '';
+$share_telegram = $share_url ? 'https://t.me/share/url?url=' . rawurlencode( $share_url ) . '&text=' . rawurlencode( $share_title ) : '';
+$share_facebook = $share_url ? 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode( $share_url ) : '';
 
 $author = null;
 if ( $author_raw instanceof WP_Post ) {
@@ -142,6 +149,10 @@ if ( $price ) {
 	</article>
 
 	<aside class="event-article__aside">
+		<?php if ( $show_share ) : ?>
+			<div class="event-article__info">
+		<?php endif; ?>
+
 		<?php if ( $meta_rows ) : ?>
 			<dl class="event-article__meta">
 				<?php foreach ( $meta_rows as $row ) : ?>
@@ -151,6 +162,33 @@ if ( $price ) {
 					</div>
 				<?php endforeach; ?>
 			</dl>
+		<?php endif; ?>
+
+		<?php if ( $show_share && $share_url ) : ?>
+			<div class="event-article__share">
+				<p class="event-article__share-label"><?php esc_html_e( 'Поширити статтю:', 'zadzerkalya' ); ?></p>
+				<div class="event-article__share-links">
+					<div class="event-article__share-copy">
+						<button type="button" class="event-article__share-link" data-copy-url="<?php echo esc_url( $share_url ); ?>" data-copied="<?php esc_attr_e( 'Посилання скопійовано', 'zadzerkalya' ); ?>">
+							<span class="screen-reader-text"><?php esc_html_e( 'Скопіювати посилання', 'zadzerkalya' ); ?></span>
+							<?php zadzerkalya_icon( 'link' ); ?>
+						</button>
+						<span class="event-article__share-toast" role="status" aria-live="polite"></span>
+					</div>
+					<a class="event-article__share-link" href="<?php echo esc_url( $share_telegram ); ?>" target="_blank" rel="noopener noreferrer">
+						<span class="screen-reader-text"><?php esc_html_e( 'Поділитися в Telegram', 'zadzerkalya' ); ?></span>
+						<?php zadzerkalya_icon( 'telegram-header' ); ?>
+					</a>
+					<a class="event-article__share-link" href="<?php echo esc_url( $share_facebook ); ?>" target="_blank" rel="noopener noreferrer">
+						<span class="screen-reader-text"><?php esc_html_e( 'Поділитися у Facebook', 'zadzerkalya' ); ?></span>
+						<?php zadzerkalya_icon( 'facebook' ); ?>
+					</a>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $show_share ) : ?>
+			</div>
 		<?php endif; ?>
 
 		<?php

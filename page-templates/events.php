@@ -67,7 +67,7 @@ $events = new WP_Query( $query_args );
 		'template-parts/section',
 		'articles-feed',
 		array(
-			'title'        => __( 'Дізнайтеся більше', 'zadzerkalya' ),
+			'title'        => $field( 'events_feed_title', __( 'Дізнайтеся більше', 'zadzerkalya' ) ),
 			'heading_id'   => 'events-feed-title',
 			'all_label'    => __( 'Всі події', 'zadzerkalya' ),
 			'all_url'      => $events_url,
@@ -76,6 +76,17 @@ $events = new WP_Query( $query_args );
 			'current_term' => $current_term,
 			'query'        => $events,
 			'paged'        => $paged,
+		)
+	);
+
+	get_template_part(
+		'template-parts/section',
+		'form-home',
+		array(
+			'title'        => $field( 'events_form_title', __( 'Кожен день — важливий!', 'zadzerkalya' ) ),
+			'description'  => $field( 'events_form_text', __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ) ),
+			'button_label' => $field( 'events_form_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+			'source'       => 'events',
 		)
 	);
 	?>

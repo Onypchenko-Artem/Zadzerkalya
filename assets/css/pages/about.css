@@ -84,15 +84,14 @@
 	color: var(--color-night-sky);
 }
 
-.about-hero__breadcrumbs svg {
-	width: calc(20 * var(--u));
-	height: calc(12 * var(--u));
-	overflow: visible;
-	fill: none;
-	stroke: currentColor;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	stroke-width: 1px;
+.about-hero__crumb-arrow {
+	flex: 0 0 auto;
+	width: 20px;
+	aspect-ratio: 49 / 32;
+	background-color: currentColor;
+	-webkit-mask: url("../../images/right-arrow.svg") center / contain no-repeat;
+	mask: url("../../images/right-arrow.svg") center / contain no-repeat;
+	mask-mode: alpha;
 }
 
 .about-hero h1 {
@@ -132,9 +131,12 @@
 .about-hero__vertical-line {
 	position: absolute;
 	top: 0;
-	left: calc(912 * var(--u));
-	width: calc(23 * var(--u));
+	left: 50.2%;
+	z-index: 1;
+	/*width: calc(23 * var(--u));*/
 	height: 100%;
+	transform: translateX(-50%);
+	pointer-events: none;
 }
 
 .about-hero__visual {
@@ -381,7 +383,7 @@
 }
 
 .about-relocation {
-	padding: calc(200 * var(--u)) calc(48 * var(--u)) calc(87 * var(--u));
+	padding: calc(40 * var(--u)) calc(48 * var(--u)) 0;
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
 	overflow: hidden;
@@ -448,7 +450,7 @@
 }
 
 .about-values {
-	padding: calc(200 * var(--u)) calc(49 * var(--u)) 0;
+	padding: calc(100 * var(--u)) calc(49 * var(--u)) calc(200 * var(--u));
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
 }
@@ -515,7 +517,8 @@
 	gap: calc(40 * var(--u));
 }
 
-.about-values__columns p {
+.about-values__columns p,
+.about-values__columns li {
 	margin: 0 0 calc(24 * var(--u));
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
@@ -523,8 +526,26 @@
 	line-height: 1.35;
 }
 
-.about-values__columns p:last-child {
+.about-values__columns ul,
+.about-values__columns ol {
+	margin: 0 0 calc(24 * var(--u));
+	padding-left: 1.2em;
+}
+
+.about-values__columns li {
+	margin-bottom: calc(8 * var(--u));
+}
+
+.about-values__columns p:last-child,
+.about-values__columns ul:last-child,
+.about-values__columns ol:last-child {
 	margin-bottom: 0;
+}
+
+.about-values__columns a {
+	color: inherit;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.15em;
 }
 
 .about-values__conclusion {
@@ -842,11 +863,6 @@
 		font-size: 14px;
 	}
 
-	.about-hero__breadcrumbs svg {
-		width: 18px;
-		height: 11px;
-	}
-
 	.about-hero h1 {
 		font-size: 42px;
 	}
@@ -866,7 +882,6 @@
 	}
 
 	.about-hero__vertical-line {
-		left: calc(55.5% - 12px);
 		width: 23px;
 	}
 
@@ -1053,7 +1068,8 @@
 		gap: 24px;
 	}
 
-	.about-values__columns p {
+	.about-values__columns p,
+	.about-values__columns li {
 		margin-bottom: 18px;
 		font-size: 18px;
 	}
@@ -1460,7 +1476,8 @@
 		gap: 28px;
 	}
 
-	.about-values__columns p {
+	.about-values__columns p,
+	.about-values__columns li {
 		margin-bottom: 16px;
 		font-size: 16px;
 	}

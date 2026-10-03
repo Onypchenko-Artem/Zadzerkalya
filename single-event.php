@@ -70,6 +70,24 @@ get_header();
 				'heading_id' => 'event-recommend-title',
 			)
 		);
+
+		$events_page_id = zadzerkalya_get_events_page_id();
+		$events_field   = static function ( $name, $fallback = '' ) use ( $events_page_id ) {
+			$value = ( $events_page_id && function_exists( 'get_field' ) ) ? get_field( $name, $events_page_id ) : null;
+
+			return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
+		};
+
+		get_template_part(
+			'template-parts/section',
+			'form-home',
+			array(
+				'title'        => $events_field( 'events_form_title', __( 'Кожен день — важливий!', 'zadzerkalya' ) ),
+				'description'  => $events_field( 'events_form_text', __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ) ),
+				'button_label' => $events_field( 'events_form_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+				'source'       => 'events',
+			)
+		);
 	endwhile;
 	?>
 </main>
