@@ -2,14 +2,34 @@
 	margin-top: calc(200 * var(--u));
 }
 
+.service-page .service-benefits + .form-home {
+	position: relative;
+	z-index: 1;
+	margin-top: calc(-140 * var(--u));
+	background: transparent;
+	pointer-events: none;
+}
+
+.service-page .service-benefits + .form-home .form-home__content {
+	pointer-events: auto;
+}
+
 @media (max-width: 1279px) {
 	.service-page > * + * {
 		margin-top: 120px;
+	}
+
+	.service-page .service-benefits + .form-home {
+		margin-top: -72px;
 	}
 }
 
 @media (max-width: 767px) {
 	.service-page > * + * {
 		margin-top: 80px;
+	}
+
+	.service-page .service-benefits + .form-home {
+		margin-top: -36px;
 	}
 }

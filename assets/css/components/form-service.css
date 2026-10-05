@@ -1,0 +1,348 @@
+.form-service {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(20 * var(--u));
+	box-sizing: border-box;
+	width: 100%;
+	padding: calc(12 * var(--u)) 0;
+	color: var(--color-night-sky);
+	background: var(--color-lemon-cream);
+	border-radius: calc(32 * var(--u));
+}
+
+.form-service__rule {
+	display: flex;
+	justify-content: center;
+	width: min(100% - calc(48 * var(--u)), calc(1824 * var(--u)));
+}
+
+.form-service__rule-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1824 / 31;
+}
+
+.form-service__content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(56 * var(--u));
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 calc(48 * var(--u));
+}
+
+.form-service__intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(36 * var(--u));
+	width: min(100%, calc(1612 * var(--u)));
+}
+
+.form-service__intro h2,
+.form-service__column,
+.form-service__note,
+.form-service__field {
+	margin: 0;
+}
+
+.form-service__intro h2 {
+	width: min(100%, calc(902 * var(--u)));
+	font-family: var(--font-family-heading);
+	font-size: calc(58 * var(--u));
+	font-weight: 500;
+	line-height: 1.06;
+	letter-spacing: -0.04em;
+	text-align: center;
+}
+
+.form-service__columns {
+	display: flex;
+	align-items: flex-start;
+	gap: calc(102 * var(--u));
+	width: 100%;
+}
+
+.form-service__column {
+	font-family: var(--font-family-body);
+	font-size: calc(24 * var(--u));
+	font-weight: 400;
+	line-height: 1.35;
+}
+
+.form-service__column--left {
+	flex: none;
+	width: calc(775 * var(--u));
+}
+
+.form-service__column--right {
+	flex: none;
+	width: calc(735 * var(--u));
+}
+
+.form-service__column p,
+.form-service__note p {
+	margin: 0;
+}
+
+.form-service__column p + p,
+.form-service__note p + p {
+	margin-top: calc(16 * var(--u));
+}
+
+.form-service__photo {
+	width: 100%;
+	height: calc(660 * var(--u));
+	overflow: hidden;
+	border-radius: calc(32 * var(--u));
+}
+
+.form-service__photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.form-service__bottom {
+	display: flex;
+	align-items: stretch;
+	gap: calc(44 * var(--u));
+	width: min(100%, calc(1572 * var(--u)));
+}
+
+.form-service--composition-2 .form-service__bottom {
+	flex-direction: row-reverse;
+}
+
+.form-service__note {
+	flex: none;
+	width: calc(735 * var(--u));
+	font-family: var(--font-family-body);
+	font-size: calc(32 * var(--u));
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.form-service__divider {
+	flex: none;
+	align-self: stretch;
+	width: calc(14 * var(--u));
+	height: auto;
+	object-fit: fill;
+}
+
+.form-service__form {
+	display: flex;
+	flex: none;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(20 * var(--u));
+	width: calc(735 * var(--u));
+	margin: 0;
+}
+
+.form-service__field {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: calc(4 * var(--u));
+	width: calc(600 * var(--u));
+}
+
+.form-service__field label {
+	font-family: var(--font-family-body);
+	font-size: calc(16 * var(--u));
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--color-grey-hug);
+}
+
+.form-service__field input {
+	box-sizing: border-box;
+	width: 100%;
+	height: calc(78 * var(--u));
+	padding: calc(20 * var(--u));
+	font-family: var(--font-family-body);
+	font-size: calc(22 * var(--u));
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--color-grey-hug);
+	background: transparent;
+	border: 1px solid var(--color-night-sky);
+	border-radius: calc(20 * var(--u));
+	outline-offset: 3px;
+}
+
+.form-service__field input::placeholder {
+	color: var(--color-grey-hug);
+	opacity: 1;
+}
+
+.form-service__form .form-notice {
+	width: calc(600 * var(--u));
+	margin: 0;
+	text-align: center;
+}
+
+.form-service__form .lottie-button--primary {
+	--lottie-btn-w: calc(436 * var(--u));
+	--lottie-btn-h: calc(88 * var(--u));
+}
+
+.form-service__form .lottie-button--primary .lottie-button__label {
+	max-width: calc(368 * var(--u));
+	padding-inline: calc(12 * var(--u));
+	text-align: center;
+}
+
+@media (max-width: 1279px) {
+	.form-service {
+		gap: 16px;
+		padding: 12px 0;
+		border-radius: 24px;
+	}
+
+	.form-service__rule {
+		width: min(100% - 32px, 1824px);
+	}
+
+	.form-service__content {
+		gap: 40px;
+		padding: 0 24px;
+	}
+
+	.form-service__intro {
+		gap: 24px;
+	}
+
+	.form-service__intro h2 {
+		width: auto;
+		font-size: var(--text-h2-size);
+	}
+
+	.form-service__columns {
+		gap: 32px;
+	}
+
+	.form-service__column {
+		font-size: var(--text-body-l-size);
+	}
+
+	.form-service__column--left,
+	.form-service__column--right {
+		flex: 1 1 0;
+		width: auto;
+		min-width: 0;
+	}
+
+	.form-service__photo {
+		height: auto;
+		aspect-ratio: 1824 / 660;
+		border-radius: 24px;
+	}
+
+	.form-service__bottom {
+		gap: 28px;
+	}
+
+	.form-service__note,
+	.form-service__form {
+		flex: 1 1 0;
+		width: auto;
+		min-width: 0;
+	}
+
+	.form-service__note {
+		font-size: 24px;
+	}
+
+	.form-service__divider {
+		width: 12px;
+	}
+
+	.form-service__field,
+	.form-service__form .form-notice {
+		width: 100%;
+		max-width: 570px;
+	}
+
+	.form-service__field label {
+		font-size: var(--text-body-s-size);
+	}
+
+	.form-service__field input {
+		height: 64px;
+		padding: 16px;
+		font-size: var(--text-body-m-size);
+		border-radius: 16px;
+	}
+
+	.form-service__form .lottie-button--primary {
+		--lottie-btn-w: 320px;
+		--lottie-btn-h: 72px;
+	}
+
+	.form-service__form .lottie-button--primary .lottie-button__label {
+		max-width: 280px;
+		white-space: normal;
+	}
+}
+
+@media (max-width: 767px) {
+	.form-service {
+		gap: 12px;
+		border-radius: 20px;
+	}
+
+	.form-service__content {
+		gap: 28px;
+		padding: 0 16px;
+	}
+
+	.form-service__intro {
+		gap: 16px;
+	}
+
+	.form-service__columns,
+	.form-service__bottom {
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.form-service--composition-2 .form-service__bottom {
+		flex-direction: column-reverse;
+	}
+
+	.form-service__column--left,
+	.form-service__column--right,
+	.form-service__note,
+	.form-service__form {
+		width: 100%;
+	}
+
+	.form-service__note {
+		font-size: 20px;
+	}
+
+	.form-service__divider {
+		display: none;
+	}
+
+	.form-service__field,
+	.form-service__form .form-notice {
+		max-width: none;
+	}
+
+	.form-service__field input {
+		height: 58px;
+		border-radius: 14px;
+	}
+
+	.form-service__photo {
+		border-radius: 20px;
+	}
+}

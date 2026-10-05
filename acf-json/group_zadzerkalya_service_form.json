@@ -1,0 +1,187 @@
+{
+    "key": "group_zadzerkalya_service_form",
+    "title": "Послуга: Форма консультації",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_service_form_composition",
+            "label": "Компонування",
+            "name": "service_form_composition",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "1 — текст зліва, форма справа. 2 — форма зліва, текст справа.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "1 — текст зліва, форма справа",
+                "2": "2 — форма зліва, текст справа"
+            },
+            "default_value": "1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_zadzerkalya_service_form_button",
+            "label": "Текст кнопки",
+            "name": "service_form_button",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "забронювати первинну консультацію",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_form_title",
+            "label": "Заголовок",
+            "name": "service_form_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо всі поля секції порожні, на сайті лишається приклад з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Чому важливо звернутися вчасно?",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_form_text_left",
+            "label": "Текст зліва",
+            "name": "service_form_text_left",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Колонка під заголовком.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Сенсорна інтеграція — це той базовий рівень роботи нервової системи, який забезпечує здатність дитини сприймати, обробляти та організовувати усю інформацію від навколишнього світу. І саме ця основа робить можливим подальший розвиток навчальних, мовленнєвих, поведінкових і соціальних навичок.",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 8,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_form_text_right",
+            "label": "Текст справа",
+            "name": "service_form_text_right",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Колонка під заголовком.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Коли процеси сенсорної інтеграції порушені — це напряму впливає не лише на поведінку та навчання, а й на фізичний стан дитини та її взаємодію з навколишнім середовищем: підвищену втому, дискомфорт у тілі, труднощі з концентрацією, гостру реакцію на звуки, світло, дотики чи рух. Саме тому так важливо не відкладати звернення.",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 8,
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_form_photo",
+            "label": "Фото",
+            "name": "service_form_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Широке фото між текстами і формою.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_service_form_note",
+            "label": "Текст біля форми",
+            "name": "service_form_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Великий текст зліва від полів (або справа у компонуванні 2).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Ми поруч, аби допомогти вам визначити усі актуальні особливості сенсорного розвитку вашої дитини — та створити чіткий і послідовний план допомоги. Чекаємо вас на первинній консультації!",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": 5,
+            "placeholder": "",
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "service"
+            }
+        ]
+    ],
+    "menu_order": 3,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Секція з поясненням і формою запису на первинну консультацію.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791044000
+}

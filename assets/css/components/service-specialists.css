@@ -1,0 +1,219 @@
+.service-specialists {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc(64 * var(--u));
+	box-sizing: border-box;
+	width: 100%;
+	padding: 0 calc(48 * var(--u));
+	color: var(--color-night-sky);
+}
+
+.service-specialists h2,
+.service-specialists h3,
+.service-specialists p {
+	margin: 0;
+}
+
+.service-specialists h2 {
+	width: min(100%, calc(1824 * var(--u)));
+	font-family: var(--font-family-heading);
+	font-size: calc(58 * var(--u));
+	font-weight: 500;
+	line-height: 1.06;
+	letter-spacing: -0.04em;
+	text-align: center;
+}
+
+.service-specialists__cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: calc(44 * var(--u));
+	width: min(100%, calc(1824 * var(--u)));
+}
+
+.service-specialists__card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: calc(46 * var(--u));
+	box-sizing: border-box;
+	width: calc(576 * var(--u));
+	min-height: calc(390 * var(--u));
+	padding: calc(44 * var(--u));
+	background: var(--color-chewing-gum);
+	border: 0;
+	border-radius: calc(44 * var(--u));
+}
+
+.service-specialists__stroke {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	display: block;
+	max-width: none;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+.service-specialists__stroke--a {
+	width: calc(100% * 581 / 576);
+	height: calc(100% * 406 / 390);
+}
+
+.service-specialists__stroke--b {
+	width: calc(100% * 581 / 576);
+	height: calc(100% * 400 / 390);
+}
+
+.service-specialists__head,
+.service-specialists__text {
+	position: relative;
+	z-index: 2;
+}
+
+.service-specialists__head {
+	display: flex;
+	align-items: flex-start;
+	gap: calc(44 * var(--u));
+	width: 100%;
+}
+
+.service-specialists__counter {
+	position: relative;
+	display: flex;
+	flex: none;
+	align-items: flex-end;
+	justify-content: center;
+	box-sizing: border-box;
+	width: calc(50 * var(--u));
+	height: calc(78 * var(--u));
+	padding: calc(21 * var(--u)) calc(4 * var(--u)) calc(13 * var(--u));
+	font-family: var(--font-family-display);
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	color: var(--color-night-sky);
+}
+
+.service-specialists__counter::before {
+	position: absolute;
+	inset: 0;
+	content: "";
+	background: url("../../images/counter-border.svg") center / 100% 100% no-repeat;
+	pointer-events: none;
+}
+
+.service-specialists__counter-current,
+.service-specialists__counter-total {
+	position: relative;
+	z-index: 1;
+}
+
+.service-specialists__counter-current {
+	font-size: calc(24 * var(--u));
+	line-height: calc(30 * var(--u));
+}
+
+.service-specialists__counter-total {
+	font-size: calc(21 * var(--u));
+	line-height: calc(26 * var(--u));
+}
+
+.service-specialists__head h3 {
+	flex: 1 1 auto;
+	min-width: 0;
+	font-family: var(--font-family-body);
+	font-size: calc(32 * var(--u));
+	font-weight: 400;
+	line-height: 1.2;
+}
+
+.service-specialists__text {
+	width: 100%;
+	font-family: var(--font-family-body);
+	font-size: calc(22 * var(--u));
+	font-weight: 400;
+	line-height: 1.35;
+}
+
+@media (max-width: 1279px) {
+	.service-specialists {
+		gap: 40px;
+		padding: 0 24px;
+	}
+
+	.service-specialists h2 {
+		font-size: var(--text-h2-size);
+	}
+
+	.service-specialists__cards {
+		gap: 24px;
+	}
+
+	.service-specialists__card {
+		width: calc((100% - 24px) / 2);
+		min-height: 280px;
+		padding: 28px;
+		gap: 28px;
+		border-radius: 32px;
+	}
+
+	.service-specialists__head {
+		gap: 20px;
+	}
+
+	.service-specialists__counter {
+		width: 40px;
+		height: 62px;
+		padding: 16px 3px 10px;
+	}
+
+	.service-specialists__counter-current {
+		font-size: 20px;
+		line-height: 24px;
+	}
+
+	.service-specialists__counter-total {
+		font-size: 17px;
+		line-height: 22px;
+	}
+
+	.service-specialists__head h3 {
+		font-size: 24px;
+	}
+
+	.service-specialists__text {
+		font-size: 18px;
+	}
+}
+
+@media (max-width: 767px) {
+	.service-specialists {
+		gap: 28px;
+		padding: 0 16px;
+	}
+
+	.service-specialists__cards {
+		gap: 20px;
+	}
+
+	.service-specialists__card {
+		width: 100%;
+		min-height: 0;
+		padding: 24px;
+		gap: 20px;
+		border-radius: 28px;
+	}
+
+	.service-specialists__head h3 {
+		font-size: 20px;
+	}
+
+	.service-specialists__text {
+		font-size: 16px;
+	}
+}

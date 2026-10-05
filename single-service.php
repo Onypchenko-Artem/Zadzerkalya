@@ -86,6 +86,58 @@ $flag = static function ( $name, $default = true ) {
 				'slides'           => is_array( $cta_slides ) ? $cta_slides : array(),
 			)
 		);
+
+		get_template_part(
+			'template-parts/section',
+			'form-service',
+			array(
+				'title'        => $field( 'service_form_title' ),
+				'text_left'    => $field( 'service_form_text_left' ),
+				'text_right'   => $field( 'service_form_text_right' ),
+				'photo'        => $field( 'service_form_photo' ),
+				'note'         => $field( 'service_form_note' ),
+				'button_label' => $field( 'service_form_button' ),
+				'composition'  => $field( 'service_form_composition', '1' ),
+			)
+		);
+
+		$specialist_items = function_exists( 'get_field' ) ? get_field( 'service_specialists_items' ) : array();
+
+		get_template_part(
+			'template-parts/section',
+			'service-specialists',
+			array(
+				'title' => $field( 'service_specialists_title' ),
+				'items' => is_array( $specialist_items ) ? $specialist_items : array(),
+			)
+		);
+
+		$benefit_cards = function_exists( 'get_field' ) ? get_field( 'service_benefits_cards' ) : array();
+
+		get_template_part(
+			'template-parts/section',
+			'service-benefits',
+			array(
+				'title'          => $field( 'service_benefits_title' ),
+				'intro'          => $field( 'service_benefits_intro' ),
+				'aside'          => $field( 'service_benefits_aside' ),
+				'image'          => $field( 'service_benefits_image' ),
+				'button_label'   => $field( 'service_benefits_button' ),
+				'button_url'     => $field( 'service_benefits_button_url' ),
+				'button_variant' => $field( 'service_benefits_button_variant', 'primary' ),
+				'show_row'       => $flag( 'service_benefits_show_row', true ),
+				'show_row_2'     => $flag( 'service_benefits_show_row_2', false ),
+				'cards'          => is_array( $benefit_cards ) ? $benefit_cards : array(),
+			)
+		);
+
+		get_template_part(
+			'template-parts/section',
+			'form-home',
+			array(
+				'source' => 'service',
+			)
+		);
 		?>
 		<article <?php post_class( 'container section' ); ?>>
 			<?php if ( $price || $duration || $note ) : ?>

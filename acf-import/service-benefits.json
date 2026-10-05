@@ -1,0 +1,349 @@
+[
+    {
+        "key": "group_zadzerkalya_service_benefits",
+        "title": "Послуга: Переваги",
+        "fields": [
+            {
+                "key": "field_zadzerkalya_service_benefits_title",
+                "label": "Заголовок",
+                "name": "service_benefits_title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "Якщо заголовок, тексти і картки порожні, на сайті лишається приклад з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "Переваги звернення у центр «Задзеркалля»",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_intro",
+                "label": "Текст біля першої картки",
+                "name": "service_benefits_intro",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 4,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_aside",
+                "label": "Текст лівої колонки",
+                "name": "service_benefits_aside",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": 4,
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_image",
+                "label": "Ілюстрація",
+                "name": "service_benefits_image",
+                "aria-label": "",
+                "type": "image",
+                "instructions": "Кролик у лівій колонці. Якщо порожньо — стандартне зображення з теми.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "40",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "id",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "jpg,jpeg,png,webp,svg",
+                "allow_in_bindings": 0,
+                "preview_size": "medium"
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_button",
+                "label": "Текст кнопки",
+                "name": "service_benefits_button",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "30",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "забронювати первинну консультацію",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_button_url",
+                "label": "Посилання кнопки",
+                "name": "service_benefits_button_url",
+                "aria-label": "",
+                "type": "url",
+                "instructions": "Якщо поле порожнє, кнопка веде на сторінку контактів.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "30",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "allow_in_bindings": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_button_variant",
+                "label": "Вигляд кнопки",
+                "name": "service_benefits_button_variant",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Primary — акцентна, Secondary — контурна.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "20",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "primary": "Primary",
+                    "secondary": "Secondary"
+                },
+                "default_value": "primary",
+                "return_format": "value",
+                "multiple": 0,
+                "allow_null": 0,
+                "allow_in_bindings": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "create_options": 0,
+                "save_options": 0
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_show_row",
+                "label": "Показати ряд 2–3",
+                "name": "service_benefits_show_row",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Show row: картки 2 і 3.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 1,
+                "allow_in_bindings": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_show_row_2",
+                "label": "Показати ряд 6–8",
+                "name": "service_benefits_show_row_2",
+                "aria-label": "",
+                "type": "true_false",
+                "instructions": "Show row 2: картки 6, 7 і 8.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "50",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "allow_in_bindings": 0,
+                "ui": 1,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_zadzerkalya_service_benefits_cards",
+                "label": "Картки",
+                "name": "service_benefits_cards",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "До 8 карток. 1 стоїть біля вступного тексту, 2–3 — другий ряд (Show row), 4–5 ховаються окремо (Show card), 6–8 — останній ряд (Show row 2). Номер на картці — це її позиція 1…8.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layout": "block",
+                "pagination": 0,
+                "min": 0,
+                "max": 8,
+                "collapsed": "field_zadzerkalya_service_benefits_card_title",
+                "button_label": "Додати картку",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_zadzerkalya_service_benefits_card_show",
+                        "label": "Показати картку",
+                        "name": "show",
+                        "aria-label": "",
+                        "type": "true_false",
+                        "instructions": "Для карток 4–8 це Show card.",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "25",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 1,
+                        "allow_in_bindings": 0,
+                        "ui": 1,
+                        "ui_on_text": "",
+                        "ui_off_text": "",
+                        "parent_repeater": "field_zadzerkalya_service_benefits_cards"
+                    },
+                    {
+                        "key": "field_zadzerkalya_service_benefits_card_show_description",
+                        "label": "Показати опис",
+                        "name": "show_description",
+                        "aria-label": "",
+                        "type": "true_false",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "25",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 1,
+                        "allow_in_bindings": 0,
+                        "ui": 1,
+                        "ui_on_text": "",
+                        "ui_off_text": "",
+                        "parent_repeater": "field_zadzerkalya_service_benefits_cards"
+                    },
+                    {
+                        "key": "field_zadzerkalya_service_benefits_card_title",
+                        "label": "Заголовок картки",
+                        "name": "title",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "50",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_zadzerkalya_service_benefits_cards"
+                    },
+                    {
+                        "key": "field_zadzerkalya_service_benefits_card_description",
+                        "label": "Опис",
+                        "name": "description",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_zadzerkalya_service_benefits_card_show_description",
+                                    "operator": "==",
+                                    "value": "1"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "rows": 3,
+                        "placeholder": "",
+                        "new_lines": "",
+                        "parent_repeater": "field_zadzerkalya_service_benefits_cards"
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "service"
+                }
+            ]
+        ],
+        "menu_order": 5,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Блок переваг на сторінці послуги: ліва колонка і картки, які можна ховати.",
+        "show_in_rest": 0,
+        "display_title": "",
+        "allow_ai_access": false,
+        "ai_description": "",
+        "modified": 1791200000
+    }
+]
