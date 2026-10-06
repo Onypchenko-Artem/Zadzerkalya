@@ -33,6 +33,8 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-event-article'=> array( 'file' => '/assets/css/components/event-article.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-article-card' => array( 'file' => '/assets/css/components/article-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-articles-feed'=> array( 'file' => '/assets/css/components/articles-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card', 'zadzerkalya-button' ) ),
+		'zadzerkalya-service-card' => array( 'file' => '/assets/css/components/service-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-services-feed'=> array( 'file' => '/assets/css/components/services-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-service-card', 'zadzerkalya-articles-feed', 'zadzerkalya-button' ) ),
 		'zadzerkalya-recommend'   => array( 'file' => '/assets/css/components/recommend.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card' ) ),
 		'zadzerkalya-contacts-info'=> array( 'file' => '/assets/css/components/contacts-info.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-cards'       => array( 'file' => '/assets/css/components/cards.css', 'deps' => array( 'zadzerkalya-base' ) ),
@@ -59,6 +61,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-page-events' => array( 'file' => '/assets/css/pages/events.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-article-card', 'zadzerkalya-articles-feed', 'zadzerkalya-page-about' ) ),
 		'zadzerkalya-page-specialists' => array( 'file' => '/assets/css/pages/specialists.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-cards', 'zadzerkalya-page-about' ) ),
 		'zadzerkalya-page-service' => array( 'file' => '/assets/css/pages/service.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-form-service', 'zadzerkalya-form-home', 'zadzerkalya-service-specialists', 'zadzerkalya-service-benefits' ) ),
+		'zadzerkalya-page-services'=> array( 'file' => '/assets/css/pages/services.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-services-feed', 'zadzerkalya-page-about', 'zadzerkalya-form-home' ) ),
 	);
 
 	foreach ( $styles as $handle => $style ) {

@@ -1,21 +1,26 @@
 <?php
 /**
- * Перелік послуг, доки сторінку з шаблоном «Послуги» не створено.
+ * Template Name: Послуги
  *
  * @package Zadzerkalya
  */
 
 get_header();
 
-$services_page_id = zadzerkalya_get_services_page_id();
-$services_url     = $services_page_id ? get_permalink( $services_page_id ) : get_post_type_archive_link( 'service' );
-$field            = static function ( $name, $fallback = '' ) use ( $services_page_id ) {
-	$value = ( $services_page_id && function_exists( 'get_field' ) ) ? get_field( $name, $services_page_id ) : null;
+$field = static function ( $name, $fallback = '' ) {
+	$value = function_exists( 'get_field' ) ? get_field( $name ) : null;
 
 	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
 };
 
-$paged        = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+$page_title      = get_the_title();
+$services_url    = get_permalink();
+$hero_title      = $field( 'services_hero_title', "Дізнайтеся більше про центр\nпсихології та логопедії\n«Задзеркалля»" );
+$hero_quote      = $field( 'services_hero_quote', 'Кожна велика історія починається з рішення і волі однієї людини' );
+$hero_scene      = $field( 'services_hero_scene' );
+$hero_background = $field( 'services_hero_background' );
+$paged           = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+
 $type_slug    = isset( $_GET['type'] ) ? sanitize_title( wp_unslash( $_GET['type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 $current_term = $type_slug ? get_term_by( 'slug', $type_slug, 'service_type' ) : null;
 if ( ! $current_term || is_wp_error( $current_term ) ) {
@@ -50,11 +55,11 @@ $services = new WP_Query( $query_args );
 		'template-parts/section',
 		'about-hero',
 		array(
-			'title'      => $field( 'services_hero_title', "Дізнайтеся більше про центр\nпсихології та логопедії\n«Задзеркалля»" ),
-			'quote'      => $field( 'services_hero_quote', 'Кожна велика історія починається з рішення і волі однієї людини' ),
-			'scene'      => $field( 'services_hero_scene' ),
-			'background' => $field( 'services_hero_background' ),
-			'current'    => __( 'Послуги', 'zadzerkalya' ),
+			'title'      => $hero_title,
+			'quote'      => $hero_quote,
+			'scene'      => $hero_scene,
+			'background' => $hero_background,
+			'current'    => $page_title,
 			'heading_id' => 'services-hero-title',
 		)
 	);
@@ -63,16 +68,16 @@ $services = new WP_Query( $query_args );
 		'template-parts/section',
 		'services-feed',
 		array(
-			'title'        => $field( 'services_feed_title', __( 'Наші послуги', 'zadzerkalya' ) ),
-			'heading_id'   => 'services-feed-title',
-			'all_label'    => __( 'Всі послуги', 'zadzerkalya' ),
-			'all_url'      => $services_url ? $services_url : home_url( '/services/' ),
-			'taxonomy'     => 'service_type',
-			'topic_param'  => 'type',
-			'current_term' => $current_term,
-			'query'        => $services,
-			'paged'        => $paged,
-			'button_label' => $field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
+			'title'         => $field( 'services_feed_title', __( 'Наші послуги', 'zadzerkalya' ) ),
+			'heading_id'    => 'services-feed-title',
+			'all_label'     => __( 'Всі послуги', 'zadzerkalya' ),
+			'all_url'       => $services_url,
+			'taxonomy'      => 'service_type',
+			'topic_param'   => 'type',
+			'current_term'  => $current_term,
+			'query'         => $services,
+			'paged'         => $paged,
+			'button_label'  => $field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
 		)
 	);
 

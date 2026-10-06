@@ -60,7 +60,7 @@ function zadzerkalya_register_post_types() {
 				'menu_name'          => __( 'Послуги', 'zadzerkalya' ),
 			),
 			'public'              => true,
-			'has_archive'         => true,
+			'has_archive'         => ! zadzerkalya_get_services_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'services',
 				'with_front' => false,
@@ -132,6 +132,21 @@ function zadzerkalya_sync_events_rewrites() {
 	flush_rewrite_rules( false );
 }
 add_action( 'init', 'zadzerkalya_sync_events_rewrites', 99 );
+
+/**
+ * Після створення сторінки «Послуги» архів поступається її адресою.
+ */
+function zadzerkalya_sync_services_rewrites() {
+	$route = zadzerkalya_get_services_page_id() ? 'page' : 'archive';
+
+	if ( get_option( 'zadzerkalya_services_route' ) === $route ) {
+		return;
+	}
+
+	update_option( 'zadzerkalya_services_route', $route );
+	flush_rewrite_rules( false );
+}
+add_action( 'init', 'zadzerkalya_sync_services_rewrites', 99 );
 
 /**
  * Назва запису — імʼя спеціаліста.

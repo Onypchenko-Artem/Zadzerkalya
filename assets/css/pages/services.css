@@ -1,0 +1,15 @@
+.services-page .services-feed {
+	margin-top: calc(200 * var(--u));
+}
+
+@media (max-width: 1279px) {
+	.services-page .services-feed {
+		margin-top: 120px;
+	}
+}
+
+@media (max-width: 767px) {
+	.services-page .services-feed {
+		margin-top: 64px;
+	}
+}

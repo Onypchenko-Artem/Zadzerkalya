@@ -100,10 +100,50 @@ function zadzerkalya_get_events_url() {
 }
 
 /**
- * Адреса сторінки блогу (сторінка записів).
+ * Опублікована сторінка з шаблоном «Послуги».
+ *
+ * @return int
+ */
+function zadzerkalya_get_services_page_id() {
+	static $page_id = null;
+
+	if ( null !== $page_id ) {
+		return $page_id;
+	}
+
+	$pages = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'publish',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'meta_key'       => '_wp_page_template',
+			'meta_value'     => 'page-templates/services.php',
+		)
+	);
+
+	$page_id = $pages ? (int) $pages[0] : 0;
+
+	return $page_id;
+}
+
+/**
+ * Адреса сторінки послуг або архіву, доки сторінку не створено.
  *
  * @return string
  */
+function zadzerkalya_get_services_url() {
+	$page_id = zadzerkalya_get_services_page_id();
+
+	if ( $page_id ) {
+		return get_permalink( $page_id );
+	}
+
+	$archive = get_post_type_archive_link( 'service' );
+
+	return $archive ? $archive : home_url( '/services/' );
+}
+
 function zadzerkalya_get_blog_url() {
 	$page_id = (int) get_option( 'page_for_posts' );
 

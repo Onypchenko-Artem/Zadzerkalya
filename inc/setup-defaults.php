@@ -49,7 +49,8 @@ function zadzerkalya_setup_defaults() {
 	$about_id   = zadzerkalya_create_page( 'about', __( 'Про нас', 'zadzerkalya' ), 'page-templates/about.php' );
 	$prices_id  = zadzerkalya_create_page( 'prices', __( 'Вартість послуг', 'zadzerkalya' ), 'page-templates/prices.php' );
 	$contacts_id = zadzerkalya_create_page( 'contacts', __( 'Контакти', 'zadzerkalya' ), 'page-templates/contacts.php' );
-	$blog_id    = zadzerkalya_create_page( 'blog', __( 'Блог', 'zadzerkalya' ) );
+	$blog_id     = zadzerkalya_create_page( 'blog', __( 'Блог', 'zadzerkalya' ) );
+	zadzerkalya_create_page( 'services', __( 'Послуги', 'zadzerkalya' ), 'page-templates/services.php' );
 
 	if ( $home_id ) {
 		update_option( 'show_on_front', 'page' );
@@ -69,7 +70,7 @@ function zadzerkalya_setup_defaults() {
 		$items = array(
 			array( 'title' => __( 'Головна', 'zadzerkalya' ), 'url' => home_url( '/' ) ),
 			array( 'title' => __( 'Про нас', 'zadzerkalya' ), 'object' => $about_id, 'type' => 'post_type' ),
-			array( 'title' => __( 'Послуги', 'zadzerkalya' ), 'url' => get_post_type_archive_link( 'service' ) ?: home_url( '/services/' ) ),
+			array( 'title' => __( 'Послуги', 'zadzerkalya' ), 'url' => zadzerkalya_get_services_url() ),
 			array( 'title' => __( 'Вартість', 'zadzerkalya' ), 'object' => $prices_id, 'type' => 'post_type' ),
 			array( 'title' => __( 'Спеціалісти', 'zadzerkalya' ), 'url' => zadzerkalya_get_specialists_url() ),
 			array( 'title' => __( 'Події', 'zadzerkalya' ), 'url' => zadzerkalya_get_events_url() ),
@@ -124,7 +125,7 @@ function zadzerkalya_header_nav_items() {
 	return array(
 		array(
 			'title' => __( 'Послуги', 'zadzerkalya' ),
-			'url'   => get_post_type_archive_link( 'service' ) ?: home_url( '/services/' ),
+			'url'   => zadzerkalya_get_services_url(),
 		),
 		array(
 			'title'  => __( '309 постанова', 'zadzerkalya' ),
@@ -281,3 +282,54 @@ function zadzerkalya_apply_home_page_template() {
 	update_option( 'zadzerkalya_home_template_v1', 1 );
 }
 add_action( 'init', 'zadzerkalya_apply_home_page_template', 20 );
+
+/**
+ * Сторінка «Послуги» потрібна для героя й форми в адмінці.
+ * Архів поступається їй адресою /services/.
+ */
+function zadzerkalya_ensure_services_page() {
+	if ( get_option( 'zadzerkalya_services_page_ensured' ) ) {
+		return;
+	}
+
+	$page_id = zadzerkalya_create_page( 'services', __( 'Послуги', 'zadzerkalya' ), 'page-templates/services.php' );
+	if ( $page_id ) {
+		update_option( 'zadzerkalya_services_page_ensured', 1 );
+	}
+}
+add_action( 'init', 'zadzerkalya_ensure_services_page', 5 );
+
+/**
+ * Пункт меню «Послуги» веде на сторінку, а не на архівний query.
+ */
+function zadzerkalya_fix_services_menu_url() {
+	if ( get_option( 'zadzerkalya_services_menu_v1' ) ) {
+		return;
+	}
+
+	$url   = zadzerkalya_get_services_url();
+	$items = get_posts(
+		array(
+			'post_type'      => 'nav_menu_item',
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+		)
+	);
+
+	foreach ( $items as $item ) {
+		$item_url = (string) get_post_meta( $item->ID, '_menu_item_url', true );
+		if ( '' === $item_url ) {
+			continue;
+		}
+
+		$is_archive_query = false !== strpos( $item_url, 'post_type=service' );
+		$is_services_path = untrailingslashit( $item_url ) === untrailingslashit( home_url( '/services' ) );
+
+		if ( $is_archive_query || $is_services_path ) {
+			update_post_meta( $item->ID, '_menu_item_url', $url );
+		}
+	}
+
+	update_option( 'zadzerkalya_services_menu_v1', 1 );
+}
+add_action( 'init', 'zadzerkalya_fix_services_menu_url', 30 );

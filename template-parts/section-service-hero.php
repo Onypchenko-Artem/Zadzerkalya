@@ -38,8 +38,7 @@ $crumb_url        = $args['crumb_url'] ?? '';
 $heading_id       = $args['heading_id'] ?? 'service-hero-title';
 
 if ( ! $crumb_url ) {
-	$archive  = get_post_type_archive_link( 'service' );
-	$crumb_url = $archive ? $archive : home_url( '/services/' );
+	$crumb_url = zadzerkalya_get_services_url();
 }
 
 $show_description = $show_description && '' !== trim( wp_strip_all_tags( $description ) );

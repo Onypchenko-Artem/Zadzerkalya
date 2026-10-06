@@ -5,7 +5,7 @@
  * @package Zadzerkalya
  */
 
-$archive_url = get_post_type_archive_link( 'service' ) ?: home_url( '/services/' );
+$archive_url = zadzerkalya_get_services_url();
 $defaults    = array(
 	__( 'Первинна консультація в «Задзеркаллі»: перший крок до розкриття потенціалу дитини', 'zadzerkalya' ),
 	__( 'Логопед-дефектолог: ключ до мовленнєвого розвитку дитини', 'zadzerkalya' ),
