@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ZADZERKALYA_VERSION', '1.4.48' );
+define( 'ZADZERKALYA_VERSION', '1.4.52' );
 define( 'ZADZERKALYA_DIR', get_template_directory() );
 define( 'ZADZERKALYA_URI', get_template_directory_uri() );
 
@@ -22,4 +22,5 @@ require_once ZADZERKALYA_DIR . '/inc/customizer.php';
 require_once ZADZERKALYA_DIR . '/inc/template-tags.php';
 require_once ZADZERKALYA_DIR . '/inc/icons.php';
 require_once ZADZERKALYA_DIR . '/inc/contact-form.php';
+require_once ZADZERKALYA_DIR . '/inc/service-slider.php';
 require_once ZADZERKALYA_DIR . '/inc/setup-defaults.php';

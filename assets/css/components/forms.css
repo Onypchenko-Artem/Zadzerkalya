@@ -33,5 +33,15 @@
 	margin-bottom: calc(16 * var(--u));
 }
 
+.form-consent {
+	width: calc(600 * var(--u));
+	margin: 0;
+	font-family: var(--font-family-body);
+	font-size: calc(14 * var(--u));
+	font-weight: 300;
+	line-height: 1.4;
+	color: var(--color-grey-hug);
+}
+
 .form-notice--success { background: var(--color-gentle-blue); }
 .form-notice--error { background: var(--color-lemon-cream); border: 1px solid var(--color-grey-hug); }

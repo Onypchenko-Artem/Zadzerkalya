@@ -309,6 +309,13 @@ function zadzerkalya_body_open() {
 }
 
 /**
+ * Текст згоди перед кнопкою форми.
+ */
+function zadzerkalya_form_consent() {
+	echo '<p class="form-consent">' . esc_html__( 'Натискаючи на кнопку нижче, Ви погоджуєтесь з Політикою конфіденційності та Згодою на обробку персональних даних.', 'zadzerkalya' ) . '</p>';
+}
+
+/**
  * CTA-кнопка з Lottie-контуром (Primary / Secondary).
  *
  * @param array $args {

@@ -15,7 +15,6 @@ $field            = static function ( $name, $fallback = '' ) use ( $services_pa
 	return ( null === $value || false === $value || '' === $value ) ? $fallback : $value;
 };
 
-$paged        = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
 $type_slug    = isset( $_GET['type'] ) ? sanitize_title( wp_unslash( $_GET['type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 $current_term = $type_slug ? get_term_by( 'slug', $type_slug, 'service_type' ) : null;
 if ( ! $current_term || is_wp_error( $current_term ) ) {
@@ -24,8 +23,7 @@ if ( ! $current_term || is_wp_error( $current_term ) ) {
 
 $query_args = array(
 	'post_type'      => 'service',
-	'posts_per_page' => 3,
-	'paged'          => $paged,
+	'posts_per_page' => -1,
 	'orderby'        => array(
 		'menu_order' => 'ASC',
 		'title'      => 'ASC',
@@ -71,7 +69,6 @@ $services = new WP_Query( $query_args );
 			'topic_param'  => 'type',
 			'current_term' => $current_term,
 			'query'        => $services,
-			'paged'        => $paged,
 			'button_label' => $field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),
 		)
 	);

@@ -156,6 +156,9 @@
 					loop: true,
 					autoplay: false,
 					animationData: JSON.parse(JSON.stringify(data)),
+					rendererSettings: {
+						preserveAspectRatio: 'none',
+					},
 				});
 				animation.goToAndStop(0, true);
 			};
@@ -459,6 +462,36 @@
 })();
 
 (() => {
+	document.querySelectorAll('[data-service-slider]').forEach((section) => {
+		const viewport = section.querySelector('.service-slider__viewport');
+		const previous = section.querySelector('.service-slider__arrow--prev');
+		const next = section.querySelector('.service-slider__arrow--next');
+
+		if (!viewport || !previous || !next) {
+			return;
+		}
+
+		const updateState = () => {
+			const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+			previous.disabled = viewport.scrollLeft <= 1;
+			next.disabled = maxScroll <= 1 || viewport.scrollLeft >= maxScroll - 1;
+		};
+
+		previous.addEventListener('click', () => {
+			viewport.scrollBy({ left: -viewport.clientWidth, behavior: 'smooth' });
+		});
+
+		next.addEventListener('click', () => {
+			viewport.scrollBy({ left: viewport.clientWidth, behavior: 'smooth' });
+		});
+
+		viewport.addEventListener('scroll', updateState, { passive: true });
+		window.addEventListener('resize', updateState);
+		updateState();
+	});
+})();
+
+(() => {
 	const fitLoveLine = () => {
 		document.querySelectorAll('.numbers__love').forEach((root) => {
 			const path = root.querySelector('#numbers-love-path');
@@ -566,4 +599,41 @@
 			}
 		});
 	});
+})();
+
+(() => {
+	const sections = document.querySelectorAll('.service-benefits');
+	if (!sections.length) {
+		return;
+	}
+
+	const desktop = window.matchMedia('(min-width: 1280px)');
+
+	const align = (section) => {
+		const aside = section.querySelector('.service-benefits__aside');
+		const row = section.querySelector('.service-benefits__row:nth-child(2)');
+
+		if (!aside) {
+			return;
+		}
+
+		if (!desktop.matches || !row) {
+			aside.style.marginTop = '';
+			return;
+		}
+
+		const offset = row.getBoundingClientRect().top - section.getBoundingClientRect().top;
+		aside.style.marginTop = `${Math.max(0, Math.round(offset))}px`;
+	};
+
+	const alignAll = () => {
+		sections.forEach(align);
+	};
+
+	alignAll();
+	window.addEventListener('load', alignAll);
+	window.addEventListener('resize', alignAll);
+	if (document.fonts) {
+		document.fonts.ready.then(alignAll);
+	}
 })();

@@ -53,10 +53,13 @@ $args = wp_parse_args(
 				<input id="home-form-email" name="zadzerkalya_email" type="email" autocomplete="email" required>
 			</p>
 
-			<p class="form-home__field form-home__field--message">
-				<label for="home-form-message"><?php esc_html_e( 'Повідомлення', 'zadzerkalya' ); ?></label>
-				<textarea id="home-form-message" name="zadzerkalya_message" required></textarea>
-			</p>
+			<div class="form-home__message">
+				<p class="form-home__field form-home__field--message">
+					<label for="home-form-message"><?php esc_html_e( 'Повідомлення', 'zadzerkalya' ); ?></label>
+					<textarea id="home-form-message" name="zadzerkalya_message" required></textarea>
+				</p>
+				<?php zadzerkalya_form_consent(); ?>
+			</div>
 
 			<?php
 			zadzerkalya_button(

@@ -93,12 +93,18 @@
 	padding: 0 calc(96 * var(--u));
 }
 
-.form-home__field {
+.form-home__field,
+.form-home__message {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: calc(4 * var(--u));
 	width: calc(600 * var(--u));
+}
+
+.form-home__message .form-home__field,
+.form-home__message .form-consent {
+	width: 100%;
 }
 
 .form-home__field label {
@@ -185,8 +191,15 @@
 	}
 
 	.form-home__field,
-	.form-home__form .form-notice {
+	.form-home__message,
+	.form-home__form .form-notice,
+	.form-home__form .form-consent {
 		width: 570px;
+		max-width: 100%;
+	}
+
+	.form-home__form .form-consent {
+		font-size: 14px;
 	}
 
 	.form-home__field label {
@@ -249,8 +262,14 @@
 	}
 
 	.form-home__field,
-	.form-home__form .form-notice {
+	.form-home__message,
+	.form-home__form .form-notice,
+	.form-home__form .form-consent {
 		width: 100%;
+	}
+
+	.form-home__form .form-consent {
+		font-size: 13px;
 	}
 
 	.form-home__field input,

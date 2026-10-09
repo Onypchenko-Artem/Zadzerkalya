@@ -267,7 +267,7 @@ function zadzerkalya_event_archive_query( $query ) {
 				'title'      => 'ASC',
 			)
 		);
-		$query->set( 'posts_per_page', 12 );
+		$query->set( 'posts_per_page', -1 );
 	}
 }
 add_action( 'pre_get_posts', 'zadzerkalya_event_archive_query' );

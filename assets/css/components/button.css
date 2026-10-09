@@ -14,8 +14,11 @@ a.lottie-button:hover {
 	color: var(--color-night-sky);
 	text-decoration: none;
 	cursor: pointer;
-	width: var(--lottie-btn-w);
-	height: var(--lottie-btn-h);
+	box-sizing: border-box;
+	width: max-content;
+	min-width: var(--lottie-btn-w);
+	height: auto;
+	min-height: var(--lottie-btn-h);
 	flex-shrink: 0;
 }
 
@@ -50,8 +53,8 @@ a.lottie-button:hover {
 .lottie-button__label {
 	position: relative;
 	z-index: 1;
-	max-width: 100%;
 	white-space: nowrap;
+	text-align: center;
 	font-family: var(--text-button-family);
 	font-size: calc(22 * var(--u));
 	font-weight: 400;

@@ -27,9 +27,6 @@ $flag = static function ( $name, $default = true ) {
 	<?php
 	while ( have_posts() ) :
 		the_post();
-		$price    = zadzerkalya_service_price_html();
-		$duration = get_post_meta( get_the_ID(), '_zdk_duration', true );
-		$note     = get_post_meta( get_the_ID(), '_zdk_price_note', true );
 
 		$hero_title       = $field( 'service_hero_title', get_the_title() );
 		$hero_description = $field( 'service_hero_description', get_the_excerpt() );
@@ -138,29 +135,6 @@ $flag = static function ( $name, $default = true ) {
 				'source' => 'service',
 			)
 		);
-		?>
-		<article <?php post_class( 'container section' ); ?>>
-			<?php if ( $price || $duration || $note ) : ?>
-				<div class="price-box">
-					<?php if ( $price ) : ?>
-						<p class="price"><?php echo esc_html( $price ); ?></p>
-					<?php endif; ?>
-					<?php if ( $duration ) : ?>
-						<p><?php echo esc_html( $duration ); ?></p>
-					<?php endif; ?>
-					<?php if ( $note ) : ?>
-						<p class="muted"><?php echo esc_html( $note ); ?></p>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-			<div class="prose">
-				<?php the_content(); ?>
-			</div>
-			<p>
-				<a class="text-link" href="<?php echo esc_url( zadzerkalya_get_page_url( 'prices' ) ); ?>"><?php esc_html_e( 'Дивитися вартість послуг', 'zadzerkalya' ); ?></a>
-			</p>
-		</article>
-		<?php
 	endwhile;
 	?>
 </main>

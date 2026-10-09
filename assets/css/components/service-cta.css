@@ -89,12 +89,11 @@
 }
 
 .service-cta__content .lottie-button--primary {
-	--lottie-btn-w: calc(390 * var(--u));
+	--lottie-btn-w: calc(440 * var(--u));
 	--lottie-btn-h: calc(94 * var(--u));
 }
 
 .service-cta__content .lottie-button--primary .lottie-button__label {
-	max-width: calc(368 * var(--u));
 	padding-inline: calc(8 * var(--u));
 }
 
@@ -224,13 +223,13 @@
 	position: relative;
 	display: flex;
 	flex: 0 0 calc(50 * var(--u));
-	align-items: flex-end;
+	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
 	width: calc(50 * var(--u));
 	height: calc(78 * var(--u));
 	margin: 0;
-	padding: calc(8 * var(--u)) calc(4 * var(--u));
+	padding: 0 calc(4 * var(--u));
 	font-family: var(--text-slider-family);
 	font-weight: 700;
 	line-height: 1;
@@ -254,12 +253,12 @@
 
 .service-cta__counter-current {
 	font-size: calc(24 * var(--u));
-	line-height: calc(30 * var(--u));
+	line-height: 1;
 }
 
 .service-cta__counter-total {
 	font-size: calc(21 * var(--u));
-	line-height: calc(26 * var(--u));
+	line-height: 1;
 }
 
 @media (max-width: 1279px) {

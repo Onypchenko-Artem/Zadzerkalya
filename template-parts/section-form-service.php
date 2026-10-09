@@ -130,6 +130,8 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 					<input id="form-service-phone-<?php echo esc_attr( $form_id ); ?>" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
 				</p>
 
+				<?php zadzerkalya_form_consent(); ?>
+
 				<?php
 				zadzerkalya_button(
 					array(

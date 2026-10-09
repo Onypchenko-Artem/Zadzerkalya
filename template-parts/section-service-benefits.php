@@ -143,14 +143,38 @@ $pairs = array_chunk( $visible, 2 );
 
 $render_card = static function ( $card ) {
 	$number = (string) ( $card['number'] ?? 1 );
+	// Хвиля з макета: вертикаль центру кожної цифри (viewBox 242×40).
+	$wave_y = array( 23.85, 19.98, 16.93, 15.76, 15.40, 15.43, 15.67, 16.12, 16.70, 17.37, 18.05, 18.80, 19.48, 20.15, 20.70, 21.12, 21.26, 20.97, 20.00, 18.11 );
+	$wave_n = count( $wave_y );
+	$mean   = array_sum( $wave_y ) / $wave_n;
+	$count = 20;
+	// Крок збігається зі слотом у CSS: ряд завширшки 242, як viewBox макета.
+	$pitch = 242 / $count;
+	$points = array();
+
+	for ( $i = 0; $i < $count; $i++ ) {
+		$pos     = ( $count - 1 ) > 0 ? ( $i / ( $count - 1 ) ) * ( $wave_n - 1 ) : 0;
+		$index   = (int) floor( $pos );
+		$next    = min( $index + 1, $wave_n - 1 );
+		$fraction = $pos - $index;
+		$points[] = ( $wave_y[ $index ] * ( 1 - $fraction ) + $wave_y[ $next ] * $fraction ) - $mean;
+	}
+
+	$step = $pitch;
 	?>
 	<article class="service-benefits__card">
 		<div class="service-benefits__card-top">
 			<div class="service-benefits__mark" aria-hidden="true">
 				<img class="service-benefits__spiral service-benefits__spiral--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="">
 				<span class="service-benefits__digits">
-					<?php for ( $i = 0; $i < 22; $i++ ) : ?>
-						<span style="--i: <?php echo esc_attr( (string) round( $i / 21, 4 ) ); ?>"><?php echo esc_html( $number ); ?></span>
+					<?php for ( $i = 0; $i < $count; $i++ ) : ?>
+						<?php
+						$prev  = $points[ max( 0, $i - 1 ) ];
+						$nexty = $points[ min( $count - 1, $i + 1 ) ];
+						$steps = ( 0 === $i || ( $count - 1 ) === $i ) ? 1 : 2;
+						$rot   = rad2deg( atan2( $nexty - $prev, $steps * $step ) );
+						?>
+						<span style="--y: <?php echo esc_attr( (string) round( $points[ $i ], 2 ) ); ?>; --r: <?php echo esc_attr( (string) round( $rot, 2 ) ); ?>"><?php echo esc_html( $number ); ?></span>
 					<?php endfor; ?>
 				</span>
 				<img class="service-benefits__spiral" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="">
@@ -178,7 +202,6 @@ $render_card = static function ( $card ) {
 				<?php if ( ! zadzerkalya_acf_image( $args['image'], 'medium', array( 'alt' => '' ) ) ) : ?>
 					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/rabbit.png' ); ?>" alt="" aria-hidden="true">
 				<?php endif; ?>
-				<img class="service-benefits__figure-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/bottom-line.svg' ); ?>" alt="" aria-hidden="true">
 			</div>
 			<?php
 			zadzerkalya_button(

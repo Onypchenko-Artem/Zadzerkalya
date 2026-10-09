@@ -151,7 +151,6 @@
 }
 
 .service-hero__copy .lottie-button--primary .lottie-button__label {
-	max-width: calc(368 * var(--u));
 	padding-inline: calc(12 * var(--u));
 }
 
@@ -285,7 +284,6 @@
 	}
 
 	.service-hero__copy .lottie-button--primary .lottie-button__label {
-		max-width: 240px;
 		padding-inline: 12px;
 	}
 
@@ -373,10 +371,7 @@
 	}
 
 	.service-hero__copy .lottie-button--primary .lottie-button__label {
-		max-width: 200px;
 		padding-inline: 16px;
-		white-space: normal;
-		text-align: center;
 	}
 
 	.service-hero__bottom-line {

@@ -120,10 +120,6 @@
 	height: calc(792 * var(--u));
 }
 
-.articles-feed__row .article-card .lottie-button--primary {
-	width: min(100%, calc(447 * var(--u)));
-}
-
 .articles-feed__pagination {
 	display: flex;
 	flex-direction: column;

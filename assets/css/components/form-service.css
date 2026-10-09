@@ -194,9 +194,7 @@
 }
 
 .form-service__form .lottie-button--primary .lottie-button__label {
-	max-width: calc(368 * var(--u));
 	padding-inline: calc(12 * var(--u));
-	text-align: center;
 }
 
 @media (max-width: 1279px) {
@@ -265,9 +263,14 @@
 	}
 
 	.form-service__field,
-	.form-service__form .form-notice {
+	.form-service__form .form-notice,
+	.form-service__form .form-consent {
 		width: 100%;
 		max-width: 570px;
+	}
+
+	.form-service__form .form-consent {
+		font-size: 14px;
 	}
 
 	.form-service__field label {
@@ -287,8 +290,7 @@
 	}
 
 	.form-service__form .lottie-button--primary .lottie-button__label {
-		max-width: 280px;
-		white-space: normal;
+		padding-inline: 12px;
 	}
 }
 
@@ -333,8 +335,13 @@
 	}
 
 	.form-service__field,
-	.form-service__form .form-notice {
+	.form-service__form .form-notice,
+	.form-service__form .form-consent {
 		max-width: none;
+	}
+
+	.form-service__form .form-consent {
+		font-size: 13px;
 	}
 
 	.form-service__field input {

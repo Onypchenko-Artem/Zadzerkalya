@@ -35,10 +35,6 @@
 	height: auto;
 }
 
-.events-page__list .article-card .lottie-button--primary {
-	width: min(100%, calc(447 * var(--u)));
-}
-
 @media (max-width: 1279px) {
 	.events-page__list {
 		gap: 28px;

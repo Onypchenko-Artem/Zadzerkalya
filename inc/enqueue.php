@@ -34,6 +34,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-article-card' => array( 'file' => '/assets/css/components/article-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-articles-feed'=> array( 'file' => '/assets/css/components/articles-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card', 'zadzerkalya-button' ) ),
 		'zadzerkalya-service-card' => array( 'file' => '/assets/css/components/service-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-service-slider' => array( 'file' => '/assets/css/components/service-slider.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-service-card', 'zadzerkalya-button', 'zadzerkalya-event-article' ) ),
 		'zadzerkalya-services-feed'=> array( 'file' => '/assets/css/components/services-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-service-card', 'zadzerkalya-articles-feed', 'zadzerkalya-button' ) ),
 		'zadzerkalya-recommend'   => array( 'file' => '/assets/css/components/recommend.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card' ) ),
 		'zadzerkalya-contacts-info'=> array( 'file' => '/assets/css/components/contacts-info.css', 'deps' => array( 'zadzerkalya-base' ) ),
