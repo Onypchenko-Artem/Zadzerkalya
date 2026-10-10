@@ -63,6 +63,26 @@
 	text-align: center;
 }
 
+.help.is-copy-aligned .help__consultation-content {
+	position: absolute;
+	top: 0;
+	left: var(--copy-left);
+}
+
+.help.is-copy-aligned .help__divider--left,
+.help.is-copy-aligned .help__divider--right {
+	position: absolute;
+	top: 0;
+}
+
+.help.is-copy-aligned .help__divider--right {
+	right: 0;
+}
+
+.help.is-copy-aligned .help__divider--left {
+	left: calc(2 * var(--copy-left) - 100% + calc(508 * var(--u)));
+}
+
 .help__consultation h3 {
 	width: 100%;
 	min-height: calc(76 * var(--u));

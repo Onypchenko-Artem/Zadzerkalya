@@ -31,7 +31,9 @@ $benefits = zadzerkalya_field_lines( 'benefits_items' ) ?: $default_benefits;
 
 	<div class="benefits__content">
 		<div class="benefits__intro">
-			<p><?php echo esc_html( $text ); ?></p>
+			<div class="benefits__intro-text">
+				<p><?php echo esc_html( $text ); ?></p>
+			</div>
 
 			<div class="benefits__image-placeholder">
 				<?php if ( ! zadzerkalya_acf_image( $image, 'medium', array( 'alt' => '' ) ) ) : ?>

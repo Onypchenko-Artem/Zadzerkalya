@@ -47,6 +47,19 @@
 	line-height: 1.35;
 }
 
+.services-showcase.is-copy-aligned .services-showcase__heading {
+	position: relative;
+	justify-content: flex-start;
+}
+
+.services-showcase.is-copy-aligned .services-showcase__heading p {
+	position: absolute;
+	top: 0;
+	left: var(--copy-left);
+	flex-basis: auto;
+	width: min(calc(368 * var(--u)), calc(100% - var(--copy-left)));
+}
+
 .services-showcase__grid {
 	display: grid;
 	grid-template-columns: repeat(3, calc(576 * var(--u)));

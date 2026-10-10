@@ -131,14 +131,14 @@
 
 .hero-field input {
 	width: 100%;
-	height: calc(78 * var(--u));
+	height: calc(68 * var(--u));
 	padding: calc(20 * var(--u));
 	border: 1px solid var(--color-night-sky);
 	border-radius: calc(20 * var(--u));
 	outline: none;
 	background: transparent;
 	font-family: var(--text-body-m-family);
-	font-size: calc(22 * var(--u));
+	font-size: calc(18 * var(--u));
 	line-height: 1.4;
 	color: var(--color-night-sky);
 }

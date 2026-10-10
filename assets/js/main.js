@@ -263,6 +263,59 @@
 })();
 
 (() => {
+	const place = document.querySelector('.header-place');
+	const targets = [
+		{
+			root: document.querySelector('.benefits'),
+			anchor: document.querySelector('.benefits .benefits__item'),
+		},
+		{
+			root: document.querySelector('.services-showcase'),
+			anchor: document.querySelector('.services-showcase__heading'),
+		},
+		{
+			root: document.querySelector('.help'),
+			anchor: document.querySelector('.help__consultation'),
+		},
+	].filter((target) => target.root && target.anchor);
+
+	if (!place || !targets.length) {
+		return;
+	}
+
+	const align = () => {
+		const hidden = getComputedStyle(place).display === 'none';
+		const placeLeft = place.getBoundingClientRect().left;
+
+		targets.forEach(({ root, anchor }) => {
+			if (hidden) {
+				root.classList.remove('is-copy-aligned');
+				root.style.removeProperty('--copy-left');
+				return;
+			}
+
+			const left = placeLeft - anchor.getBoundingClientRect().left;
+			root.style.setProperty('--copy-left', `${left}px`);
+			root.classList.add('is-copy-aligned');
+		});
+	};
+
+	align();
+	window.addEventListener('resize', align);
+	window.addEventListener('load', align);
+
+	if (document.fonts) {
+		document.fonts.ready.then(align);
+	}
+
+	if ('ResizeObserver' in window) {
+		const observer = new ResizeObserver(align);
+		observer.observe(place);
+		targets.forEach(({ anchor }) => observer.observe(anchor));
+	}
+})();
+
+(() => {
 	document.querySelectorAll('[data-reviews]').forEach((section) => {
 		const viewport = section.querySelector('.reviews__viewport');
 		const track = section.querySelector('.reviews__track');
