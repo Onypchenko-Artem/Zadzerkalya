@@ -14,6 +14,167 @@
 })();
 
 (() => {
+	const item = document.querySelector('.header-nav .menu-item--services');
+	const mega = document.querySelector('#services-mega');
+	const link = item ? item.querySelector('a') : null;
+	const header = document.querySelector('.site-header');
+	const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1280px)');
+
+	if (!item || !mega || !link) {
+		return;
+	}
+
+	const cats = Array.from(mega.querySelectorAll('.services-mega__cat'));
+	const panels = Array.from(mega.querySelectorAll('.services-mega__panel'));
+	const photos = Array.from(mega.querySelectorAll('.services-mega__photo'));
+	let closeTimer = 0;
+	let isOpen = false;
+	let closing = false;
+
+	const activate = (target) => {
+		cats.forEach((cat) => {
+			cat.classList.toggle('is-active', cat.dataset.megaTarget === target);
+		});
+		panels.forEach((panel) => {
+			panel.classList.toggle('is-active', panel.id === target);
+		});
+		photos.forEach((photo) => {
+			photo.classList.toggle('is-active', photo.dataset.megaTarget === target);
+		});
+	};
+
+	const syncOffset = () => {
+		if (!header) {
+			return;
+		}
+
+		mega.style.paddingTop = `${header.offsetHeight}px`;
+	};
+
+	const open = () => {
+		if (!desktop.matches || closing) {
+			return;
+		}
+
+		window.clearTimeout(closeTimer);
+		syncOffset();
+		isOpen = true;
+		mega.classList.add('is-open');
+		mega.setAttribute('aria-hidden', 'false');
+		item.classList.add('is-open');
+		link.setAttribute('aria-expanded', 'true');
+		document.body.classList.add('services-mega-open');
+	};
+
+	const close = () => {
+		window.clearTimeout(closeTimer);
+		if (!isOpen) {
+			return;
+		}
+
+		isOpen = false;
+		mega.classList.remove('is-open');
+		mega.setAttribute('aria-hidden', 'true');
+		item.classList.remove('is-open');
+		link.setAttribute('aria-expanded', 'false');
+		document.body.classList.remove('services-mega-open');
+
+		const first = cats[0];
+		if (first) {
+			activate(first.dataset.megaTarget);
+		}
+	};
+
+	const scheduleClose = (delay = 160) => {
+		window.clearTimeout(closeTimer);
+		closeTimer = window.setTimeout(close, delay);
+	};
+
+	item.addEventListener('mouseenter', open);
+	item.addEventListener('mouseleave', (event) => {
+		const next = event.relatedTarget;
+
+		if (next instanceof Node && mega.contains(next)) {
+			return;
+		}
+
+		if (next instanceof Node && header && header.contains(next)) {
+			scheduleClose(420);
+			return;
+		}
+
+		scheduleClose();
+	});
+	mega.addEventListener('mouseenter', open);
+	mega.addEventListener('mouseleave', (event) => {
+		const next = event.relatedTarget;
+
+		if (next instanceof Node && item.contains(next)) {
+			return;
+		}
+
+		scheduleClose();
+	});
+
+	item.closest('.header-nav')?.addEventListener('mouseover', (event) => {
+		const current = event.target.closest('.menu-item');
+
+		if (current && current !== item) {
+			close();
+		}
+	});
+
+	link.addEventListener('focus', () => {
+		if (closing) {
+			closing = false;
+			return;
+		}
+
+		if (link.matches(':focus-visible')) {
+			open();
+		}
+	});
+
+	cats.forEach((cat) => {
+		const show = () => {
+			open();
+			activate(cat.dataset.megaTarget);
+		};
+
+		cat.addEventListener('mouseenter', show);
+		cat.addEventListener('focus', show);
+	});
+
+	document.addEventListener('focusin', (event) => {
+		if (!isOpen) {
+			return;
+		}
+
+		if (item.contains(event.target) || mega.contains(event.target)) {
+			return;
+		}
+
+		close();
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key !== 'Escape' || !isOpen) {
+			return;
+		}
+
+		closing = true;
+		close();
+		link.focus();
+	});
+
+	desktop.addEventListener('change', () => {
+		if (!desktop.matches) {
+			close();
+		}
+	});
+})();
+
+(() => {
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		return;
 	}
@@ -122,11 +283,17 @@
 		};
 
 		const initButton = (button) => {
+			if (button.dataset.lottieReady === '1') {
+				return;
+			}
+
 			const variant = button.dataset.variant || 'primary';
 			const container = button.querySelector('.lottie-button__anim');
 			if (!container) {
 				return;
 			}
+
+			button.dataset.lottieReady = '1';
 
 			let animation = null;
 			let currentName = '';
@@ -184,7 +351,12 @@
 			});
 		};
 
-		document.querySelectorAll('.lottie-button').forEach(initButton);
+		const initButtons = (root = document) => {
+			root.querySelectorAll('.lottie-button').forEach(initButton);
+		};
+
+		window.zadzerkalyaInitButtons = initButtons;
+		initButtons();
 	};
 
 	boot();

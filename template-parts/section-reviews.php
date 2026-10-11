@@ -52,7 +52,7 @@ if ( is_array( $rows ) ) {
 		$name = isset( $row['name'] ) ? trim( (string) $row['name'] ) : '';
 		$text = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
 
-		if ( '' === $name && '' === $text ) {
+		if ( '' === $name && '' === trim( wp_strip_all_tags( $text ) ) ) {
 			continue;
 		}
 
@@ -66,6 +66,16 @@ if ( is_array( $rows ) ) {
 if ( ! $reviews ) {
 	$reviews = $default_reviews;
 }
+
+$format_review = static function ( $value ) {
+	$value = (string) $value;
+
+	if ( $value === wp_strip_all_tags( $value ) ) {
+		$value = wpautop( $value );
+	}
+
+	return wp_kses_post( $value );
+};
 
 $title = zadzerkalya_field( 'reviews_title', __( 'Історії батьків, які надихають', 'zadzerkalya' ) );
 $text  = zadzerkalya_field( 'reviews_text', __( 'Слова тих, чиї діти вже отримали результат разом з нами — реальні відгуки, що дарують надію та підтримку.', 'zadzerkalya' ) );
@@ -102,7 +112,7 @@ $total = count( $reviews );
 							<h3><?php echo esc_html( $review['name'] ); ?></h3>
 						</header>
 						<span class="reviews__line" aria-hidden="true"></span>
-						<p class="reviews__text"><?php echo esc_html( $review['text'] ); ?></p>
+						<div class="reviews__text"><?php echo $format_review( $review['text'] ); ?></div>
 						<span class="reviews__line reviews__line--reverse" aria-hidden="true"></span>
 						<button
 							type="button"

@@ -1,8 +1,7 @@
 .about-hero {
 	position: relative;
-	min-height: calc(847 * var(--u));
 	margin-top: calc(-118 * var(--u));
-	padding: calc(163 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	padding: calc(198 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
 	overflow: hidden;
 	background-color: #eaf4fd;
 	background-image:
@@ -115,7 +114,7 @@
 }
 
 .about-hero__footer p {
-	max-width: calc(473 * var(--u));
+	max-width: calc(573 * var(--u));
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
@@ -432,12 +431,23 @@
 	width: 100%;
 }
 
-.about-relocation__text p {
+.about-relocation__text p,
+.about-relocation__text li {
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
 	font-weight: 400;
 	line-height: 1.35;
+}
+
+.about-relocation__text ul,
+.about-relocation__text ol {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.about-relocation__text a {
+	color: inherit;
 }
 
 .about-relocation__decor {
@@ -508,6 +518,23 @@
 	font-size: calc(32 * var(--u));
 	font-weight: 500;
 	line-height: 1.2;
+}
+
+.about-values__highlight :where(p, ul, ol) {
+	margin: 0;
+}
+
+.about-values__highlight :where(p, ul, ol) + :where(p, ul, ol) {
+	margin-top: calc(16 * var(--u));
+}
+
+.about-values__highlight ul,
+.about-values__highlight ol {
+	padding-left: 1.2em;
+}
+
+.about-values__highlight a {
+	color: inherit;
 }
 
 .about-values__columns {
@@ -644,6 +671,7 @@
 
 .about-gallery__viewport {
 	width: 100%;
+	container-type: inline-size;
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none;
@@ -668,7 +696,7 @@
 .about-gallery__card {
 	box-sizing: border-box;
 	display: flex;
-	flex: 0 0 calc(571 * var(--u));
+	flex: 0 0 calc((100cqw - 2 * 54 * var(--u)) / 3);
 	flex-direction: column;
 	gap: calc(10 * var(--u));
 	height: calc(672 * var(--u));
@@ -755,7 +783,7 @@
 .about-ending__rabbit svg {
 	width: calc(184 * var(--u));
 	height: calc(27 * var(--u));
-	margin-top: calc(-6 * var(--u));
+	margin-top: calc(-26 * var(--u));
 	overflow: visible;
 }
 
@@ -802,6 +830,46 @@
 
 .about-content {
 	padding-block: calc(120 * var(--u));
+}
+
+.about-team {
+	padding: calc(80 * var(--u)) calc(48 * var(--u)) calc(100 * var(--u));
+	background: transparent;
+	color: var(--color-night-sky);
+}
+
+.about-team__inner {
+	display: flex;
+	flex-direction: column;
+	gap: calc(64 * var(--u));
+	width: 100%;
+	max-width: calc(1824 * var(--u));
+	margin-inline: auto;
+}
+
+.about-team__head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: calc(24 * var(--u));
+}
+
+.about-team__head h2 {
+	margin: 0;
+	font-family: var(--font-family-heading);
+	font-size: calc(58 * var(--u));
+	font-weight: 500;
+	line-height: 1.1;
+	letter-spacing: -0.04em;
+	text-transform: none;
+	color: var(--color-night-sky);
+}
+
+.about-team__row {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: calc(44 * var(--u));
+	width: 100%;
 }
 
 .about-hero.is-ready .about-hero__heading,
@@ -1025,7 +1093,8 @@
 		gap: 36px;
 	}
 
-	.about-relocation__text p {
+	.about-relocation__text p,
+	.about-relocation__text li {
 		font-size: 18px;
 	}
 
@@ -1182,6 +1251,23 @@
 
 	.about-content {
 		padding-block: 80px;
+	}
+
+	.about-team {
+		padding: 64px 24px 80px;
+	}
+
+	.about-team__inner {
+		gap: 40px;
+	}
+
+	.about-team__head h2 {
+		font-size: 42px;
+	}
+
+	.about-team__row {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24px;
 	}
 }
 
@@ -1438,7 +1524,8 @@
 		gap: 20px;
 	}
 
-	.about-relocation__text p {
+	.about-relocation__text p,
+	.about-relocation__text li {
 		max-width: 560px;
 		font-size: 16px;
 	}
@@ -1561,5 +1648,28 @@
 
 	.about-content {
 		padding-block: 64px;
+	}
+
+	.about-team {
+		padding: 48px 16px 64px;
+	}
+
+	.about-team__inner {
+		gap: 28px;
+	}
+
+	.about-team__head {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.about-team__head h2 {
+		font-size: 32px;
+	}
+
+	.about-team__row {
+		grid-template-columns: 1fr;
+		gap: 16px;
 	}
 }

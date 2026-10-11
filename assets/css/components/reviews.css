@@ -224,6 +224,19 @@
 	-webkit-line-clamp: 8;
 }
 
+.reviews__text :is(p, ul, ol, h2, h3, h4, blockquote) {
+	margin: 0;
+	font: inherit;
+}
+
+.reviews__text :is(p, ul, ol, blockquote) + :is(p, ul, ol, blockquote) {
+	margin-top: 0.65em;
+}
+
+.reviews__text a {
+	text-decoration: underline;
+}
+
 .reviews__card.is-expanded .reviews__text {
 	overflow-y: auto;
 	-webkit-line-clamp: initial;

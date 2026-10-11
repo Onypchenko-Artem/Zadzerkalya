@@ -1,0 +1,77 @@
+{
+    "key": "group_zadzerkalya_service_type",
+    "title": "Тип послуги: меню",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_service_type_image",
+            "label": "Фото в меню",
+            "name": "service_type_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Овальне фото справа у випадаючому меню «Послуги». Якщо порожньо, береться фото першої послуги цієї категорії.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_service_type_order",
+            "label": "Порядок у меню",
+            "name": "service_type_order",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Менше число стоїть вище. Якщо порожньо, категорії йдуть у порядку створення.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": 1,
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": 1,
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "service_type"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Фото і порядок категорії у випадаючому меню «Послуги».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791740000
+}

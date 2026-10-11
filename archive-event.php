@@ -76,6 +76,7 @@ $events = new WP_Query( $query_args );
 			'current_term' => $current_term,
 			'query'        => $events,
 			'paged'        => $paged,
+			'ajax_filters' => true,
 		)
 	);
 

@@ -101,6 +101,22 @@ function zadzerkalya_excerpt_length() {
 }
 add_filter( 'excerpt_length', 'zadzerkalya_excerpt_length' );
 
+/**
+ * Поле «Уривок» на новині видно одразу, як на події.
+ *
+ * @param string[] $hidden Приховані метабокси.
+ * @return string[]
+ */
+function zadzerkalya_show_post_excerpt_box( $hidden ) {
+	if ( ! is_array( $hidden ) ) {
+		return $hidden;
+	}
+
+	return array_values( array_diff( $hidden, array( 'postexcerpt' ) ) );
+}
+add_filter( 'default_hidden_meta_boxes', 'zadzerkalya_show_post_excerpt_box' );
+add_filter( 'get_user_option_metaboxhidden_post', 'zadzerkalya_show_post_excerpt_box' );
+
 // Використовуємо класичні редактори замість Gutenberg.
 add_filter( 'use_block_editor_for_post', '__return_false', 100 );
 add_filter( 'use_widgets_block_editor', '__return_false' );

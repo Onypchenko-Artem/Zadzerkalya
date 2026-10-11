@@ -174,7 +174,7 @@
 	background: transparent;
 	border: 1px solid var(--color-night-sky);
 	border-radius: calc(20 * var(--u));
-	outline-offset: 3px;
+	outline: none;
 }
 
 .form-service__field input::placeholder {

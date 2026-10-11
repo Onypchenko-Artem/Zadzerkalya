@@ -23,6 +23,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-typography'  => array( 'file' => '/assets/css/typography.css', 'deps' => array( 'zadzerkalya-fonts', 'zadzerkalya-fluid' ) ),
 		'zadzerkalya-base'        => array( 'file' => '/assets/css/base.css', 'deps' => array( 'zadzerkalya-colors', 'zadzerkalya-fluid', 'zadzerkalya-typography' ) ),
 		'zadzerkalya-header'      => array( 'file' => '/assets/css/components/header.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-services-mega' => array( 'file' => '/assets/css/components/services-mega.css', 'deps' => array( 'zadzerkalya-header' ) ),
 		'zadzerkalya-button'      => array( 'file' => '/assets/css/components/button.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-hero'        => array( 'file' => '/assets/css/components/hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-hero'    => array( 'file' => '/assets/css/components/page-hero.css', 'deps' => array( 'zadzerkalya-base' ) ),
@@ -106,6 +107,19 @@ function zadzerkalya_enqueue_assets() {
 			'in_footer' => true,
 		)
 	);
+
+	if ( is_page_template( 'page-templates/events.php' ) || is_post_type_archive( 'event' ) ) {
+		wp_enqueue_script(
+			'zadzerkalya-events-feed',
+			ZADZERKALYA_URI . '/assets/js/events-feed.js',
+			array( 'zadzerkalya-main' ),
+			ZADZERKALYA_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	if ( is_page_template( 'page-templates/about.php' ) || is_page_template( 'page-templates/specialists.php' ) || is_post_type_archive( 'specialist' ) ) {
 		wp_enqueue_script(

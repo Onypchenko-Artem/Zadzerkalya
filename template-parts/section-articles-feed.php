@@ -26,6 +26,7 @@ $topic_param  = $args['topic_param'] ?? 'topic';
 $current_term = $args['current_term'] ?? null;
 $query        = $args['query'] ?? null;
 $paged        = max( 1, (int) ( $args['paged'] ?? 1 ) );
+$ajax_filters = ! empty( $args['ajax_filters'] );
 
 if ( ! $query instanceof WP_Query ) {
 	return;
@@ -65,7 +66,7 @@ $has_posts   = $query->have_posts();
 $prev_url    = $paged > 1 ? $feed_page_url( $paged - 1 ) : '';
 $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) : '';
 ?>
-<section class="articles-feed" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>">
+<section class="articles-feed" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>"<?php echo $ajax_filters ? ' data-ajax-filters' : ''; ?>>
 	<h2 id="<?php echo esc_attr( $heading_id ); ?>" class="articles-feed__title"><?php echo esc_html( $title ); ?></h2>
 
 	<div class="articles-feed__body">

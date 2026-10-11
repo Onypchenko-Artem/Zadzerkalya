@@ -442,3 +442,214 @@ function zadzerkalya_acf_image( $field, $size = 'full', $attr = array() ) {
 
 	return false;
 }
+
+/**
+ * Пункт головного меню веде на сторінку послуг.
+ *
+ * @param WP_Post $item Пункт меню.
+ * @return bool
+ */
+function zadzerkalya_is_services_menu_item( $item ) {
+	if ( ! $item instanceof WP_Post ) {
+		return false;
+	}
+
+	$page_id = zadzerkalya_get_services_page_id();
+	if ( $page_id && 'page' === $item->object && (int) $item->object_id === $page_id ) {
+		return true;
+	}
+
+	return untrailingslashit( (string) $item->url ) === untrailingslashit( zadzerkalya_get_services_url() );
+}
+
+/**
+ * Категорії послуг і послуги всередині для десктопного меню.
+ *
+ * @return array{all_url: string, categories: array<int, array<string, mixed>>}
+ */
+function zadzerkalya_get_services_mega() {
+	static $mega = null;
+
+	if ( null !== $mega ) {
+		return $mega;
+	}
+
+	$services_url = zadzerkalya_get_services_url();
+	$empty        = array(
+		'all_url'    => $services_url,
+		'categories' => array(),
+	);
+
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'service_type',
+			'hide_empty' => true,
+			'parent'     => 0,
+		)
+	);
+
+	if ( is_wp_error( $terms ) || ! $terms ) {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => 'service_type',
+				'hide_empty' => true,
+			)
+		);
+	}
+
+	if ( is_wp_error( $terms ) || ! $terms ) {
+		$mega = $empty;
+		return $mega;
+	}
+
+	usort(
+		$terms,
+		static function ( $a, $b ) {
+			$order_a = function_exists( 'get_field' ) ? (int) get_field( 'service_type_order', $a ) : 0;
+			$order_b = function_exists( 'get_field' ) ? (int) get_field( 'service_type_order', $b ) : 0;
+
+			if ( $order_a !== $order_b ) {
+				if ( 0 === $order_a ) {
+					return 1;
+				}
+				if ( 0 === $order_b ) {
+					return -1;
+				}
+				return $order_a <=> $order_b;
+			}
+
+			return $a->term_id <=> $b->term_id;
+		}
+	);
+
+	$query = new WP_Query(
+		array(
+			'post_type'      => 'service',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'no_found_rows'  => true,
+		)
+	);
+
+	if ( $query->posts ) {
+		update_object_term_cache( wp_list_pluck( $query->posts, 'ID' ), 'service' );
+	}
+
+	$by_term = array();
+	foreach ( $query->posts as $service ) {
+		$service_terms = get_the_terms( $service, 'service_type' );
+		if ( ! $service_terms || is_wp_error( $service_terms ) ) {
+			continue;
+		}
+
+		foreach ( $service_terms as $service_term ) {
+			$root_id = (int) $service_term->term_id;
+			if ( $service_term->parent ) {
+				$ancestors = get_ancestors( (int) $service_term->term_id, 'service_type', 'taxonomy' );
+				$root_id   = $ancestors ? (int) end( $ancestors ) : $root_id;
+			}
+			$by_term[ $root_id ][] = $service;
+		}
+	}
+
+	$categories = array();
+	foreach ( $terms as $term ) {
+		$items = $by_term[ (int) $term->term_id ] ?? array();
+		if ( ! $items ) {
+			continue;
+		}
+
+		$image_id = 0;
+		if ( function_exists( 'get_field' ) ) {
+			$image = get_field( 'service_type_image', $term );
+			if ( is_numeric( $image ) ) {
+				$image_id = (int) $image;
+			} elseif ( is_array( $image ) ) {
+				$image_id = (int) ( $image['ID'] ?? $image['id'] ?? 0 );
+			}
+		}
+		if ( ! $image_id ) {
+			$image_id = (int) get_post_thumbnail_id( $items[0] );
+		}
+
+		$services = array();
+		$seen     = array();
+		foreach ( $items as $service ) {
+			if ( isset( $seen[ $service->ID ] ) ) {
+				continue;
+			}
+			$seen[ $service->ID ] = true;
+			$services[]           = array(
+				'title' => get_the_title( $service ),
+				'url'   => get_permalink( $service ),
+			);
+		}
+
+		$categories[] = array(
+			'id'       => (int) $term->term_id,
+			'name'     => $term->name,
+			'url'      => add_query_arg( 'type', $term->slug, $services_url ),
+			'image_id' => $image_id,
+			'services' => $services,
+		);
+	}
+
+	$mega = array(
+		'all_url'    => $services_url,
+		'categories' => $categories,
+	);
+
+	return $mega;
+}
+
+/**
+ * Клас пункту «Послуги», щоб відкрити меню категорій.
+ *
+ * @param string[] $classes Класи пункту.
+ * @param WP_Post  $item    Пункт меню.
+ * @param stdClass $args    Аргументи меню.
+ * @return string[]
+ */
+function zadzerkalya_services_menu_item_class( $classes, $item, $args ) {
+	if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
+		return $classes;
+	}
+
+	$mega = zadzerkalya_get_services_mega();
+	if ( zadzerkalya_is_services_menu_item( $item ) && ! empty( $mega['categories'] ) ) {
+		$classes[] = 'menu-item--services';
+	}
+
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'zadzerkalya_services_menu_item_class', 10, 3 );
+
+/**
+ * Атрибути посилання «Послуги» для випадаючого меню.
+ *
+ * @param array<string, string> $atts Атрибути.
+ * @param WP_Post               $item Пункт меню.
+ * @param stdClass              $args Аргументи меню.
+ * @return array<string, string>
+ */
+function zadzerkalya_services_menu_link_atts( $atts, $item, $args ) {
+	if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location ) {
+		return $atts;
+	}
+
+	$mega = zadzerkalya_get_services_mega();
+	if ( ! zadzerkalya_is_services_menu_item( $item ) || empty( $mega['categories'] ) ) {
+		return $atts;
+	}
+
+	$atts['aria-haspopup'] = 'true';
+	$atts['aria-expanded'] = 'false';
+	$atts['aria-controls'] = 'services-mega';
+
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'zadzerkalya_services_menu_link_atts', 10, 3 );

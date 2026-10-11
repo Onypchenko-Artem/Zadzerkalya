@@ -55,9 +55,10 @@ if ( $background_url ) {
 							<span aria-current="page"><?php echo esc_html( $current ); ?></span>
 						</nav>
 
-						<div class="event-hero__title">
+						<?php $has_description = is_string( $description ) && '' !== trim( wp_strip_all_tags( $description ) ); ?>
+						<div class="event-hero__title<?php echo $has_description ? '' : ' event-hero__title--solo'; ?>">
 							<h1 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo esc_html( $title ); ?></h1>
-							<?php if ( $description ) : ?>
+							<?php if ( $has_description ) : ?>
 								<div class="event-hero__description"><?php echo wp_kses_post( wpautop( $description ) ); ?></div>
 							<?php endif; ?>
 						</div>

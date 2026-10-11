@@ -105,3 +105,4 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 		</div>
 	</div>
 </header>
+<?php get_template_part( 'template-parts/services', 'mega' ); ?>

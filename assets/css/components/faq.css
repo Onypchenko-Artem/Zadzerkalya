@@ -117,7 +117,7 @@
 	flex: 1 1 auto;
 	margin: 0;
 	font-family: var(--text-h3-med-family);
-	font-size: calc(32 * var(--u));
+	font-size: calc(30 * var(--u));
 	font-weight: var(--text-h3-med-weight);
 	line-height: 1.2;
 }
@@ -168,7 +168,7 @@
 	width: calc(820 * var(--u));
 	max-width: 100%;
 	font-family: var(--text-body-l-family);
-	font-size: calc(24 * var(--u));
+	font-size: calc(22 * var(--u));
 	font-weight: var(--text-body-l-weight);
 	line-height: 1.35;
 }
@@ -220,12 +220,12 @@
 	}
 
 	.faq__item h3 {
-		font-size: var(--text-h3-med-size);
+		font-size: 19px;
 	}
 
 	.faq__item p {
 		width: 100%;
-		font-size: var(--text-body-l-size);
+		font-size: 19px;
 	}
 }
 
@@ -278,6 +278,14 @@
 	.faq__item {
 		gap: 16px;
 		padding: 16px;
+	}
+
+	.faq__item h3 {
+		font-size: 16px;
+	}
+
+	.faq__item p {
+		font-size: 14px;
 	}
 
 	.faq__item summary {

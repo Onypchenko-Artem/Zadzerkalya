@@ -28,7 +28,7 @@
             "name": "event_hero_description",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Якщо поле порожнє, використовується анонс запису.",
+            "instructions": "Для статті блогу виводиться лише цей текст. Для події, якщо поле порожнє, використовується анонс.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -121,5 +121,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790600000
+    "modified": 1791723052
 }

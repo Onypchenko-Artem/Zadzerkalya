@@ -30,8 +30,12 @@ get_header();
 		$story_lead   = $about_field( 'about_story_lead', 'Мій шлях у професію почався не з теорії, а з самого життя — з реальних історій дітей, які потребували більше, аніж просто стандартних рішень. І від моменту мого знайомства з ТІММІ, хто сприймає наш світ інакше, я зрозуміла, що хочу бути поруч — і допомагати їм знайти у цьому світі шлях свій, унікальний.' );
 		$mission_text = $about_field( 'about_mission_text', 'Так і зʼявилося «Задзеркалля» — простір, у якому дітки з особливостями розвитку отримують підтримку, необхідні навички, можливість стати самостійнішими та щасливішими у цьому світі.' );
 		$mission_img  = $about_field( 'about_mission_image' );
-		$relocation_1 = $about_field( 'about_relocation_first', 'Життя внесло свої корективи — і у 2022 році наш центр пережив непростий період переїзду до Львова, за сотні кілометрів від дому. Це був справжній виклик — залишити все створене за багато років — і створити з самого початку. І ми його прийняли.' );
-		$relocation_2 = $about_field( 'about_relocation_second', 'Тут ми не просто адаптувалися — ми виросли! Львів став для нас новим домом, місцем, де ми продовжили нашу місію. Тут ми зібрали ще більше фахівців, розширили наш простір в декілька разів, запровадили нові підходи, знайшли однодумців та зустріли так багато довіри та підтримки, які рухають нас вперед кожного дня!' );
+		$relocation_text = $about_field( 'about_relocation_text', '' );
+		if ( '' === $relocation_text ) {
+			$relocation_1    = $about_field( 'about_relocation_first', 'Життя внесло свої корективи — і у 2022 році наш центр пережив непростий період переїзду до Львова, за сотні кілометрів від дому. Це був справжній виклик — залишити все створене за багато років — і створити з самого початку. І ми його прийняли.' );
+			$relocation_2    = $about_field( 'about_relocation_second', 'Тут ми не просто адаптувалися — ми виросли! Львів став для нас новим домом, місцем, де ми продовжили нашу місію. Тут ми зібрали ще більше фахівців, розширили наш простір в декілька разів, запровадили нові підходи, знайшли однодумців та зустріли так багато довіри та підтримки, які рухають нас вперед кожного дня!' );
+			$relocation_text = '<p>' . esc_html( $relocation_1 ) . '</p><p>' . esc_html( $relocation_2 ) . '</p>';
+		}
 		$values_img   = $about_field( 'about_values_image' );
 		$values_highlight = $about_field( 'about_values_highlight', 'Для мене важливо не лише допомагати дітям, а й створювати середовище, в якому зростають і фахівці. Я завжди піклуюся про свою команду, адже вірю, що турбота про співробітників — це запорука якісної роботи. Ми постійно вчимося, обговорюємо складні випадки, підтримуємо один одного. Я хочу, аби кожен у «Задзеркаллі» відчував себе не просто частиною команди — а частиною великої справи.' );
 		$ending_rabbit = $about_field( 'about_ending_rabbit' );
@@ -141,8 +145,7 @@ get_header();
 					</svg>
 
 					<div class="about-relocation__text">
-						<p><?php echo esc_html( $relocation_1 ); ?></p>
-						<p><?php echo esc_html( $relocation_2 ); ?></p>
+						<?php echo wp_kses_post( $relocation_text ); ?>
 					</div>
 				</div>
 
@@ -167,7 +170,9 @@ get_header();
 				<?php endif; ?>
 
 				<div class="about-values__content">
-					<p class="about-values__highlight"><?php echo esc_html( $values_highlight ); ?></p>
+					<div class="about-values__highlight">
+						<?php echo wp_kses_post( $values_highlight ); ?>
+					</div>
 
 					<div class="about-values__columns">
 						<div class="about-values__column">
@@ -203,7 +208,7 @@ get_header();
 					}
 					?>
 					<svg viewBox="0 0 184 27" fill="none">
-						<path d="M1 25C39 20 65 21 91 23C119 25 146 19 183 24" />
+						<path d="M1 26C18.359 26 42.5686 23.7735 60.7598 19.3256C71.0352 16.8132 93.0187 11.2425 121.06 3.65974C133.007 0.978458 140.318 0.665952 149.416 1.24507C158.513 1.8242 169.176 3.30441 183 4.58124" />
 					</svg>
 				</div>
 
@@ -308,20 +313,29 @@ get_header();
 		<?php
 	endwhile;
 
-	$specialists = zadzerkalya_query_latest( 'specialist', 4 );
+	$specialists = new WP_Query(
+		array(
+			'post_type'           => 'specialist',
+			'posts_per_page'      => 3,
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true,
+		)
+	);
 	if ( $specialists->have_posts() ) :
 		?>
-		<section class="section section--alt">
-			<div class="container">
-				<div class="section-head">
-					<h2><?php echo esc_html( $team_title ); ?></h2>
+		<section class="about-team" aria-labelledby="about-team-title">
+			<div class="about-team__inner">
+				<div class="about-team__head">
+					<h2 id="about-team-title"><?php echo esc_html( $team_title ); ?></h2>
 					<a class="text-link" href="<?php echo esc_url( zadzerkalya_get_specialists_url() ); ?>"><?php echo esc_html( $team_link ); ?></a>
 				</div>
-				<div class="cards-grid cards-grid--4">
+				<div class="about-team__row">
 					<?php
 					while ( $specialists->have_posts() ) :
 						$specialists->the_post();
-						get_template_part( 'template-parts/card', 'specialist' );
+						get_template_part( 'template-parts/card', 'specialist-slot' );
 					endwhile;
 					wp_reset_postdata();
 					?>

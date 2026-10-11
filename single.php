@@ -19,7 +19,7 @@ get_header();
 		};
 
 		$hero_title       = $field( 'event_hero_title', get_the_title() );
-		$hero_description = $field( 'event_hero_description', get_the_excerpt() );
+		$hero_description = $field( 'event_hero_description' );
 		$hero_photo       = $field( 'event_hero_photo', get_post_thumbnail_id() );
 		$hero_background  = $field( 'event_hero_background' );
 		$event_author     = $field( 'event_author' );
