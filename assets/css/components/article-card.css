@@ -9,7 +9,7 @@
 	height: calc(792 * var(--u));
 	padding: calc(32 * var(--u));
 	color: var(--color-night-sky);
-	background: var(--color-chewing-gum);
+	/*background: var(--color-chewing-gum);*/
 	border: 1px solid var(--color-night-sky);
 	border-radius: calc(20 * var(--u));
 }

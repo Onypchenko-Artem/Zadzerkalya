@@ -1,0 +1,136 @@
+{
+    "key": "group_zadzerkalya_policy",
+    "title": "Політика конфіденційності",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_policy_hero_title",
+            "label": "Заголовок банера",
+            "name": "policy_hero_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо поле порожнє, використовується назва сторінки.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_policy_hero_description",
+            "label": "Текст під заголовком",
+            "name": "policy_hero_description",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_zadzerkalya_policy_hero_photo",
+            "label": "Фото",
+            "name": "policy_hero_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Фото у правій частині банера. Якщо поле порожнє, використовується головне зображення сторінки.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_policy_hero_background",
+            "label": "Фон банера",
+            "name": "policy_hero_background",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Якщо поле порожнє, фон не виводиться.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_policy_effective_date",
+            "label": "Діє з",
+            "name": "policy_effective_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Дата, з якої діє політика. Виводиться у правій колонці.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "d.m.Y",
+            "return_format": "Y-m-d",
+            "first_day": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/privacy.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Банер і дата дії сторінки політики конфіденційності.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1791926400
+}

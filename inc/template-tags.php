@@ -312,7 +312,29 @@ function zadzerkalya_body_open() {
  * Текст згоди перед кнопкою форми.
  */
 function zadzerkalya_form_consent() {
-	echo '<p class="form-consent">' . esc_html__( 'Натискаючи на кнопку нижче, Ви погоджуєтесь з Політикою конфіденційності та Згодою на обробку персональних даних.', 'zadzerkalya' ) . '</p>';
+	$privacy_url = get_privacy_policy_url();
+	if ( ! $privacy_url ) {
+		$privacy_url = home_url( '/privacy-policy/' );
+	}
+
+	$consent_url  = home_url( '/zgoda-na-obrobku-personalnyh-danyh/' );
+	$consent_page = get_page_by_path( 'zgoda-na-obrobku-personalnyh-danyh' );
+	if ( ! $consent_page ) {
+		$consent_page = get_page_by_path( 'consent' );
+	}
+	if ( $consent_page instanceof WP_Post ) {
+		$consent_url = get_permalink( $consent_page );
+	}
+
+	printf(
+		'<p class="form-consent">%1$s <a href="%2$s">%3$s</a> %4$s <a href="%5$s">%6$s</a>.</p>',
+		esc_html__( 'Натискаючи на кнопку нижче, Ви погоджуєтесь з', 'zadzerkalya' ),
+		esc_url( $privacy_url ),
+		esc_html__( 'Політикою конфіденційності', 'zadzerkalya' ),
+		esc_html__( 'та', 'zadzerkalya' ),
+		esc_url( $consent_url ),
+		esc_html__( 'Згодою на обробку персональних даних', 'zadzerkalya' )
+	);
 }
 
 /**
@@ -441,6 +463,27 @@ function zadzerkalya_acf_image( $field, $size = 'full', $attr = array() ) {
 	}
 
 	return false;
+}
+
+/**
+ * Зображення послуги для вітрини: мініатюра, інакше фото героя.
+ *
+ * @param int $service_id ID послуги.
+ * @return mixed ID вкладення, масив ACF або порожнє значення.
+ */
+function zadzerkalya_service_showcase_image( $service_id ) {
+	$service_id = (int) $service_id;
+	$thumbnail  = $service_id ? get_post_thumbnail_id( $service_id ) : 0;
+
+	if ( $thumbnail ) {
+		return $thumbnail;
+	}
+
+	if ( $service_id && function_exists( 'get_field' ) ) {
+		return get_field( 'service_hero_photo', $service_id );
+	}
+
+	return null;
 }
 
 /**
@@ -653,3 +696,114 @@ function zadzerkalya_services_menu_link_atts( $atts, $item, $args ) {
 	return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'zadzerkalya_services_menu_link_atts', 10, 3 );
+
+/**
+ * Якір заголовка для змісту політики.
+ *
+ * @param string             $text Текст заголовка.
+ * @param array<string, int> $seen Уже використані якорі.
+ * @return string
+ */
+function zadzerkalya_policy_heading_id( $text, &$seen ) {
+	$base = sanitize_title( $text );
+	if ( '' === $base ) {
+		$base = 'section';
+	}
+
+	$id = $base;
+	if ( isset( $seen[ $id ] ) ) {
+		$seen[ $id ]++;
+		$id = $base . '-' . $seen[ $id ];
+	} else {
+		$seen[ $id ] = 1;
+	}
+
+	return $id;
+}
+
+/**
+ * Зміст політики з заголовків тексту і якорі на цих заголовках.
+ *
+ * Перший h2 — назва документа в колонці тексту, у зміст не потрапляє.
+ * Далі до змісту йдуть h3 розділів і наступні h2 (наприклад, згода).
+ *
+ * @param string $html HTML вмісту сторінки.
+ * @return array{content: string, toc: array<int, array{id: string, text: string}>}
+ */
+function zadzerkalya_policy_prepare_content( $html ) {
+	$result = array(
+		'content' => $html,
+		'toc'     => array(),
+	);
+
+	if ( ! is_string( $html ) || '' === trim( $html ) ) {
+		return $result;
+	}
+
+	$previous = libxml_use_internal_errors( true );
+	$dom      = new DOMDocument();
+	$loaded   = $dom->loadHTML(
+		'<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><div id="zdk-policy-root">' . $html . '</div></body></html>'
+	);
+	libxml_clear_errors();
+	libxml_use_internal_errors( $previous );
+
+	if ( ! $loaded ) {
+		return $result;
+	}
+
+	$xpath = new DOMXPath( $dom );
+	$root  = $xpath->query( '//*[@id="zdk-policy-root"]' )->item( 0 );
+	if ( ! $root instanceof DOMElement ) {
+		return $result;
+	}
+
+	$headings = $xpath->query( './/h2|.//h3', $root );
+	if ( ! $headings ) {
+		return $result;
+	}
+
+	$seen             = array();
+	$is_first_heading = true;
+
+	foreach ( $headings as $heading ) {
+		if ( ! $heading instanceof DOMElement ) {
+			continue;
+		}
+
+		$text = preg_replace( '/\s+/u', ' ', $heading->textContent );
+		$text = trim( is_string( $text ) ? $text : '' );
+		if ( '' === $text ) {
+			continue;
+		}
+
+		$id = $heading->getAttribute( 'id' );
+		if ( '' === $id ) {
+			$id = zadzerkalya_policy_heading_id( $text, $seen );
+			$heading->setAttribute( 'id', $id );
+		} else {
+			$seen[ $id ] = 1;
+		}
+
+		$tag = strtolower( $heading->nodeName );
+		if ( $is_first_heading && 'h2' === $tag ) {
+			$is_first_heading = false;
+			continue;
+		}
+
+		$is_first_heading = false;
+		$result['toc'][]  = array(
+			'id'   => $id,
+			'text' => $text,
+		);
+	}
+
+	$content = '';
+	foreach ( $root->childNodes as $child ) {
+		$content .= $dom->saveHTML( $child );
+	}
+
+	$result['content'] = $content;
+
+	return $result;
+}

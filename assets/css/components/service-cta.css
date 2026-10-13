@@ -20,8 +20,33 @@
 	background-size: cover;
 }
 
+.service-cta--custom-background {
+	box-sizing: border-box;
+	height: min(calc(886 * var(--u)), calc(100dvh - 118 * var(--u)));
+	max-height: calc(100dvh - 118 * var(--u));
+}
+
 .service-cta--custom-background .service-cta__panel {
+	height: 100%;
+	min-height: 0;
 	background-image: var(--service-cta-background);
+}
+
+.service-cta--custom-background .service-cta__circle {
+	width: auto;
+	height: min(calc(776 * var(--u)), 87%);
+	aspect-ratio: 1;
+}
+
+.service-cta--custom-background .service-cta__slider {
+	height: 100%;
+	min-height: 0;
+}
+
+.service-cta--custom-background .service-cta__viewport {
+	flex: 1 1 auto;
+	height: auto;
+	min-height: 0;
 }
 
 .service-cta__circle {
@@ -172,10 +197,10 @@
 
 .service-cta__row p {
 	margin: 0;
-	font-family: var(--text-body-l-family);
-	font-size: calc(24 * var(--u));
+	font-family: var(--text-body-s-family);
+	font-size: calc(18 * var(--u));
 	font-weight: 400;
-	line-height: 1.35;
+	line-height: 1.4;
 }
 
 .service-cta__line {
@@ -323,8 +348,13 @@
 		font-size: 24px;
 	}
 
+	.service-cta--custom-background {
+		height: min(680px, calc(100dvh - 88px));
+		max-height: calc(100dvh - 88px);
+	}
+
 	.service-cta__row p {
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 	.service-cta__counter {
@@ -366,7 +396,24 @@
 		font-size: 20px;
 	}
 
+	.service-cta--custom-background {
+		height: calc(100dvh - 64px);
+		max-height: calc(100dvh - 64px);
+	}
+
+	.service-cta--custom-background .service-cta__panel {
+		flex: 1 1 0;
+		height: auto;
+		max-height: 52%;
+	}
+
+	.service-cta--custom-background .service-cta__slider {
+		flex: 1 1 0;
+		height: auto;
+		width: 100%;
+	}
+
 	.service-cta__row p {
-		font-size: 16px;
+		font-size: 14px;
 	}
 }

@@ -147,6 +147,20 @@
 	margin: 0;
 }
 
+.event-hero__description :is(ul, ol) {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.event-hero__description a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.event-hero__description strong {
+	font-weight: 500;
+}
+
 .event-hero__title--solo,
 .event-hero__title--solo h1 {
 	min-height: 0;

@@ -1,4 +1,6 @@
 .price-list {
+	position: relative;
+	z-index: 1;
 	display: flex;
 	flex-direction: column;
 	gap: calc(64 * var(--u));
@@ -82,7 +84,8 @@
 }
 
 .price-list__details p {
-	white-space: nowrap;
+	max-width: calc(469 * var(--u));
+	white-space: normal;
 }
 
 .price-list__separator {
@@ -90,6 +93,16 @@
 	width: 100%;
 	height: calc(12 * var(--u));
 	max-width: none;
+}
+
+.price-list .lottie-button--primary {
+	--lottie-btn-w: calc(370 * var(--u));
+}
+
+.prices-page .form-home {
+	position: relative;
+	z-index: 0;
+	margin-top: calc((200 - 400) * var(--u));
 }
 
 @media (max-width: 1279px) {
@@ -135,8 +148,20 @@
 		font-size: 21px;
 	}
 
+	.price-list__details p {
+		max-width: 280px;
+	}
+
 	.price-list__separator {
 		height: 8px;
+	}
+
+	.price-list .lottie-button--primary {
+		--lottie-btn-w: 293px;
+	}
+
+	.prices-page .form-home {
+		margin-top: -270px;
 	}
 }
 
@@ -179,7 +204,19 @@
 		font-size: 18px;
 	}
 
+	.price-list__details p {
+		max-width: 148px;
+	}
+
 	.price-list__row .lottie-button {
 		align-self: center;
+	}
+
+	.price-list .lottie-button--primary {
+		--lottie-btn-w: 240px;
+	}
+
+	.prices-page .form-home {
+		margin-top: -100px;
 	}
 }

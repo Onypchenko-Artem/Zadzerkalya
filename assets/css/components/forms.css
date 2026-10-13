@@ -43,5 +43,11 @@
 	color: var(--color-grey-hug);
 }
 
+.form-consent a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 0.12em;
+}
+
 .form-notice--success { background: var(--color-gentle-blue); }
 .form-notice--error { background: var(--color-lemon-cream); border: 1px solid var(--color-grey-hug); }

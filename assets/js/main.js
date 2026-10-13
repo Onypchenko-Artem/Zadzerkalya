@@ -581,7 +581,7 @@
 
 		cards.forEach((card) => {
 			const button = card.querySelector('.reviews__more');
-			if (!button) {
+			if (!button || button.tagName === 'A') {
 				return;
 			}
 
@@ -861,4 +861,60 @@
 	if (document.fonts) {
 		document.fonts.ready.then(alignAll);
 	}
+})();
+
+(() => {
+	const toc = document.querySelector('.policy__toc');
+	if (!toc) {
+		return;
+	}
+
+	const items = [...toc.querySelectorAll('a[href^="#"]')]
+		.map((link) => {
+			const id = decodeURIComponent(link.getAttribute('href').slice(1));
+			return { link, heading: id ? document.getElementById(id) : null };
+		})
+		.filter((item) => item.heading);
+
+	if (!items.length || !('IntersectionObserver' in window)) {
+		return;
+	}
+
+	const setActive = (id) => {
+		items.forEach(({ link, heading }) => {
+			const active = heading.id === id;
+			link.classList.toggle('is-active', active);
+			if (active) {
+				link.setAttribute('aria-current', 'true');
+			} else {
+				link.removeAttribute('aria-current');
+			}
+		});
+	};
+
+	const visible = new Map();
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					visible.set(entry.target.id, entry.boundingClientRect.top);
+				} else {
+					visible.delete(entry.target.id);
+				}
+			});
+
+			if (!visible.size) {
+				return;
+			}
+
+			const [id] = [...visible.entries()].sort((a, b) => a[1] - b[1])[0];
+			setActive(id);
+		},
+		{
+			rootMargin: '-15% 0px -70% 0px',
+			threshold: 0,
+		}
+	);
+
+	items.forEach(({ heading }) => observer.observe(heading));
 })();

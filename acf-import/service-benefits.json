@@ -29,7 +29,7 @@
                 "label": "Текст біля першої картки",
                 "name": "service_benefits_intro",
                 "aria-label": "",
-                "type": "textarea",
+                "type": "wysiwyg",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -39,18 +39,18 @@
                     "id": ""
                 },
                 "default_value": "",
-                "maxlength": "",
                 "allow_in_bindings": 0,
-                "rows": 4,
-                "placeholder": "",
-                "new_lines": ""
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
             },
             {
                 "key": "field_zadzerkalya_service_benefits_aside",
                 "label": "Текст лівої колонки",
                 "name": "service_benefits_aside",
                 "aria-label": "",
-                "type": "textarea",
+                "type": "wysiwyg",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -60,11 +60,11 @@
                     "id": ""
                 },
                 "default_value": "",
-                "maxlength": "",
                 "allow_in_bindings": 0,
-                "rows": 4,
-                "placeholder": "",
-                "new_lines": ""
+                "tabs": "all",
+                "toolbar": "basic",
+                "media_upload": 0,
+                "delay": 0
             },
             {
                 "key": "field_zadzerkalya_service_benefits_image",

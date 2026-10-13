@@ -82,7 +82,7 @@ if ( is_array( $rows ) ) {
 		$question = isset( $row['question'] ) ? trim( (string) $row['question'] ) : '';
 		$answer   = isset( $row['answer'] ) ? trim( (string) $row['answer'] ) : '';
 
-		if ( '' === $question && '' === $answer ) {
+		if ( '' === $question && '' === trim( wp_strip_all_tags( $answer ) ) ) {
 			continue;
 		}
 
@@ -124,7 +124,15 @@ $image = zadzerkalya_field( 'faq_image' );
 						<div class="faq__panel">
 							<div class="faq__panel-inner">
 								<span class="faq__line" aria-hidden="true"></span>
-								<p><?php echo esc_html( $item['answer'] ); ?></p>
+								<div class="faq__answer">
+									<?php
+									$answer = (string) $item['answer'];
+									if ( $answer === wp_strip_all_tags( $answer ) ) {
+										$answer = wpautop( $answer );
+									}
+									echo wp_kses_post( $answer );
+									?>
+								</div>
 							</div>
 						</div>
 					</details>

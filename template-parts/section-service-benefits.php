@@ -98,6 +98,20 @@ if ( ! $cards ) {
 	$cards = $default_cards;
 }
 
+$format_html = static function ( $value ) {
+	$value = trim( (string) $value );
+
+	if ( '' === trim( wp_strip_all_tags( $value ) ) ) {
+		return '';
+	}
+
+	if ( $value === wp_strip_all_tags( $value ) ) {
+		$value = wpautop( $value );
+	}
+
+	return wp_kses_post( $value );
+};
+
 $title = trim( (string) $args['title'] );
 $intro = trim( (string) $args['intro'] );
 $aside = trim( (string) $args['aside'] );
@@ -108,6 +122,9 @@ if ( ! $has_custom ) {
 	$aside = __( 'Ми прагнемо не просто зменшити труднощі, а допомогти дитині відчути впевненість, розкрити свій потенціал і набути необхідних навичок для щасливого життя.', 'zadzerkalya' );
 }
 
+$intro_html = $format_html( $intro );
+$aside_html = $format_html( $aside );
+
 if ( '' === trim( (string) $args['button_label'] ) ) {
 	$args['button_label'] = __( 'забронювати первинну консультацію', 'zadzerkalya' );
 }
@@ -117,10 +134,9 @@ if ( '' === $button_url ) {
 	$button_url = zadzerkalya_get_page_url( 'contacts' );
 }
 
-$show_row   = (bool) $args['show_row'];
-$show_row_2 = (bool) $args['show_row_2'];
-$visible    = array();
+$show_row = (bool) $args['show_row'];
 
+$slots = array();
 foreach ( $cards as $index => $card ) {
 	if ( ! $card['show'] ) {
 		continue;
@@ -128,18 +144,26 @@ foreach ( $cards as $index => $card ) {
 	if ( in_array( $index, array( 1, 2 ), true ) && ! $show_row ) {
 		continue;
 	}
-	if ( $index >= 5 && ! $show_row_2 ) {
-		continue;
-	}
 	if ( '' === $card['title'] && '' === $card['description'] ) {
 		continue;
 	}
-	$card['number'] = $index + 1;
-	$visible[]      = $card;
+	$card['number']  = $index + 1;
+	$slots[ $index ] = $card;
 }
 
-$lead  = $visible ? array_shift( $visible ) : null;
-$pairs = array_chunk( $visible, 2 );
+$lead = $slots[0] ?? null;
+$rows = array();
+foreach ( array( array( 1, 2 ), array( 3, 4 ), array( 5, 6, 7 ) ) as $group ) {
+	$row = array();
+	foreach ( $group as $index ) {
+		if ( isset( $slots[ $index ] ) ) {
+			$row[] = $slots[ $index ];
+		}
+	}
+	if ( $row ) {
+		$rows[] = $row;
+	}
+}
 
 $render_card = static function ( $card ) {
 	$number = (string) ( $card['number'] ?? 1 );
@@ -192,9 +216,9 @@ $render_card = static function ( $card ) {
 ?>
 <section class="service-benefits" aria-labelledby="service-benefits-title">
 	<div class="service-benefits__aside">
-		<?php if ( $aside ) : ?>
+		<?php if ( $aside_html ) : ?>
 			<div class="service-benefits__aside-text">
-				<p><?php echo esc_html( $aside ); ?></p>
+				<?php echo $aside_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		<?php endif; ?>
 		<div class="service-benefits__aside-foot">
@@ -221,10 +245,10 @@ $render_card = static function ( $card ) {
 		<?php endif; ?>
 
 		<div class="service-benefits__rows">
-			<?php if ( $intro || $lead ) : ?>
+			<?php if ( $intro_html || $lead ) : ?>
 				<div class="service-benefits__row service-benefits__row--lead">
-					<?php if ( $intro ) : ?>
-						<p class="service-benefits__intro"><?php echo esc_html( $intro ); ?></p>
+					<?php if ( $intro_html ) : ?>
+						<div class="service-benefits__intro"><?php echo $intro_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 					<?php endif; ?>
 					<?php
 					if ( $lead ) {
@@ -234,9 +258,9 @@ $render_card = static function ( $card ) {
 				</div>
 			<?php endif; ?>
 
-			<?php foreach ( $pairs as $pair ) : ?>
-				<div class="service-benefits__row">
-					<?php foreach ( $pair as $card ) : ?>
+			<?php foreach ( $rows as $row ) : ?>
+				<div class="service-benefits__row<?php echo count( $row ) > 2 ? ' service-benefits__row--triple' : ''; ?>">
+					<?php foreach ( $row as $card ) : ?>
 						<?php $render_card( $card ); ?>
 					<?php endforeach; ?>
 				</div>

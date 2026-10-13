@@ -109,6 +109,25 @@
                     "placeholder": "",
                     "new_lines": "",
                     "parent_repeater": "field_zadzerkalya_reviews_items"
+                },
+                {
+                    "key": "field_zadzerkalya_reviews_item_url",
+                    "label": "Посилання",
+                    "name": "url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "Кнопка «читати далі» веде за цим посиланням.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "100",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_zadzerkalya_reviews_items"
                 }
             ]
         }
@@ -134,5 +153,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790951652
+    "modified": 1791831600
 }

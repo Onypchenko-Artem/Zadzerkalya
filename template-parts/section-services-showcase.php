@@ -22,26 +22,20 @@ $illustration = zadzerkalya_field( 'services_illustration' );
 $card_button = zadzerkalya_field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) );
 $all_label   = zadzerkalya_field( 'services_all_label', __( 'переглянути всі послуги', 'zadzerkalya' ) );
 $all_url     = zadzerkalya_field( 'services_all_url', $archive_url );
-$rows        = function_exists( 'get_field' ) ? get_field( 'services_items' ) : null;
-$items       = array();
+$rows  = function_exists( 'get_field' ) ? get_field( 'services_items' ) : null;
+$items = array();
 
 if ( is_array( $rows ) ) {
 	foreach ( $rows as $row ) {
-		if ( ! is_array( $row ) ) {
-			continue;
-		}
-
-		$item_title = isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
-		$item_url   = isset( $row['url'] ) ? trim( (string) $row['url'] ) : '';
-
-		if ( '' === $item_title ) {
+		$service_id = $row instanceof WP_Post ? (int) $row->ID : absint( $row );
+		if ( ! $service_id || 'service' !== get_post_type( $service_id ) || 'publish' !== get_post_status( $service_id ) ) {
 			continue;
 		}
 
 		$items[] = array(
-			'title' => $item_title,
-			'url'   => $item_url ?: $archive_url,
-			'image' => $row['image'] ?? null,
+			'title' => get_the_title( $service_id ),
+			'url'   => get_permalink( $service_id ),
+			'image' => zadzerkalya_service_showcase_image( $service_id ),
 		);
 	}
 }
@@ -54,7 +48,7 @@ if ( ! $items ) {
 		$items[] = array(
 			'title' => get_the_title(),
 			'url'   => get_permalink(),
-			'image' => get_post_thumbnail_id(),
+			'image' => zadzerkalya_service_showcase_image( get_the_ID() ),
 		);
 	}
 	wp_reset_postdata();

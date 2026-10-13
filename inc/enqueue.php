@@ -32,6 +32,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-service-about'=> array( 'file' => '/assets/css/components/service-about.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-service-cta' => array( 'file' => '/assets/css/components/service-cta.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-event-article'=> array( 'file' => '/assets/css/components/event-article.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
+		'zadzerkalya-policy'      => array( 'file' => '/assets/css/components/policy.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-article-card' => array( 'file' => '/assets/css/components/article-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-articles-feed'=> array( 'file' => '/assets/css/components/articles-feed.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-article-card', 'zadzerkalya-button' ) ),
 		'zadzerkalya-service-card' => array( 'file' => '/assets/css/components/service-card.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),

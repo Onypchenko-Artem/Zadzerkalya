@@ -62,9 +62,10 @@
 
 .services-showcase__grid {
 	display: grid;
-	grid-template-columns: repeat(3, calc(576 * var(--u)));
+	grid-template-columns: repeat(3, minmax(0, calc(576 * var(--u))));
 	gap: calc(48 * var(--u));
 	align-items: stretch;
+	width: 100%;
 }
 
 .services-showcase__illustration-placeholder {
@@ -95,8 +96,8 @@
 	justify-content: center;
 	align-items: center;
 	gap: 0;
-	width: calc(576 * var(--u));
-	max-width: calc(576 * var(--u));
+	width: 100%;
+	max-width: 100%;
 	min-width: 0;
 	height: calc(716 * var(--u));
 	padding: calc(32 * var(--u));
@@ -118,7 +119,7 @@
 
 .services-showcase__card h3 {
 	align-self: stretch;
-	width: calc(496 * var(--u));
+	width: min(100%, calc(496 * var(--u)));
 	height: calc(152 * var(--u));
 	max-height: calc(152 * var(--u));
 	margin-bottom: calc(24 * var(--u));
@@ -131,7 +132,7 @@
 
 .services-showcase__line {
 	flex: 0 0 calc(10 * var(--u));
-	width: calc(508 * var(--u));
+	width: min(100%, calc(508 * var(--u)));
 	height: calc(10 * var(--u));
 	background: url("../../images/service-card-line.svg");
 }
@@ -153,7 +154,7 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	width: calc(506 * var(--u));
+	width: min(100%, calc(506 * var(--u)));
 	height: calc(322 * var(--u));
 	margin: calc(8 * var(--u)) 0;
 	color: var(--color-grey-hug);

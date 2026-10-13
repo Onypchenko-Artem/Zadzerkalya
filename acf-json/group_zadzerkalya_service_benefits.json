@@ -28,7 +28,7 @@
             "label": "Текст біля першої картки",
             "name": "service_benefits_intro",
             "aria-label": "",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -38,18 +38,18 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
             "allow_in_bindings": 0,
-            "rows": 4,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_zadzerkalya_service_benefits_aside",
             "label": "Текст лівої колонки",
             "name": "service_benefits_aside",
             "aria-label": "",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -59,11 +59,11 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
             "allow_in_bindings": 0,
-            "rows": 4,
-            "placeholder": "",
-            "new_lines": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_zadzerkalya_service_benefits_image",
@@ -186,7 +186,7 @@
             "name": "service_benefits_show_row_2",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Show row 2: картки 6, 7 і 8.",
+            "instructions": "Картки 6, 7 і 8 показуються за перемикачем «Показати картку» в кожній картці.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -207,7 +207,7 @@
             "name": "service_benefits_cards",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "До 8 карток. 1 стоїть біля вступного тексту, 2–3 — другий ряд (Show row), 4–5 ховаються окремо (Show card), 6–8 — останній ряд (Show row 2). Номер на картці — це її позиція 1…8.",
+            "instructions": "До 8 карток. 1 стоїть біля вступного тексту, 2–3 — другий ряд (Show row), 4–8 ховаються окремо перемикачем «Показати картку». Номер на картці — це її позиція 1…8.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -343,5 +343,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1791200000
+    "modified": 1791932000
 }

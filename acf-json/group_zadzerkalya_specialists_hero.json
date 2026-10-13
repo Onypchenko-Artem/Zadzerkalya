@@ -27,7 +27,7 @@
             "label": "Текст під заголовком",
             "name": "specialists_hero_quote",
             "aria-label": "",
-            "type": "textarea",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -37,10 +37,10 @@
                 "id": ""
             },
             "default_value": "Кожна велика історія починається з рішення і волі однієї людини",
-            "rows": 3,
-            "new_lines": "",
-            "maxlength": "",
-            "placeholder": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_zadzerkalya_specialists_hero_scene",
@@ -116,5 +116,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1758753600
+    "modified": 1791834000
 }

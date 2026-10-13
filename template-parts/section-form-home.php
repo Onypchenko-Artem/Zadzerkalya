@@ -21,7 +21,7 @@ $args = wp_parse_args(
 		<img class="form-home__background-right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>" alt="">
 	</div>
 
-	<div class="form-home__content">
+	<div class="form-home__content" id="contact-form">
 		<header class="form-home__heading">
 			<h2 id="form-home-title"><?php echo esc_html( $args['title'] ); ?></h2>
 			<p><?php echo esc_html( $args['description'] ); ?></p>

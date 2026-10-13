@@ -41,9 +41,10 @@ if ( $author_raw instanceof WP_Post ) {
 	$author = get_post( (int) $author_raw['ID'] );
 }
 
-$author_name     = $author ? get_the_title( $author ) : '';
-$author_position = $author ? get_post_meta( $author->ID, '_zdk_position', true ) : '';
-$author_url      = $author ? get_permalink( $author ) : '';
+$author_name      = $author ? get_the_title( $author ) : '';
+$author_position  = $author ? get_post_meta( $author->ID, '_zdk_position', true ) : '';
+$author_education = $author ? get_post_meta( $author->ID, '_zdk_education', true ) : '';
+$author_url       = $author ? get_permalink( $author ) : '';
 
 $date_display = '';
 if ( $date ) {
@@ -124,6 +125,11 @@ if ( $price ) {
 					<span class="event-article__rule" aria-hidden="true"></span>
 					<?php if ( $author_position ) : ?>
 						<p class="event-article__author-position"><?php echo esc_html( $author_position ); ?></p>
+					<?php endif; ?>
+					<?php if ( $author_education ) : ?>
+						<p class="event-article__author-education"><?php echo esc_html( sprintf( __( 'Освіта: %s', 'zadzerkalya' ), $author_education ) ); ?></p>
+					<?php endif; ?>
+					<?php if ( $author_position || $author_education ) : ?>
 						<span class="event-article__rule" aria-hidden="true"></span>
 					<?php endif; ?>
 					<p class="event-article__author-role"><?php esc_html_e( 'автор статті', 'zadzerkalya' ); ?></p>

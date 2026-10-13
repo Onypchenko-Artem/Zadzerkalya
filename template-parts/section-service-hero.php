@@ -78,12 +78,12 @@ if ( $background_url ) {
 						</nav>
 
 						<div class="service-hero__title">
-							<h1 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo wp_kses( nl2br( esc_html( $title ) ), array( 'br' => array() ) ); ?></h1>
+							<h1 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo wp_kses( nl2br( $title ), array( 'br' => array() ) ); ?></h1>
 
 							<?php if ( $show_description || $show_button ) : ?>
 								<div class="service-hero__copy">
 									<?php if ( $show_description ) : ?>
-										<div class="service-hero__description"><?php echo wp_kses_post( wpautop( $description ) ); ?></div>
+										<div class="service-hero__description"><?php echo wp_kses( wpautop( $description ), array( 'p' => array(), 'br' => array() ) ); ?></div>
 									<?php endif; ?>
 
 									<?php if ( $show_button ) : ?>

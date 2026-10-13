@@ -49,6 +49,7 @@
 	gap: calc(104 * var(--u));
 	width: calc(798 * var(--u));
 	transform: translateX(-50%);
+	scroll-margin-top: calc(148 * var(--u));
 }
 
 .form-home__heading {

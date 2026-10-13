@@ -135,8 +135,8 @@
             "label": "Картки послуг",
             "name": "services_items",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Якщо карток немає, показуються останні послуги з розділу «Послуги», а якщо їх немає — стандартні назви з теми.",
+            "type": "relationship",
+            "instructions": "Оберіть існуючі послуги. Порядок у правому стовпці — це порядок карток на головній. Якщо нічого не обрано, показуються останні послуги.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -144,83 +144,25 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "field_zadzerkalya_services_item_title",
-            "button_label": "Додати послугу",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_services_item_title",
-                    "label": "Назва",
-                    "name": "title",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "40",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_zadzerkalya_services_items"
-                },
-                {
-                    "key": "field_zadzerkalya_services_item_image",
-                    "label": "Фото",
-                    "name": "image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "30",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "id",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "jpg,jpeg,png,webp",
-                    "allow_in_bindings": 0,
-                    "preview_size": "medium",
-                    "parent_repeater": "field_zadzerkalya_services_items"
-                },
-                {
-                    "key": "field_zadzerkalya_services_item_url",
-                    "label": "Посилання",
-                    "name": "url",
-                    "aria-label": "",
-                    "type": "url",
-                    "instructions": "Якщо порожньо, кнопка веде на архів послуг.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "30",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "parent_repeater": "field_zadzerkalya_services_items"
-                }
-            ]
+            "post_type": [
+                "service"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": [
+                "featured_image"
+            ],
+            "bidirectional": 0,
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -244,5 +186,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790951652
+    "modified": 1791830800
 }

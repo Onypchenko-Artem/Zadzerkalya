@@ -31,6 +31,7 @@ function zadzerkalya_register_post_types() {
 				'use_featured_image'    => __( 'Використати як фото', 'zadzerkalya' ),
 			),
 			'public'              => true,
+			'show_in_nav_menus'   => true,
 			'has_archive'         => ! zadzerkalya_get_specialists_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'specialists',
@@ -60,6 +61,7 @@ function zadzerkalya_register_post_types() {
 				'menu_name'          => __( 'Послуги', 'zadzerkalya' ),
 			),
 			'public'              => true,
+			'show_in_nav_menus'   => true,
 			'has_archive'         => ! zadzerkalya_get_services_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'services',
@@ -89,6 +91,7 @@ function zadzerkalya_register_post_types() {
 				'menu_name'          => __( 'Події', 'zadzerkalya' ),
 			),
 			'public'              => true,
+			'show_in_nav_menus'   => true,
 			'has_archive'         => ! zadzerkalya_get_events_page_id(),
 			'rewrite'             => array(
 				'slug'       => 'events',
@@ -102,6 +105,24 @@ function zadzerkalya_register_post_types() {
 	);
 }
 add_action( 'init', 'zadzerkalya_register_post_types' );
+
+/**
+ * У «Зовнішній вигляд → Меню» WordPress ховає всі типи записів, крім сторінок і записів.
+ */
+function zadzerkalya_show_post_types_in_nav_menus( $hidden, $screen ) {
+	if ( ! $screen instanceof WP_Screen || 'nav-menus' !== $screen->id ) {
+		return $hidden;
+	}
+
+	$visible = array(
+		'add-post-type-service',
+		'add-post-type-specialist',
+		'add-post-type-event',
+	);
+
+	return array_values( array_diff( (array) $hidden, $visible ) );
+}
+add_filter( 'hidden_meta_boxes', 'zadzerkalya_show_post_types_in_nav_menus', 10, 2 );
 
 /**
  * Після створення сторінки «Спеціалісти» архів поступається її адресою.

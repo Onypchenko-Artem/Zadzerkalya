@@ -10,7 +10,7 @@
  *     @type mixed  $photo       Зображення ACF (id, масив або URL).
  *     @type mixed  $background  Фон банера (id, масив або URL).
  *     @type string $current     Поточний пункт хлібних крихт.
- *     @type string $crumb_label Середній пункт хлібних крихт (напр. «Події», «Блог»).
+ *     @type string $crumb_label Середній пункт хлібних крихт (напр. «Події», «Блог»). Порожній рядок — без середнього пункту.
  *     @type string $crumb_url   URL середнього пункту.
  *     @type string $heading_id  id заголовка.
  * }
@@ -49,8 +49,14 @@ if ( $background_url ) {
 					<div class="event-hero__breadcrumbs-container">
 						<nav class="event-hero__breadcrumbs" aria-label="<?php esc_attr_e( 'Навігаційний ланцюжок', 'zadzerkalya' ); ?>">
 							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Головна', 'zadzerkalya' ); ?></a>
-							<span class="event-hero__crumb-arrow" aria-hidden="true"></span>
-							<a href="<?php echo esc_url( $crumb_url ); ?>"><?php echo esc_html( $crumb_label ); ?></a>
+							<?php if ( '' !== trim( (string) $crumb_label ) ) : ?>
+								<span class="event-hero__crumb-arrow" aria-hidden="true"></span>
+								<?php if ( $crumb_url ) : ?>
+									<a href="<?php echo esc_url( $crumb_url ); ?>"><?php echo esc_html( $crumb_label ); ?></a>
+								<?php else : ?>
+									<span><?php echo esc_html( $crumb_label ); ?></span>
+								<?php endif; ?>
+							<?php endif; ?>
 							<span class="event-hero__crumb-arrow" aria-hidden="true"></span>
 							<span aria-current="page"><?php echo esc_html( $current ); ?></span>
 						</nav>
@@ -59,7 +65,15 @@ if ( $background_url ) {
 						<div class="event-hero__title<?php echo $has_description ? '' : ' event-hero__title--solo'; ?>">
 							<h1 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo esc_html( $title ); ?></h1>
 							<?php if ( $has_description ) : ?>
-								<div class="event-hero__description"><?php echo wp_kses_post( wpautop( $description ) ); ?></div>
+								<div class="event-hero__description">
+									<?php
+									$description_html = (string) $description;
+									if ( $description_html === wp_strip_all_tags( $description_html ) ) {
+										$description_html = wpautop( $description_html );
+									}
+									echo wp_kses_post( $description_html );
+									?>
+								</div>
 							<?php endif; ?>
 						</div>
 					</div>

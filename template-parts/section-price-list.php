@@ -5,58 +5,30 @@
  * @package Zadzerkalya
  */
 
-$fallback_items = array(
-	array( 'title' => 'Первинна консультація', 'price' => '850 грн' ),
-	array( 'title' => 'Індивідуальне заняття', 'price' => '650 грн' ),
-	array( 'title' => 'Групові заняття', 'price' => '550 грн' ),
-	array( 'title' => 'Підготовка до школи (груповий формат)', 'price' => '550 грн' ),
-	array( 'title' => 'Підготовка до школи (індивідуальний формат)', 'price' => '650 грн' ),
-	array( 'title' => 'Консультація для батьків', 'price' => '850 грн' ),
-	array( 'title' => 'Туалетний тренінг', 'price' => '850 грн' ),
-	array( 'title' => '«Маленький садочок»', 'price' => '1050 грн (3 години)' ),
-	array( 'title' => 'Масаж', 'price' => '700 грн' ),
-	array( 'title' => 'Терапія TOMATIS', 'price' => '10 600 грн' ),
-	array( 'title' => 'Діагностика ADOS-2', 'price' => '2000/2500 грн' ),
-	array( 'title' => 'Діагностика РДУГ CONNERS-3', 'price' => '2500/3000 грн' ),
-	array( 'title' => 'Нейродіагностика', 'price' => '2500 грн' ),
-	array( 'title' => 'Діагностика VB-MAPP', 'price' => 'від 5000 грн' ),
-	array( 'title' => 'Профорієнтаційне тестування', 'price' => '2000 грн' ),
-	array( 'title' => 'Написання характеристики дитини', 'price' => 'від 500 грн' ),
-	array( 'title' => 'Складання індивідуальної програми розвитку', 'price' => 'від 3000 грн' ),
-	array( 'title' => 'Психотерапія', 'price' => '850 грн' ),
-	array( 'title' => 'Консультація психіатра', 'price' => '600/800 грн' ),
-	array( 'title' => 'Тренінг «Стоп-незнайомець» (груповий формат)', 'price' => '350 грн' ),
-	array( 'title' => 'Тренінг «Стоп-незнайомець» (індивідуальний формат)', 'price' => 'від 650 грн' ),
+$items = array(
+	array( 'title' => 'Первинна консультація', 'price' => '850 ₴' ),
+	array( 'title' => 'Індивідуальне заняття', 'price' => '700 ₴' ),
+	array( 'title' => 'Групове заняття', 'price' => '600 ₴' ),
+	array( 'title' => 'Підготовка до школи', 'price' => '600 ₴ (груповий формат), 700 ₴ (індивідуальний формат)' ),
+	array( 'title' => 'Консультація для батьків', 'price' => '850 ₴' ),
+	array( 'title' => 'Туалетний тренінг', 'price' => '850 ₴' ),
+	array( 'title' => 'Корекція харчової поведінки', 'price' => '750 ₴' ),
+	array( 'title' => '«Маленький садочок»', 'price' => '1050 ₴ (3 години)' ),
+	array( 'title' => 'Масаж', 'price' => '750 ₴' ),
+	array( 'title' => 'Психотерапія', 'price' => '850 ₴' ),
+	array( 'title' => 'Психолог для підлітків', 'price' => '750 ₴' ),
+	array( 'title' => 'Діагностика ADOS-2', 'price' => '2500\\3000 ₴' ),
+	array( 'title' => 'Діагностика РДУГ CONNERS-3', 'price' => '2500\\3000 ₴' ),
+	array( 'title' => 'Нейродіагностика', 'price' => '2500 ₴' ),
+	array( 'title' => 'Діагностика VB-MAPP', 'price' => 'від 5000 ₴' ),
+	array( 'title' => 'Складання індивідуальної програми розвитку', 'price' => 'від 3000 ₴' ),
+	array( 'title' => 'Консультації для асистентів, вихователів та вчителів', 'price' => 'від 2000 ₴' ),
+	array( 'title' => 'Терапія TOMATIS', 'price' => '10 600 ₴' ),
+	array( 'title' => 'Консультація психіатра', 'price' => '600-800 ₴' ),
+	array( 'title' => 'Профорієнтаційне тестування', 'price' => '2500 ₴' ),
+	array( 'title' => 'Написання характеристики дитини', 'price' => 'від 500 ₴' ),
+	array( 'title' => 'Тренінг «Стоп-незнайомець»', 'price' => '400 ₴ (груповий формат), від 700 ₴ (індивідуальний формат)' ),
 );
-$items          = array();
-$services       = new WP_Query(
-	array(
-		'post_type'      => 'service',
-		'posts_per_page' => -1,
-		'orderby'        => array(
-			'menu_order' => 'ASC',
-			'title'      => 'ASC',
-		),
-		'order'          => 'ASC',
-	)
-);
-
-while ( $services->have_posts() ) {
-	$services->the_post();
-	$price = zadzerkalya_service_price_html();
-
-	if ( $price ) {
-		$items[] = array(
-			'title' => get_the_title(),
-			'price' => $price,
-		);
-	}
-}
-wp_reset_postdata();
-
-if ( ! $items ) {
-	$items = $fallback_items;
-}
 
 $booking_url = zadzerkalya_get_page_url( 'contacts' );
 ?>

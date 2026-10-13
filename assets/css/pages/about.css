@@ -109,17 +109,30 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: calc(135 * var(--u));
+	gap: calc(72 * var(--u));
 	width: calc(872 * var(--u));
 }
 
-.about-hero__footer p {
+.about-hero__footer p,
+.about-hero__quote :is(ul, ol) {
 	max-width: calc(573 * var(--u));
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
 	font-weight: 400;
 	line-height: 1.35;
+}
+
+.about-hero__quote :is(ul, ol) {
+	padding-left: 1.2em;
+}
+
+.about-hero__quote :is(p, ul, ol) + :is(p, ul, ol) {
+	margin-top: 0.65em;
+}
+
+.about-hero__quote a {
+	text-decoration: underline;
 }
 
 .about-hero__footer img {
@@ -330,7 +343,7 @@
 }
 
 .about-mission {
-	padding: calc(200 * var(--u)) calc(48 * var(--u)) 0;
+	padding: calc(80 * var(--u)) calc(48 * var(--u)) 0;
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
 }
@@ -350,7 +363,7 @@
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -436,7 +449,7 @@
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -460,7 +473,7 @@
 }
 
 .about-values {
-	padding: calc(100 * var(--u)) calc(49 * var(--u)) calc(200 * var(--u));
+	padding: calc(100 * var(--u)) calc(49 * var(--u)) calc(80 * var(--u));
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
 }
@@ -493,7 +506,7 @@
 
 .about-values__image {
 	width: 100%;
-	height: calc(663 * var(--u));
+	height: 100%;
 	border-radius: calc(32 * var(--u));
 	object-fit: cover;
 }
@@ -549,7 +562,7 @@
 	margin: 0 0 calc(24 * var(--u));
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -748,7 +761,7 @@
 }
 
 .about-ending {
-	padding: calc(100 * var(--u)) calc(48 * var(--u)) 0;
+	padding: 0 calc(48 * var(--u));
 	overflow: hidden;
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
@@ -810,6 +823,7 @@
 	left: calc(34 * var(--u));
 	width: calc(1697 * var(--u));
 	height: calc(135 * var(--u));
+	clip-path: inset(0 3.12% 0 0);
 }
 
 .about-ending__curve-text {
@@ -940,7 +954,8 @@
 		width: 100%;
 	}
 
-	.about-hero__footer p {
+	.about-hero__footer p,
+	.about-hero__quote :is(ul, ol) {
 		max-width: 360px;
 		font-size: 18px;
 	}
@@ -1414,7 +1429,8 @@
 		gap: 32px;
 	}
 
-	.about-hero__footer p {
+	.about-hero__footer p,
+	.about-hero__quote :is(ul, ol) {
 		max-width: 290px;
 		font-size: 16px;
 	}

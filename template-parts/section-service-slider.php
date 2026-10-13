@@ -43,6 +43,7 @@ if ( ! $query instanceof WP_Query || ! $query->have_posts() ) {
 						'service',
 						array(
 							'button_label' => $button,
+							'button_url'   => '#contact-form',
 						)
 					);
 					?>

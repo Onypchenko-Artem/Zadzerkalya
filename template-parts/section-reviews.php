@@ -51,6 +51,7 @@ if ( is_array( $rows ) ) {
 
 		$name = isset( $row['name'] ) ? trim( (string) $row['name'] ) : '';
 		$text = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
+		$url  = isset( $row['url'] ) ? trim( (string) $row['url'] ) : '';
 
 		if ( '' === $name && '' === trim( wp_strip_all_tags( $text ) ) ) {
 			continue;
@@ -59,6 +60,7 @@ if ( is_array( $rows ) ) {
 		$reviews[] = array(
 			'name' => $name,
 			'text' => $text,
+			'url'  => $url,
 		);
 	}
 }
@@ -114,16 +116,23 @@ $total = count( $reviews );
 						<span class="reviews__line" aria-hidden="true"></span>
 						<div class="reviews__text"><?php echo $format_review( $review['text'] ); ?></div>
 						<span class="reviews__line reviews__line--reverse" aria-hidden="true"></span>
-						<button
-							type="button"
-							class="reviews__more"
-							aria-expanded="false"
-							data-collapsed-label="<?php esc_attr_e( 'читати далі', 'zadzerkalya' ); ?>"
-							data-expanded-label="<?php esc_attr_e( 'згорнути', 'zadzerkalya' ); ?>"
-						>
-							<span><?php esc_html_e( 'читати далі', 'zadzerkalya' ); ?></span>
-							<i aria-hidden="true"></i>
-						</button>
+						<?php if ( ! empty( $review['url'] ) ) : ?>
+							<a class="reviews__more" href="<?php echo esc_url( $review['url'] ); ?>">
+								<span><?php esc_html_e( 'читати далі', 'zadzerkalya' ); ?></span>
+								<i aria-hidden="true"></i>
+							</a>
+						<?php else : ?>
+							<button
+								type="button"
+								class="reviews__more"
+								aria-expanded="false"
+								data-collapsed-label="<?php esc_attr_e( 'читати далі', 'zadzerkalya' ); ?>"
+								data-expanded-label="<?php esc_attr_e( 'згорнути', 'zadzerkalya' ); ?>"
+							>
+								<span><?php esc_html_e( 'читати далі', 'zadzerkalya' ); ?></span>
+								<i aria-hidden="true"></i>
+							</button>
+						<?php endif; ?>
 					</article>
 				<?php endforeach; ?>
 			</div>

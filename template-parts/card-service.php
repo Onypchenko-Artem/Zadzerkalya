@@ -6,11 +6,13 @@
  *
  * @var array $args {
  *     @type string $button_label Текст кнопки.
+ *     @type string $button_url   Посилання кнопки. Порожньо — сторінка послуги.
  * }
  */
 
 $button_label = $args['button_label'] ?? __( 'забронювати первинну консультацію', 'zadzerkalya' );
 $permalink    = get_permalink();
+$button_url   = $args['button_url'] ?? $permalink;
 ?>
 <article <?php post_class( 'service-card' ); ?>>
 	<div class="service-card__head">
@@ -44,7 +46,7 @@ $permalink    = get_permalink();
 	zadzerkalya_button(
 		array(
 			'label'   => $button_label,
-			'url'     => $permalink,
+			'url'     => $button_url,
 			'variant' => 'primary',
 		)
 	);

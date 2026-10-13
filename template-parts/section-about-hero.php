@@ -53,7 +53,15 @@ if ( $background_url ) {
 			</div>
 
 			<div class="about-hero__footer">
-				<p><?php echo esc_html( $quote ); ?></p>
+				<div class="about-hero__quote">
+					<?php
+					$quote_html = (string) $quote;
+					if ( $quote_html === wp_strip_all_tags( $quote_html ) ) {
+						$quote_html = wpautop( $quote_html );
+					}
+					echo wp_kses_post( $quote_html );
+					?>
+				</div>
 				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-left-line.svg' ); ?>" alt="" aria-hidden="true">
 			</div>
 		</div>

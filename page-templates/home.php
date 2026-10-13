@@ -65,10 +65,13 @@ if ( ! $hero_btn ) {
 								<label for="hero-name"><?php esc_html_e( 'Імʼя*', 'zadzerkalya' ); ?></label>
 								<input id="hero-name" name="zadzerkalya_name" type="text" autocomplete="name" required>
 							</p>
-							<p class="hero-field">
-								<label for="hero-phone"><?php esc_html_e( 'Телефон*', 'zadzerkalya' ); ?></label>
-								<input id="hero-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
-							</p>
+							<div class="hero-field-stack">
+								<p class="hero-field">
+									<label for="hero-phone"><?php esc_html_e( 'Телефон*', 'zadzerkalya' ); ?></label>
+									<input id="hero-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
+								</p>
+								<?php zadzerkalya_form_consent(); ?>
+							</div>
 							<?php
 							zadzerkalya_button(
 								array(

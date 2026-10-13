@@ -143,6 +143,11 @@
 
 .service-hero__description p {
 	margin: 0;
+	white-space: normal;
+}
+
+.service-hero__description br {
+	display: block;
 }
 
 .service-hero__copy .lottie-button--primary {

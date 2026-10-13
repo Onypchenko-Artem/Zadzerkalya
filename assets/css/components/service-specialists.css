@@ -47,7 +47,7 @@
 	min-width: 0;
 	min-height: calc(390 * var(--u));
 	padding: calc(44 * var(--u));
-	background: var(--color-chewing-gum);
+	background: transparent;
 	border: 0;
 	border-radius: calc(44 * var(--u));
 }

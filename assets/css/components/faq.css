@@ -164,13 +164,27 @@
 	background: url("../../images/faq-line.svg") center / 100% 100% no-repeat;
 }
 
-.faq__item p {
+.faq__item p,
+.faq__answer :is(ul, ol) {
 	width: calc(820 * var(--u));
 	max-width: 100%;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
 	font-weight: var(--text-body-l-weight);
 	line-height: 1.35;
+}
+
+.faq__answer :is(ul, ol) {
+	margin: 0;
+	padding-left: 1.2em;
+}
+
+.faq__answer :is(p, ul, ol) + :is(p, ul, ol) {
+	margin-top: 0.65em;
+}
+
+.faq__answer a {
+	text-decoration: underline;
 }
 
 @media (max-width: 1279px) {
@@ -223,7 +237,8 @@
 		font-size: 19px;
 	}
 
-	.faq__item p {
+	.faq__item p,
+	.faq__answer :is(ul, ol) {
 		width: 100%;
 		font-size: 19px;
 	}
@@ -284,7 +299,8 @@
 		font-size: 16px;
 	}
 
-	.faq__item p {
+	.faq__item p,
+	.faq__answer :is(ul, ol) {
 		font-size: 14px;
 	}
 
