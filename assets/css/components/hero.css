@@ -76,7 +76,8 @@
 	flex-direction: column;
 	align-items: flex-start;
 	flex: none;
-	gap: calc(58 * var(--u));
+	gap: calc(38 * var(--u));
+	padding-top: calc(20 * var(--u));
 	width: calc(393 * var(--u));
 	min-height: calc(407 * var(--u));
 }

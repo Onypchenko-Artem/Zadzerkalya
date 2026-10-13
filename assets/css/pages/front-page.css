@@ -7,7 +7,7 @@
 	z-index: 1;
 }
 
-.home .site-main > .form-home {
+.home .site-main > .faq-scroll + .form-home {
 	margin-top: calc(-200 * var(--u));
 }
 
@@ -16,7 +16,7 @@
 		margin-top: 120px;
 	}
 
-	.home .site-main > .form-home {
+	.home .site-main > .faq-scroll + .form-home {
 		margin-top: -120px;
 	}
 }
@@ -26,7 +26,7 @@
 		margin-top: 80px;
 	}
 
-	.home .site-main > .form-home {
+	.home .site-main > .faq-scroll + .form-home {
 		margin-top: -80px;
 	}
 }
