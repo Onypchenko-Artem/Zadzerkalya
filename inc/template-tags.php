@@ -722,10 +722,630 @@ function zadzerkalya_policy_heading_id( $text, &$seen ) {
 }
 
 /**
- * Зміст політики з заголовків тексту і якорі на цих заголовках.
+ * Текст пункту списку без вкладених списків.
  *
- * Перший h2 — назва документа в колонці тексту, у зміст не потрапляє.
- * Далі до змісту йдуть h3 розділів і наступні h2 (наприклад, згода).
+ * @param DOMElement $node Елемент пункту або заголовка.
+ * @return string
+ */
+function zadzerkalya_policy_node_label( DOMElement $node ) {
+	$clone = $node->cloneNode( true );
+	$lists = array();
+
+	foreach ( array( 'ol', 'ul' ) as $tag ) {
+		$found = $clone->getElementsByTagName( $tag );
+		foreach ( $found as $list ) {
+			$lists[] = $list;
+		}
+	}
+
+	foreach ( $lists as $list ) {
+		if ( $list->parentNode ) {
+			$list->parentNode->removeChild( $list );
+		}
+	}
+
+	$text = preg_replace( '/\s+/u', ' ', $clone->textContent );
+
+	return trim( is_string( $text ) ? $text : '' );
+}
+
+/**
+ * Заголовок верхнього пункту списку, без заголовків із вкладених списків.
+ *
+ * @param DOMElement $item Пункт списку.
+ * @param DOMXPath   $xpath Запит по дереву.
+ * @return DOMElement|null
+ */
+function zadzerkalya_policy_item_heading( DOMElement $item, DOMXPath $xpath ) {
+	$heading = $xpath->query( './/*[self::h2 or self::h3 or self::h4][count(ancestor::ol)=1]', $item );
+
+	if ( $heading && $heading->length && $heading->item( 0 ) instanceof DOMElement ) {
+		return $heading->item( 0 );
+	}
+
+	return null;
+}
+
+/**
+ * Чи є в елемента клас.
+ *
+ * @param DOMElement $node  Елемент.
+ * @param string     $class Клас.
+ * @return bool
+ */
+function zadzerkalya_policy_has_class( DOMElement $node, $class ) {
+	$classes = preg_split( '/\s+/', trim( $node->getAttribute( 'class' ) ) );
+
+	return is_array( $classes ) && in_array( $class, $classes, true );
+}
+
+/**
+ * Шаблон підписів контактного рядка.
+ *
+ * @return string
+ */
+function zadzerkalya_policy_contact_label_pattern() {
+	return '(?:e-?mail|email|ел\.?\s*пошта|електронна\s+пошта|тел(?:ефон)?|phone|tel|адреса|address|telegram|viber|instagram|facebook|сайт|website)';
+}
+
+/**
+ * Відомий підпис контакту: E-mail, Телефон, Адреса тощо.
+ *
+ * @param string $label Підпис без двокрапки.
+ * @return bool
+ */
+function zadzerkalya_policy_is_known_contact_label( $label ) {
+	$pattern = '/^' . zadzerkalya_policy_contact_label_pattern() . '$/iu';
+
+	return (bool) preg_match( $pattern, trim( (string) $label ) );
+}
+
+/**
+ * Короткий рядок над контактами, без нумерації пункту і без речення.
+ *
+ * @param string $text Текст абзацу.
+ * @return bool
+ */
+function zadzerkalya_policy_is_contact_title( $text ) {
+	$text   = trim( (string) $text );
+	$length = mb_strlen( $text );
+
+	if ( $length < 3 || $length > 140 ) {
+		return false;
+	}
+
+	if ( preg_match( '/^\d+(?:\.\d+)*\.?\s/u', $text ) ) {
+		return false;
+	}
+
+	if ( preg_match( '/[.!?](?:\s|$)/u', $text ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Внутрішній HTML елемента.
+ *
+ * @param DOMElement $element Елемент.
+ * @return string
+ */
+function zadzerkalya_policy_element_inner_html( DOMElement $element ) {
+	$html = '';
+
+	foreach ( $element->childNodes as $child ) {
+		$html .= $element->ownerDocument->saveHTML( $child );
+	}
+
+	return $html;
+}
+
+/**
+ * Додає фрагмент HTML всередину елемента.
+ *
+ * @param DOMElement $parent Батьківський елемент.
+ * @param string     $html   Фрагмент.
+ */
+function zadzerkalya_policy_append_html( DOMElement $parent, $html ) {
+	$html = trim( (string) $html );
+	if ( '' === $html ) {
+		return;
+	}
+
+	$document = $parent->ownerDocument;
+	if ( ! $document instanceof DOMDocument ) {
+		return;
+	}
+
+	if ( ! preg_match( '/[<&]/', $html ) ) {
+		$parent->appendChild( $document->createTextNode( html_entity_decode( $html, ENT_QUOTES, 'UTF-8' ) ) );
+		return;
+	}
+
+	$fragment = new DOMDocument();
+	$previous = libxml_use_internal_errors( true );
+	$fragment->loadHTML(
+		'<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><div id="zdk-fragment">' . $html . '</div></body></html>'
+	);
+	libxml_clear_errors();
+	libxml_use_internal_errors( $previous );
+
+	$source = ( new DOMXPath( $fragment ) )->query( '//*[@id="zdk-fragment"]' )->item( 0 );
+	if ( ! $source instanceof DOMElement ) {
+		$parent->appendChild( $document->createTextNode( wp_strip_all_tags( $html ) ) );
+		return;
+	}
+
+	foreach ( iterator_to_array( $source->childNodes ) as $child ) {
+		$parent->appendChild( $document->importNode( $child, true ) );
+	}
+}
+
+/**
+ * Нормалізує текст рядка контакту.
+ *
+ * @param string $text Текст.
+ * @return string
+ */
+function zadzerkalya_policy_contact_plain_text( $text ) {
+	$text = html_entity_decode( (string) $text, ENT_QUOTES, 'UTF-8' );
+	$text = str_replace( array( "\xc2\xa0", '：' ), array( ' ', ':' ), $text );
+	$text = preg_replace( '/\s+/u', ' ', $text );
+
+	return trim( is_string( $text ) ? $text : '' );
+}
+
+/**
+ * Ділить абзац на рядки за <br>.
+ *
+ * @param string $html Внутрішній HTML.
+ * @return array<int, array{html: string, text: string}>
+ */
+function zadzerkalya_policy_split_lines( $html ) {
+	$parts = preg_split( '/<br\s*\/?>/i', (string) $html );
+	$lines = array();
+
+	if ( ! is_array( $parts ) ) {
+		return $lines;
+	}
+
+	foreach ( $parts as $part ) {
+		$part = trim( $part );
+		$text = zadzerkalya_policy_contact_plain_text( wp_strip_all_tags( $part ) );
+		if ( '' === $text ) {
+			continue;
+		}
+
+		$lines[] = array(
+			'html' => $part,
+			'text' => $text,
+		);
+	}
+
+	return $lines;
+}
+
+/**
+ * Розбирає рядок «Підпис: значення».
+ *
+ * @param string $html   HTML рядка.
+ * @param string $text   Текст рядка.
+ * @param bool   $strict Лише відомі підписи.
+ * @return array{label: string, value: string}|null
+ */
+function zadzerkalya_policy_parse_contact_line( $html, $text, $strict ) {
+	if ( ! preg_match( '/^([^:]+):\s*(.+)$/u', $text, $matches ) ) {
+		return null;
+	}
+
+	$label = trim( $matches[1] );
+	$value = trim( $matches[2] );
+	if ( '' === $label || '' === $value || mb_strlen( $label ) > 40 ) {
+		return null;
+	}
+
+	if ( $strict && ! zadzerkalya_policy_is_known_contact_label( $label ) ) {
+		return null;
+	}
+
+	$stripped = preg_replace(
+		'/^\s*(?:<(?:strong|b)[^>]*>\s*)?' . preg_quote( $label, '/' ) . '\s*:\s*(?:\s*<\/(?:strong|b)>)?\s*/iu',
+		'',
+		$html,
+		1,
+		$count
+	);
+
+	if ( ! is_string( $stripped ) || ! $count || '' === trim( wp_strip_all_tags( $stripped ) ) ) {
+		$stripped = esc_html( $value );
+	} else {
+		$stripped = zadzerkalya_policy_contact_value_html( trim( $stripped ) );
+	}
+
+	return array(
+		'label' => $label . ':',
+		'value' => $stripped,
+	);
+}
+
+/**
+ * Робить посилання з голого e-mail або телефону.
+ *
+ * @param string $html Значення.
+ * @return string
+ */
+function zadzerkalya_policy_contact_value_html( $html ) {
+	$plain = trim( wp_strip_all_tags( $html ) );
+	if ( $plain !== trim( $html ) ) {
+		return $html;
+	}
+
+	if ( is_email( $plain ) ) {
+		return '<a href="mailto:' . esc_attr( $plain ) . '">' . esc_html( $plain ) . '</a>';
+	}
+
+	$tel = preg_replace( '/[^\d+]/', '', $plain );
+	if ( is_string( $tel ) && preg_match( '/^\+?\d{10,15}$/', $tel ) && preg_match( '/^\+?[\d\s().-]+$/', $plain ) ) {
+		return '<a href="tel:' . esc_attr( $tel ) . '">' . esc_html( $plain ) . '</a>';
+	}
+
+	return $html;
+}
+
+/**
+ * Чи послідовність рядків є назвою і контактами.
+ *
+ * @param array<int, array{html: string, text: string}> $lines  Рядки.
+ * @param bool                                           $strict Лише відомі підписи.
+ * @return bool
+ */
+function zadzerkalya_policy_lines_are_contact_sequence( array $lines, $strict ) {
+	$seen_row = false;
+
+	foreach ( $lines as $line ) {
+		$row = zadzerkalya_policy_parse_contact_line( $line['html'], $line['text'], $strict );
+		if ( null !== $row ) {
+			$seen_row = true;
+			continue;
+		}
+
+		if ( $seen_row || ( $strict && ! zadzerkalya_policy_is_contact_title( $line['text'] ) ) ) {
+			return false;
+		}
+	}
+
+	return $seen_row;
+}
+
+/**
+ * Збирає назву і рядки контактів.
+ *
+ * @param array<int, array{html: string, text: string}> $lines  Рядки.
+ * @param bool                                           $strict Лише відомі підписи.
+ * @return array{title: string, rows: array<int, array{label: string, value: string}>}|null
+ */
+function zadzerkalya_policy_lines_to_contact( array $lines, $strict ) {
+	$title    = array();
+	$rows     = array();
+	$seen_row = false;
+
+	foreach ( $lines as $line ) {
+		$row = zadzerkalya_policy_parse_contact_line( $line['html'], $line['text'], $strict );
+		if ( null !== $row ) {
+			$seen_row = true;
+			$rows[]   = $row;
+			continue;
+		}
+
+		if ( $seen_row || ( $strict && ! zadzerkalya_policy_is_contact_title( $line['text'] ) ) ) {
+			return null;
+		}
+
+		$title[] = $line['html'];
+	}
+
+	$min_rows = $strict ? 2 : 1;
+	if ( count( $rows ) < $min_rows ) {
+		return null;
+	}
+
+	return array(
+		'title' => implode( ' ', $title ),
+		'rows'  => $rows,
+	);
+}
+
+/**
+ * Рядки зі списку визначень.
+ *
+ * @param DOMElement $list Список.
+ * @return array<int, array{html: string, text: string}>
+ */
+function zadzerkalya_policy_dl_lines( DOMElement $list ) {
+	$lines = array();
+	$label = null;
+
+	foreach ( $list->childNodes as $child ) {
+		if ( ! $child instanceof DOMElement ) {
+			continue;
+		}
+
+		$tag = strtolower( $child->nodeName );
+		if ( 'div' === $tag ) {
+			$lines = array_merge( $lines, zadzerkalya_policy_dl_lines( $child ) );
+			continue;
+		}
+
+		if ( 'dt' === $tag ) {
+			$label = rtrim( zadzerkalya_policy_contact_plain_text( $child->textContent ), ':' );
+			continue;
+		}
+
+		if ( 'dd' === $tag && null !== $label && '' !== $label ) {
+			$value_html = trim( zadzerkalya_policy_element_inner_html( $child ) );
+			$lines[]    = array(
+				'html' => $label . ': ' . $value_html,
+				'text' => zadzerkalya_policy_contact_plain_text( $label . ': ' . $child->textContent ),
+			);
+			$label      = null;
+		}
+	}
+
+	return $lines;
+}
+
+/**
+ * Вузли назви і списку рядків.
+ *
+ * @param DOMDocument                                        $dom        Документ.
+ * @param string                                             $title_html HTML назви.
+ * @param array<int, array{label: string, value: string}>    $rows       Рядки.
+ * @return DOMElement[]
+ */
+function zadzerkalya_policy_create_contact_nodes( DOMDocument $dom, $title_html, array $rows ) {
+	$nodes      = array();
+	$title_html = trim( (string) $title_html );
+
+	if ( '' !== $title_html ) {
+		$title = $dom->createElement( 'p' );
+		$title->setAttribute( 'class', 'policy-contacts__title' );
+		zadzerkalya_policy_append_html( $title, $title_html );
+		$nodes[] = $title;
+	}
+
+	$list = $dom->createElement( 'div' );
+	$list->setAttribute( 'class', 'policy-contacts__list' );
+
+	foreach ( $rows as $row ) {
+		$line = $dom->createElement( 'div' );
+		$line->setAttribute( 'class', 'policy-contacts__row' );
+
+		$label = $dom->createElement( 'span' );
+		$label->setAttribute( 'class', 'policy-contacts__label' );
+		$label->appendChild( $dom->createTextNode( $row['label'] ) );
+
+		$value = $dom->createElement( 'div' );
+		$value->setAttribute( 'class', 'policy-contacts__value' );
+		zadzerkalya_policy_append_html( $value, $row['value'] );
+
+		$line->appendChild( $label );
+		$line->appendChild( $value );
+		$list->appendChild( $line );
+	}
+
+	$nodes[] = $list;
+
+	return $nodes;
+}
+
+/**
+ * Блок контактів із лініями.
+ *
+ * @param DOMDocument                                        $dom        Документ.
+ * @param string                                             $title_html HTML назви.
+ * @param array<int, array{label: string, value: string}>    $rows       Рядки.
+ * @return DOMElement
+ */
+function zadzerkalya_policy_create_contacts_block( DOMDocument $dom, $title_html, array $rows ) {
+	$block = $dom->createElement( 'div' );
+	$block->setAttribute( 'class', 'policy-contacts' );
+
+	foreach ( zadzerkalya_policy_create_contact_nodes( $dom, $title_html, $rows ) as $node ) {
+		$block->appendChild( $node );
+	}
+
+	return $block;
+}
+
+/**
+ * Група policy-contacts: абзаци або список визначень стають рядками з лініями.
+ *
+ * @param DOMElement $group Група.
+ */
+function zadzerkalya_policy_normalize_contact_group( DOMElement $group ) {
+	$container = $group;
+
+	foreach ( $group->childNodes as $child ) {
+		if ( $child instanceof DOMElement && zadzerkalya_policy_has_class( $child, 'wp-block-group__inner-container' ) ) {
+			$container = $child;
+			break;
+		}
+	}
+
+	foreach ( $container->childNodes as $child ) {
+		if ( $child instanceof DOMElement && zadzerkalya_policy_has_class( $child, 'policy-contacts__list' ) ) {
+			return;
+		}
+	}
+
+	$lines = array();
+	$nodes = array();
+
+	foreach ( iterator_to_array( $container->childNodes ) as $child ) {
+		if ( ! $child instanceof DOMElement ) {
+			continue;
+		}
+
+		$tag = strtolower( $child->nodeName );
+		if ( 'dl' === $tag ) {
+			$lines   = array_merge( $lines, zadzerkalya_policy_dl_lines( $child ) );
+			$nodes[] = $child;
+			continue;
+		}
+
+		if ( 'p' === $tag ) {
+			$lines   = array_merge( $lines, zadzerkalya_policy_split_lines( zadzerkalya_policy_element_inner_html( $child ) ) );
+			$nodes[] = $child;
+		}
+	}
+
+	$parsed = zadzerkalya_policy_lines_to_contact( $lines, false );
+	if ( null === $parsed || ! $nodes ) {
+		return;
+	}
+
+	$document = $group->ownerDocument;
+	if ( ! $document instanceof DOMDocument ) {
+		return;
+	}
+
+	$created = zadzerkalya_policy_create_contact_nodes( $document, $parsed['title'], $parsed['rows'] );
+	$first   = $nodes[0];
+	foreach ( $created as $node ) {
+		$container->insertBefore( $node, $first );
+	}
+
+	foreach ( $nodes as $node ) {
+		if ( $node->parentNode ) {
+			$node->parentNode->removeChild( $node );
+		}
+	}
+}
+
+/**
+ * Послідовність абзаців, яку можна зібрати в контакти.
+ *
+ * @param DOMElement[] $children Елементи одного батька.
+ * @param int          $start    Індекс початку.
+ * @return array{nodes: DOMElement[], title: string, rows: array<int, array{label: string, value: string}>}|null
+ */
+function zadzerkalya_policy_match_sibling_run( array $children, $start ) {
+	$count = count( $children );
+	if ( $start >= $count || 'p' !== strtolower( $children[ $start ]->nodeName ) ) {
+		return null;
+	}
+
+	$collected_nodes = array();
+	$collected_lines = array();
+
+	for ( $index = $start; $index < $count; $index++ ) {
+		$current = $children[ $index ];
+		if ( 'p' !== strtolower( $current->nodeName ) || zadzerkalya_policy_has_class( $current, 'policy-contacts__title' ) ) {
+			break;
+		}
+
+		$element_lines = zadzerkalya_policy_split_lines( zadzerkalya_policy_element_inner_html( $current ) );
+		if ( ! $element_lines ) {
+			if ( ! $collected_nodes ) {
+				return null;
+			}
+			$collected_nodes[] = $current;
+			continue;
+		}
+
+		$trial = array_merge( $collected_lines, $element_lines );
+		if ( ! zadzerkalya_policy_lines_are_contact_sequence( $trial, true ) ) {
+			break;
+		}
+
+		$collected_nodes[] = $current;
+		$collected_lines   = $trial;
+	}
+
+	$parsed = zadzerkalya_policy_lines_to_contact( $collected_lines, true );
+	if ( null === $parsed ) {
+		return null;
+	}
+
+	return array(
+		'nodes' => $collected_nodes,
+		'title' => $parsed['title'],
+		'rows'  => $parsed['rows'],
+	);
+}
+
+/**
+ * Шукає контактні абзаци і згортає їх у блок із лініями.
+ *
+ * @param DOMElement $parent Батьківський елемент.
+ */
+function zadzerkalya_policy_find_contact_runs( DOMElement $parent ) {
+	if ( zadzerkalya_policy_has_class( $parent, 'policy-contacts' ) ) {
+		return;
+	}
+
+	$children = array();
+	foreach ( $parent->childNodes as $child ) {
+		if ( $child instanceof DOMElement ) {
+			$children[] = $child;
+		}
+	}
+
+	foreach ( $children as $index => $child ) {
+		if ( zadzerkalya_policy_has_class( $child, 'policy-contacts' ) ) {
+			continue;
+		}
+
+		$run = zadzerkalya_policy_match_sibling_run( $children, $index );
+		if ( null !== $run ) {
+			$document = $parent->ownerDocument;
+			if ( ! $document instanceof DOMDocument ) {
+				return;
+			}
+
+			$block = zadzerkalya_policy_create_contacts_block( $document, $run['title'], $run['rows'] );
+			$parent->insertBefore( $block, $run['nodes'][0] );
+			foreach ( $run['nodes'] as $node ) {
+				if ( $node->parentNode ) {
+					$node->parentNode->removeChild( $node );
+				}
+			}
+
+			zadzerkalya_policy_find_contact_runs( $parent );
+			return;
+		}
+
+		zadzerkalya_policy_find_contact_runs( $child );
+	}
+}
+
+/**
+ * Перетворює контактні абзаци політики на блок із горизонтальними лініями.
+ *
+ * @param DOMElement $root Корінь вмісту.
+ */
+function zadzerkalya_policy_enhance_contacts( DOMElement $root ) {
+	$found = ( new DOMXPath( $root->ownerDocument ) )->query(
+		'.//*[contains(concat(" ", normalize-space(@class), " "), " policy-contacts ")]',
+		$root
+	);
+
+	if ( $found ) {
+		foreach ( $found as $group ) {
+			if ( $group instanceof DOMElement && ! zadzerkalya_policy_has_class( $group, 'policy-contacts__list' ) ) {
+				zadzerkalya_policy_normalize_contact_group( $group );
+			}
+		}
+	}
+
+	zadzerkalya_policy_find_contact_runs( $root );
+}
+
+/**
+ * Зміст політики: заголовки і верхні пункти нумерованих списків.
+ *
+ * Перший ненумерований h2 — назва документа, у зміст не входить.
  *
  * @param string $html HTML вмісту сторінки.
  * @return array{content: string, toc: array<int, array{id: string, text: string}>}
@@ -758,41 +1378,86 @@ function zadzerkalya_policy_prepare_content( $html ) {
 		return $result;
 	}
 
-	$headings = $xpath->query( './/h2|.//h3', $root );
-	if ( ! $headings ) {
+	zadzerkalya_policy_enhance_contacts( $root );
+
+	$nodes = $xpath->query(
+		'.//*[self::h2 or self::h3 or self::h4 or self::li][not(ancestor::li)]',
+		$root
+	);
+	if ( ! $nodes ) {
 		return $result;
 	}
 
 	$seen             = array();
 	$is_first_heading = true;
+	$list_numbers     = array();
 
-	foreach ( $headings as $heading ) {
-		if ( ! $heading instanceof DOMElement ) {
+	foreach ( $nodes as $node ) {
+		if ( ! $node instanceof DOMElement ) {
 			continue;
 		}
 
-		$text = preg_replace( '/\s+/u', ' ', $heading->textContent );
-		$text = trim( is_string( $text ) ? $text : '' );
-		if ( '' === $text ) {
-			continue;
+		$tag    = strtolower( $node->nodeName );
+		$target = $node;
+		$text   = '';
+
+		if ( 'li' === $tag ) {
+			$parent = $node->parentNode;
+			if ( ! $parent instanceof DOMElement || 'ol' !== strtolower( $parent->nodeName ) ) {
+				continue;
+			}
+
+			$heading    = zadzerkalya_policy_item_heading( $node, $xpath );
+			$has_nested = $xpath->query( './/ol', $node );
+			if ( ! $heading && ( ! $has_nested || 0 === $has_nested->length ) ) {
+				continue;
+			}
+
+			$text = $heading ? zadzerkalya_policy_node_label( $heading ) : zadzerkalya_policy_node_label( $node );
+			if ( '' === $text ) {
+				continue;
+			}
+
+			$list_id = spl_object_id( $parent );
+			if ( ! isset( $list_numbers[ $list_id ] ) ) {
+				$list_numbers[ $list_id ] = 0;
+			}
+			$list_numbers[ $list_id ]++;
+
+			if ( ! preg_match( '/^\d+(?:\.\d+)*\.?\s/u', $text ) ) {
+				$text = $list_numbers[ $list_id ] . '. ' . $text;
+			}
+
+			if ( $heading instanceof DOMElement ) {
+				$target = $heading;
+			}
+		} else {
+			$text = zadzerkalya_policy_node_label( $node );
+			if ( '' === $text ) {
+				continue;
+			}
+
+			if ( $is_first_heading && 'h2' === $tag && ! preg_match( '/^\d+\./u', $text ) ) {
+				$is_first_heading = false;
+				$id               = $node->getAttribute( 'id' );
+				if ( '' === $id ) {
+					$node->setAttribute( 'id', zadzerkalya_policy_heading_id( $text, $seen ) );
+				}
+				continue;
+			}
+
+			$is_first_heading = false;
 		}
 
-		$id = $heading->getAttribute( 'id' );
+		$id = $target->getAttribute( 'id' );
 		if ( '' === $id ) {
 			$id = zadzerkalya_policy_heading_id( $text, $seen );
-			$heading->setAttribute( 'id', $id );
+			$target->setAttribute( 'id', $id );
 		} else {
 			$seen[ $id ] = 1;
 		}
 
-		$tag = strtolower( $heading->nodeName );
-		if ( $is_first_heading && 'h2' === $tag ) {
-			$is_first_heading = false;
-			continue;
-		}
-
-		$is_first_heading = false;
-		$result['toc'][]  = array(
+		$result['toc'][] = array(
 			'id'   => $id,
 			'text' => $text,
 		);
