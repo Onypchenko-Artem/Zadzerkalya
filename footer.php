@@ -19,9 +19,9 @@ if ( count( $hours_lines ) < 2 ) {
 }
 
 $socials = array(
-	'instagram' => zadzerkalya_theme_mod( 'instagram' ),
+	'instagram' => zadzerkalya_social_url( 'instagram' ),
 	'telegram'  => zadzerkalya_theme_mod( 'telegram' ),
-	'tiktok'    => zadzerkalya_theme_mod( 'tiktok' ),
+	'facebook'  => zadzerkalya_social_url( 'facebook' ),
 );
 
 $privacy_url = get_privacy_policy_url();
@@ -43,11 +43,21 @@ if ( ! $privacy_url ) {
 
 	<div class="site-footer__details">
 		<section class="site-footer__section site-footer__section--contacts">
-			<h2><?php esc_html_e( 'Контакти', 'zadzerkalya' ); ?></h2>
+			<h2>
+				<span class="site-footer__place-sizer" aria-hidden="true">
+					<?php if ( $address ) : ?>
+						<span><?php echo esc_html( $address ); ?></span>
+					<?php endif; ?>
+					<?php foreach ( $phones as $phone ) : ?>
+						<span><?php echo esc_html( $phone ); ?></span>
+					<?php endforeach; ?>
+				</span>
+				<span class="site-footer__heading"><?php esc_html_e( 'Контакти', 'zadzerkalya' ); ?></span>
+			</h2>
 			<div class="site-footer__section-content">
 				<?php if ( $address ) : ?>
 					<p class="site-footer__address">
-						<span><?php echo esc_html( $address ); ?></span>
+						<a href="https://maps.app.goo.gl/fbCkecw2nSCF9woS9" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $address ); ?></a>
 						<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/footer-address-line.svg' ); ?>" alt="" aria-hidden="true">
 					</p>
 				<?php endif; ?>

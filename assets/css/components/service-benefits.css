@@ -44,9 +44,9 @@
 	margin: 0;
 }
 
-.service-benefits__aside-text :where(p, ul, ol) + :where(p, ul, ol),
-.service-benefits__intro :where(p, ul, ol) + :where(p, ul, ol) {
-	margin-top: calc(16 * var(--u));
+.service-benefits__aside-text :is(p, ul, ol) + :is(p, ul, ol),
+.service-benefits__intro :is(p, ul, ol) + :is(p, ul, ol) {
+	margin-top: calc(32 * var(--u));
 }
 
 .service-benefits__aside-text :is(ul, ol),

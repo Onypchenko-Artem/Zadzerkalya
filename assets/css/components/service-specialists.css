@@ -52,25 +52,16 @@
 	border-radius: calc(44 * var(--u));
 }
 
-.service-specialists__stroke {
+.service-specialists__card::before {
 	position: absolute;
-	left: 50%;
-	top: 50%;
+	left: calc(100% * -0.84375 / 575);
+	top: calc(100% * -9.8208 / 389);
 	z-index: 1;
-	display: block;
-	max-width: none;
-	transform: translate(-50%, -50%);
+	width: calc(100% * 582 / 575);
+	height: calc(100% * 406 / 389);
+	content: "";
+	background: url("../../images/service-specialists-stroke.svg") 0 0 / 100% 100% no-repeat;
 	pointer-events: none;
-}
-
-.service-specialists__stroke--a {
-	width: calc(100% * 581 / 576);
-	height: calc(100% * 406 / 390);
-}
-
-.service-specialists__stroke--b {
-	width: calc(100% * 581 / 576);
-	height: calc(100% * 400 / 390);
 }
 
 .service-specialists__head,

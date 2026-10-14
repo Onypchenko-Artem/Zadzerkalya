@@ -40,10 +40,16 @@ function zadzerkalya_customize_register( $wp_customize ) {
 	);
 
 	foreach ( $contact_fields as $key => $label ) {
+		$defaults = array(
+			'instagram' => 'https://www.instagram.com/zadzerkallia_lviv/',
+			'facebook'  => 'https://www.facebook.com/zadzerkallya.lviv/',
+		);
+		$default  = $defaults[ $key ] ?? '';
+
 		$wp_customize->add_setting(
 			'zadzerkalya_' . $key,
 			array(
-				'default'           => '',
+				'default'           => $default,
 				'sanitize_callback' => 'map_embed' === $key ? 'zadzerkalya_sanitize_iframe' : 'sanitize_text_field',
 			)
 		);
@@ -159,4 +165,31 @@ function zadzerkalya_sanitize_iframe( $value ) {
 function zadzerkalya_theme_mod( $key, $default = '' ) {
 	$value = get_theme_mod( 'zadzerkalya_' . $key, $default );
 	return is_string( $value ) ? $value : $default;
+}
+
+/**
+ * Посилання на соцмережу. Порожнє значення і старий хибний Instagram замінюються на актуальні адреси.
+ *
+ * @param string $network instagram|facebook|telegram|tiktok.
+ */
+function zadzerkalya_social_url( $network ) {
+	$defaults = array(
+		'instagram' => 'https://www.instagram.com/zadzerkallia_lviv/',
+		'facebook'  => 'https://www.facebook.com/zadzerkallya.lviv/',
+	);
+	$legacy   = array(
+		'instagram' => 'https://www.instagram.com/zadzerkallya_lviv/',
+	);
+
+	$url = zadzerkalya_theme_mod( $network, $defaults[ $network ] ?? '' );
+
+	if ( isset( $legacy[ $network ] ) && untrailingslashit( $url ) === untrailingslashit( $legacy[ $network ] ) ) {
+		$url = $defaults[ $network ];
+	}
+
+	if ( '' === $url && isset( $defaults[ $network ] ) ) {
+		$url = $defaults[ $network ];
+	}
+
+	return $url;
 }

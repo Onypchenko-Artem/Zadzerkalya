@@ -29,8 +29,17 @@ get_header();
 		$event_time       = $field( 'event_time', $time );
 		$event_place      = $field( 'event_place', $place );
 		$event_price      = $field( 'event_price' );
-		$button_label     = $field( 'event_button_label', __( 'забронювати участь', 'zadzerkalya' ) );
-		$button_url       = $field( 'event_button_url', zadzerkalya_get_page_url( 'contacts' ) );
+		$button_label = $field( 'event_button_label', __( 'забронювати участь', 'zadzerkalya' ) );
+		$button_url   = $field( 'event_button_url', '' );
+		$contacts_url = zadzerkalya_get_page_url( 'contacts' );
+		$event_passed = zadzerkalya_event_has_passed( $date, $event_time );
+
+		if ( $event_passed ) {
+			$button_label = __( 'повідомити про наступну подію', 'zadzerkalya' );
+			$button_url   = '';
+		} elseif ( ! $button_url || untrailingslashit( $button_url ) === untrailingslashit( $contacts_url ) ) {
+			$button_url = '#contact-form';
+		}
 
 		get_template_part(
 			'template-parts/section',
@@ -56,6 +65,7 @@ get_header();
 				'price'        => $event_price,
 				'button_label' => $button_label,
 				'button_url'   => $button_url,
+				'button_popup' => $event_passed,
 			)
 		);
 
@@ -88,6 +98,16 @@ get_header();
 				'source'       => 'events',
 			)
 		);
+		if ( $event_passed ) {
+			get_template_part(
+				'template-parts/popup',
+				'contact',
+				array(
+					'event_title' => get_the_title(),
+					'open'        => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				)
+			);
+		}
 	endwhile;
 	?>
 </main>

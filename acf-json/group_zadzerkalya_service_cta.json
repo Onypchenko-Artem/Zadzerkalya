@@ -146,7 +146,7 @@
             "name": "service_cta_button_url",
             "aria-label": "",
             "type": "url",
-            "instructions": "Якщо поле порожнє, кнопка веде на сторінку контактів.",
+            "instructions": "Якщо поле порожнє, кнопка веде до форми на цій сторінці.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {

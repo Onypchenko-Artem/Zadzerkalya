@@ -14,6 +14,7 @@
  *     @type bool   $share         Показати блок «Поширити статтю».
  *     @type string $button_label  Текст кнопки (порожньо — без кнопки).
  *     @type string $button_url    Посилання кнопки.
+ *     @type bool   $button_popup  Кнопка відкриває попап контакту.
  * }
  */
 
@@ -26,6 +27,7 @@ $reading_time  = $args['reading_time'] ?? '';
 $show_share    = ! empty( $args['share'] );
 $button_label  = $args['button_label'] ?? '';
 $button_url    = $args['button_url'] ?? '';
+$button_popup  = ! empty( $args['button_popup'] );
 
 $share_url   = $show_share ? get_permalink() : '';
 $share_title = $show_share ? get_the_title() : '';
@@ -44,7 +46,7 @@ if ( $author_raw instanceof WP_Post ) {
 $author_name      = $author ? get_the_title( $author ) : '';
 $author_position  = $author ? get_post_meta( $author->ID, '_zdk_position', true ) : '';
 $author_education = $author ? get_post_meta( $author->ID, '_zdk_education', true ) : '';
-$author_url       = $author ? get_permalink( $author ) : '';
+$author_url       = '';
 
 $date_display = '';
 if ( $date ) {
@@ -198,7 +200,20 @@ if ( $price ) {
 		<?php endif; ?>
 
 		<?php
-		if ( $button_label && $button_url ) {
+		if ( $button_label && $button_popup ) {
+			zadzerkalya_button(
+				array(
+					'label'      => $button_label,
+					'variant'    => 'primary',
+					'type'       => 'button',
+					'attributes' => array(
+						'data-contact-popup-open' => 'true',
+						'aria-haspopup'           => 'dialog',
+						'aria-controls'           => 'contact-popup',
+					),
+				)
+			);
+		} elseif ( $button_label && $button_url ) {
 			zadzerkalya_button(
 				array(
 					'label'   => $button_label,

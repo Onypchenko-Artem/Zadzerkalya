@@ -64,7 +64,7 @@ if ( $has_content && ! $show_button ) {
 }
 
 if ( $show_button && ! $button_url ) {
-	$button_url = zadzerkalya_get_page_url( 'contacts' );
+	$button_url = '#contact-form';
 }
 
 $background_url = '';

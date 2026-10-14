@@ -38,7 +38,7 @@ function zadzerkalya_register_post_types() {
 				'with_front' => false,
 			),
 			'menu_icon'           => 'dashicons-groups',
-			'supports'            => array( 'title', 'thumbnail', 'page-attributes' ),
+			'supports'            => array( 'title', 'thumbnail' ),
 			'show_in_rest'        => true,
 			'menu_position'       => 5,
 		)
@@ -68,7 +68,7 @@ function zadzerkalya_register_post_types() {
 				'with_front' => false,
 			),
 			'menu_icon'           => 'dashicons-heart',
-			'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
+			'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'show_in_rest'        => true,
 			'menu_position'       => 6,
 		)
@@ -181,6 +181,19 @@ function zadzerkalya_specialist_title_placeholder( $title, $post ) {
 }
 add_filter( 'enter_title_here', 'zadzerkalya_specialist_title_placeholder', 10, 2 );
 
+/**
+ * Окрема сторінка спеціаліста недоступна: пряме посилання веде на список.
+ */
+function zadzerkalya_disable_specialist_single() {
+	if ( ! is_singular( 'specialist' ) ) {
+		return;
+	}
+
+	wp_safe_redirect( zadzerkalya_get_specialists_url(), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'zadzerkalya_disable_specialist_single' );
+
 function zadzerkalya_register_taxonomies() {
 	register_taxonomy(
 		'specialization',
@@ -285,10 +298,81 @@ function zadzerkalya_event_archive_query( $query ) {
 			'orderby',
 			array(
 				'menu_order' => 'ASC',
-				'title'      => 'ASC',
+				'date'       => 'DESC',
 			)
 		);
 		$query->set( 'posts_per_page', -1 );
 	}
 }
+
+/**
+ * Стрічка блогу показує 3 картки. Головний запит має збігатися з нею,
+ * інакше /blog/page/2/ віддає 404, коли в «Читанні» більше записів на сторінку.
+ */
+function zadzerkalya_blog_home_query( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || ! $query->is_home() ) {
+		return;
+	}
+
+	$query->set( 'posts_per_page', 3 );
+}
+
+/**
+ * У списку послуг в адмінці порядок видно і за ним можна сортувати.
+ */
+function zadzerkalya_service_admin_columns( $columns ) {
+	$next = array();
+
+	foreach ( $columns as $key => $label ) {
+		$next[ $key ] = $label;
+
+		if ( 'title' === $key ) {
+			$next['zdk_order'] = __( 'Порядок', 'zadzerkalya' );
+		}
+	}
+
+	return $next;
+}
+add_filter( 'manage_service_posts_columns', 'zadzerkalya_service_admin_columns' );
+
+function zadzerkalya_service_admin_column_content( $column, $post_id ) {
+	if ( 'zdk_order' !== $column ) {
+		return;
+	}
+
+	echo (int) get_post_field( 'menu_order', $post_id );
+}
+add_action( 'manage_service_posts_custom_column', 'zadzerkalya_service_admin_column_content', 10, 2 );
+
+function zadzerkalya_service_admin_sortable_columns( $columns ) {
+	$columns['zdk_order'] = 'menu_order';
+
+	return $columns;
+}
+add_filter( 'manage_edit-service_sortable_columns', 'zadzerkalya_service_admin_sortable_columns' );
+
+function zadzerkalya_service_admin_list_order( $query ) {
+	if ( ! is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( 'service' !== $query->get( 'post_type' ) ) {
+		return;
+	}
+
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	if ( isset( $_GET['orderby'] ) ) {
+		return;
+	}
+
+	$query->set(
+		'orderby',
+		array(
+			'menu_order' => 'ASC',
+			'date'       => 'DESC',
+		)
+	);
+}
+add_action( 'pre_get_posts', 'zadzerkalya_service_admin_list_order' );
 add_action( 'pre_get_posts', 'zadzerkalya_event_archive_query' );
+add_action( 'pre_get_posts', 'zadzerkalya_blog_home_query' );

@@ -50,10 +50,12 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-reviews'     => array( 'file' => '/assets/css/components/reviews.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-faq'         => array( 'file' => '/assets/css/components/faq.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-form-home'   => array( 'file' => '/assets/css/components/form-home.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
+		'zadzerkalya-popup-contact' => array( 'file' => '/assets/css/components/popup-contact.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
 		'zadzerkalya-form-service'=> array( 'file' => '/assets/css/components/form-service.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
 		'zadzerkalya-service-specialists'=> array( 'file' => '/assets/css/components/service-specialists.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-service-benefits'=> array( 'file' => '/assets/css/components/service-benefits.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-footer'      => array( 'file' => '/assets/css/components/footer.css', 'deps' => array( 'zadzerkalya-base' ) ),
+		'zadzerkalya-socials'     => array( 'file' => '/assets/css/components/socials.css', 'deps' => array( 'zadzerkalya-header', 'zadzerkalya-footer', 'zadzerkalya-contacts-info' ) ),
 		'zadzerkalya-forms'       => array( 'file' => '/assets/css/components/forms.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-page-content'=> array( 'file' => '/assets/css/pages/content.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-front-page'  => array( 'file' => '/assets/css/pages/front-page.css', 'deps' => array( 'zadzerkalya-base' ) ),
@@ -108,6 +110,19 @@ function zadzerkalya_enqueue_assets() {
 			'in_footer' => true,
 		)
 	);
+
+	if ( is_home() || is_page_template( 'page-templates/events.php' ) || is_post_type_archive( 'event' ) ) {
+		wp_enqueue_script(
+			'zadzerkalya-articles-feed',
+			ZADZERKALYA_URI . '/assets/js/articles-feed.js',
+			array( 'zadzerkalya-main' ),
+			ZADZERKALYA_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 
 	if ( is_page_template( 'page-templates/events.php' ) || is_post_type_archive( 'event' ) ) {
 		wp_enqueue_script(

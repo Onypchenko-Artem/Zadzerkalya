@@ -23,12 +23,12 @@
             "append": ""
         },
         {
-            "key": "field_zadzerkalya_about_gallery_items",
+            "key": "field_zadzerkalya_about_gallery_photos",
             "label": "Фотографії",
-            "name": "about_gallery_items",
+            "name": "about_gallery_photos",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Додайте фотографії у порядку показу в слайдері.",
+            "type": "gallery",
+            "instructions": "Можна вибрати або завантажити кілька фото одразу. Порядок у полі — порядок у слайдері.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -36,61 +36,19 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
-            "button_label": "Додати фото",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_about_gallery_image",
-                    "label": "Фото",
-                    "name": "image",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "id",
-                    "library": "all",
-                    "mime_types": "jpg,jpeg,png,webp",
-                    "preview_size": "medium",
-                    "min_width": 0,
-                    "min_height": 0,
-                    "min_size": 0,
-                    "max_width": 0,
-                    "max_height": 0,
-                    "max_size": 0,
-                    "parent_repeater": "field_zadzerkalya_about_gallery_items"
-                },
-                {
-                    "key": "field_zadzerkalya_about_gallery_alt",
-                    "label": "Alt-текст",
-                    "name": "alt",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "Короткий опис фото для доступності.",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "50",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_zadzerkalya_about_gallery_items"
-                }
-            ]
+            "return_format": "id",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "insert": "append",
+            "preview_size": "medium"
         }
     ],
     "location": [
@@ -114,5 +72,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790273142
+    "modified": 1792000000
 }

@@ -15,8 +15,8 @@ $email   = zadzerkalya_theme_mod( 'email', 'zadzerkallya@gmail.com' );
 $hours   = zadzerkalya_theme_mod( 'hours', 'Пн-Сб | 09:00-19:00' );
 $phones  = zadzerkalya_phones();
 $socials = array(
-	'instagram' => zadzerkalya_theme_mod( 'instagram' ),
-	'facebook'  => zadzerkalya_theme_mod( 'facebook' ),
+	'instagram' => zadzerkalya_social_url( 'instagram' ),
+	'facebook'  => zadzerkalya_social_url( 'facebook' ),
 );
 ?>
 <section class="contacts-info" aria-labelledby="contacts-info-title">

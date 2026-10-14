@@ -13,6 +13,18 @@ $specialists = new WP_Query(
 			'menu_order' => 'ASC',
 			'title'      => 'ASC',
 		),
+		'meta_query'     => array(
+			'relation' => 'OR',
+			array(
+				'key'     => '_zdk_show_on_team',
+				'value'   => '1',
+				'compare' => '=',
+			),
+			array(
+				'key'     => '_zdk_show_on_team',
+				'compare' => 'NOT EXISTS',
+			),
+		),
 	)
 );
 ?>

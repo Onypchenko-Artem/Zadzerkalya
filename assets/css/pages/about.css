@@ -334,7 +334,7 @@
 	margin: 0 0 calc(16 * var(--u));
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 

@@ -22,8 +22,16 @@
 
 .service-cta--custom-background {
 	box-sizing: border-box;
-	height: min(calc(886 * var(--u)), calc(100dvh - 118 * var(--u)));
-	max-height: calc(100dvh - 118 * var(--u));
+	height: calc(100dvh - 118 * var(--u) - 40px);
+	max-height: calc(100dvh - 118 * var(--u) - 40px);
+}
+
+.service-cta--custom-background .service-cta__row-text h3 {
+	font-size: 30px;
+}
+
+.service-cta--custom-background .service-cta__row-text p {
+	font-size: 16px;
 }
 
 .service-cta--custom-background .service-cta__panel {
@@ -349,8 +357,8 @@
 	}
 
 	.service-cta--custom-background {
-		height: min(680px, calc(100dvh - 88px));
-		max-height: calc(100dvh - 88px);
+		height: calc(100dvh - 128px);
+		max-height: calc(100dvh - 128px);
 	}
 
 	.service-cta__row p {
@@ -397,8 +405,8 @@
 	}
 
 	.service-cta--custom-background {
-		height: calc(100dvh - 64px);
-		max-height: calc(100dvh - 64px);
+		height: calc(100dvh - 104px);
+		max-height: calc(100dvh - 104px);
 	}
 
 	.service-cta--custom-background .service-cta__panel {

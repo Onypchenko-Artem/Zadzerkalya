@@ -26,7 +26,7 @@ function zadzerkalya_service_slider_post_types() {
  * @return string
  */
 function zadzerkalya_service_slider_default_title() {
-	return __( 'Запишіться на первинну консультацію та зробіть перший крок до', 'zadzerkalya' );
+	return __( 'Запишіться на первинну консультацію — зробіть крок до кращого розуміння своєї дитини!', 'zadzerkalya' );
 }
 
 /**

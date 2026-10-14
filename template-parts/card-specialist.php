@@ -8,7 +8,7 @@
 $position = get_post_meta( get_the_ID(), '_zdk_position', true );
 ?>
 <article <?php post_class( 'card card--person' ); ?>>
-	<a href="<?php the_permalink(); ?>">
+	<div class="card__body">
 		<?php
 		if ( has_post_thumbnail() ) {
 			the_post_thumbnail( 'zadzerkalya-portrait' );
@@ -18,5 +18,5 @@ $position = get_post_meta( get_the_ID(), '_zdk_position', true );
 		<?php if ( $position ) : ?>
 			<p><?php echo esc_html( $position ); ?></p>
 		<?php endif; ?>
-	</a>
+	</div>
 </article>

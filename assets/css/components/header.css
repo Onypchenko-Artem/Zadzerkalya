@@ -1,3 +1,8 @@
+:root {
+	--header-aside-gap: calc(91 * var(--u));
+	--header-actions-w: calc((40 + 25 + 40 + 25) * var(--u) + 245px);
+}
+
 .site-header {
 	position: sticky;
 	top: 0;
@@ -84,16 +89,17 @@
 .header-logo {
 	position: absolute;
 	left: 50%;
-	top: calc(10 * var(--u));
+	top: calc(12 * var(--u));
 	z-index: 2;
 	display: block;
-	width: calc(119 * var(--u));
-	height: calc(128 * var(--u));
+	width: calc(131 * var(--u));
+	height: calc(141 * var(--u));
 	transform: translateX(-50%);
 	pointer-events: auto;
 }
 
-.header-logo:hover {
+.header-bar .header-logo:hover {
+	color: inherit;
 	opacity: 1;
 }
 
@@ -101,8 +107,8 @@
 	position: absolute;
 	left: 50%;
 	top: 0;
-	width: calc(150 * var(--u));
-	height: calc(138 * var(--u));
+	width: calc(155 * var(--u));
+	height: calc(145 * var(--u));
 	transform: translateX(-50%);
 	background: var(--color-sky-blue);
 	border-radius: 0 0 50% 50%;
@@ -111,8 +117,8 @@
 .header-logo__image {
 	position: relative;
 	z-index: 1;
-	width: calc(119 * var(--u));
-	height: calc(128 * var(--u));
+	width: calc(131 * var(--u));
+	height: calc(141 * var(--u));
 	margin: 0;
 	object-fit: contain;
 }
@@ -121,7 +127,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: calc(91 * var(--u));
+	gap: var(--header-aside-gap);
 	z-index: 1;
 }
 
@@ -139,20 +145,26 @@
 	align-items: flex-start;
 }
 
-.header-address span {
+.header-address a {
 	font-family: var(--text-menu-family);
 	font-size: var(--text-menu-size);
 	font-weight: var(--text-menu-weight);
 	line-height: var(--text-menu-line);
 	white-space: nowrap;
+	color: inherit;
+}
+
+.header-address a:hover {
+	color: inherit;
+	opacity: 0.65;
 }
 
 .header-address__line {
 	display: block;
-	width: 100%;
-	height: 0;
-	border-bottom: 1px solid var(--color-night-sky);
+	width: calc(223 * var(--u));
+	height: calc(3 * var(--u));
 	margin-top: calc(2 * var(--u));
+	background: url("../../images/header-address-line.svg") center / 100% 100% no-repeat;
 }
 
 .header-phones {
@@ -193,10 +205,6 @@
 	height: 100%;
 }
 
-.header-social:hover {
-	opacity: 0.8;
-}
-
 .header-bar .lottie-button--secondary {
 	flex: none;
 	--lottie-btn-w: 245px;
@@ -209,7 +217,7 @@
 
 .header-bar .lottie-button--secondary .lottie-button__label {
 	padding-inline: 3px;
-	font-size: 13px;
+	font-size: calc(22 * var(--u));
 	line-height: 1.26;
 }
 

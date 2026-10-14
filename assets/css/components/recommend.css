@@ -61,7 +61,9 @@
 }
 
 .recommend__viewport {
+	container-type: inline-size;
 	width: 100%;
+	min-width: 0;
 	overflow-x: auto;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
@@ -73,6 +75,7 @@
 }
 
 .recommend__track {
+	--recommend-card: min(calc(572 * var(--u)), calc((100cqw - (108 * var(--u)) - 2px) / 3));
 	display: flex;
 	align-items: stretch;
 	gap: calc(54 * var(--u));
@@ -80,6 +83,8 @@
 }
 
 .recommend__track .article-card {
+	flex-basis: var(--recommend-card);
+	width: var(--recommend-card);
 	scroll-snap-align: start;
 }
 
@@ -109,6 +114,7 @@
 	}
 
 	.recommend__track {
+		--recommend-card: min(440px, calc(50vw - 40px));
 		gap: 24px;
 	}
 }
@@ -129,6 +135,7 @@
 	}
 
 	.recommend__track {
+		--recommend-card: 100cqw;
 		gap: 16px;
 	}
 }

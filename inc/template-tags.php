@@ -300,6 +300,33 @@ function zadzerkalya_query_latest( $post_type, $count = 3 ) {
 	);
 }
 
+/**
+ * Подія вже відбулася: після вказаного часу, або наприкінці дня, якщо час не задано.
+ *
+ * @param string $date Дата Y-m-d.
+ * @param string $time Час або діапазон, наприклад 18:00–20:00.
+ * @return bool
+ */
+function zadzerkalya_event_has_passed( $date, $time = '' ) {
+	$date = trim( (string) $date );
+	if ( '' === $date ) {
+		return false;
+	}
+
+	$clock = '23:59:59';
+	if ( preg_match_all( '/(\d{1,2}):(\d{2})/', (string) $time, $matches, PREG_SET_ORDER ) ) {
+		$last  = end( $matches );
+		$clock = sprintf( '%02d:%02d:00', (int) $last[1], (int) $last[2] );
+	}
+
+	$moment = date_create( $date . ' ' . $clock, wp_timezone() );
+	if ( ! $moment ) {
+		return false;
+	}
+
+	return $moment < new DateTimeImmutable( 'now', wp_timezone() );
+}
+
 function zadzerkalya_body_open() {
 	if ( function_exists( 'wp_body_open' ) ) {
 		wp_body_open();
@@ -345,10 +372,11 @@ function zadzerkalya_form_consent() {
  *     @type string $url     Якщо є — рендериться <a>.
  *     @type string $variant primary|secondary.
  *     @type string $anim    Фіксована Lottie-анімація, наприклад button-secondary-mobile.
- *     @type string $type    type для <button>.
- *     @type string $name    name для <button>.
- *     @type string $value   value для <button>.
- *     @type bool   $echo    Вивести чи повернути HTML.
+ *     @type string $type       type для <button>.
+ *     @type string $name       name для <button>.
+ *     @type string $value      value для <button>.
+ *     @type array  $attributes Додаткові HTML-атрибути.
+ *     @type bool   $echo       Вивести чи повернути HTML.
  * }
  * @return string
  */
@@ -356,42 +384,58 @@ function zadzerkalya_button( $args = array() ) {
 	$args = wp_parse_args(
 		$args,
 		array(
-			'label'   => '',
-			'url'     => '',
-			'variant' => 'primary',
-			'anim'    => '',
-			'type'    => 'submit',
-			'name'    => '',
-			'value'   => '',
-			'echo'    => true,
+			'label'      => '',
+			'url'        => '',
+			'variant'    => 'primary',
+			'anim'       => '',
+			'type'       => 'submit',
+			'name'       => '',
+			'value'      => '',
+			'attributes' => array(),
+			'echo'       => true,
 		)
 	);
 
 	$variant = in_array( $args['variant'], array( 'primary', 'secondary' ), true ) ? $args['variant'] : 'primary';
 	$label   = esc_html( $args['label'] );
 	$class   = 'lottie-button lottie-button--' . $variant;
-	$anim    = preg_replace( '/[^a-z0-9-]/', '', (string) $args['anim'] );
+	$anim      = preg_replace( '/[^a-z0-9-]/', '', (string) $args['anim'] );
 	$anim_attr = $anim ? ' data-anim="' . esc_attr( $anim ) . '"' : '';
+	$extra     = '';
+
+	foreach ( (array) $args['attributes'] as $attr => $attr_value ) {
+		$attr = preg_replace( '/[^a-z0-9_:-]/i', '', (string) $attr );
+		if ( '' === $attr || in_array( $attr, array( 'class', 'href', 'type', 'name', 'value' ), true ) ) {
+			continue;
+		}
+		$extra .= ' ' . $attr . '="' . esc_attr( (string) $attr_value ) . '"';
+	}
 	$inner   = '<span class="lottie-button__anim" aria-hidden="true"></span><span class="lottie-button__label">' . $label . '</span>';
 	$text    = trim( wp_strip_all_tags( $args['label'] ) );
 	$length  = function_exists( 'mb_strlen' ) ? mb_strlen( $text ) : strlen( $text );
 	$rows    = 'primary' === $variant && $length > 25 ? '2' : '1';
+	$booking = function_exists( 'mb_strtolower' ) ? mb_strtolower( $text ) : strtolower( $text );
+
+	if ( $args['url'] && 'забронювати первинну консультацію' === $booking ) {
+		$args['url'] = '#contact-form';
+	}
 
 	if ( $args['url'] ) {
 		$html = sprintf(
-			'<a class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s href="%5$s">%6$s</a>',
+			'<a class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s href="%5$s"%6$s>%7$s</a>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
 			esc_attr( $rows ),
 			$anim_attr,
 			esc_url( $args['url'] ),
+			$extra,
 			$inner
 		);
 	} else {
 		$name  = $args['name'] ? ' name="' . esc_attr( $args['name'] ) . '"' : '';
 		$value = '' !== $args['value'] ? ' value="' . esc_attr( $args['value'] ) . '"' : '';
 		$html  = sprintf(
-			'<button class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s type="%5$s"%6$s%7$s>%8$s</button>',
+			'<button class="%1$s" data-variant="%2$s" data-mobile-rows="%3$s"%4$s type="%5$s"%6$s%7$s%8$s>%9$s</button>',
 			esc_attr( $class ),
 			esc_attr( $variant ),
 			esc_attr( $rows ),
@@ -399,6 +443,7 @@ function zadzerkalya_button( $args = array() ) {
 			esc_attr( $args['type'] ),
 			$name,
 			$value,
+			$extra,
 			$inner
 		);
 	}

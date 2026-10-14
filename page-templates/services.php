@@ -30,7 +30,7 @@ $query_args = array(
 	'posts_per_page' => -1,
 	'orderby'        => array(
 		'menu_order' => 'ASC',
-		'title'      => 'ASC',
+		'date'       => 'DESC',
 	),
 );
 

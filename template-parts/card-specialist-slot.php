@@ -9,7 +9,7 @@ $position  = get_post_meta( get_the_ID(), '_zdk_position', true );
 $education = get_post_meta( get_the_ID(), '_zdk_education', true );
 ?>
 <article <?php post_class( 'specialist-slot' ); ?>>
-	<a class="specialist-slot__link" href="<?php the_permalink(); ?>">
+	<div class="specialist-slot__link">
 		<?php if ( has_post_thumbnail() ) : ?>
 			<?php
 			the_post_thumbnail(
@@ -40,5 +40,5 @@ $education = get_post_meta( get_the_ID(), '_zdk_education', true );
 				<?php endif; ?>
 			</div>
 		</div>
-	</a>
+	</div>
 </article>

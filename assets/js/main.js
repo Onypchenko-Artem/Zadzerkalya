@@ -687,33 +687,162 @@
 })();
 
 (() => {
-	document.querySelectorAll('[data-service-slider]').forEach((section) => {
-		const viewport = section.querySelector('.service-slider__viewport');
-		const previous = section.querySelector('.service-slider__arrow--prev');
-		const next = section.querySelector('.service-slider__arrow--next');
+	const initServiceSliders = () => {
+		document.querySelectorAll('[data-service-slider]').forEach((section) => {
+			const viewport = section.querySelector('.service-slider__viewport');
+			const track = section.querySelector('.service-slider__track');
+			const previous = section.querySelector('.service-slider__arrow--prev');
+			const next = section.querySelector('.service-slider__arrow--next');
 
-		if (!viewport || !previous || !next) {
-			return;
-		}
+			if (!viewport || !track || !previous || !next) {
+				return;
+			}
 
-		const updateState = () => {
-			const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-			previous.disabled = viewport.scrollLeft <= 1;
-			next.disabled = maxScroll <= 1 || viewport.scrollLeft >= maxScroll - 1;
-		};
+			let end = track.querySelector('.service-slider__end');
+			if (!end) {
+				end = document.createElement('div');
+				end.className = 'service-slider__end';
+				end.setAttribute('aria-hidden', 'true');
+				track.append(end);
+			}
 
-		previous.addEventListener('click', () => {
-			viewport.scrollBy({ left: -viewport.clientWidth, behavior: 'smooth' });
+			const slides = () => [...track.querySelectorAll('.service-slider__slide')];
+
+			const placeEnd = () => {
+				const first = slides()[0];
+				const extra = first ? Math.max(0, viewport.clientWidth - first.getBoundingClientRect().width) : 0;
+				const width = `${Math.round(extra)}px`;
+				if (end.style.width !== width) {
+					end.style.flex = `0 0 ${width}`;
+					end.style.width = width;
+				}
+			};
+
+			const slideStart = (slide) => viewport.scrollLeft + slide.getBoundingClientRect().left - viewport.getBoundingClientRect().left;
+
+			const nearestIndex = () => {
+				const items = slides();
+				const left = viewport.scrollLeft;
+				let index = 0;
+
+				items.forEach((slide, i) => {
+					if (slideStart(slide) <= left + 2) {
+						index = i;
+					}
+				});
+
+				return index;
+			};
+
+			const setDisabled = (button, disabled) => {
+				button.classList.toggle('is-disabled', disabled);
+				button.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+			};
+
+			const updateState = () => {
+				const items = slides();
+				const index = nearestIndex();
+				const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+				setDisabled(previous, index <= 0 || maxScroll <= 1);
+				setDisabled(next, items.length < 2 || index >= items.length - 1 || maxScroll <= 1);
+			};
+
+			const relayout = () => {
+				placeEnd();
+				updateState();
+			};
+
+			let frame = 0;
+			let animating = false;
+			let index = 0;
+			const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+			const animateTo = (target) => {
+				const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+				const destination = Math.max(0, Math.min(target, maxScroll));
+				const start = viewport.scrollLeft;
+				const distance = destination - start;
+
+				cancelAnimationFrame(frame);
+
+				if (Math.abs(distance) < 1 || motion.matches) {
+					animating = false;
+					viewport.scrollLeft = destination;
+					updateState();
+					return;
+				}
+
+				const duration = 520;
+				const started = performance.now();
+				animating = true;
+
+				const step = (now) => {
+					const progress = Math.min(1, (now - started) / duration);
+					const eased = 1 - (1 - progress) ** 3;
+					viewport.scrollLeft = start + distance * eased;
+
+					if (progress < 1) {
+						frame = requestAnimationFrame(step);
+						return;
+					}
+
+					animating = false;
+					viewport.scrollLeft = destination;
+					updateState();
+				};
+
+				frame = requestAnimationFrame(step);
+			};
+
+			const scrollToIndex = (nextIndex) => {
+				const items = slides();
+				const clamped = Math.max(0, Math.min(nextIndex, items.length - 1));
+				const slide = items[clamped];
+				if (!slide) {
+					return;
+				}
+
+				index = clamped;
+				animateTo(slideStart(slide));
+			};
+
+			const onControlClick = (event) => {
+				const arrow = event.target.closest('.service-slider__arrow');
+				if (!arrow || arrow.getAttribute('aria-disabled') === 'true') {
+					return;
+				}
+
+				event.preventDefault();
+				const direction = arrow.classList.contains('service-slider__arrow--next') ? 1 : -1;
+				const base = animating ? index : nearestIndex();
+				scrollToIndex(base + direction);
+			};
+
+			previous.addEventListener('click', onControlClick);
+			next.addEventListener('click', onControlClick);
+			viewport.addEventListener('scroll', () => {
+				if (!animating) {
+					updateState();
+				}
+			}, { passive: true });
+			window.addEventListener('resize', relayout);
+
+			if (window.ResizeObserver) {
+				const observer = new ResizeObserver(relayout);
+				observer.observe(viewport);
+			}
+
+			relayout();
+			index = nearestIndex();
+			window.addEventListener('load', relayout);
 		});
+	};
 
-		next.addEventListener('click', () => {
-			viewport.scrollBy({ left: viewport.clientWidth, behavior: 'smooth' });
-		});
-
-		viewport.addEventListener('scroll', updateState, { passive: true });
-		window.addEventListener('resize', updateState);
-		updateState();
-	});
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initServiceSliders);
+	} else {
+		initServiceSliders();
+	}
 })();
 
 (() => {
@@ -917,4 +1046,82 @@
 	);
 
 	items.forEach(({ heading }) => observer.observe(heading));
+})();
+
+(() => {
+	const popup = document.querySelector('[data-contact-popup]');
+	if (!popup) {
+		return;
+	}
+
+	const dialog = popup.querySelector('.contact-popup__dialog');
+	let lastFocus = null;
+
+	const focusable = () => [...popup.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])')]
+		.filter((node) => !node.closest('.hp-field') && !node.hasAttribute('disabled') && node.getClientRects().length);
+
+	const open = () => {
+		lastFocus = document.activeElement;
+		popup.hidden = false;
+		document.body.classList.add('contact-popup-open');
+		popup.querySelector('.contact-popup__close')?.focus();
+	};
+
+	const close = () => {
+		if (popup.hidden) {
+			return;
+		}
+
+		popup.hidden = true;
+		document.body.classList.remove('contact-popup-open');
+		if (lastFocus && typeof lastFocus.focus === 'function') {
+			lastFocus.focus();
+		}
+	};
+
+	document.querySelectorAll('[data-contact-popup-open]').forEach((button) => {
+		button.addEventListener('click', (event) => {
+			event.preventDefault();
+			open();
+		});
+	});
+
+	popup.querySelectorAll('[data-contact-popup-close]').forEach((node) => {
+		node.addEventListener('click', close);
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (popup.hidden) {
+			return;
+		}
+
+		if (event.key === 'Escape') {
+			event.preventDefault();
+			close();
+			return;
+		}
+
+		if (event.key !== 'Tab' || !dialog) {
+			return;
+		}
+
+		const items = focusable();
+		if (!items.length) {
+			return;
+		}
+
+		const first = items[0];
+		const last = items[items.length - 1];
+		if (event.shiftKey && document.activeElement === first) {
+			event.preventDefault();
+			last.focus();
+		} else if (!event.shiftKey && document.activeElement === last) {
+			event.preventDefault();
+			first.focus();
+		}
+	});
+
+	if (popup.hasAttribute('data-open')) {
+		open();
+	}
 })();

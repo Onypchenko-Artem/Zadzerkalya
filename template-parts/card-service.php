@@ -6,13 +6,13 @@
  *
  * @var array $args {
  *     @type string $button_label Текст кнопки.
- *     @type string $button_url   Посилання кнопки. Порожньо — сторінка послуги.
+ *     @type string $button_url   Посилання кнопки. Якщо не передано — якір форми на цій сторінці.
  * }
  */
 
 $button_label = $args['button_label'] ?? __( 'забронювати первинну консультацію', 'zadzerkalya' );
 $permalink    = get_permalink();
-$button_url   = $args['button_url'] ?? $permalink;
+$button_url   = $args['button_url'] ?? '#contact-form';
 ?>
 <article <?php post_class( 'service-card' ); ?>>
 	<div class="service-card__head">

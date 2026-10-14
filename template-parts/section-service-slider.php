@@ -22,7 +22,7 @@ if ( ! $query instanceof WP_Query || ! $query->have_posts() ) {
 }
 ?>
 <section class="service-slider" data-service-slider aria-roledescription="<?php esc_attr_e( 'карусель', 'zadzerkalya' ); ?>" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>">
-	<div class="service-slider__aside">
+	<div class="service-slider__head">
 		<h2 id="<?php echo esc_attr( $heading_id ); ?>" class="service-slider__title"><?php echo esc_html( $title ); ?></h2>
 		<div class="service-slider__controls">
 			<button type="button" class="service-slider__arrow service-slider__arrow--prev" aria-label="<?php esc_attr_e( 'Попередня послуга', 'zadzerkalya' ); ?>"></button>

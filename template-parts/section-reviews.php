@@ -117,7 +117,7 @@ $total = count( $reviews );
 						<div class="reviews__text"><?php echo $format_review( $review['text'] ); ?></div>
 						<span class="reviews__line reviews__line--reverse" aria-hidden="true"></span>
 						<?php if ( ! empty( $review['url'] ) ) : ?>
-							<a class="reviews__more" href="<?php echo esc_url( $review['url'] ); ?>">
+							<a class="reviews__more" href="<?php echo esc_url( $review['url'] ); ?>" target="_blank" rel="noopener noreferrer">
 								<span><?php esc_html_e( 'читати далі', 'zadzerkalya' ); ?></span>
 								<i aria-hidden="true"></i>
 							</a>

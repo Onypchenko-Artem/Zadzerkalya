@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $address    = zadzerkalya_theme_mod( 'address', 'м. Львів, вул. Камʼянецька 1' );
 $phones     = zadzerkalya_phones();
-$instagram  = zadzerkalya_theme_mod( 'instagram' );
+$instagram  = zadzerkalya_social_url( 'instagram' );
 $telegram   = zadzerkalya_theme_mod( 'telegram' );
 $contacts   = zadzerkalya_get_page_url( 'contacts' );
 ?><!DOCTYPE html>
@@ -59,7 +59,7 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 			<div class="header-place">
 				<?php if ( $address ) : ?>
 					<div class="header-address">
-						<span><?php echo esc_html( $address ); ?></span>
+						<a href="https://maps.app.goo.gl/fbCkecw2nSCF9woS9" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $address ); ?></a>
 						<span class="header-address__line" aria-hidden="true"></span>
 					</div>
 				<?php endif; ?>

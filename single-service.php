@@ -33,7 +33,7 @@ $flag = static function ( $name, $default = true ) {
 		$hero_photo       = $field( 'service_hero_photo', get_post_thumbnail_id() );
 		$hero_background  = $field( 'service_hero_background' );
 		$button_label     = $field( 'service_hero_button_label', __( 'забронювати первинну консультацію', 'zadzerkalya' ) );
-		$button_url       = $field( 'service_hero_button_url', zadzerkalya_get_page_url( 'contacts' ) );
+		$button_url       = $field( 'service_hero_button_url', '#contact-form' );
 		$button_variant   = $field( 'service_hero_button_variant', 'primary' );
 
 		get_template_part(

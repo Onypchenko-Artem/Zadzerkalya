@@ -74,6 +74,10 @@
 	color: var(--color-night-sky);
 }
 
+.specialists-page .specialist-slot__link {
+	min-height: calc(682 * var(--u));
+}
+
 .specialist-slot__link:hover {
 	color: var(--color-night-sky);
 }

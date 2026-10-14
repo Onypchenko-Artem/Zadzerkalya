@@ -77,7 +77,9 @@ if ( ! $items ) {
 
 		<?php foreach ( $items as $item ) : ?>
 			<article class="services-showcase__card">
-				<h3><?php echo esc_html( $item['title'] ); ?></h3>
+				<a class="services-showcase__link" href="<?php echo esc_url( $item['url'] ); ?>">
+					<h3><?php echo esc_html( $item['title'] ); ?></h3>
+				</a>
 				<span class="services-showcase__line" aria-hidden="true"></span>
 				<div class="services-showcase__image-placeholder">
 					<?php
@@ -91,7 +93,7 @@ if ( ! $items ) {
 				zadzerkalya_button(
 					array(
 						'label'   => $card_button,
-						'url'     => $item['url'],
+						'url'     => '#contact-form',
 						'variant' => 'primary',
 					)
 				);

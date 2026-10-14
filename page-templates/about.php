@@ -228,20 +228,51 @@ get_header();
 
 		<?php
 		$gallery_images = array();
-		$gallery_items  = $about_field( 'about_gallery_items', array() );
+		$gallery_ids    = $about_field( 'about_gallery_photos', array() );
 
-		if ( is_array( $gallery_items ) ) {
-			foreach ( $gallery_items as $gallery_item ) {
-				$image_id = isset( $gallery_item['image'] ) ? (int) $gallery_item['image'] : 0;
-				$image_url = $image_id ? wp_get_attachment_image_url( $image_id, 'large' ) : '';
+		if ( ! is_array( $gallery_ids ) ) {
+			$gallery_ids = $gallery_ids ? array( (int) $gallery_ids ) : array();
+		}
 
-				if ( $image_url ) {
-					$gallery_images[] = array(
-						'src' => $image_url,
-						'alt' => $gallery_item['alt'] ?? '',
-					);
+		if ( ! $gallery_ids ) {
+			$legacy_count = (int) get_post_meta( get_the_ID(), 'about_gallery_items', true );
+
+			for ( $index = 0; $index < $legacy_count; $index++ ) {
+				$legacy_id = (int) get_post_meta( get_the_ID(), 'about_gallery_items_' . $index . '_image', true );
+
+				if ( ! $legacy_id ) {
+					continue;
+				}
+
+				$gallery_ids[] = $legacy_id;
+				$legacy_alt    = (string) get_post_meta( get_the_ID(), 'about_gallery_items_' . $index . '_alt', true );
+
+				if ( $legacy_alt && ! get_post_meta( $legacy_id, '_wp_attachment_image_alt', true ) ) {
+					update_post_meta( $legacy_id, '_wp_attachment_image_alt', $legacy_alt );
 				}
 			}
+
+			if ( $gallery_ids && function_exists( 'update_field' ) ) {
+				update_field( 'field_zadzerkalya_about_gallery_photos', $gallery_ids, get_the_ID() );
+			}
+		}
+
+		foreach ( $gallery_ids as $gallery_id ) {
+			if ( is_array( $gallery_id ) ) {
+				$gallery_id = (int) ( $gallery_id['ID'] ?? $gallery_id['id'] ?? 0 );
+			}
+
+			$gallery_id  = (int) $gallery_id;
+			$image_url   = $gallery_id ? wp_get_attachment_image_url( $gallery_id, 'large' ) : '';
+
+			if ( ! $image_url ) {
+				continue;
+			}
+
+			$gallery_images[] = array(
+				'src' => $image_url,
+				'alt' => (string) get_post_meta( $gallery_id, '_wp_attachment_image_alt', true ),
+			);
 		}
 
 		if ( ! $gallery_images ) {
@@ -317,8 +348,22 @@ get_header();
 		array(
 			'post_type'           => 'specialist',
 			'posts_per_page'      => 3,
-			'orderby'             => 'date',
-			'order'               => 'DESC',
+			'orderby'             => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'meta_query'          => array(
+				'relation' => 'OR',
+				array(
+					'key'     => '_zdk_show_on_team',
+					'value'   => '1',
+					'compare' => '=',
+				),
+				array(
+					'key'     => '_zdk_show_on_team',
+					'compare' => 'NOT EXISTS',
+				),
+			),
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
 		)

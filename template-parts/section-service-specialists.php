@@ -75,8 +75,6 @@ $total = count( $items );
 	<div class="service-specialists__cards">
 		<?php foreach ( $items as $index => $item ) : ?>
 			<article class="service-specialists__card">
-				<img class="service-specialists__stroke service-specialists__stroke--a" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-specialists-stroke-a.svg' ); ?>" alt="" aria-hidden="true">
-				<img class="service-specialists__stroke service-specialists__stroke--b" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-specialists-stroke-b.svg' ); ?>" alt="" aria-hidden="true">
 				<div class="service-specialists__head">
 					<p class="service-specialists__counter">
 						<span class="service-specialists__counter-current"><?php echo esc_html( (string) ( $index + 1 ) ); ?>/</span><span class="service-specialists__counter-total"><?php echo esc_html( (string) $total ); ?></span>
