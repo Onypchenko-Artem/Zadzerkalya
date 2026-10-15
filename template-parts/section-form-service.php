@@ -127,7 +127,7 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 
 				<p class="form-service__field">
 					<label for="form-service-phone-<?php echo esc_attr( $form_id ); ?>"><?php esc_html_e( 'Телефон*', 'zadzerkalya' ); ?></label>
-					<input id="form-service-phone-<?php echo esc_attr( $form_id ); ?>" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
+					<input id="form-service-phone-<?php echo esc_attr( $form_id ); ?>" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" pattern="\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}" title="<?php esc_attr_e( 'Введіть номер повністю: +38 (000) 000-00-00', 'zadzerkalya' ); ?>" required>
 				</p>
 
 				<?php zadzerkalya_form_consent(); ?>

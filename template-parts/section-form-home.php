@@ -45,7 +45,7 @@ $args = wp_parse_args(
 
 			<p class="form-home__field">
 				<label for="home-form-phone"><?php esc_html_e( 'Телефон*', 'zadzerkalya' ); ?></label>
-				<input id="home-form-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
+				<input id="home-form-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" pattern="\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}" title="<?php esc_attr_e( 'Введіть номер повністю: +38 (000) 000-00-00', 'zadzerkalya' ); ?>" required>
 			</p>
 
 			<p class="form-home__field">

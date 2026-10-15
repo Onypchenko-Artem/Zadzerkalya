@@ -127,8 +127,8 @@
 }
 
 .service-slider .service-card__line {
-	flex-basis: calc(8 * var(--u));
-	height: calc(8 * var(--u));
+	flex-basis: auto;
+	height: auto;
 }
 
 .service-slider .service-card__photo {
@@ -243,8 +243,8 @@
 	}
 
 	.service-slider .service-card__line {
-		flex-basis: 8px;
-		height: 8px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.service-slider .service-card__photo {

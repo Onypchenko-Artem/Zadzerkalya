@@ -36,9 +36,8 @@ body.services-mega-open {
 	grid-template-rows: 1fr;
 	flex: 1;
 	min-height: 0;
-	padding: calc(30 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
-	overflow: auto;
-	overscroll-behavior: contain;
+	padding: calc(64 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	overflow: hidden;
 }
 
 .services-mega__cats {
@@ -62,9 +61,13 @@ body.services-mega-open {
 .services-mega__services {
 	grid-column: 5;
 	grid-row: 1;
-	align-self: start;
+	align-self: stretch;
 	position: relative;
-	min-height: calc(35 * var(--u));
+	min-height: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding-bottom: calc(12 * var(--u));
 }
 
 .services-mega__visual {
@@ -123,7 +126,7 @@ body.services-mega-open {
 	left: 0;
 	bottom: calc(-6 * var(--u));
 	width: 100%;
-	height: 3px;
+	height: 6px;
 	background: url("../../images/menu-underline.svg") left center / 100% 100% no-repeat;
 	clip-path: inset(0 100% 0 0);
 	transition: clip-path 0.45s ease;

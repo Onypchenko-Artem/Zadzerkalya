@@ -35,7 +35,7 @@ get_header();
 		$event_passed = zadzerkalya_event_has_passed( $date, $event_time );
 
 		if ( $event_passed ) {
-			$button_label = __( 'повідомити про наступну подію', 'zadzerkalya' );
+			$button_label = __( "повідомити про наступну\nподію", 'zadzerkalya' );
 			$button_url   = '';
 		} elseif ( ! $button_url || untrailingslashit( $button_url ) === untrailingslashit( $contacts_url ) ) {
 			$button_url = '#contact-form';

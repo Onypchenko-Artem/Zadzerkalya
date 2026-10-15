@@ -26,8 +26,11 @@ if ( ! $hero_btn ) {
 	<section class="hero">
 		<div class="hero-inner">
 			<div class="hero-top-lines" aria-hidden="true">
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-banner-short-line.svg' ); ?>" alt="">
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-banner-short-line.svg' ); ?>" alt="">
+				<?php
+				$hero_top_line = '<svg class="hero-top-lines__svg" viewBox="0 0 874 9" fill="none" preserveAspectRatio="none" focusable="false"><path d="M0.5 0.835174C85.0934 0.542463 169.687 0.249751 314.354 0.850013C459.02 1.45027 661.197 2.95238 869.5 4.5" stroke="#0F1A2D" stroke-linecap="round" vector-effect="non-scaling-stroke" transform="translate(2 2)"/></svg>';
+				?>
+				<span class="hero-top-lines__item"><?php echo $hero_top_line; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+				<span class="hero-top-lines__item hero-top-lines__item--flip"><?php echo $hero_top_line; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
 			</div>
 
 			<div class="hero-layout">
@@ -68,7 +71,7 @@ if ( ! $hero_btn ) {
 							<div class="hero-field-stack">
 								<p class="hero-field">
 									<label for="hero-phone"><?php esc_html_e( 'Телефон*', 'zadzerkalya' ); ?></label>
-									<input id="hero-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" required>
+									<input id="hero-phone" name="zadzerkalya_phone" type="tel" autocomplete="tel" placeholder="+38 (000) 000-00-00" pattern="\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}" title="<?php esc_attr_e( 'Введіть номер повністю: +38 (000) 000-00-00', 'zadzerkalya' ); ?>" required>
 								</p>
 								<?php zadzerkalya_form_consent(); ?>
 							</div>
@@ -87,7 +90,7 @@ if ( ! $hero_btn ) {
 					</div>
 				</div>
 
-				<img class="hero-divider" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-divider.svg' ); ?>" alt="" aria-hidden="true">
+				<span class="hero-divider" aria-hidden="true"></span>
 
 				<div class="hero-media">
 					<?php
@@ -98,7 +101,7 @@ if ( ! $hero_btn ) {
 				</div>
 			</div>
 
-			<img class="hero-bottom-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-banner-long-line.svg' ); ?>" alt="" aria-hidden="true">
+			<span class="hero-bottom-line" aria-hidden="true"></span>
 		</div>
 	</section>
 

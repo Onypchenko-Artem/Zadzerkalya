@@ -21,7 +21,6 @@
 	display: block;
 	width: 100%;
 	height: auto;
-	aspect-ratio: 1824 / 31;
 }
 
 .form-service__content {
@@ -64,12 +63,13 @@
 	align-items: flex-start;
 	gap: calc(102 * var(--u));
 	width: 100%;
+	font-weight: 300;
 }
 
 .form-service__column {
 	font-family: var(--font-family-body);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -123,7 +123,7 @@
 	width: calc(735 * var(--u));
 	font-family: var(--font-family-body);
 	font-size: calc(32 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.2;
 }
 

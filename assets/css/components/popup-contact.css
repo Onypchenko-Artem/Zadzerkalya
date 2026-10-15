@@ -213,9 +213,11 @@
 }
 
 .single-event .event-article__aside .lottie-button[data-contact-popup-open] .lottie-button__label {
-	width: min(250px, 82%);
-	line-height: 1.2;
-	white-space: normal;
+	width: auto;
+	max-width: 100%;
+	line-height: 1.15;
+	white-space: nowrap;
+	text-align: center;
 }
 
 body.contact-popup-open {

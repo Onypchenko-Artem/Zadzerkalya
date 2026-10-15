@@ -1,0 +1,49 @@
+{
+    "key": "group_zadzerkalya_service_menu",
+    "title": "Послуга: меню",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_service_menu_title",
+            "label": "Назва в меню",
+            "name": "service_menu_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Текст у випадаючому меню «Послуги». Якщо порожньо, показується назва послуги.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "service"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Коротка назва послуги для випадаючого меню.",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1792022400
+}

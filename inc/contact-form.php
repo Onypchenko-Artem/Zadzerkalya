@@ -51,6 +51,10 @@ function zadzerkalya_handle_contact_form() {
 	$name    = isset( $_POST['zadzerkalya_name'] ) ? sanitize_text_field( wp_unslash( $_POST['zadzerkalya_name'] ) ) : '';
 	$email   = isset( $_POST['zadzerkalya_email'] ) ? sanitize_email( wp_unslash( $_POST['zadzerkalya_email'] ) ) : '';
 	$phone   = isset( $_POST['zadzerkalya_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['zadzerkalya_phone'] ) ) : '';
+	$digits  = preg_replace( '/\D+/', '', $phone );
+	if ( ! is_string( $digits ) || ! preg_match( '/^380\d{9}$/', $digits ) ) {
+		$phone = '';
+	}
 	$message = isset( $_POST['zadzerkalya_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['zadzerkalya_message'] ) ) : '';
 	$is_hero    = 'hero' === $source;
 	$is_service = 'service' === $source;

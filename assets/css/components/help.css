@@ -109,9 +109,10 @@
 .help__reasons::after,
 .help__reasons li:not(:last-child)::after {
 	display: block;
-	flex: 0 0 calc(8 * var(--u));
+	flex: 0 0 auto;
 	width: 100%;
-	height: calc(8 * var(--u));
+	height: auto;
+	aspect-ratio: 509 / 10;
 	content: "";
 	background: url("../../images/list-line.svg") center / 100% 100% no-repeat;
 }
@@ -222,8 +223,8 @@
 	.help__reasons::before,
 	.help__reasons::after,
 	.help__reasons li:not(:last-child)::after {
-		flex-basis: 6px;
-		height: 6px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.help__reasons li:not(:last-child)::after {

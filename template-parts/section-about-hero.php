@@ -62,11 +62,11 @@ if ( $background_url ) {
 					echo wp_kses_post( $quote_html );
 					?>
 				</div>
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-left-line.svg' ); ?>" alt="" aria-hidden="true">
+				<span class="about-hero__line" aria-hidden="true"></span>
 			</div>
 		</div>
 
-		<img class="about-hero__vertical-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
+		<span class="about-hero__vertical-line" aria-hidden="true"></span>
 
 		<div class="about-hero__visual" aria-hidden="true">
 			<div class="about-hero__scene">
@@ -78,7 +78,7 @@ if ( $background_url ) {
 				}
 				?>
 			</div>
-			<img class="about-hero__right-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-right-line.svg' ); ?>" alt="">
+			<span class="about-hero__right-line" aria-hidden="true"></span>
 		</div>
 	</div>
 </section>

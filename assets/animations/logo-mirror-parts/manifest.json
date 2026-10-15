@@ -1,0 +1,104 @@
+{
+  "component": "задзеркалля logo / Logo 7917:53872 — окремо лого і слоган",
+  "fps": 60,
+  "breakpoints": {
+    "desktop": "min-width: 1280px",
+    "tablet": "768–1279px",
+    "mobile": "max-width: 767px"
+  },
+  "ending": "дзеркало повертається, фінал = лого з Figma (затверджений)",
+  "logo": [
+    {
+      "file": "logo-only-desktop.json",
+      "breakpoint": "desktop",
+      "ending": "logo",
+      "w": 462,
+      "h": 485,
+      "frames": 349,
+      "durationMs": 5817,
+      "bytes": 1014663,
+      "gzip": 127260,
+      "offsetInWhole": {
+        "x": 47.562,
+        "y": 0
+      }
+    },
+    {
+      "file": "logo-only-tablet.json",
+      "breakpoint": "tablet",
+      "ending": "logo",
+      "w": 221,
+      "h": 234,
+      "frames": 349,
+      "durationMs": 5817,
+      "bytes": 1014662,
+      "gzip": 127258,
+      "offsetInWhole": {
+        "x": 62.693,
+        "y": 0
+      }
+    },
+    {
+      "file": "logo-only-mobile.json",
+      "breakpoint": "mobile",
+      "ending": "logo",
+      "w": 71,
+      "h": 76,
+      "frames": 349,
+      "durationMs": 5817,
+      "bytes": 1014660,
+      "gzip": 127254,
+      "offsetInWhole": {
+        "x": 145,
+        "y": 0
+      }
+    }
+  ],
+  "tagline": [
+    {
+      "file": "tagline-only-desktop.json",
+      "breakpoint": "desktop",
+      "w": 557,
+      "h": 76,
+      "frames": 106,
+      "durationMs": 1767,
+      "offsetInWhole": {
+        "frame": 243,
+        "ms": 4050,
+        "y": 647.572
+      },
+      "bytes": 51207,
+      "gzip": 11272
+    },
+    {
+      "file": "tagline-only-tablet.json",
+      "breakpoint": "tablet",
+      "w": 356,
+      "h": 48,
+      "frames": 106,
+      "durationMs": 1767,
+      "offsetInWhole": {
+        "frame": 243,
+        "ms": 4050,
+        "y": 435
+      },
+      "bytes": 53673,
+      "gzip": 12698
+    },
+    {
+      "file": "tagline-only-mobile.json",
+      "breakpoint": "mobile",
+      "w": 361,
+      "h": 32,
+      "frames": 106,
+      "durationMs": 1767,
+      "offsetInWhole": {
+        "frame": 243,
+        "ms": 4050,
+        "y": 92
+      },
+      "bytes": 52035,
+      "gzip": 10988
+    }
+  ]
+}

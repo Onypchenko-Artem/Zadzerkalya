@@ -65,7 +65,7 @@ if ( ! $items ) {
 <section class="services-showcase" aria-labelledby="services-showcase-title">
 	<div class="services-showcase__heading">
 		<h2 id="services-showcase-title"><?php echo wp_kses( nl2br( esc_html( $title ) ), array( 'br' => array() ) ); ?></h2>
-		<p><?php echo esc_html( $text ); ?></p>
+		<p><?php echo wp_kses( $text, array( 'br' => array() ) ); ?></p>
 	</div>
 
 	<div class="services-showcase__grid">

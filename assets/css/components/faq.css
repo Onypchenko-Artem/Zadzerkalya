@@ -160,7 +160,8 @@
 .faq__line {
 	align-self: stretch;
 	width: 100%;
-	height: calc(6 * var(--u));
+	height: auto;
+	aspect-ratio: 1324 / 11;
 	background: url("../../images/faq-line.svg") center / 100% 100% no-repeat;
 }
 

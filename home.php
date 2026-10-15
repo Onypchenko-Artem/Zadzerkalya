@@ -32,7 +32,7 @@ if ( ! $current_term || is_wp_error( $current_term ) ) {
 
 $query_args = array(
 	'post_type'      => 'post',
-	'posts_per_page' => 3,
+	'posts_per_page' => 9,
 	'paged'          => $paged,
 );
 

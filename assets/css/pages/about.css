@@ -135,9 +135,13 @@
 	text-decoration: underline;
 }
 
-.about-hero__footer img {
+.about-hero__line {
+	display: block;
+	flex-shrink: 0;
 	width: 100%;
-	height: calc(12 * var(--u));
+	height: auto;
+	aspect-ratio: 875 / 16;
+	background: url("../../images/about-left-line.svg") center / 100% 100% no-repeat;
 }
 
 .about-hero__vertical-line {
@@ -145,8 +149,10 @@
 	top: 0;
 	left: 50.2%;
 	z-index: 1;
-	/*width: calc(23 * var(--u));*/
+	width: calc(23 * var(--u));
 	height: 100%;
+	max-width: none;
+	background: url("../../images/about-vertical-line.svg") center / 100% 100% no-repeat;
 	transform: translateX(-50%);
 	pointer-events: none;
 }
@@ -174,9 +180,13 @@
 }
 
 .about-hero__right-line {
+	display: block;
+	flex-shrink: 0;
+	align-self: stretch;
 	width: 100%;
-	height: calc(29 * var(--u));
-	object-fit: fill;
+	height: auto;
+	aspect-ratio: 895 / 34;
+	background: url("../../images/about-right-line.svg") center / 100% 100% no-repeat;
 }
 
 .about-story {
@@ -308,10 +318,12 @@
 	gap: calc(8 * var(--u));
 }
 
-.about-story__lead img {
+.about-story__rule {
+	display: block;
+	flex-shrink: 0;
 	width: 100%;
 	height: calc(17 * var(--u));
-	object-fit: fill;
+	background: url("../../images/story-lead-line.svg") center / 100% 100% no-repeat;
 }
 
 .about-story__lead p {
@@ -596,6 +608,8 @@
 
 .about-values__conclusion-line {
 	display: block;
+	flex-shrink: 0;
+	align-self: stretch;
 	width: 100%;
 	height: calc(8 * var(--u));
 	overflow: visible;
@@ -732,6 +746,7 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	object-position: center top;
 }
 
 .about-gallery__actions {
@@ -823,6 +838,7 @@
 	left: calc(34 * var(--u));
 	width: calc(1697 * var(--u));
 	height: calc(135 * var(--u));
+	object-fit: fill;
 	clip-path: inset(0 3.12% 0 0);
 }
 
@@ -839,7 +855,7 @@
 	font-family: var(--font-family-display);
 	font-size: calc(54 * var(--u));
 	font-weight: 400;
-	letter-spacing: 0.08em;
+	letter-spacing: 0;
 }
 
 .about-content {
@@ -960,8 +976,8 @@
 		font-size: 18px;
 	}
 
-	.about-hero__footer img {
-		height: 9px;
+	.about-hero__line {
+		width: 100%;
 	}
 
 	.about-hero__vertical-line {
@@ -974,10 +990,6 @@
 
 	.about-hero__scene {
 		width: 100%;
-	}
-
-	.about-hero__right-line {
-		height: 20px;
 	}
 
 	.about-story {
@@ -1043,7 +1055,7 @@
 		font-size: 38px;
 	}
 
-	.about-story__lead img {
+	.about-story__rule {
 		height: 12px;
 	}
 
@@ -1439,10 +1451,6 @@
 		border-radius: 20px;
 	}
 
-	.about-hero__right-line {
-		height: 14px;
-	}
-
 	.about-story {
 		padding: 80px 16px 0;
 	}
@@ -1481,7 +1489,7 @@
 		font-size: 32px;
 	}
 
-	.about-story__lead img {
+	.about-story__rule {
 		height: 10px;
 	}
 

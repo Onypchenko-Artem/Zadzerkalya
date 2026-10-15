@@ -79,11 +79,11 @@ if ( $background_url ) {
 					</div>
 				</div>
 
-				<img class="event-hero__bottom-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-left-line.svg' ); ?>" alt="" aria-hidden="true">
+				<span class="event-hero__bottom-line" aria-hidden="true"></span>
 			</div>
 		</div>
 
-		<img class="event-hero__vertical-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
+		<span class="event-hero__vertical-line" aria-hidden="true"></span>
 
 		<div class="event-hero__photo">
 			<div class="event-hero__image" aria-hidden="true">
@@ -96,9 +96,7 @@ if ( $background_url ) {
 				?>
 			</div>
 
-			<div class="event-hero__photo-line" aria-hidden="true">
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-right-line.svg' ); ?>" alt="">
-			</div>
+			<div class="event-hero__photo-line" aria-hidden="true"></div>
 		</div>
 	</div>
 </section>

@@ -80,9 +80,9 @@
 }
 
 .service-when__line {
-	flex: 0 0 calc(9 * var(--u));
+	flex: 0 0 auto;
 	width: 100%;
-	height: calc(9 * var(--u));
+	height: auto;
 }
 
 .service-when__card-content {
@@ -167,8 +167,8 @@
 	}
 
 	.service-when__line {
-		flex-basis: 9px;
-		height: 9px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.service-when__number {

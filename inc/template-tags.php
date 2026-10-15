@@ -396,8 +396,32 @@ function zadzerkalya_button( $args = array() ) {
 		)
 	);
 
-	$variant = in_array( $args['variant'], array( 'primary', 'secondary' ), true ) ? $args['variant'] : 'primary';
-	$label   = esc_html( $args['label'] );
+	$variant     = in_array( $args['variant'], array( 'primary', 'secondary' ), true ) ? $args['variant'] : 'primary';
+	$label_plain = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $args['label'] ) ) );
+	$label_key   = function_exists( 'mb_strtolower' ) ? mb_strtolower( $label_plain ) : strtolower( $label_plain );
+
+	if ( 'повідомити про наступну подію' === $label_key ) {
+		$args['label'] = "повідомити про наступну\nподію";
+	}
+
+	$label_lines = preg_split( "/\r\n|\n|\r/", (string) $args['label'] );
+	$label_parts = array();
+
+	foreach ( $label_lines as $label_line ) {
+		$label_line = trim( $label_line );
+
+		if ( '' === $label_line ) {
+			continue;
+		}
+
+		$label_parts[] = esc_html( $label_line );
+	}
+
+	if ( count( $label_parts ) > 1 ) {
+		$label = implode( '<br>', $label_parts );
+	} else {
+		$label = esc_html( $args['label'] );
+	}
 	$class   = 'lottie-button lottie-button--' . $variant;
 	$anim      = preg_replace( '/[^a-z0-9-]/', '', (string) $args['anim'] );
 	$anim_attr = $anim ? ' data-anim="' . esc_attr( $anim ) . '"' : '';
@@ -551,6 +575,226 @@ function zadzerkalya_is_services_menu_item( $item ) {
 }
 
 /**
+ * Назва послуги у меню. Порожнє поле лишає запасний підпис.
+ *
+ * @param int    $service_id ID послуги.
+ * @param string $fallback   Підпис, якщо поле порожнє.
+ * @return string
+ */
+function zadzerkalya_service_menu_title( $service_id, $fallback = '' ) {
+	$service_id = (int) $service_id;
+	$title      = '';
+
+	if ( $service_id && function_exists( 'get_field' ) ) {
+		$title = trim( (string) get_field( 'service_menu_title', $service_id ) );
+	}
+
+	if ( '' !== $title ) {
+		return $title;
+	}
+
+	if ( '' !== (string) $fallback ) {
+		return (string) $fallback;
+	}
+
+	return $service_id ? get_the_title( $service_id ) : '';
+}
+
+/**
+ * У меню пункт послуги показує окрему назву, якщо вона задана.
+ *
+ * @param string  $title Текст пункту.
+ * @param WP_Post $item  Пункт меню.
+ * @return string
+ */
+function zadzerkalya_service_nav_menu_title( $title, $item ) {
+	if ( ! $item instanceof WP_Post || 'post_type' !== $item->type || 'service' !== $item->object ) {
+		return $title;
+	}
+
+	return zadzerkalya_service_menu_title( (int) $item->object_id, $title );
+}
+add_filter( 'nav_menu_item_title', 'zadzerkalya_service_nav_menu_title', 10, 2 );
+
+/**
+ * Фото типу послуги з поля ACF.
+ *
+ * @param WP_Term $term Тип послуги.
+ * @return int
+ */
+function zadzerkalya_service_type_image_id( $term ) {
+	if ( ! $term instanceof WP_Term || ! function_exists( 'get_field' ) ) {
+		return 0;
+	}
+
+	$image = get_field( 'service_type_image', $term );
+	if ( is_numeric( $image ) ) {
+		return (int) $image;
+	}
+
+	if ( is_array( $image ) ) {
+		return (int) ( $image['ID'] ?? $image['id'] ?? 0 );
+	}
+
+	return 0;
+}
+
+/**
+ * Опубліковані послуги типу — для колонки меню, якщо під типом нічого не вкладено.
+ *
+ * @param int $term_id ID типу послуги.
+ * @return array{services: array<int, array{title: string, url: string}>, image_id: int}
+ */
+function zadzerkalya_services_of_type( $term_id ) {
+	$query = new WP_Query(
+		array(
+			'post_type'      => 'service',
+			'post_status'    => 'publish',
+			'posts_per_page' => -1,
+			'orderby'        => array(
+				'menu_order' => 'ASC',
+				'title'      => 'ASC',
+			),
+			'no_found_rows'  => true,
+			'tax_query'      => array(
+				array(
+					'taxonomy'         => 'service_type',
+					'field'            => 'term_id',
+					'terms'            => (int) $term_id,
+					'include_children' => true,
+				),
+			),
+		)
+	);
+
+	$services = array();
+	$image_id = 0;
+
+	foreach ( $query->posts as $service ) {
+		if ( ! $image_id ) {
+			$image    = zadzerkalya_service_showcase_image( $service->ID );
+			$image_id = is_numeric( $image ) ? (int) $image : 0;
+		}
+
+		$services[] = array(
+			'title' => zadzerkalya_service_menu_title( $service->ID ),
+			'url'   => get_permalink( $service ),
+		);
+	}
+
+	return array(
+		'services' => $services,
+		'image_id' => $image_id,
+	);
+}
+
+/**
+ * Випадаюче меню послуг з вкладених пунктів головного меню.
+ * Порожній результат означає, що структуру ще не зібрали — лишається автоматичний перелік.
+ *
+ * @return array{all_url: string, categories: array<int, array<string, mixed>>}|null
+ */
+function zadzerkalya_services_mega_from_menu() {
+	$locations = get_nav_menu_locations();
+	if ( empty( $locations['primary'] ) ) {
+		return null;
+	}
+
+	$items = wp_get_nav_menu_items( (int) $locations['primary'] );
+	if ( ! is_array( $items ) || ! $items ) {
+		return null;
+	}
+
+	$services_item = null;
+	foreach ( $items as $item ) {
+		if ( zadzerkalya_is_services_menu_item( $item ) ) {
+			$services_item = $item;
+			break;
+		}
+	}
+
+	if ( ! $services_item ) {
+		return null;
+	}
+
+	$children = array();
+	foreach ( $items as $item ) {
+		$children[ (int) $item->menu_item_parent ][] = $item;
+	}
+
+	$categories_items = $children[ (int) $services_item->ID ] ?? array();
+	if ( ! $categories_items ) {
+		return null;
+	}
+
+	$services_url = zadzerkalya_get_services_url();
+	$categories   = array();
+
+	foreach ( $categories_items as $category_item ) {
+		$term     = null;
+		$url      = $category_item->url;
+		$image_id = 0;
+
+		if ( 'taxonomy' === $category_item->type && 'service_type' === $category_item->object ) {
+			$term = get_term( (int) $category_item->object_id, 'service_type' );
+			if ( $term && ! is_wp_error( $term ) ) {
+				$url      = add_query_arg( 'type', $term->slug, $services_url );
+				$image_id = zadzerkalya_service_type_image_id( $term );
+			} else {
+				$term = null;
+			}
+		} elseif ( 'post_type' === $category_item->type && 'service' === $category_item->object ) {
+			$image    = zadzerkalya_service_showcase_image( (int) $category_item->object_id );
+			$image_id = is_numeric( $image ) ? (int) $image : 0;
+		}
+
+		$category_name = $category_item->title;
+		if ( 'post_type' === $category_item->type && 'service' === $category_item->object ) {
+			$category_name = zadzerkalya_service_menu_title( (int) $category_item->object_id, $category_item->title );
+		}
+
+		$services = array();
+		foreach ( $children[ (int) $category_item->ID ] ?? array() as $service_item ) {
+			$service_title = $service_item->title;
+			if ( 'post_type' === $service_item->type && 'service' === $service_item->object ) {
+				$service_title = zadzerkalya_service_menu_title( (int) $service_item->object_id, $service_item->title );
+			}
+
+			$services[] = array(
+				'title' => $service_title,
+				'url'   => $service_item->url,
+			);
+
+			if ( ! $image_id && 'post_type' === $service_item->type && 'service' === $service_item->object ) {
+				$image    = zadzerkalya_service_showcase_image( (int) $service_item->object_id );
+				$image_id = is_numeric( $image ) ? (int) $image : 0;
+			}
+		}
+
+		if ( ! $services && $term ) {
+			$filled   = zadzerkalya_services_of_type( (int) $term->term_id );
+			$services = $filled['services'];
+			if ( ! $image_id ) {
+				$image_id = $filled['image_id'];
+			}
+		}
+
+		$categories[] = array(
+			'id'       => (int) $category_item->ID,
+			'name'     => $category_name,
+			'url'      => $url,
+			'image_id' => $image_id,
+			'services' => $services,
+		);
+	}
+
+	return array(
+		'all_url'    => $services_url,
+		'categories' => $categories,
+	);
+}
+
+/**
  * Категорії послуг і послуги всередині для десктопного меню.
  *
  * @return array{all_url: string, categories: array<int, array<string, mixed>>}
@@ -559,6 +803,12 @@ function zadzerkalya_get_services_mega() {
 	static $mega = null;
 
 	if ( null !== $mega ) {
+		return $mega;
+	}
+
+	$from_menu = zadzerkalya_services_mega_from_menu();
+	if ( null !== $from_menu ) {
+		$mega = $from_menu;
 		return $mega;
 	}
 
@@ -672,7 +922,7 @@ function zadzerkalya_get_services_mega() {
 			}
 			$seen[ $service->ID ] = true;
 			$services[]           = array(
-				'title' => get_the_title( $service ),
+				'title' => zadzerkalya_service_menu_title( $service->ID ),
 				'url'   => get_permalink( $service ),
 			);
 		}

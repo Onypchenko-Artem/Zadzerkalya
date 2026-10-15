@@ -306,7 +306,7 @@ function zadzerkalya_event_archive_query( $query ) {
 }
 
 /**
- * Стрічка блогу показує 3 картки. Головний запит має збігатися з нею,
+ * Стрічка блогу показує 9 карток. Головний запит має збігатися з нею,
  * інакше /blog/page/2/ віддає 404, коли в «Читанні» більше записів на сторінку.
  */
 function zadzerkalya_blog_home_query( $query ) {
@@ -314,7 +314,7 @@ function zadzerkalya_blog_home_query( $query ) {
 		return;
 	}
 
-	$query->set( 'posts_per_page', 3 );
+	$query->set( 'posts_per_page', 9 );
 }
 
 /**

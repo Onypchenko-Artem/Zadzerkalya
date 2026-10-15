@@ -199,9 +199,10 @@
 }
 
 .reviews__line {
-	flex: 0 0 calc(10 * var(--u));
+	flex: 0 0 auto;
 	width: 100%;
-	height: calc(10 * var(--u));
+	height: auto;
+	aspect-ratio: 498 / 16;
 	background: url("../../images/review-line.svg") center / 100% 100% no-repeat;
 	opacity: 0.75;
 }
@@ -349,8 +350,8 @@
 	}
 
 	.reviews__line {
-		flex-basis: 9px;
-		height: 9px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.reviews__text {

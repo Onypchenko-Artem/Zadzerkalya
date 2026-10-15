@@ -34,11 +34,15 @@ if ( ! $privacy_url ) {
 	<span class="site-footer__line site-footer__line--right" aria-hidden="true"></span>
 	<span class="site-footer__divider" aria-hidden="true"></span>
 
-	<div class="site-footer__brand">
-		<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/logo.svg' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+	<div class="site-footer__brand" data-footer-brand data-anim-base="<?php echo esc_url( ZADZERKALYA_URI . '/assets/animations/logo-mirror-parts/' ); ?>">
+		<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+			<img class="site-footer__logo-static" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/logo.svg' ); ?>" alt="">
+			<span class="site-footer__logo-anim" data-footer-logo aria-hidden="true"></span>
 		</a>
-		<p><?php esc_html_e( 'Ми віримо в кожну дитину', 'zadzerkalya' ); ?></p>
+		<p class="site-footer__tagline">
+			<span class="site-footer__tagline-text"><?php esc_html_e( 'Ми віримо в кожну дитину', 'zadzerkalya' ); ?></span>
+			<span class="site-footer__tagline-anim" data-footer-tagline aria-hidden="true"></span>
+		</p>
 	</div>
 
 	<div class="site-footer__details">

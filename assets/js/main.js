@@ -1125,3 +1125,332 @@
 		open();
 	}
 })();
+
+(() => {
+	const prefix = '+38 ';
+
+	const nationalDigits = (value) => {
+		let digits = String(value).replace(/\D/g, '');
+		if (digits.startsWith('38')) {
+			digits = digits.slice(2);
+		}
+		return digits.slice(0, 10);
+	};
+
+	const formatPhone = (digits) => {
+		if (!digits) {
+			return prefix;
+		}
+
+		let result = `+38 (${digits.slice(0, 3)}`;
+		if (digits.length < 3) {
+			return result;
+		}
+
+		result += ')';
+		if (digits.length === 3) {
+			return `${result} `;
+		}
+
+		result += ` ${digits.slice(3, 6)}`;
+		if (digits.length <= 6) {
+			return result;
+		}
+
+		result += `-${digits.slice(6, 8)}`;
+		if (digits.length <= 8) {
+			return result;
+		}
+
+		return `${result}-${digits.slice(8, 10)}`;
+	};
+
+	const digitsBeforeCaret = (value, caret) => nationalDigits(value.slice(0, caret)).length;
+
+	const caretAfterDigits = (formatted, count) => {
+		if (count <= 0) {
+			return prefix.length;
+		}
+
+		let seen = 0;
+		for (let index = prefix.length; index < formatted.length; index += 1) {
+			if (/\d/.test(formatted[index])) {
+				seen += 1;
+				if (seen >= count) {
+					return index + 1;
+				}
+			}
+		}
+
+		return formatted.length;
+	};
+
+	document.querySelectorAll('input[name="zadzerkalya_phone"]').forEach((input) => {
+		const paint = () => {
+			const digits = nationalDigits(input.value);
+
+			if (!digits && document.activeElement !== input) {
+				input.value = '';
+				return;
+			}
+
+			const caret = input.selectionStart ?? input.value.length;
+			const before = digitsBeforeCaret(input.value, caret);
+			const next = formatPhone(digits);
+
+			if (input.value !== next) {
+				input.value = next;
+			}
+
+			if (document.activeElement === input) {
+				const pos = caretAfterDigits(next, Math.min(before, digits.length));
+				input.setSelectionRange(pos, pos);
+			}
+		};
+
+		input.addEventListener('focus', () => {
+			if (!nationalDigits(input.value)) {
+				input.value = prefix;
+			}
+
+			window.requestAnimationFrame(() => {
+				const pos = Math.max(input.selectionStart ?? prefix.length, prefix.length);
+				input.setSelectionRange(pos, pos);
+			});
+		});
+
+		input.addEventListener('blur', () => {
+			if (!nationalDigits(input.value)) {
+				input.value = '';
+			}
+		});
+
+		input.addEventListener('beforeinput', (event) => {
+			const end = input.selectionEnd ?? 0;
+			const deleting = event.inputType === 'deleteContentBackward' || event.inputType === 'deleteContentForward';
+
+			if (deleting && end <= prefix.length) {
+				event.preventDefault();
+				input.setSelectionRange(prefix.length, prefix.length);
+			}
+		});
+
+		const writeDigits = (digits, caretDigits) => {
+			const next = formatPhone(digits);
+			input.value = next;
+			const pos = caretAfterDigits(next, caretDigits);
+			input.setSelectionRange(pos, pos);
+		};
+
+		input.addEventListener('keydown', (event) => {
+			const start = input.selectionStart ?? 0;
+			const end = input.selectionEnd ?? 0;
+			const value = input.value;
+
+			if ((event.key === 'ArrowLeft' || event.key === 'Home') && start <= prefix.length && end <= prefix.length && !event.shiftKey && !event.metaKey && !event.ctrlKey) {
+				event.preventDefault();
+				input.setSelectionRange(prefix.length, prefix.length);
+				return;
+			}
+
+			if (start !== end || (event.key !== 'Backspace' && event.key !== 'Delete')) {
+				return;
+			}
+
+			if (event.key === 'Backspace' && start <= prefix.length) {
+				event.preventDefault();
+				input.setSelectionRange(prefix.length, prefix.length);
+				return;
+			}
+
+			if (event.key === 'Delete' && start < prefix.length) {
+				event.preventDefault();
+				input.setSelectionRange(prefix.length, prefix.length);
+				return;
+			}
+
+			const digits = nationalDigits(value);
+			const index = digitsBeforeCaret(value, start);
+			const onDigit = event.key === 'Backspace'
+				? /\d/.test(value[start - 1] || '')
+				: /\d/.test(value[start] || '');
+
+			if (onDigit) {
+				return;
+			}
+
+			event.preventDefault();
+			if (event.key === 'Backspace') {
+				writeDigits(digits.slice(0, Math.max(0, index - 1)) + digits.slice(index), Math.max(0, index - 1));
+				return;
+			}
+
+			writeDigits(digits.slice(0, index) + digits.slice(index + 1), index);
+		});
+
+		input.addEventListener('input', paint);
+		input.addEventListener('change', paint);
+	});
+})();
+
+(() => {
+	const brand = document.querySelector('[data-footer-brand]');
+	if (!brand) {
+		return;
+	}
+
+	const base = brand.dataset.animBase || '';
+	const logoEl = brand.querySelector('[data-footer-logo]');
+	const taglineEl = brand.querySelector('[data-footer-tagline]');
+	if (!base || !logoEl || !taglineEl) {
+		return;
+	}
+
+	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+	const taglineDelay = 4050;
+	let booted = false;
+	let logoAnim = null;
+	let taglineAnim = null;
+	let currentBp = '';
+	let taglineTimer = 0;
+	let finished = false;
+	let playing = false;
+
+	const breakpoint = () => {
+		const width = window.innerWidth;
+		if (width <= 767) {
+			return 'mobile';
+		}
+		if (width <= 1279) {
+			return 'tablet';
+		}
+		return 'desktop';
+	};
+
+	const whenReady = (animation) => new Promise((resolve, reject) => {
+		animation.addEventListener('DOMLoaded', resolve);
+		animation.addEventListener('data_failed', reject);
+	});
+
+	const destroy = () => {
+		window.clearTimeout(taglineTimer);
+		if (logoAnim) {
+			logoAnim.destroy();
+			logoAnim = null;
+		}
+		if (taglineAnim) {
+			taglineAnim.destroy();
+			taglineAnim = null;
+		}
+		logoEl.replaceChildren();
+		taglineEl.replaceChildren();
+	};
+
+	const showFinal = () => {
+		if (!logoAnim || !taglineAnim) {
+			return;
+		}
+		logoAnim.goToAndStop(logoAnim.totalFrames - 1, true);
+		taglineAnim.goToAndStop(taglineAnim.totalFrames - 1, true);
+		finished = true;
+		playing = false;
+	};
+
+	const mount = async () => {
+		const bp = breakpoint();
+		if (bp === currentBp && logoAnim && taglineAnim) {
+			return true;
+		}
+
+		currentBp = bp;
+		destroy();
+		finished = false;
+		playing = false;
+		brand.classList.add('is-pending');
+
+		logoAnim = lottie.loadAnimation({
+			container: logoEl,
+			renderer: 'svg',
+			loop: false,
+			autoplay: false,
+			path: `${base}logo-only-${bp}.json`,
+		});
+		taglineAnim = lottie.loadAnimation({
+			container: taglineEl,
+			renderer: 'svg',
+			loop: false,
+			autoplay: false,
+			path: `${base}tagline-only-${bp}.json`,
+		});
+
+		try {
+			await Promise.all([whenReady(logoAnim), whenReady(taglineAnim)]);
+		} catch (error) {
+			destroy();
+			brand.classList.remove('is-pending', 'is-animated');
+			return false;
+		}
+
+		brand.classList.add('is-animated');
+		if (reduce.matches) {
+			showFinal();
+		}
+		return true;
+	};
+
+	const play = async () => {
+		if (playing || finished || typeof lottie === 'undefined') {
+			return;
+		}
+
+		const ready = await mount();
+		if (!ready || finished || reduce.matches || !logoAnim || !taglineAnim) {
+			return;
+		}
+
+		playing = true;
+		logoAnim.goToAndPlay(0, true);
+		taglineTimer = window.setTimeout(() => {
+			if (taglineAnim && !finished) {
+				taglineAnim.play();
+			}
+		}, taglineDelay);
+		logoAnim.addEventListener('complete', () => {
+			finished = true;
+			playing = false;
+		});
+	};
+
+	const boot = () => {
+		if (booted || typeof lottie === 'undefined') {
+			return;
+		}
+		booted = true;
+
+		const observer = new IntersectionObserver((entries) => {
+			if (entries.some((entry) => entry.isIntersecting)) {
+				observer.disconnect();
+				play();
+			}
+		}, { rootMargin: '240px 0px', threshold: 0.2 });
+
+		observer.observe(brand);
+
+		let timer;
+		window.addEventListener('resize', () => {
+			window.clearTimeout(timer);
+			timer = window.setTimeout(async () => {
+				if (!brand.classList.contains('is-animated') || breakpoint() === currentBp || playing) {
+					return;
+				}
+				const ready = await mount();
+				if (ready) {
+					showFinal();
+				}
+			}, 200);
+		});
+	};
+
+	boot();
+	window.addEventListener('load', boot);
+})();

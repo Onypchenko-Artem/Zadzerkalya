@@ -214,8 +214,7 @@
 .service-cta__line {
 	display: block;
 	width: 100%;
-	height: calc(14 * var(--u));
-	object-fit: fill;
+	height: auto;
 }
 
 .service-cta__controls {

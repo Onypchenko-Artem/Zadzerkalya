@@ -14,16 +14,24 @@
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: calc(84 * var(--u));
-	height: calc(5 * var(--u));
+	overflow: visible;
 }
 
-.hero-top-lines img {
-	width: 100%;
-	height: 100%;
+.hero-top-lines__item {
+	display: block;
+	min-width: 0;
+	overflow: visible;
 }
 
-.hero-top-lines img:last-child {
+.hero-top-lines__item--flip {
 	transform: scaleX(-1);
+}
+
+.hero-top-lines__svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 874 / 9;
 }
 
 .hero-layout {
@@ -188,8 +196,10 @@
 .hero-divider {
 	align-self: center;
 	justify-self: center;
-	width: calc(11 * var(--u));
-	height: calc(727 * var(--u));
+	width: calc(13 * var(--u));
+	height: calc(729 * var(--u));
+	max-width: none;
+	background: url("../../images/hero-divider.svg") center / 100% 100% no-repeat;
 }
 
 .hero-media {
@@ -225,8 +235,10 @@
 .hero-bottom-line {
 	display: block;
 	width: 100%;
-	height: calc(11 * var(--u));
+	height: auto;
+	aspect-ratio: 1827 / 14;
 	margin-top: calc(24 * var(--u));
+	background: url("../../images/hero-banner-long-line.svg") center / 100% 100% no-repeat;
 }
 
 @media (max-width: 1279px) {
@@ -237,7 +249,6 @@
 
 	.hero-top-lines {
 		gap: 32px;
-		height: 4px;
 	}
 
 	.hero-layout {
@@ -320,12 +331,11 @@
 	}
 
 	.hero-divider {
-		width: 9px;
+		width: 11px;
 		height: 608px;
 	}
 
 	.hero-bottom-line {
-		height: 8px;
 		margin-top: 20px;
 	}
 }
@@ -335,7 +345,7 @@
 		grid-template-columns: 1fr;
 	}
 
-	.hero-top-lines img:last-child,
+	.hero-top-lines__item--flip,
 	.hero-divider {
 		display: none;
 	}

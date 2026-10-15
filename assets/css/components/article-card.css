@@ -68,15 +68,17 @@
 }
 
 .article-card__line {
-	flex: 0 0 calc(13 * var(--u));
+	flex: 0 0 auto;
 	width: 100%;
-	height: calc(13 * var(--u));
+	height: auto;
+	aspect-ratio: 508 / 17;
 	background: url("../../images/article-card-line.svg") center / 100% 100% no-repeat;
 }
 
 .article-card__line--reverse {
-	flex-basis: calc(14 * var(--u));
-	height: calc(14 * var(--u));
+	flex-basis: auto;
+	height: auto;
+	aspect-ratio: 508 / 18;
 	background-image: url("../../images/article-card-line-bottom.svg");
 }
 
@@ -150,14 +152,10 @@
 		border-radius: 14px;
 	}
 
-	.article-card__line {
-		flex-basis: 13px;
-		height: 13px;
-	}
-
+	.article-card__line,
 	.article-card__line--reverse {
-		flex-basis: 14px;
-		height: 14px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.article-card__photo {

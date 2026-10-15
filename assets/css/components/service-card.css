@@ -72,9 +72,10 @@
 
 .service-card__line {
 	display: block;
-	flex: 0 0 calc(10 * var(--u));
+	flex: 0 0 auto;
 	width: 100%;
-	height: calc(10 * var(--u));
+	height: auto;
+	aspect-ratio: 510 / 14;
 	background: url("../../images/service-card-line.svg") center / 100% 100% no-repeat;
 }
 
@@ -146,8 +147,8 @@
 	}
 
 	.service-card__line {
-		flex-basis: 9px;
-		height: 9px;
+		flex-basis: auto;
+		height: auto;
 	}
 
 	.service-card__photo {

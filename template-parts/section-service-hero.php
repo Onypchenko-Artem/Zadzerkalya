@@ -103,11 +103,11 @@ if ( $background_url ) {
 					</div>
 				</div>
 
-				<img class="service-hero__bottom-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-left-line.svg' ); ?>" alt="" aria-hidden="true">
+				<span class="service-hero__bottom-line" aria-hidden="true"></span>
 			</div>
 		</div>
 
-		<img class="service-hero__vertical-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-vertical-line.svg' ); ?>" alt="" aria-hidden="true">
+		<span class="service-hero__vertical-line" aria-hidden="true"></span>
 
 		<?php if ( $show_photo ) : ?>
 			<div class="service-hero__photo">
@@ -121,9 +121,7 @@ if ( $background_url ) {
 					?>
 				</div>
 
-				<div class="service-hero__photo-line" aria-hidden="true">
-					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-right-line.svg' ); ?>" alt="">
-				</div>
+				<div class="service-hero__photo-line" aria-hidden="true"></div>
 			</div>
 		<?php endif; ?>
 	</div>
