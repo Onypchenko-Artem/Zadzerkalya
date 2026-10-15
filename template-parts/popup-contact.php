@@ -6,6 +6,7 @@
  *
  * @var array $args {
  *     @type string $event_title Назва події для листа.
+ *     @type string $source      Джерело заявки для обробника форми.
  *     @type bool   $open        Відкрити одразу (після відправки форми).
  * }
  */
@@ -14,6 +15,7 @@ $args = wp_parse_args(
 	$args ?? array(),
 	array(
 		'event_title' => '',
+		'source'      => 'event-next',
 		'open'        => false,
 	)
 );
@@ -49,7 +51,7 @@ $open = ! empty( $args['open'] );
 		<form class="contact-popup__form" method="post" action="">
 			<?php zadzerkalya_contact_notice( 'popup' ); ?>
 			<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
-			<input type="hidden" name="zadzerkalya_form_source" value="event-next">
+			<input type="hidden" name="zadzerkalya_form_source" value="<?php echo esc_attr( $args['source'] ); ?>">
 			<input type="hidden" name="zadzerkalya_event_title" value="<?php echo esc_attr( $args['event_title'] ); ?>">
 
 			<p class="hp-field" aria-hidden="true">

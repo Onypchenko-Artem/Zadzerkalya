@@ -1,4 +1,6 @@
 .policy {
+	position: relative;
+	z-index: 1;
 	display: grid;
 	grid-template-columns: calc(325 * var(--u)) minmax(0, calc(860 * var(--u))) calc(379 * var(--u));
 	column-gap: calc(131 * var(--u));
@@ -6,6 +8,12 @@
 	justify-content: start;
 	padding: calc(200 * var(--u)) calc(48 * var(--u)) calc(200 * var(--u));
 	color: var(--color-night-sky);
+}
+
+.policy-page .form-home {
+	position: relative;
+	z-index: 0;
+	margin-top: calc(-297 * var(--u));
 }
 
 .policy__toc,
@@ -306,6 +314,10 @@
 		padding: 48px 24px 64px;
 	}
 
+	.policy-page .form-home {
+		margin-top: -270px;
+	}
+
 	.policy__toc,
 	.policy__aside {
 		position: static;
@@ -373,6 +385,10 @@
 	.policy {
 		gap: 32px;
 		padding: 32px 16px 48px;
+	}
+
+	.policy-page .form-home {
+		margin-top: -100px;
 	}
 
 	.policy__toc,

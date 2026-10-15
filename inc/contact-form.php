@@ -36,9 +36,10 @@ function zadzerkalya_handle_contact_form() {
 		return;
 	}
 
-	$source       = isset( $_POST['zadzerkalya_form_source'] ) ? sanitize_key( wp_unslash( $_POST['zadzerkalya_form_source'] ) ) : 'contacts';
+	$source        = isset( $_POST['zadzerkalya_form_source'] ) ? sanitize_key( wp_unslash( $_POST['zadzerkalya_form_source'] ) ) : 'contacts';
 	$is_event_next = 'event-next' === $source;
-	$redirect_args = $is_event_next ? array( 'contact_popup' => '1' ) : array();
+	$is_prices     = 'price-popup' === $source;
+	$redirect_args = ( $is_event_next || $is_prices ) ? array( 'contact_popup' => '1' ) : array();
 
 	if ( ! isset( $_POST['zadzerkalya_contact_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['zadzerkalya_contact_nonce'] ) ), 'zadzerkalya_contact' ) ) {
 		zadzerkalya_contact_redirect( 'invalid', $redirect_args );
@@ -58,7 +59,7 @@ function zadzerkalya_handle_contact_form() {
 	$message = isset( $_POST['zadzerkalya_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['zadzerkalya_message'] ) ) : '';
 	$is_hero    = 'hero' === $source;
 	$is_service = 'service' === $source;
-	$is_consult = $is_hero || $is_service || $is_event_next;
+	$is_consult = $is_hero || $is_service || $is_event_next || $is_prices;
 	$is_home    = 'home' === $source;
 
 	if (
@@ -79,6 +80,8 @@ function zadzerkalya_handle_contact_form() {
 		$message     = $event_title
 			? sprintf( __( 'Прохання повідомити про наступну подію. Подія: %s', 'zadzerkalya' ), $event_title )
 			: __( 'Прохання повідомити про наступну подію.', 'zadzerkalya' );
+	} elseif ( $is_prices ) {
+		$message = __( 'Заявка на запис зі сторінки вартості послуг.', 'zadzerkalya' );
 	}
 
 	$to      = zadzerkalya_theme_mod( 'email', get_option( 'admin_email' ) );

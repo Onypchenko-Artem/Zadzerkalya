@@ -24,6 +24,7 @@
 		return;
 	}
 
+	const all = mega.querySelector('.services-mega__all');
 	const cats = Array.from(mega.querySelectorAll('.services-mega__cat'));
 	const panels = Array.from(mega.querySelectorAll('.services-mega__panel'));
 	const photos = Array.from(mega.querySelectorAll('.services-mega__photo'));
@@ -32,15 +33,20 @@
 	let closing = false;
 
 	const activate = (target) => {
+		if (all) {
+			all.classList.toggle('is-active', all.dataset.megaTarget === target);
+		}
 		cats.forEach((cat) => {
 			cat.classList.toggle('is-active', cat.dataset.megaTarget === target);
 		});
 		panels.forEach((panel) => {
 			panel.classList.toggle('is-active', panel.id === target);
 		});
-		photos.forEach((photo) => {
-			photo.classList.toggle('is-active', photo.dataset.megaTarget === target);
-		});
+		if (photos.some((photo) => photo.dataset.megaTarget === target)) {
+			photos.forEach((photo) => {
+				photo.classList.toggle('is-active', photo.dataset.megaTarget === target);
+			});
+		}
 	};
 
 	const syncOffset = () => {
@@ -144,6 +150,16 @@
 		cat.addEventListener('mouseenter', show);
 		cat.addEventListener('focus', show);
 	});
+
+	if (all) {
+		const showAll = () => {
+			open();
+			activate(all.dataset.megaTarget);
+		};
+
+		all.addEventListener('mouseenter', showAll);
+		all.addEventListener('focus', showAll);
+	}
 
 	document.addEventListener('focusin', (event) => {
 		if (!isOpen) {

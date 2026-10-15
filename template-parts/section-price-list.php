@@ -9,7 +9,7 @@ $items = array(
 	array( 'title' => 'Первинна консультація', 'price' => '850 грн' ),
 	array( 'title' => 'Індивідуальне заняття', 'price' => '700 грн' ),
 	array( 'title' => 'Групове заняття', 'price' => '600 грн' ),
-	array( 'title' => 'Підготовка до школи', 'price' => '600 грн (груповий формат), 700 грн (індивідуальний формат)' ),
+	array( 'title' => 'Підготовка до школи', 'price' => "600 грн (груповий формат),\n700 грн (індивідуальний формат)" ),
 	array( 'title' => 'Консультація для батьків', 'price' => '850 грн' ),
 	array( 'title' => 'Туалетний тренінг', 'price' => '850 грн' ),
 	array( 'title' => 'Корекція харчової поведінки', 'price' => '750 грн' ),
@@ -40,24 +40,38 @@ $items = array(
 
 	<div class="price-list__items">
 		<?php foreach ( $items as $item ) : ?>
+			<?php
+			$price_lines = preg_split( "/\r\n|\n|\r/", (string) $item['price'] );
+			$price_lines = is_array( $price_lines ) ? $price_lines : array( (string) $item['price'] );
+			$price_lines = array_values( array_filter( array_map( 'trim', $price_lines ), 'strlen' ) );
+			?>
 			<article class="price-list__item">
-				<div class="price-list__row">
+				<div class="price-list__row<?php echo count( $price_lines ) > 1 ? ' price-list__row--multiline' : ''; ?>">
 					<div class="price-list__details">
 						<h3><?php echo esc_html( $item['title'] ); ?></h3>
-						<p><?php echo esc_html( $item['price'] ); ?></p>
+						<p>
+							<?php foreach ( $price_lines as $line ) : ?>
+								<span class="price-list__price-line"><?php echo esc_html( $line ); ?></span>
+							<?php endforeach; ?>
+						</p>
 					</div>
 
 					<?php
 					zadzerkalya_button(
 						array(
-							'label'   => __( 'записатися', 'zadzerkalya' ),
-							'url'     => '#contact-form',
-							'variant' => 'primary',
+							'label'      => __( 'записатися', 'zadzerkalya' ),
+							'variant'    => 'primary',
+							'type'       => 'button',
+							'attributes' => array(
+								'data-contact-popup-open' => 'true',
+								'aria-haspopup'           => 'dialog',
+								'aria-controls'           => 'contact-popup',
+							),
 						)
 					);
 					?>
 				</div>
-				<img class="price-list__separator" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-row-line.svg' ); ?>" alt="" aria-hidden="true">
+				<img class="price-list__separator" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-row-line.svg' ); ?>" width="1827" height="16" alt="" aria-hidden="true">
 			</article>
 		<?php endforeach; ?>
 	</div>

@@ -35,7 +35,7 @@
 	width: 100%;
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -141,7 +141,7 @@
 	max-width: calc((100% - 200 * var(--u)) / 2);
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 

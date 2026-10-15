@@ -18,7 +18,7 @@ if ( empty( $mega['categories'] ) ) {
 <div id="services-mega" class="services-mega" aria-hidden="true">
 	<div class="services-mega__layout">
 		<div class="services-mega__cats">
-			<a class="services-mega__all" href="<?php echo esc_url( $mega['all_url'] ); ?>"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></a>
+			<a class="services-mega__all" href="<?php echo esc_url( $mega['all_url'] ); ?>" data-mega-target="services-mega-all"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></a>
 			<?php foreach ( $mega['categories'] as $index => $category ) : ?>
 				<a
 					class="services-mega__cat<?php echo 0 === $index ? ' is-active' : ''; ?>"
@@ -31,6 +31,25 @@ if ( empty( $mega['categories'] ) ) {
 		<span class="services-mega__rule" aria-hidden="true"></span>
 
 		<div class="services-mega__services">
+			<?php
+			$all_services = get_posts(
+				array(
+					'post_type'      => 'service',
+					'post_status'    => 'publish',
+					'posts_per_page' => -1,
+					'orderby'        => array(
+						'menu_order' => 'ASC',
+						'title'      => 'ASC',
+					),
+					'no_found_rows'  => true,
+				)
+			);
+			?>
+			<div class="services-mega__panel" id="services-mega-all">
+				<?php foreach ( $all_services as $service ) : ?>
+					<a class="services-mega__service" href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( zadzerkalya_service_menu_title( $service->ID ) ); ?></a>
+				<?php endforeach; ?>
+			</div>
 			<?php foreach ( $mega['categories'] as $index => $category ) : ?>
 				<div
 					class="services-mega__panel<?php echo 0 === $index ? ' is-active' : ''; ?>"

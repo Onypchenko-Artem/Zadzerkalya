@@ -36,6 +36,17 @@ $hero_background = $field( 'prices_hero_background' );
 
 	<?php
 	get_template_part(
+		'template-parts/popup',
+		'contact',
+		array(
+			'source' => 'price-popup',
+			'open'   => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		)
+	);
+	?>
+
+	<?php
+	get_template_part(
 		'template-parts/section',
 		'form-home',
 		array(

@@ -114,43 +114,41 @@ $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) . '#' . $hea
 					</div>
 				</div>
 
-				<?php if ( $total_pages > 1 ) : ?>
-					<div class="articles-feed__pagination">
-						<?php if ( $next_url ) : ?>
-							<div class="articles-feed__more">
-								<?php
-								zadzerkalya_button(
-									array(
-										'label'   => __( 'показати ще', 'zadzerkalya' ),
-										'url'     => $next_url,
-										'variant' => 'secondary',
-									)
-								);
-								?>
-							</div>
+				<div class="articles-feed__pagination">
+					<?php if ( $next_url ) : ?>
+						<div class="articles-feed__more">
+							<?php
+							zadzerkalya_button(
+								array(
+									'label'   => __( 'показати ще', 'zadzerkalya' ),
+									'url'     => $next_url,
+									'variant' => 'secondary',
+								)
+							);
+							?>
+						</div>
+					<?php endif; ?>
+
+					<div class="articles-feed__slider" aria-label="<?php esc_attr_e( 'Пагінація', 'zadzerkalya' ); ?>">
+						<?php if ( $prev_url ) : ?>
+							<a class="articles-feed__arrow articles-feed__arrow--prev" href="<?php echo esc_url( $prev_url ); ?>" aria-label="<?php esc_attr_e( 'Попередня сторінка', 'zadzerkalya' ); ?>"></a>
+						<?php else : ?>
+							<span class="articles-feed__arrow articles-feed__arrow--prev is-disabled" aria-hidden="true"></span>
 						<?php endif; ?>
 
-						<div class="articles-feed__slider" aria-label="<?php esc_attr_e( 'Пагінація', 'zadzerkalya' ); ?>">
-							<?php if ( $prev_url ) : ?>
-								<a class="articles-feed__arrow articles-feed__arrow--prev" href="<?php echo esc_url( $prev_url ); ?>" aria-label="<?php esc_attr_e( 'Попередня сторінка', 'zadzerkalya' ); ?>"></a>
-							<?php else : ?>
-								<span class="articles-feed__arrow articles-feed__arrow--prev is-disabled" aria-hidden="true"></span>
-							<?php endif; ?>
-
-							<div class="articles-feed__counter" aria-live="polite">
-								<span class="articles-feed__counter-value">
-									<span class="articles-feed__counter-current"><?php echo esc_html( (string) $paged ); ?>/</span><span class="articles-feed__counter-total"><?php echo esc_html( (string) $total_pages ); ?></span>
-								</span>
-							</div>
-
-							<?php if ( $next_url ) : ?>
-								<a class="articles-feed__arrow articles-feed__arrow--next" href="<?php echo esc_url( $next_url ); ?>" aria-label="<?php esc_attr_e( 'Наступна сторінка', 'zadzerkalya' ); ?>"></a>
-							<?php else : ?>
-								<span class="articles-feed__arrow articles-feed__arrow--next is-disabled" aria-hidden="true"></span>
-							<?php endif; ?>
+						<div class="articles-feed__counter" aria-live="polite">
+							<span class="articles-feed__counter-value">
+								<span class="articles-feed__counter-current"><?php echo esc_html( (string) $paged ); ?>/</span><span class="articles-feed__counter-total"><?php echo esc_html( (string) $total_pages ); ?></span>
+							</span>
 						</div>
+
+						<?php if ( $next_url ) : ?>
+							<a class="articles-feed__arrow articles-feed__arrow--next" href="<?php echo esc_url( $next_url ); ?>" aria-label="<?php esc_attr_e( 'Наступна сторінка', 'zadzerkalya' ); ?>"></a>
+						<?php else : ?>
+							<span class="articles-feed__arrow articles-feed__arrow--next is-disabled" aria-hidden="true"></span>
+						<?php endif; ?>
 					</div>
-				<?php endif; ?>
+				</div>
 			<?php else : ?>
 				<?php get_template_part( 'template-parts/content', 'none' ); ?>
 			<?php endif; ?>

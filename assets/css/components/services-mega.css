@@ -138,6 +138,7 @@ body.services-mega-open {
 .services-mega__cat:hover::after,
 .services-mega__cat:focus-visible::after,
 .services-mega__cat.is-active::after,
+.services-mega__all.is-active::after,
 .services-mega__service:hover::after,
 .services-mega__service:focus-visible::after {
 	clip-path: inset(0 0 0 0);
