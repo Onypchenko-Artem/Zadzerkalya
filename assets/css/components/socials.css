@@ -18,6 +18,8 @@
 	.event-article__share-link:focus-visible .icon-social__stroke,
 	.contact-popup__close:hover .icon-social__stroke,
 	.contact-popup__close:focus-visible .icon-social__stroke,
+	.services-mega__close:hover .icon-social__stroke,
+	.services-mega__close:focus-visible .icon-social__stroke,
 	a:focus-visible .icon-social__stroke {
 		animation: icon-social-stroke 0.75s linear infinite;
 	}

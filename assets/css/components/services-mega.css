@@ -5,7 +5,8 @@
 	display: flex;
 	flex-direction: column;
 	padding-top: calc(118 * var(--u));
-	background: var(--color-lemon-cream);
+	padding-bottom: 100px;
+	background: transparent;
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
@@ -18,12 +19,56 @@
 	pointer-events: auto;
 }
 
+.services-mega::before,
+.services-mega::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.services-mega::before {
+	z-index: 0;
+	top: 0;
+	bottom: 100px;
+	background: var(--color-lemon-cream);
+}
+
+.services-mega::after {
+	z-index: 1;
+	bottom: 0;
+	height: 100px;
+	background: color-mix(in srgb, var(--color-lemon-cream) 35%, transparent);
+	backdrop-filter: blur(18px);
+	pointer-events: none;
+}
+
+.services-mega__close {
+	position: absolute;
+	z-index: 2;
+	top: calc(64 * var(--u));
+	right: calc(48 * var(--u));
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+}
+
+.services-mega__close svg {
+	display: block;
+	width: 40px;
+	height: 40px;
+}
+
 body.services-mega-open {
 	overflow: hidden;
 }
 
 .services-mega__layout {
 	position: relative;
+	z-index: 1;
 	display: grid;
 	grid-template-columns:
 		calc(405 * var(--u))
@@ -105,7 +150,7 @@ body.services-mega-open {
 .services-mega__all,
 .services-mega__cat {
 	font-family: var(--text-h3-med-family);
-	font-size: var(--text-h3-med-size);
+	font-size: calc(var(--text-h3-med-size) - 2px);
 	font-weight: var(--text-h3-med-weight);
 	line-height: var(--text-h3-med-line);
 	letter-spacing: var(--text-h3-med-tracking);
@@ -114,7 +159,7 @@ body.services-mega-open {
 .services-mega__service {
 	font-family: var(--font-family-body);
 	font-weight: 400;
-	font-size: calc(26 * var(--u));
+	font-size: calc(26 * var(--u) - 2px);
 	line-height: 1.35;
 }
 

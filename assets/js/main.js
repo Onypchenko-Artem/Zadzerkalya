@@ -28,9 +28,7 @@
 	const cats = Array.from(mega.querySelectorAll('.services-mega__cat'));
 	const panels = Array.from(mega.querySelectorAll('.services-mega__panel'));
 	const photos = Array.from(mega.querySelectorAll('.services-mega__photo'));
-	let closeTimer = 0;
 	let isOpen = false;
-	let closing = false;
 
 	const activate = (target) => {
 		if (all) {
@@ -42,11 +40,13 @@
 		panels.forEach((panel) => {
 			panel.classList.toggle('is-active', panel.id === target);
 		});
-		if (photos.some((photo) => photo.dataset.megaTarget === target)) {
-			photos.forEach((photo) => {
-				photo.classList.toggle('is-active', photo.dataset.megaTarget === target);
-			});
-		}
+		const allTarget = all ? all.dataset.megaTarget : '';
+		const firstTarget = cats[0] ? cats[0].dataset.megaTarget : '';
+		photos.forEach((photo) => {
+			const show = photo.dataset.megaTarget === target
+				|| (target === allTarget && photo.dataset.megaTarget === firstTarget);
+			photo.classList.toggle('is-active', show);
+		});
 	};
 
 	const syncOffset = () => {
@@ -58,11 +58,10 @@
 	};
 
 	const open = () => {
-		if (!desktop.matches || closing) {
+		if (!desktop.matches || isOpen) {
 			return;
 		}
 
-		window.clearTimeout(closeTimer);
 		syncOffset();
 		isOpen = true;
 		mega.classList.add('is-open');
@@ -73,7 +72,6 @@
 	};
 
 	const close = () => {
-		window.clearTimeout(closeTimer);
 		if (!isOpen) {
 			return;
 		}
@@ -85,60 +83,45 @@
 		link.setAttribute('aria-expanded', 'false');
 		document.body.classList.remove('services-mega-open');
 
-		const first = cats[0];
-		if (first) {
-			activate(first.dataset.megaTarget);
+		if (all) {
+			activate(all.dataset.megaTarget);
 		}
 	};
 
-	const scheduleClose = (delay = 160) => {
-		window.clearTimeout(closeTimer);
-		closeTimer = window.setTimeout(close, delay);
-	};
-
-	item.addEventListener('mouseenter', open);
-	item.addEventListener('mouseleave', (event) => {
-		const next = event.relatedTarget;
-
-		if (next instanceof Node && mega.contains(next)) {
+	link.addEventListener('click', (event) => {
+		if (!desktop.matches) {
 			return;
 		}
 
-		if (next instanceof Node && header && header.contains(next)) {
-			scheduleClose(420);
-			return;
-		}
+		event.preventDefault();
 
-		scheduleClose();
-	});
-	mega.addEventListener('mouseenter', open);
-	mega.addEventListener('mouseleave', (event) => {
-		const next = event.relatedTarget;
-
-		if (next instanceof Node && item.contains(next)) {
-			return;
-		}
-
-		scheduleClose();
-	});
-
-	item.closest('.header-nav')?.addEventListener('mouseover', (event) => {
-		const current = event.target.closest('.menu-item');
-
-		if (current && current !== item) {
+		if (isOpen) {
 			close();
-		}
-	});
-
-	link.addEventListener('focus', () => {
-		if (closing) {
-			closing = false;
 			return;
 		}
 
-		if (link.matches(':focus-visible')) {
-			open();
+		open();
+	});
+
+	mega.querySelector('.services-mega__close')?.addEventListener('click', () => {
+		close();
+		link.focus();
+	});
+
+	document.addEventListener('click', (event) => {
+		if (!isOpen) {
+			return;
 		}
+
+		if (item.contains(event.target)) {
+			return;
+		}
+
+		if (mega.contains(event.target) && event.target.closest('a')) {
+			return;
+		}
+
+		close();
 	});
 
 	cats.forEach((cat) => {
@@ -178,7 +161,6 @@
 			return;
 		}
 
-		closing = true;
 		close();
 		link.focus();
 	});
