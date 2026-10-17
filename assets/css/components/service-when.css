@@ -156,7 +156,7 @@
 	.service-when__row,
 	.service-when__row:last-child {
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
 		gap: 16px;
 	}
