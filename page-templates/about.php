@@ -44,16 +44,43 @@ get_header();
 		$team_title    = $about_field( 'about_team_title', 'Команда' );
 		$team_link     = $about_field( 'about_team_link_label', 'Усі спеціалісти' );
 
-		$story_left = $about_field(
-			'about_story_left_column',
-			array(
-				array( 'about_story_left_text' => 'Мої перші кроки у корекційній психології були непростими: глибоке занурення у науку, нескінченні години навчання, пошук найефективніших методів роботи…' ),
-				array( 'about_story_left_text' => 'Але найголовніше — це діти, з якими я працювала. Їхні батьки та їхні історії.' ),
-				array( 'about_story_left_text' => 'Коли я бачила, як кожного дня маленькі перемоги на очах перетворюються на великі досягнення.' ),
-				array( 'about_story_left_text' => 'Як ті, кого ще вчора вважали «проблемними», починали вибудовувати свій контакт з цим світом, розуміти його та ставати більш зрозумілими для нього. Як очі батьків наповнювалися радістю та новою надією — адже нарешті вони могли почути свою дитину!' ),
-			)
-		);
-		$story_right = $about_field( 'about_story_right_column', array( array( 'about_story_right_text' => 'Саме це і стало моїм головним поштовхом до відкриття свого реабілітаційного центру. Я хотіла створити місце, де кожна дитина буде побаченою та зрозумілою, де головним інструментом роботи будуть не стандартні протоколи, а їх адаптація до реальних потреб кожного нашого клієнта. Де кожен з батьків відчує себе прийнятим у своїй особливій історії.' ) ) );
+		$story_column_html = static function( $value, $text_key = '' ) {
+			if ( is_array( $value ) ) {
+				$parts = array();
+				foreach ( $value as $row ) {
+					$text = is_array( $row ) ? (string) ( $row[ $text_key ] ?? '' ) : (string) $row;
+					$text = trim( $text );
+					if ( '' === $text ) {
+						continue;
+					}
+					$parts[] = ( $text === wp_strip_all_tags( $text ) ) ? '<p>' . esc_html( $text ) . '</p>' : $text;
+				}
+
+				return implode( '', $parts );
+			}
+
+			return is_string( $value ) ? $value : '';
+		};
+
+		$story_left_default = '<p>Мої перші кроки у корекційній психології були непростими: глибоке занурення у науку, нескінченні години навчання, пошук найефективніших методів роботи…</p><p>Але найголовніше — це діти, з якими я працювала. Їхні батьки та їхні історії.</p><p>Коли я бачила, як кожного дня маленькі перемоги на очах перетворюються на великі досягнення.</p><p>Як ті, кого ще вчора вважали «проблемними», починали вибудовувати свій контакт з цим світом, розуміти його та ставати більш зрозумілими для нього. Як очі батьків наповнювалися радістю та новою надією — адже нарешті вони могли почути свою дитину!</p>';
+		$story_right_default = '<p>Саме це і стало моїм головним поштовхом до відкриття свого реабілітаційного центру. Я хотіла створити місце, де кожна дитина буде побаченою та зрозумілою, де головним інструментом роботи будуть не стандартні протоколи, а їх адаптація до реальних потреб кожного нашого клієнта. Де кожен з батьків відчує себе прийнятим у своїй особливій історії.</p>';
+
+		$story_left         = $story_column_html( $about_field( 'about_story_left_column', $story_left_default ), 'about_story_left_text' );
+		$story_right        = $story_column_html( $about_field( 'about_story_right_column', $story_right_default ), 'about_story_right_text' );
+		$story_left_tablet  = $story_column_html( $about_field( 'about_story_left_column_tablet', '' ), 'about_story_left_text' );
+		$story_right_tablet = $story_column_html( $about_field( 'about_story_right_column_tablet', '' ), 'about_story_right_text' );
+		if ( '' === trim( wp_strip_all_tags( (string) $story_left ) ) ) {
+			$story_left = $story_left_default;
+		}
+		if ( '' === trim( wp_strip_all_tags( (string) $story_right ) ) ) {
+			$story_right = $story_right_default;
+		}
+		if ( '' === trim( wp_strip_all_tags( (string) $story_left_tablet ) ) ) {
+			$story_left_tablet = $story_left;
+		}
+		if ( '' === trim( wp_strip_all_tags( (string) $story_right_tablet ) ) ) {
+			$story_right_tablet = $story_right;
+		}
 		$values_left = $about_field( 'about_values_left', '<p>А ще я розумію: допомагаючи дітям, ми робимо більше, аніж просто терапію — ми формуємо майбутнє.</p><p>Адже кожен маленький крок до самостійності однієї дитини — це крок до більш інклюзивного суспільства. Ми змінюємо не лише життя окремих сімей, а й саму культуру ставлення до дітей із особливими потребами.</p>' );
 		$values_conclusion = $about_field( 'about_values_conclusion', '<p>Сьогодні «Задзеркалля» — це не просто реабілітаційний центр.</p><p>Це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.</p>' );
 		?>
@@ -107,17 +134,17 @@ get_header();
 							</div>
 						</div>
 
-						<div class="about-story__columns">
-							<div>
-								<?php foreach ( $story_left as $row ) : ?>
-									<p><?php echo esc_html( $row['about_story_left_text'] ?? '' ); ?></p>
-								<?php endforeach; ?>
-							</div>
-							<div>
-								<?php foreach ( $story_right as $row ) : ?>
-									<p><?php echo esc_html( $row['about_story_right_text'] ?? '' ); ?></p>
-								<?php endforeach; ?>
-							</div>
+						<div class="about-story__columns about-story__columns--left about-story__columns--desktop">
+							<?php echo wp_kses_post( $story_left ); ?>
+						</div>
+						<div class="about-story__columns about-story__columns--right about-story__columns--desktop">
+							<?php echo wp_kses_post( $story_right ); ?>
+						</div>
+						<div class="about-story__columns about-story__columns--left about-story__columns--tablet">
+							<?php echo wp_kses_post( $story_left_tablet ); ?>
+						</div>
+						<div class="about-story__columns about-story__columns--right about-story__columns--tablet">
+							<?php echo wp_kses_post( $story_right_tablet ); ?>
 						</div>
 					</div>
 				</div>
@@ -214,7 +241,7 @@ get_header();
 
 				<div class="about-ending__message">
 					<img class="about-ending__curve-line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-curve-line.svg' ); ?>" alt="" aria-hidden="true">
-					<svg class="about-ending__curve-text" viewBox="0 0 1730 224" aria-hidden="true">
+					<svg class="about-ending__curve-text about-ending__curve-text--desktop" viewBox="0 0 1730 224" aria-hidden="true">
 						<defs>
 							<path id="about-ending-text-path" transform="translate(34 89)" d="M0.5 134.198C0.912385 134.003 27.2233 116.123 115.051 77.9394C174.466 52.1082 273.35 35.0461 382.609 20.8298C491.868 6.61347 610.891 1.35171 686.115 0.593521C761.338 -0.164669 789.154 3.74016 824.335 10.3826C859.516 17.025 901.217 26.2867 935.249 32.1868C994.025 42.3769 1029.04 44.8475 1065.97 57.1952C1094.35 66.6866 1141.25 85.4667 1173.84 95.8919C1222.11 111.333 1247.19 111.898 1295.69 113.931C1337.08 115.666 1412.63 115.555 1458.28 114.343C1517.6 112.767 1544.83 99.8607 1569.27 86.7266C1620.12 59.4809 1673.01 37.2528 1682.55 33.746C1686.99 32.2198 1690.63 31.2081 1695.47 30.1658" />
 						</defs>
@@ -228,6 +255,21 @@ get_header();
 							?>
 							<text dy="-20" text-anchor="middle">
 								<textPath href="#about-ending-text-path" startOffset="<?php echo esc_attr( number_format( $ending_offset, 4, '.', '' ) ); ?>%"><?php echo esc_html( $ending_char ); ?></textPath>
+							</text>
+						<?php endforeach; ?>
+					</svg>
+					<svg class="about-ending__curve-text about-ending__curve-text--tablet" viewBox="0 0 721 119" fill="none" aria-hidden="true">
+						<path class="about-ending__curve-stroke" d="M20.1973 118C20.3675 117.908 31.2305 109.516 67.4919 91.5945C92.0226 79.4706 132.849 71.4624 177.958 64.7899C223.068 58.1174 272.209 55.6478 303.267 55.2919C334.324 54.9361 345.809 56.7688 360.334 59.8865C374.859 63.0041 392.076 67.3511 406.127 70.1204C430.394 74.9031 444.852 76.0627 460.097 81.8582C471.815 86.313 491.179 95.1275 504.634 100.021C524.562 107.268 534.918 107.533 554.943 108.487C572.029 109.302 603.222 109.25 622.072 108.681C646.561 107.941 657.805 101.883 667.897 95.7189C688.887 82.931 710.727 72.4981 714.663 70.8522C716.497 70.1359 718 69.661 720 69.1718" stroke="currentColor" stroke-linecap="round" />
+						<defs>
+							<path id="about-ending-text-path-tablet" d="M20.1973 118C20.3675 117.908 31.2305 109.516 67.4919 91.5945C92.0226 79.4706 132.849 71.4624 177.958 64.7899C223.068 58.1174 272.209 55.6478 303.267 55.2919C334.324 54.9361 345.809 56.7688 360.334 59.8865C374.859 63.0041 392.076 67.3511 406.127 70.1204C430.394 74.9031 444.852 76.0627 460.097 81.8582C471.815 86.313 491.179 95.1275 504.634 100.021C524.562 107.268 534.918 107.533 554.943 108.487C572.029 109.302 603.222 109.25 622.072 108.681C646.561 107.941 657.805 101.883 667.897 95.7189C688.887 82.931 710.727 72.4981 714.663 70.8522C716.497 70.1359 718 69.661 720 69.1718" />
+						</defs>
+						<?php foreach ( $ending_chars as $ending_index => $ending_char ) :
+							$ending_offset = $ending_count > 1
+								? 1.5 + ( $ending_index / ( $ending_count - 1 ) ) * 97
+								: 50;
+							?>
+							<text dy="-10" text-anchor="middle">
+								<textPath href="#about-ending-text-path-tablet" startOffset="<?php echo esc_attr( number_format( $ending_offset, 4, '.', '' ) ); ?>%"><?php echo esc_html( $ending_char ); ?></textPath>
 							</text>
 						<?php endforeach; ?>
 					</svg>

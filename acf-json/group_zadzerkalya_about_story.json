@@ -134,11 +134,11 @@
         },
         {
             "key": "field_zadzerkalya_about_story_left_column",
-            "label": "Ліва колонка",
+            "label": "Ліва колонка (Desktop)",
             "name": "about_story_left_column",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Додайте кожен абзац окремим рядком.",
+            "type": "wysiwyg",
+            "instructions": "Текст для десктопу.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -146,43 +146,19 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Додати абзац",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_about_story_left_text",
-                    "label": "Абзац",
-                    "name": "about_story_left_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 4,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "parent_repeater": "field_zadzerkalya_about_story_left_column"
-                }
-            ]
+            "default_value": "<p>Мої перші кроки у корекційній психології були непростими: глибоке занурення у науку, нескінченні години навчання, пошук найефективніших методів роботи…</p>\n<p>Але найголовніше — це діти, з якими я працювала. Їхні батьки та їхні історії.</p>\n<p>Коли я бачила, як кожного дня маленькі перемоги на очах перетворюються на великі досягнення.</p>\n<p>Як ті, кого ще вчора вважали «проблемними», починали вибудовувати свій контакт з цим світом, розуміти його та ставати більш зрозумілими для нього. Як очі батьків наповнювалися радістю та новою надією — адже нарешті вони могли почути свою дитину!</p>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_zadzerkalya_about_story_right_column",
-            "label": "Права колонка",
+            "label": "Права колонка (Desktop)",
             "name": "about_story_right_column",
             "aria-label": "",
-            "type": "repeater",
-            "instructions": "Додайте кожен абзац окремим рядком.",
+            "type": "wysiwyg",
+            "instructions": "Текст для десктопу.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -190,35 +166,51 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "block",
-            "button_label": "Додати абзац",
-            "min": 0,
-            "max": 0,
-            "rows_per_page": 20,
-            "collapsed": "",
-            "sub_fields": [
-                {
-                    "key": "field_zadzerkalya_about_story_right_text",
-                    "label": "Абзац",
-                    "name": "about_story_right_text",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "rows": 4,
-                    "new_lines": "",
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "parent_repeater": "field_zadzerkalya_about_story_right_column"
-                }
-            ]
+            "default_value": "<p>Саме це і стало моїм головним поштовхом до відкриття свого реабілітаційного центру. Я хотіла створити місце, де кожна дитина буде побаченою та зрозумілою, де головним інструментом роботи будуть не стандартні протоколи, а їх адаптація до реальних потреб кожного нашого клієнта. Де кожен з батьків відчує себе прийнятим у своїй особливій історії.</p>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_zadzerkalya_about_story_left_column_tablet",
+            "label": "Ліва колонка (Tablet)",
+            "name": "about_story_left_column_tablet",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Текст для планшета. Якщо порожньо — використовується ліва колонка Desktop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_zadzerkalya_about_story_right_column_tablet",
+            "label": "Права колонка (Tablet)",
+            "name": "about_story_right_column_tablet",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "Текст для планшета. Якщо порожньо — використовується права колонка Desktop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         }
     ],
     "location": [
@@ -242,5 +234,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790273165
+    "modified": 1790275000
 }
