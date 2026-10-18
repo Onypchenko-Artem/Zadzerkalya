@@ -69,37 +69,39 @@ if ( ! $items ) {
 	</div>
 
 	<div class="services-showcase__grid">
-		<div class="services-showcase__illustration-placeholder">
-			<?php if ( ! zadzerkalya_acf_image( $illustration, 'large', array( 'alt' => '' ) ) ) : ?>
-				<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/alice.png' ); ?>" alt="" aria-hidden="true">
-			<?php endif; ?>
-		</div>
+		<div class="services-showcase__cards">
+			<div class="services-showcase__illustration-placeholder">
+				<?php if ( ! zadzerkalya_acf_image( $illustration, 'large', array( 'alt' => '' ) ) ) : ?>
+					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/alice.png' ); ?>" alt="" aria-hidden="true">
+				<?php endif; ?>
+			</div>
 
-		<?php foreach ( $items as $item ) : ?>
-			<article class="services-showcase__card">
-				<a class="services-showcase__link" href="<?php echo esc_url( $item['url'] ); ?>">
-					<h3><?php echo esc_html( $item['title'] ); ?></h3>
-				</a>
-				<span class="services-showcase__line" aria-hidden="true"></span>
-				<div class="services-showcase__image-placeholder">
+			<?php foreach ( $items as $item ) : ?>
+				<article class="services-showcase__card">
+					<a class="services-showcase__link" href="<?php echo esc_url( $item['url'] ); ?>">
+						<h3><?php echo esc_html( $item['title'] ); ?></h3>
+					</a>
+					<span class="services-showcase__line" aria-hidden="true"></span>
+					<div class="services-showcase__image-placeholder">
+						<?php
+						if ( ! zadzerkalya_acf_image( $item['image'], 'large', array( 'alt' => $item['title'] ) ) ) :
+							?>
+							<span><?php esc_html_e( 'Фото', 'zadzerkalya' ); ?></span>
+						<?php endif; ?>
+					</div>
+					<span class="services-showcase__line services-showcase__line--reverse" aria-hidden="true"></span>
 					<?php
-					if ( ! zadzerkalya_acf_image( $item['image'], 'large', array( 'alt' => $item['title'] ) ) ) :
-						?>
-						<span><?php esc_html_e( 'Фото', 'zadzerkalya' ); ?></span>
-					<?php endif; ?>
-				</div>
-				<span class="services-showcase__line services-showcase__line--reverse" aria-hidden="true"></span>
-				<?php
-				zadzerkalya_button(
-					array(
-						'label'   => $card_button,
-						'url'     => '#contact-form',
-						'variant' => 'primary',
-					)
-				);
-				?>
-			</article>
-		<?php endforeach; ?>
+					zadzerkalya_button(
+						array(
+							'label'   => $card_button,
+							'url'     => '#contact-form',
+							'variant' => 'primary',
+						)
+					);
+					?>
+				</article>
+			<?php endforeach; ?>
+		</div>
 
 		<div class="services-showcase__all">
 			<?php

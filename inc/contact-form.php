@@ -65,7 +65,8 @@ function zadzerkalya_handle_contact_form() {
 	if (
 		! $name
 		|| ( $is_consult && ! $phone )
-		|| ( $is_home && ( ! $phone || ! is_email( $email ) || ! $message ) )
+		|| ( $is_home && ! $phone )
+		|| ( $is_home && $email && ! is_email( $email ) )
 		|| ( ! $is_consult && ! $is_home && ( ! is_email( $email ) || ! $message ) )
 	) {
 		zadzerkalya_contact_redirect( 'error', $redirect_args );

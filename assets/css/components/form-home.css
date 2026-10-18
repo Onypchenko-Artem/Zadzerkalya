@@ -18,6 +18,10 @@
 	inset: 0;
 }
 
+.form-home__background picture {
+	display: contents;
+}
+
 .form-home__background img {
 	display: block;
 	max-width: none;
@@ -151,78 +155,114 @@
 
 @media (max-width: 1279px) {
 	.form-home {
-		height: 1500px;
+		height: 1014px;
 	}
 
 	.form-home__background-left {
-		top: 330px;
-		left: -80px;
-		width: 390px;
-		height: 1147px;
+		top: 189px;
+		left: -22px;
+		width: 219px;
+		height: auto;
+		object-fit: contain;
+		object-position: top left;
 	}
 
 	.form-home__background-right {
-		right: -110px;
-		width: 515px;
-		height: 1500px;
+		top: 0;
+		right: -40px;
+		left: auto;
+		width: 272px;
+		height: auto;
+		object-fit: contain;
+		object-position: top right;
 	}
 
 	.form-home__content {
-		top: 390px;
-		gap: 72px;
-		width: 650px;
+		top: 149px;
+		gap: 32px;
+		width: 505px;
+		scroll-margin-top: 100px;
 	}
 
 	.form-home__heading {
-		gap: 24px;
+		gap: 16px;
+		width: 505px;
 	}
 
 	.form-home__heading h2 {
-		font-size: var(--text-h2-size);
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
 	}
 
 	.form-home__heading p {
-		width: 480px;
-		font-size: var(--text-body-l-size);
+		width: 439px;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
 	.form-home__form {
-		width: 650px;
-		padding: 0 40px;
+		gap: 16px;
+		width: 505px;
+		padding: 0 80px;
+	}
+
+	.form-home__form > .lottie-button {
+		margin-top: 16px;
 	}
 
 	.form-home__field,
-	.form-home__message,
+	.form-home__message {
+		gap: 4px;
+		width: 345px;
+		max-width: 100%;
+	}
+
+	.form-home__message {
+		gap: 6px;
+	}
+
 	.form-home__form .form-notice,
 	.form-home__form .form-consent {
-		width: 570px;
+		width: 345px;
 		max-width: 100%;
 	}
 
 	.form-home__form .form-consent {
 		font-size: 14px;
+		font-weight: 300;
+		line-height: 1.4;
 	}
 
 	.form-home__field label {
-		font-size: var(--text-body-s-size);
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
 	}
 
 	.form-home__field input,
 	.form-home__field textarea {
-		height: 64px;
-		padding: 16px;
-		font-size: var(--text-body-m-size);
-		border-radius: 16px;
+		height: 48px;
+		max-height: 90px;
+		padding: 12px 20px;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.35;
+		border-radius: 8px;
 	}
 
 	.form-home__field textarea {
-		height: 120px;
+		height: 90px;
+		padding: 20px;
+		resize: none;
 	}
 }
 
 @media (max-width: 767px) {
 	.form-home {
-		height: 1080px;
+		height: 920px;
 	}
 
 	.form-home__background {
@@ -230,36 +270,47 @@
 	}
 
 	.form-home__background-left {
-		top: 250px;
-		left: -150px;
-		width: 300px;
-		height: 883px;
+		top: 140px;
+		left: -30px;
+		width: 160px;
+		height: auto;
 	}
 
 	.form-home__background-right {
-		right: -175px;
-		width: 310px;
-		height: 900px;
+		top: 0;
+		right: -50px;
+		width: 180px;
+		height: auto;
 	}
 
 	.form-home__content {
-		top: 180px;
-		gap: 48px;
+		top: 100px;
+		gap: 24px;
 		width: calc(100% - 40px);
 	}
 
 	.form-home__heading {
-		gap: 16px;
+		gap: 12px;
+		width: 100%;
+	}
+
+	.form-home__heading h2 {
+		font-size: var(--text-h2-size);
 	}
 
 	.form-home__heading p {
-		width: 320px;
+		width: min(320px, 100%);
+		font-size: var(--text-body-l-size);
 	}
 
 	.form-home__form {
-		gap: 16px;
+		gap: 14px;
 		width: 100%;
 		padding: 0;
+	}
+
+	.form-home__form > .lottie-button {
+		margin-top: 10px;
 	}
 
 	.form-home__field,
@@ -275,13 +326,14 @@
 
 	.form-home__field input,
 	.form-home__field textarea {
-		height: 58px;
+		height: 48px;
+		padding: 12px 16px;
 		background: color-mix(in srgb, var(--color-chewing-gum) 82%, transparent);
-		border-radius: 14px;
+		border-radius: 8px;
 	}
 
 	.form-home__field textarea {
-		height: 116px;
+		height: 90px;
+		padding: 16px;
 	}
-
 }

@@ -17,8 +17,14 @@ $args = wp_parse_args(
 ?>
 <section class="form-home" aria-labelledby="form-home-title">
 	<div class="form-home__background" aria-hidden="true">
-		<img class="form-home__background-left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/left-bg-img.png' ); ?>" alt="">
-		<img class="form-home__background-right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>" alt="">
+		<picture>
+			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-left.png' ); ?>">
+			<img class="form-home__background-left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/left-bg-img.png' ); ?>" alt="">
+		</picture>
+		<picture>
+			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-right.png' ); ?>">
+			<img class="form-home__background-right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>" alt="">
+		</picture>
 	</div>
 
 	<div class="form-home__content" id="contact-form">
@@ -50,13 +56,13 @@ $args = wp_parse_args(
 
 			<p class="form-home__field">
 				<label for="home-form-email"><?php esc_html_e( 'Email', 'zadzerkalya' ); ?></label>
-				<input id="home-form-email" name="zadzerkalya_email" type="email" autocomplete="email" required>
+				<input id="home-form-email" name="zadzerkalya_email" type="email" autocomplete="email">
 			</p>
 
 			<div class="form-home__message">
 				<p class="form-home__field form-home__field--message">
 					<label for="home-form-message"><?php esc_html_e( 'Повідомлення', 'zadzerkalya' ); ?></label>
-					<textarea id="home-form-message" name="zadzerkalya_message" required></textarea>
+					<textarea id="home-form-message" name="zadzerkalya_message"></textarea>
 				</p>
 				<?php zadzerkalya_form_consent(); ?>
 			</div>
