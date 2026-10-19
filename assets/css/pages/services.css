@@ -17,7 +17,7 @@
 	margin-top: calc(200 * var(--u));
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	#services-hero-title {
 		width: 100%;
 		font-size: 42px;

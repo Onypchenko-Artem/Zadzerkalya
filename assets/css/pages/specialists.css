@@ -148,45 +148,89 @@
 	color: var(--color-night-sky);
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.specialists-page .form-home {
 		margin-top: 30px;
 	}
 
 	.specialists-team {
-		gap: 40px;
+		align-items: flex-start;
+		gap: 16px;
 		margin-top: 120px;
 		padding: 0 24px;
 	}
 
 	.specialists-team h2 {
-		font-size: 42px;
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
 	}
 
 	.specialists-team__list {
-		gap: 28px;
+		gap: 44px;
+	}
+
+	.specialists-team__line {
+		height: 6px;
 	}
 
 	.specialists-team__row {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 24px;
+		align-items: center;
+		gap: 16px;
 	}
 
-	.specialist-slot__link {
+	.specialists-team .specialist-slot__link {
+		gap: 24px;
+		min-height: 597px;
+		padding: 28px;
+		border-radius: 14px;
+	}
+
+	.specialists-team .specialist-slot__photo {
+		height: 346px;
+		aspect-ratio: auto;
+		border-radius: 16px;
+	}
+
+	.specialists-team .specialist-slot__text {
+		gap: 8px;
+	}
+
+	.specialists-team .specialist-slot h3 {
+		font-size: 20px;
+		line-height: 1.35;
+	}
+
+	.specialists-team .specialist-slot__line {
+		height: 4px;
+	}
+
+	.specialists-team .specialist-slot__info {
+		gap: 4px;
+	}
+
+	.specialists-team .specialist-slot__info p {
+		font-size: 16px;
+		line-height: 1.4;
+	}
+
+	.about-team .specialist-slot__link {
 		gap: 18px;
 		padding: 20px;
 		border-radius: 16px;
 	}
 
-	.specialist-slot__photo {
+	.about-team .specialist-slot__photo {
 		border-radius: 12px;
 	}
 
-	.specialist-slot h3 {
+	.about-team .specialist-slot h3 {
 		font-size: 20px;
 	}
 
-	.specialist-slot__info p {
+	.about-team .specialist-slot__info p {
 		font-size: 15px;
 	}
 }
@@ -206,6 +250,10 @@
 		font-size: 32px;
 	}
 
+	.specialists-team__list {
+		gap: 28px;
+	}
+
 	.specialists-team__row {
 		grid-template-columns: 1fr;
 		gap: 16px;
@@ -214,6 +262,11 @@
 	.specialist-slot__link {
 		gap: 16px;
 		padding: 16px;
+		border-radius: 16px;
+	}
+
+	.specialist-slot__photo {
+		border-radius: 12px;
 	}
 
 	.specialist-slot h3 {
