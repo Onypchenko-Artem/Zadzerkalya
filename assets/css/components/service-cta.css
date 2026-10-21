@@ -293,80 +293,144 @@
 	line-height: 1;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.service-cta {
-		gap: 32px;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 56px;
 		padding: 0 24px;
 	}
 
+	.service-cta--custom-background {
+		height: auto;
+		max-height: none;
+	}
+
 	.service-cta__panel {
-		flex-basis: 42%;
-		min-height: 680px;
+		flex: none;
+		width: 100%;
+		height: auto;
+		min-height: 0;
+		aspect-ratio: 1;
+		border-radius: 32px;
 	}
 
 	.service-cta__circle {
-		width: min(92%, 520px);
+		width: calc(100% - 2px);
 		height: auto;
 		aspect-ratio: 1;
 	}
 
+	.service-cta--custom-background .service-cta__circle {
+		width: calc(100% - 2px);
+		height: auto;
+	}
+
 	.service-cta__content {
-		gap: 32px;
-		width: min(86%, 420px);
+		gap: 48px;
+		width: min(606px, calc(100% - 48px));
 	}
 
 	.service-cta__illustration {
-		width: 120px;
-		height: 120px;
+		width: 180px;
+		height: 180px;
 	}
 
 	.service-cta__text {
-		gap: 16px;
+		gap: 32px;
 	}
 
 	.service-cta__text h2 {
-		font-size: 36px;
+		font-size: 40px;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
 	}
 
 	.service-cta__description {
-		font-size: 16px;
+		font-size: 20px;
+		line-height: 1.35;
 	}
 
-	.service-cta__content .lottie-button--primary {
-		--lottie-btn-w: 260px;
+	.service-cta__content .lottie-button--primary,
+	.service-cta__content .lottie-button--secondary {
+		--lottie-btn-w: 293px;
 		--lottie-btn-h: 66px;
 	}
 
 	.service-cta__slider {
-		flex: 1 1 auto;
-		width: auto;
+		flex: none;
+		width: 100%;
+		gap: 24px;
+	}
+
+	.service-cta--custom-background .service-cta__slider,
+	.service-cta--custom-background .service-cta__viewport {
+		height: auto;
+		min-height: 0;
 	}
 
 	.service-cta__viewport {
-		height: 560px;
+		height: auto;
 	}
 
-	.service-cta__slide,
 	.service-cta__track {
-		gap: 20px;
+		gap: 48px;
+		height: auto;
 	}
 
-	.service-cta__row h3 {
+	.service-cta__slide {
+		gap: 24px;
+		height: auto;
+		overflow: visible;
+	}
+
+	.service-cta__row {
+		gap: 8px;
+	}
+
+	.service-cta__row-text {
+		gap: 12px;
+	}
+
+	.service-cta__row h3,
+	.service-cta--custom-background .service-cta__row-text h3 {
 		font-size: 24px;
+		line-height: 1.2;
 	}
 
-	.service-cta--custom-background {
-		height: calc(100dvh - 128px);
-		max-height: calc(100dvh - 128px);
+	.service-cta__row p,
+	.service-cta--custom-background .service-cta__row-text p {
+		font-family: var(--text-body-l-family);
+		font-size: 20px;
+		line-height: 1.35;
 	}
 
-	.service-cta__row p {
-		font-size: 16px;
+	.service-cta__line {
+		object-fit: fill;
+	}
+
+	.service-cta__controls {
+		min-height: 78px;
+	}
+
+	.service-cta__arrow {
+		flex-basis: 48px;
+		width: 48px;
+		height: 32px;
 	}
 
 	.service-cta__counter {
-		width: 44px;
-		height: 68px;
+		flex-basis: 50px;
+		width: 50px;
+		height: 78px;
+	}
+
+	.service-cta__counter-current {
+		font-size: 24px;
+	}
+
+	.service-cta__counter-total {
+		font-size: 21px;
 	}
 }
 
@@ -383,8 +447,43 @@
 		min-height: 560px;
 	}
 
+	.service-cta__circle {
+		width: min(92%, 520px);
+		height: auto;
+		aspect-ratio: 1;
+	}
+
 	.service-cta__content {
+		gap: 32px;
 		width: min(88%, 320px);
+	}
+
+	.service-cta__illustration {
+		width: 120px;
+		height: 120px;
+	}
+
+	.service-cta__text {
+		gap: 16px;
+	}
+
+	.service-cta__description {
+		font-size: 16px;
+	}
+
+	.service-cta__content .lottie-button--primary {
+		--lottie-btn-w: 260px;
+		--lottie-btn-h: 66px;
+	}
+
+	.service-cta__slide,
+	.service-cta__track {
+		gap: 20px;
+	}
+
+	.service-cta__counter {
+		width: 44px;
+		height: 68px;
 	}
 
 	.service-cta__text h2 {

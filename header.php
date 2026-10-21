@@ -13,7 +13,13 @@ $address    = zadzerkalya_theme_mod( 'address', 'м. Львів, вул. Кам�
 $phones     = zadzerkalya_phones();
 $instagram  = zadzerkalya_social_url( 'instagram' );
 $telegram   = zadzerkalya_theme_mod( 'telegram' );
+$facebook   = zadzerkalya_social_url( 'facebook' );
 $contacts   = zadzerkalya_get_page_url( 'contacts' );
+$nav_socials = array(
+	'instagram' => $instagram,
+	'telegram'  => $telegram,
+	'facebook'  => $facebook,
+);
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -31,20 +37,6 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 			<span class="nav-toggle__close"><?php zadzerkalya_icon( 'close' ); ?></span>
 			<span class="screen-reader-text"><?php esc_html_e( 'Меню', 'zadzerkalya' ); ?></span>
 		</button>
-
-		<nav id="site-navigation" class="header-nav" role="navigation" aria-label="<?php esc_attr_e( 'Головне меню', 'zadzerkalya' ); ?>">
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary',
-					'menu_class'     => 'menu',
-					'container'      => false,
-					'fallback_cb'    => 'zadzerkalya_header_menu_fallback',
-					'depth'          => 1,
-				)
-			);
-			?>
-		</nav>
 
 		<a class="header-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<span class="header-logo__plate" aria-hidden="true"></span>
@@ -104,5 +96,59 @@ $contacts   = zadzerkalya_get_page_url( 'contacts' );
 			</div>
 		</div>
 	</div>
+
+	<nav id="site-navigation" class="header-nav" role="navigation" aria-label="<?php esc_attr_e( 'Головне меню', 'zadzerkalya' ); ?>">
+		<?php
+		wp_nav_menu(
+			array(
+				'theme_location' => 'primary',
+				'menu_class'     => 'menu',
+				'container'      => false,
+				'fallback_cb'    => 'zadzerkalya_header_menu_fallback',
+				'depth'          => 1,
+			)
+		);
+		?>
+
+		<div class="header-nav__panel">
+			<div class="header-nav__contacts">
+				<?php if ( $address ) : ?>
+					<div class="header-address">
+						<a href="https://maps.app.goo.gl/fbCkecw2nSCF9woS9" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $address ); ?></a>
+						<span class="header-address__line" aria-hidden="true"></span>
+					</div>
+				<?php endif; ?>
+				<?php if ( $phones ) : ?>
+					<div class="header-phones">
+						<?php foreach ( $phones as $phone ) : ?>
+							<a href="<?php echo esc_attr( zadzerkalya_tel_href( $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				<div class="header-nav__socials">
+					<?php foreach ( $nav_socials as $network => $url ) : ?>
+						<?php if ( $url ) : ?>
+							<a class="header-social" href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
+								<span class="screen-reader-text"><?php echo esc_html( ucfirst( $network ) ); ?></span>
+								<?php zadzerkalya_icon( $network ); ?>
+							</a>
+						<?php else : ?>
+							<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( $network ); ?></span>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+			</div>
+			<?php
+			zadzerkalya_button(
+				array(
+					'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
+					'url'     => $contacts,
+					'variant' => 'secondary',
+					'anim'    => 'button-secondary-mobile',
+				)
+			);
+			?>
+		</div>
+	</nav>
 </header>
 <?php get_template_part( 'template-parts/services', 'mega' ); ?>

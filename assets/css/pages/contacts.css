@@ -39,9 +39,9 @@
 	margin-top: calc((490 - 697) * var(--u));
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.contacts-page .form-home {
-		margin-top: -120px;
+		margin-top: 120px;
 	}
 }
 

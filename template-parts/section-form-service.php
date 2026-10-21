@@ -73,7 +73,8 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 ?>
 <section class="form-service form-service--composition-<?php echo esc_attr( $composition ); ?>"<?php echo $title ? ' aria-labelledby="form-service-title"' : ''; ?>>
 	<div class="form-service__rule" aria-hidden="true">
-		<img class="form-service__rule-image" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-top.svg' ); ?>" alt="">
+		<img class="form-service__rule-image form-service__rule-image--desktop" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-top.svg' ); ?>" alt="">
+		<img class="form-service__rule-image form-service__rule-image--tablet" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-top-tablet.svg' ); ?>" alt="">
 	</div>
 
 	<div class="form-service__content">
@@ -107,7 +108,8 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 				<div class="form-service__note"><?php echo $note; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
 			<?php endif; ?>
 
-			<img class="form-service__divider" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-divider.svg' ); ?>" alt="" aria-hidden="true">
+			<img class="form-service__divider form-service__divider--desktop" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-divider.svg' ); ?>" alt="" aria-hidden="true">
+			<img class="form-service__divider form-service__divider--tablet" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-divider-tablet.svg' ); ?>" alt="" aria-hidden="true">
 
 			<form class="form-service__form" method="post" action="">
 				<?php zadzerkalya_contact_notice(); ?>
@@ -148,6 +150,7 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 	</div>
 
 	<div class="form-service__rule form-service__rule--bottom" aria-hidden="true">
-		<img class="form-service__rule-image" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-bottom.svg' ); ?>" alt="">
+		<img class="form-service__rule-image form-service__rule-image--desktop" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-bottom.svg' ); ?>" alt="">
+		<img class="form-service__rule-image form-service__rule-image--tablet" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-line-bottom-tablet.svg' ); ?>" alt="">
 	</div>
 </section>

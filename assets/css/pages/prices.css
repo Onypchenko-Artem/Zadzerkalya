@@ -122,55 +122,65 @@
 	margin-top: calc((200 - 400) * var(--u));
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.price-list {
-		gap: 40px;
+		gap: 16px;
 		margin-top: 120px;
 		padding: 0 24px;
 	}
 
 	.price-list__heading {
-		gap: 24px;
-		min-height: 68px;
+		align-items: flex-start;
+		gap: 48px;
+		min-height: 43px;
 	}
 
 	.price-list__heading h2 {
 		font-size: 40px;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
 	}
 
-	.price-list__heading-line {
+	.price-list__heading-line,
+	.price-list__heading-line--right {
+		flex: 1 1 0;
 		width: auto;
-		height: 60px;
+		height: 43px;
 	}
 
 	.price-list__items {
-		gap: 8px;
-		padding: 8px 0;
+		gap: 24px;
+		padding: 10px 0;
 	}
 
 	.price-list__row {
-		gap: 32px;
-		min-height: 92px;
-		padding: 10px;
+		gap: 24px;
+		min-height: 0;
+		padding: 12px;
+		border-radius: 20px;
 	}
 
 	.price-list__details {
-		flex: 1 1 auto;
-		grid-template-columns: minmax(260px, 1fr) auto;
-		gap: 40px;
+		display: flex;
+		flex: 0 1 346px;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 16px;
+		width: 346px;
+		max-width: 100%;
 	}
 
 	.price-list__details h3,
 	.price-list__details p {
-		font-size: 21px;
+		width: 100%;
+		font-size: 24px;
+		line-height: 1.2;
 	}
 
-	.price-list__details p {
-		max-width: 280px;
-	}
-
+	.price-list__details p,
 	.price-list__row--multiline .price-list__details p {
-		max-width: 340px;
+		max-width: none;
 	}
 
 	.price-list__row--multiline .price-list__price-line {
@@ -178,15 +188,17 @@
 	}
 
 	.price-list__separator {
-		height: 12px;
+		height: 4px;
 	}
 
 	.price-list .lottie-button--primary {
-		--lottie-btn-w: 293px;
+		flex: none;
+		--lottie-btn-w: 213px;
+		--lottie-btn-h: 66px;
 	}
 
 	.prices-page .form-home {
-		margin-top: -270px;
+		margin-top: 120px;
 	}
 }
 
@@ -206,8 +218,16 @@
 		font-size: 28px;
 	}
 
-	.price-list__heading-line {
+	.price-list__heading-line,
+	.price-list__heading-line--right {
+		flex: 1 1 0;
+		width: auto;
 		height: 40px;
+	}
+
+	.price-list__items {
+		gap: 8px;
+		padding: 8px 0;
 	}
 
 	.price-list__row {

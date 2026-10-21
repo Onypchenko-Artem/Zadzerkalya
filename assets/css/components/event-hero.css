@@ -309,14 +309,14 @@
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
-	:is(.single-post, .single-event) .event-hero {
+	:is(.single-post, .single-event, .policy-page) .event-hero {
 		height: auto;
 		min-height: 0;
 		margin-top: -107px;
 		padding: 179px 24px 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero__inner {
+	:is(.single-post, .single-event, .policy-page) .event-hero__inner {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -327,30 +327,30 @@
 		min-height: 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero__main,
-	:is(.single-post, .single-event) .event-hero__container,
-	:is(.single-post, .single-event) .event-hero__content,
-	:is(.single-post, .single-event) .event-hero__breadcrumbs-container {
+	:is(.single-post, .single-event, .policy-page) .event-hero__main,
+	:is(.single-post, .single-event, .policy-page) .event-hero__container,
+	:is(.single-post, .single-event, .policy-page) .event-hero__content,
+	:is(.single-post, .single-event, .policy-page) .event-hero__breadcrumbs-container {
 		width: 100%;
 		height: auto;
 		min-height: 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero__container {
+	:is(.single-post, .single-event, .policy-page) .event-hero__container {
 		gap: 56px;
 	}
 
-	:is(.single-post, .single-event) .event-hero__content {
+	:is(.single-post, .single-event, .policy-page) .event-hero__content {
 		flex: none;
 		padding: 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero__breadcrumbs-container {
+	:is(.single-post, .single-event, .policy-page) .event-hero__breadcrumbs-container {
 		align-items: flex-start;
 		gap: 16px;
 	}
 
-	:is(.single-post, .single-event) .event-hero__breadcrumbs {
+	:is(.single-post, .single-event, .policy-page) .event-hero__breadcrumbs {
 		width: auto;
 		max-width: 100%;
 		min-height: 22px;
@@ -359,19 +359,19 @@
 		line-height: 1.4;
 	}
 
-	:is(.single-post, .single-event) .event-hero__crumb-arrow {
+	:is(.single-post, .single-event, .policy-page) .event-hero__crumb-arrow {
 		width: 20px;
 		height: 12px;
 		aspect-ratio: auto;
 	}
 
-	:is(.single-post, .single-event) .event-hero__title {
+	:is(.single-post, .single-event, .policy-page) .event-hero__title {
 		gap: 27px;
 		min-height: 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero h1,
-	:is(.single-post, .single-event) .event-hero__title--solo h1 {
+	:is(.single-post, .single-event, .policy-page) .event-hero h1,
+	:is(.single-post, .single-event, .policy-page) .event-hero__title--solo h1 {
 		min-height: 0;
 		justify-content: flex-start;
 		padding-top: 0;
@@ -381,7 +381,7 @@
 		letter-spacing: -0.04em;
 	}
 
-	:is(.single-post, .single-event) .event-hero__description {
+	:is(.single-post, .single-event, .policy-page) .event-hero__description {
 		width: 100%;
 		max-width: 443px;
 		min-height: 0;
@@ -390,7 +390,7 @@
 		line-height: 1.35;
 	}
 
-	:is(.single-post, .single-event) .event-hero__bottom-line {
+	:is(.single-post, .single-event, .policy-page) .event-hero__bottom-line {
 		align-self: stretch;
 		width: auto;
 		max-width: none;
@@ -399,11 +399,11 @@
 		margin: 0;
 	}
 
-	:is(.single-post, .single-event) .event-hero__vertical-line {
+	:is(.single-post, .single-event, .policy-page) .event-hero__vertical-line {
 		display: none;
 	}
 
-	:is(.single-post, .single-event) .event-hero__photo {
+	:is(.single-post, .single-event, .policy-page) .event-hero__photo {
 		width: 100%;
 		height: auto;
 		align-items: stretch;
@@ -412,14 +412,14 @@
 		gap: 30px;
 	}
 
-	:is(.single-post, .single-event) .event-hero__image {
+	:is(.single-post, .single-event, .policy-page) .event-hero__image {
 		width: 100%;
 		height: auto;
 		aspect-ratio: 688 / 406;
 		border-radius: 300px;
 	}
 
-	:is(.single-post, .single-event) .event-hero__photo-line {
+	:is(.single-post, .single-event, .policy-page) .event-hero__photo-line {
 		align-self: stretch;
 		box-sizing: border-box;
 		width: auto;

@@ -306,16 +306,194 @@
 	color: var(--color-night-sky);
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.policy {
 		display: flex;
 		flex-direction: column;
-		gap: 40px;
-		padding: 48px 24px 64px;
+		align-items: stretch;
+		gap: 0;
+		margin-top: 120px;
+		padding: 0 24px;
+	}
+
+	.policy__toc {
+		display: none;
 	}
 
 	.policy-page .form-home {
-		margin-top: -270px;
+		margin-top: 120px;
+	}
+
+	.policy__body {
+		display: contents;
+		--event-gap-section: 40px;
+		--event-gap-heading-text: 40px;
+		--event-gap-heading-list: 24px;
+		--event-gap-copy: 24px;
+		--event-gap-list-copy: 40px;
+	}
+
+	.policy__body > :first-child {
+		order: 0;
+	}
+
+	.policy__body > :not(:first-child) {
+		order: 2;
+	}
+
+	.policy__aside {
+		order: 1;
+		position: static;
+		width: auto;
+		margin: 16px 0 0;
+	}
+
+	.policy__meta {
+		border: 0;
+	}
+
+	.policy__meta-row {
+		justify-content: flex-start;
+		gap: 4px;
+		padding: 0;
+		border: 0;
+	}
+
+	.policy__meta dt,
+	.policy__meta dd {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
+		color: var(--color-grey-hug);
+	}
+
+	.policy__body h2 {
+		font-family: var(--font-family-heading);
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+	}
+
+	.policy__body h3,
+	.policy__body.event-article__body ol > li:has(:is(h2, h3, h4))::before {
+		font-family: var(--font-family-body);
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 1.2;
+		letter-spacing: 0;
+	}
+
+	.policy__body p,
+	.policy__body ol li {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.policy__body > h2:not(:first-of-type) + p {
+		margin-top: 16px;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.1;
+	}
+
+	.policy__body > h2:not(:first-of-type) ~ p,
+	.policy__body > h2:not(:first-of-type) ~ :is(ul, ol) {
+		margin-top: 20px;
+	}
+
+	.policy__body > h2:not(:first-of-type) + p {
+		margin-top: 16px;
+	}
+
+	.policy__body.event-article__body > blockquote {
+		gap: 20px;
+		padding: 20px;
+		border-radius: 16px;
+	}
+
+	.policy__body.event-article__body > blockquote > p {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.policy__body.event-article__body ol {
+		gap: 16px;
+	}
+
+	.policy__body.event-article__body ol > li {
+		row-gap: 16px;
+	}
+
+	.policy__body.event-article__body ol > li > :is(h2, h3, h4) {
+		margin-bottom: 8px;
+	}
+
+	.policy__body.event-article__body ol ol,
+	.policy__body .policy-sub {
+		margin-top: 0;
+		padding-left: 24px;
+		gap: 16px;
+	}
+
+	.policy__body ul {
+		gap: 20px;
+		padding: 20px;
+		border-radius: 16px;
+	}
+
+	.policy__body ul li {
+		gap: 12px;
+		font-size: 20px;
+		line-height: 1.35;
+	}
+
+	.policy__body .policy-contacts,
+	.policy__body.event-article__body ol > li > .policy-contacts {
+		gap: 12px;
+		margin-top: 8px;
+	}
+
+	.policy__body .policy-contacts__title,
+	.policy__body .policy-contacts > p:first-child,
+	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child,
+	.policy__body .policy-contacts__label,
+	.policy__body .policy-contacts dt {
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.1;
+	}
+
+	.policy__body .policy-contacts__title,
+	.policy__body .policy-contacts > p:first-child,
+	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child {
+		padding-bottom: 12px;
+	}
+
+	.policy__body .policy-contacts__value,
+	.policy__body .policy-contacts dd {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.policy__body .policy-contacts__row,
+	.policy__body .policy-contacts dl > div {
+		grid-template-columns: 96px minmax(0, 1fr);
+		column-gap: 12px;
+		padding-block: 12px;
+	}
+}
+
+@media (max-width: 767px) {
+	.policy {
+		display: flex;
+		flex-direction: column;
+		gap: 32px;
+		padding: 32px 16px 48px;
 	}
 
 	.policy__toc,
@@ -323,68 +501,23 @@
 		position: static;
 		top: auto;
 		z-index: auto;
-		flex-basis: auto;
 		width: 100%;
-		max-width: 370px;
+		max-width: none;
+		margin-left: 0;
 	}
 
 	.policy__toc {
 		order: 1;
-		max-width: 325px;
 	}
 
 	.policy__aside {
 		order: 0;
-		margin-left: 0;
 	}
 
 	.policy__body {
 		order: 2;
 		flex-basis: auto;
 		max-width: none;
-	}
-
-	.policy__body.event-article__body > blockquote > p {
-		font-size: 18px;
-	}
-
-	.policy__body.event-article__body ol > li:has(:is(h2, h3, h4))::before {
-		font-size: 28px;
-	}
-
-	.policy__body .policy-contacts,
-	.policy__body.event-article__body ol > li > .policy-contacts {
-		margin-top: 20px;
-	}
-
-	.policy__body .policy-contacts__title,
-	.policy__body .policy-contacts > p:first-child,
-	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child,
-	.policy__body .policy-contacts__label,
-	.policy__body .policy-contacts dt,
-	.policy__body .policy-contacts__value,
-	.policy__body .policy-contacts dd {
-		font-size: 18px;
-	}
-
-	.policy__body .policy-contacts__title,
-	.policy__body .policy-contacts > p:first-child,
-	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child {
-		padding-bottom: 14px;
-	}
-
-	.policy__body .policy-contacts__row,
-	.policy__body .policy-contacts dl > div {
-		grid-template-columns: 132px minmax(0, 1fr);
-		column-gap: 16px;
-		padding-block: 14px;
-	}
-}
-
-@media (max-width: 767px) {
-	.policy {
-		gap: 32px;
-		padding: 32px 16px 48px;
 	}
 
 	.policy-page .form-home {
