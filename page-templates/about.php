@@ -75,11 +75,42 @@ get_header();
 		if ( '' === trim( wp_strip_all_tags( (string) $story_right ) ) ) {
 			$story_right = $story_right_default;
 		}
+		$story_tablet_custom = '' !== trim( wp_strip_all_tags( (string) $story_left_tablet . $story_right_tablet ) );
 		if ( '' === trim( wp_strip_all_tags( (string) $story_left_tablet ) ) ) {
 			$story_left_tablet = $story_left;
 		}
 		if ( '' === trim( wp_strip_all_tags( (string) $story_right_tablet ) ) ) {
 			$story_right_tablet = $story_right;
+		}
+
+		$story_paragraphs = static function( $html ) {
+			$html = trim( (string) $html );
+			if ( '' === $html ) {
+				return array();
+			}
+
+			if ( preg_match_all( '/<p\b[^>]*>.*?<\/p>/is', $html, $matches ) && ! empty( $matches[0] ) ) {
+				return $matches[0];
+			}
+
+			return array( '<p>' . esc_html( wp_strip_all_tags( $html ) ) . '</p>' );
+		};
+
+		if ( $story_tablet_custom ) {
+			$story_mobile_top   = $story_left_tablet;
+			$story_mobile_right = $story_paragraphs( $story_right_tablet );
+			if ( count( $story_mobile_right ) > 1 ) {
+				$story_mobile_aside  = implode( '', array_slice( $story_mobile_right, 0, -1 ) );
+				$story_mobile_bottom = implode( '', array_slice( $story_mobile_right, -1 ) );
+			} else {
+				$story_mobile_aside  = '';
+				$story_mobile_bottom = $story_right_tablet;
+			}
+		} else {
+			$story_mobile_left   = $story_paragraphs( $story_left );
+			$story_mobile_top    = implode( '', array_slice( $story_mobile_left, 0, 2 ) );
+			$story_mobile_aside  = implode( '', array_slice( $story_mobile_left, 2 ) );
+			$story_mobile_bottom = $story_right;
 		}
 		$values_left = $about_field( 'about_values_left', '<p>А ще я розумію: допомагаючи дітям, ми робимо більше, аніж просто терапію — ми формуємо майбутнє.</p><p>Адже кожен маленький крок до самостійності однієї дитини — це крок до більш інклюзивного суспільства. Ми змінюємо не лише життя окремих сімей, а й саму культуру ставлення до дітей із особливими потребами.</p>' );
 		$values_conclusion = $about_field( 'about_values_conclusion', '<p>Сьогодні «Задзеркалля» — це не просто реабілітаційний центр.</p><p>Це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.</p>' );
@@ -116,13 +147,21 @@ get_header();
 				</figure>
 
 				<div class="about-story__body">
-					<?php if ( $story_art ) : ?>
-						<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration' ) ); ?>
-					<?php else : ?>
-						<div class="about-story__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Ілюстрацію буде додано', 'zadzerkalya' ); ?>">
-							<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
-						</div>
-					<?php endif; ?>
+					<div class="about-story__side">
+						<?php if ( $story_art ) : ?>
+							<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration' ) ); ?>
+						<?php else : ?>
+							<div class="about-story__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Ілюстрацію буде додано', 'zadzerkalya' ); ?>">
+								<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_aside ) ) ) : ?>
+							<div class="about-story__side-text">
+								<?php echo wp_kses_post( $story_mobile_aside ); ?>
+							</div>
+						<?php endif; ?>
+					</div>
 
 					<div class="about-story__text">
 						<div class="about-story__intro">
@@ -146,6 +185,18 @@ get_header();
 						<div class="about-story__columns about-story__columns--right about-story__columns--tablet">
 							<?php echo wp_kses_post( $story_right_tablet ); ?>
 						</div>
+
+						<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_top ) ) ) : ?>
+							<div class="about-story__stack about-story__stack--top">
+								<?php echo wp_kses_post( $story_mobile_top ); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_bottom ) ) ) : ?>
+							<div class="about-story__stack about-story__stack--bottom">
+								<?php echo wp_kses_post( $story_mobile_bottom ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
@@ -273,6 +324,7 @@ get_header();
 							</text>
 						<?php endforeach; ?>
 					</svg>
+					<img class="about-ending__inscription" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/about-ending-mobile.svg' ); ?>" alt="" width="363" height="61" aria-hidden="true">
 				</div>
 			</div>
 		</section>

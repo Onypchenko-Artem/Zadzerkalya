@@ -142,6 +142,17 @@ $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) . '#' . $hea
 							</span>
 						</div>
 
+						<div class="articles-feed__pages">
+							<?php for ( $page = 1; $page <= $total_pages; $page++ ) : ?>
+								<?php $is_current = $page === $paged; ?>
+								<?php if ( $is_current ) : ?>
+									<span class="articles-feed__page is-active" aria-current="page"><?php echo esc_html( (string) $page ); ?></span>
+								<?php else : ?>
+									<a class="articles-feed__page" href="<?php echo esc_url( $feed_page_url( $page ) . '#' . $heading_id ); ?>"><?php echo esc_html( (string) $page ); ?></a>
+								<?php endif; ?>
+							<?php endfor; ?>
+						</div>
+
 						<?php if ( $next_url ) : ?>
 							<a class="articles-feed__arrow articles-feed__arrow--next" href="<?php echo esc_url( $next_url ); ?>" aria-label="<?php esc_attr_e( 'Наступна сторінка', 'zadzerkalya' ); ?>"></a>
 						<?php else : ?>

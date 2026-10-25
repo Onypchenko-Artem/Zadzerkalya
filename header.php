@@ -82,6 +82,12 @@ $nav_socials = array(
 					<?php else : ?>
 						<span class="header-social" aria-hidden="true"><?php zadzerkalya_icon( 'telegram-header' ); ?></span>
 					<?php endif; ?>
+					<?php if ( ! empty( $phones[0] ) ) : ?>
+						<a class="header-social header-social--phone" href="<?php echo esc_attr( zadzerkalya_tel_href( $phones[0] ) ); ?>">
+							<span class="screen-reader-text"><?php esc_html_e( 'Телефон', 'zadzerkalya' ); ?></span>
+							<?php zadzerkalya_icon( 'phone-header' ); ?>
+						</a>
+					<?php endif; ?>
 				</div>
 				<?php
 				zadzerkalya_button(

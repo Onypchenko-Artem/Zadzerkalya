@@ -196,52 +196,81 @@
 
 @media (max-width: 767px) {
 	.service-when {
-		gap: 32px;
-		padding: 0 20px;
+		gap: 36px;
+		padding: 0 16px;
 	}
 
 	.service-when__heading {
-		gap: 16px;
+		gap: 32px;
+		width: 100%;
 	}
 
 	.service-when__heading h2 {
-		font-size: var(--text-h2-size);
-		line-height: 1.1;
-		letter-spacing: -0.04em;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
 	}
 
 	.service-when__heading p,
 	.service-when__card p {
-		font-size: var(--text-body-l-size);
-		font-weight: var(--text-body-l-weight);
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
 	.service-when__heading p {
-		width: 290px;
+		width: 100%;
+		max-width: 377px;
 	}
 
-	.service-when__cards,
+	.service-when__cards {
+		gap: 24px;
+		width: 100%;
+	}
+
 	.service-when__row,
 	.service-when__row:last-child {
-		gap: 20px;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		gap: 24px;
 	}
 
 	.service-when__card {
-		flex: 0 0 min(100%, 423px);
-		width: min(100%, 423px);
-		height: 300px;
+		flex: none;
+		width: 100%;
+		height: 290px;
+		padding: 12px;
+		border-radius: 16px;
+	}
+
+	.service-when__card-inner {
+		gap: 16px;
+		padding: 12px;
+		border-radius: 12px;
 	}
 
 	.service-when__line {
-		height: auto;
+		display: block;
+		flex-basis: auto;
+		width: 100%;
+		height: 10px;
+		object-fit: fill;
+	}
+
+	.service-when__line--bottom {
+		height: 9px;
 	}
 
 	.service-when__number {
 		flex-basis: 48px;
 		width: 48px;
 		height: 48px;
-		padding: 0;
-		font-size: 32px;
-		font-weight: var(--text-number-big-weight);
+		padding: 8px 24px;
+		font-size: 26px;
+		font-weight: 700;
+		line-height: 0.76;
+		border-radius: 8px;
 	}
 }

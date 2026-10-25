@@ -44,3 +44,20 @@
 		padding-bottom: 0;
 	}
 }
+
+@media (max-width: 767px) {
+	:is(.single-post, .single-event) .event-page {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 80px;
+	}
+
+	:is(.single-post, .single-event) .form-home {
+		margin-top: 30px;
+	}
+
+	.single-event .recommend {
+		margin-top: -44px;
+	}
+}

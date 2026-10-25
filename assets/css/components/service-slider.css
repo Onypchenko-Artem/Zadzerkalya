@@ -92,19 +92,24 @@
 }
 
 .service-slider__slide {
+	display: flex;
 	flex: 0 0 var(--service-slide);
 	width: var(--service-slide);
 }
 
 .service-slider .service-card {
-	flex: none;
-	justify-content: center;
+	flex: 1 1 auto;
+	justify-content: flex-start;
 	gap: calc(16 * var(--u));
 	width: 100%;
 	max-width: none;
-	height: calc(508 * var(--u));
+	height: auto;
 	padding: calc(20 * var(--u));
 	border-radius: calc(14 * var(--u));
+}
+
+.service-slider .service-card > .lottie-button {
+	margin-top: auto;
 }
 
 .service-slider .service-card__head,
@@ -326,5 +331,82 @@
 		--lottie-btn-w: 100%;
 		--lottie-btn-h: 58px;
 		width: 100%;
+	}
+
+	:is(.single-post, .single-event) .event-article__body .service-slider {
+		align-items: center;
+		gap: 24px;
+		margin-top: 36px;
+	}
+
+	:is(.single-post, .single-event) .service-slider__head {
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+		width: 100%;
+	}
+
+	:is(.single-post, .single-event) .event-article__body h2.service-slider__title {
+		width: 100%;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.22;
+		text-align: center;
+	}
+
+	:is(.single-post, .single-event) .service-slider__controls {
+		gap: 64px;
+	}
+
+	:is(.single-post, .single-event) .service-slider__arrow {
+		flex-basis: 33px;
+		width: 33px;
+		height: 22px;
+	}
+
+	:is(.single-post, .single-event) .service-slider__track {
+		--service-slide: 304px;
+		gap: 8px;
+	}
+
+	:is(.single-post, .single-event) .service-slider .service-card {
+		gap: 10px;
+		min-height: 386px;
+		padding: 14px 16px;
+		border-radius: 12px;
+	}
+
+	:is(.single-post, .single-event) .service-slider .service-card__head,
+	:is(.single-post, .single-event) .service-slider .service-card__title,
+	:is(.single-post, .single-event) .event-article__body .service-slider .service-card__title {
+		max-height: 102px;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.22;
+	}
+
+	:is(.single-post, .single-event) .service-slider .service-card__media {
+		gap: 8px;
+	}
+
+	:is(.single-post, .single-event) .service-slider .service-card__photo {
+		aspect-ratio: 272 / 160;
+		border-radius: 174px;
+	}
+
+	:is(.single-post, .single-event) .service-slider .service-card .lottie-button--primary {
+		--lottie-btn-w: 223px;
+		--lottie-btn-h: 43px;
+		width: 223px;
+		min-width: 0;
+	}
+
+	:is(.single-post, .single-event) .service-slider .lottie-button__label {
+		font-size: 10px;
+		line-height: 1.26;
+	}
+
+	:is(.single-post, .single-event) .service-slider .lottie-button--primary .lottie-button__label {
+		padding-inline: 8px;
 	}
 }

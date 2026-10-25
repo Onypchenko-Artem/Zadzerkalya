@@ -492,109 +492,223 @@
 	.policy {
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
-		padding: 32px 16px 48px;
-	}
-
-	.policy__toc,
-	.policy__aside {
-		position: static;
-		top: auto;
-		z-index: auto;
-		width: 100%;
-		max-width: none;
-		margin-left: 0;
+		align-items: stretch;
+		gap: 0;
+		padding: 0 16px;
 	}
 
 	.policy__toc {
-		order: 1;
-	}
-
-	.policy__aside {
-		order: 0;
-	}
-
-	.policy__body {
-		order: 2;
-		flex-basis: auto;
-		max-width: none;
+		display: none;
 	}
 
 	.policy-page .form-home {
-		margin-top: -100px;
+		margin-top: 110px;
 	}
 
-	.policy__toc,
+	.policy__body {
+		display: contents;
+		--event-gap-section: 36px;
+		--event-gap-heading-text: 20px;
+		--event-gap-heading-list: 20px;
+		--event-gap-copy: 12px;
+		--event-gap-list-copy: 16px;
+	}
+
+	.policy__body :is(h2, h3) {
+		scroll-margin-top: 96px;
+	}
+
+	.policy__body > :first-child:is(h2) {
+		order: 0;
+	}
+
+	.policy__body > :first-child:not(h2),
+	.policy__body > :not(:first-child) {
+		order: 2;
+	}
+
 	.policy__aside {
-		max-width: none;
+		order: 1;
+		position: static;
+		width: auto;
+		margin: 8px 0 36px;
 	}
 
-	.policy__toc-title {
-		font-size: 18px;
+	.policy__meta {
+		border: 0;
 	}
 
-	.policy__toc-link,
+	.policy__meta-row {
+		justify-content: flex-start;
+		gap: 4px;
+		padding: 0;
+		border: 0;
+	}
+
 	.policy__meta dt,
 	.policy__meta dd {
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
+		color: var(--color-grey-hug);
+	}
+
+	.policy__body h2 {
+		font-family: var(--font-family-heading);
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+	}
+
+	.policy__body :is(h3, ol h2),
+	.policy__body.event-article__body ol > li:has(:is(h2, h3, h4))::before {
+		font-family: var(--font-family-body);
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 1.22;
+		letter-spacing: 0;
+	}
+
+	.policy__body p,
+	.policy__body ol li,
+	.policy__body.event-article__body pre,
+	.policy__body.event-article__body pre code {
 		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.policy__body.event-article__body pre::before,
+	.policy__body.event-article__body pre::after {
+		display: none;
+	}
+
+	.policy__body > h2:first-of-type + :is(p, pre) {
+		margin-top: 0;
+	}
+
+	.policy__body > :is(pre, p):first-child + :is(p, pre),
+	.policy__body > h2:first-of-type + :is(p, pre) + :is(p, pre) {
+		margin-top: 24px;
+	}
+
+	.policy__body > :is(h3, h2:not(:first-of-type)) ~ p + p {
+		margin-top: 12px;
+	}
+
+	.policy__body > h2:not(:first-of-type) + p {
+		margin-top: 12px;
+		font-family: var(--font-family-body);
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.22;
+		letter-spacing: 0;
+	}
+
+	.policy__body > h2:not(:first-of-type) ~ p + p,
+	.policy__body > h2:not(:first-of-type) ~ :is(ul, ol, blockquote) {
+		margin-top: 16px;
 	}
 
 	.policy__body.event-article__body > blockquote {
-		gap: 16px;
-		padding: 16px;
-		border-radius: 12px;
+		gap: 20px;
+		padding: 20px;
+		border-radius: 16px;
 	}
 
 	.policy__body.event-article__body > blockquote > p {
-		font-size: 16px;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
-	.policy__body.event-article__body ol > li:has(:is(h2, h3, h4))::before {
-		font-size: 24px;
+	.policy__body.event-article__body ol {
+		gap: 12px;
 	}
 
-	.policy__body.event-article__body > blockquote + ul {
-		padding-top: 16px;
-		border-radius: 12px;
+	.policy__body.event-article__body ol > li {
+		row-gap: 12px;
 	}
 
-	.policy__body.event-article__body ol ol {
-		padding-left: 0;
+	.policy__body.event-article__body ol > li > :is(h2, h3, h4) {
+		margin-bottom: 8px;
+	}
+
+	.policy__body.event-article__body ol ol,
+	.policy__body .policy-sub {
+		margin-top: 0;
+		padding-left: 16px;
+		gap: 12px;
 	}
 
 	.policy__body.event-article__body ol ol ol {
-		padding-left: 20px;
+		padding-left: 16px;
 	}
 
-	.policy__body .policy-sub {
-		padding-left: 20px;
+	.policy__body ul {
+		gap: 20px;
+		padding: 20px;
+		border-radius: 16px;
+	}
+
+	.policy__body ul li {
+		gap: 12px;
+		font-size: 15px;
+		line-height: 1.35;
+	}
+
+	.policy__body ul li::before {
+		flex-basis: 28px;
+		width: 28px;
+		height: 20px;
+		background-position: left 4px;
+		background-size: 26px 12px;
 	}
 
 	.policy__body .policy-contacts,
 	.policy__body.event-article__body ol > li > .policy-contacts {
-		margin-top: 16px;
+		gap: 0;
+		margin-top: 8px;
+		padding-top: 8px;
 	}
 
 	.policy__body .policy-contacts__title,
 	.policy__body .policy-contacts > p:first-child,
 	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child,
 	.policy__body .policy-contacts__label,
-	.policy__body .policy-contacts dt,
-	.policy__body .policy-contacts__value,
-	.policy__body .policy-contacts dd {
-		font-size: 16px;
+	.policy__body .policy-contacts dt {
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.22;
 	}
 
 	.policy__body .policy-contacts__title,
 	.policy__body .policy-contacts > p:first-child,
 	.policy__body .policy-contacts > .wp-block-group__inner-container > p:first-child {
-		padding-bottom: 12px;
+		padding-bottom: 10px;
+	}
+
+	.policy__body .policy-contacts__value,
+	.policy__body .policy-contacts dd {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.policy__body .policy-contacts__list,
+	.policy__body .policy-contacts dl {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding-bottom: 10px;
 	}
 
 	.policy__body .policy-contacts__row,
 	.policy__body .policy-contacts dl > div {
-		grid-template-columns: 104px minmax(0, 1fr);
+		grid-template-columns: 72px minmax(0, 1fr);
 		column-gap: 12px;
-		padding-block: 12px;
+		padding: 10px 0 0;
 	}
 }

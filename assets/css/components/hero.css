@@ -384,83 +384,181 @@
 @media (max-width: 767px) {
 	.hero {
 		margin-top: -64px;
-		padding: 84px 16px 28px;
+		padding: 115px 16px 24px;
 	}
 
 	.hero-layout {
-		gap: 24px;
-		margin-top: 16px;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		margin-top: 0;
+	}
+
+	.hero-copy,
+	.hero-details {
+		display: contents;
 	}
 
 	.hero-kicker {
-		font-size: 14px;
+		order: 0;
+		margin: 0 0 8px;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
 	.hero h1 {
-		margin-bottom: 28px;
-		font-size: 32px;
+		order: 1;
+		min-height: 0;
+		margin: 0 0 40px;
+		font-size: 34px;
+		font-weight: 500;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
 	}
 
-	.hero-details {
+	.hero-media {
+		order: 2;
+		display: flex;
 		flex-direction: column;
-		min-height: 0;
-		gap: 24px;
+		align-items: stretch;
+		justify-content: flex-start;
+		width: 100%;
+		height: auto;
+		aspect-ratio: auto;
+		overflow: visible;
+		border-radius: 0;
+		gap: 4px;
 	}
 
-	.hero-description {
+	.hero-media::before,
+	.hero-media::after {
+		content: "";
+		display: block;
 		flex: none;
 		width: 100%;
-		min-height: 0;
-		gap: 20px;
+		height: 0;
+		border-top: 1px solid var(--color-night-sky);
 	}
 
-	.hero-description > p {
-		font-size: 16px;
+	.hero-media::before {
+		margin: 8px 0 0;
 	}
 
-	.hero-form {
-		flex: none;
+	.hero-media::after {
+		height: 25px;
+		border-top: 0;
+		background: linear-gradient(
+			to bottom,
+			transparent 14px,
+			var(--color-night-sky) 14px,
+			var(--color-night-sky) 15px,
+			transparent 15px
+		);
+	}
+
+	.hero-media img {
 		width: 100%;
-		min-height: 0;
-		gap: 18px;
-	}
-
-	.hero-field-stack {
-		margin-top: 0;
-	}
-
-	.hero-form .lottie-button {
-		margin-top: 0;
-	}
-
-	.hero-form .form-consent {
-		font-size: 13px;
-	}
-
-	.hero-illustration {
-		width: 128px;
-		height: 120px;
-	}
-
-	.hero-illustration img {
-		transform: none;
+		height: auto;
+		aspect-ratio: 361 / 313;
+		object-fit: cover;
+		border-radius: 20px;
 	}
 
 	.hero-divider {
 		display: none;
 	}
 
-	.hero-media {
-		height: 76vw;
-		aspect-ratio: auto;
-		border-radius: 20px;
+	.hero-description {
+		order: 3;
+		flex: none;
+		flex-direction: row;
+		align-items: flex-end;
+		justify-content: center;
+		gap: 28px;
+		width: 100%;
+		max-width: none;
+		min-height: 0;
+		padding-top: 0;
+		margin-top: 0;
+	}
+
+	.hero-illustration {
+		order: 0;
+		flex: none;
+		width: 136px;
+		height: 125px;
+		margin-top: 0;
+	}
+
+	.hero-illustration img {
+		transform: scaleX(-1);
+	}
+
+	.hero-description > p {
+		order: 1;
+		flex: 1 1 auto;
+		min-width: 0;
+		min-height: 0;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.hero-form {
+		order: 4;
+		flex: none;
+		align-items: stretch;
+		justify-content: flex-start;
+		gap: 24px;
+		width: 100%;
+		max-width: none;
+		min-height: 0;
+		margin-top: 24px;
+	}
+
+	.hero-field-stack {
+		gap: 6px;
+		margin-top: 0;
+	}
+
+	.hero-form .lottie-button {
+		align-self: center;
+		width: 260px;
+		min-width: 260px;
+		margin-top: 0;
+		--lottie-btn-w: 260px;
+		--lottie-btn-h: 62px;
+	}
+
+	.hero-form .lottie-button .lottie-button__label {
+		padding-inline: 16px;
+		font-size: 13px;
+		line-height: 1.26;
+	}
+
+	.hero-form .form-consent {
+		width: 100%;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.hero-field label {
+		font-size: 11px;
+		line-height: 1.4;
+	}
+
+	.hero-field input {
+		height: 48px;
+		padding: 12px 16px;
+		border-radius: 8px;
+		font-size: 16px;
+		line-height: 1.35;
 	}
 
 	.hero-bottom-line {
-		height: auto;
-		aspect-ratio: 1827 / 14;
-		margin-top: 20px;
-		margin-bottom: 0;
-		background: url("../../images/hero-banner-long-line.svg") center / 100% 100% no-repeat;
+		display: none;
 	}
 }

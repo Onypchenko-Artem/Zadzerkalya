@@ -262,73 +262,107 @@
 
 @media (max-width: 767px) {
 	.form-home {
-		height: 920px;
+		height: 716px;
 	}
 
 	.form-home__background {
-		opacity: 0.38;
+		opacity: 1;
+	}
+
+	.form-home__background-left,
+	.form-home__background-right {
+		top: 50%;
+		height: auto;
+		object-fit: contain;
+		transform: translateY(-50%);
 	}
 
 	.form-home__background-left {
-		top: 140px;
-		left: -30px;
-		width: 160px;
-		height: auto;
+		left: 0;
+		width: 156px;
 	}
 
 	.form-home__background-right {
-		top: 0;
-		right: -50px;
-		width: 180px;
-		height: auto;
+		right: 0;
+		left: auto;
+		width: 176px;
 	}
 
 	.form-home__content {
-		top: 100px;
+		top: 67px;
 		gap: 24px;
-		width: calc(100% - 40px);
+		width: min(311px, calc(100% - 48px));
+		scroll-margin-top: 96px;
 	}
 
 	.form-home__heading {
-		gap: 12px;
+		gap: 16px;
 		width: 100%;
 	}
 
 	.form-home__heading h2 {
-		font-size: var(--text-h2-size);
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
 	}
 
 	.form-home__heading p {
-		width: min(320px, 100%);
-		font-size: var(--text-body-l-size);
+		width: min(246px, 100%);
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
 	.form-home__form {
-		gap: 14px;
-		width: 100%;
+		gap: 16px;
+		width: 230px;
+		max-width: 100%;
 		padding: 0;
 	}
 
 	.form-home__form > .lottie-button {
-		margin-top: 10px;
+		--lottie-btn-w: 255px;
+		--lottie-btn-h: 60px;
+		margin-top: 0;
+	}
+
+	.form-home__form > .lottie-button--primary .lottie-button__anim path[fill] {
+		fill: var(--color-gentle-blue);
+	}
+
+	.form-home__message {
+		gap: 6px;
 	}
 
 	.form-home__field,
 	.form-home__message,
 	.form-home__form .form-notice,
 	.form-home__form .form-consent {
-		width: 100%;
+		width: 230px;
+		max-width: 100%;
+	}
+
+	.form-home__field label {
+		font-size: 11px;
+		font-weight: 400;
+		line-height: 1.4;
 	}
 
 	.form-home__form .form-consent {
-		font-size: 13px;
+		font-size: 11px;
+		font-weight: 400;
+		line-height: 1.4;
 	}
 
 	.form-home__field input,
 	.form-home__field textarea {
 		height: 48px;
 		padding: 12px 16px;
-		background: color-mix(in srgb, var(--color-chewing-gum) 82%, transparent);
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.35;
+		background: var(--color-chewing-gum);
 		border-radius: 8px;
 	}
 

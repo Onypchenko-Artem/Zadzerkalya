@@ -18,10 +18,12 @@ $args = wp_parse_args(
 <section class="form-home" aria-labelledby="form-home-title">
 	<div class="form-home__background" aria-hidden="true">
 		<picture>
+			<source media="(max-width: 767px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-bg-left-mobile.png' ); ?>">
 			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-left.png' ); ?>">
 			<img class="form-home__background-left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/left-bg-img.png' ); ?>" alt="">
 		</picture>
 		<picture>
+			<source media="(max-width: 767px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-bg-right-mobile.png' ); ?>">
 			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-right.png' ); ?>">
 			<img class="form-home__background-right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>" alt="">
 		</picture>

@@ -77,7 +77,7 @@
 @media (max-width: 767px) {
 	.page-template-events .form-home,
 	.post-type-archive-event .form-home {
-		margin-top: -116px;
+		margin-top: 0;
 	}
 
 	.events-page__list {

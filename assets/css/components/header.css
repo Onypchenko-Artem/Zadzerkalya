@@ -251,6 +251,10 @@
 	display: none;
 }
 
+.header-social--phone {
+	display: none;
+}
+
 .nav-open .nav-toggle__open {
 	display: none;
 }
@@ -476,11 +480,12 @@
 
 @media (max-width: 767px) {
 	.header-bar {
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
-		min-height: 64px;
+		height: 72px;
+		min-height: 72px;
 		margin: 0;
-		padding: 8px 20px;
+		padding: 16px;
 		border-radius: 0 0 32px 32px;
 		gap: 16px;
 	}
@@ -495,13 +500,52 @@
 	}
 
 	.header-place,
-	.header-socials,
 	.header-bar .lottie-button {
 		display: none;
 	}
 
-	.header-aside {
+	.header-aside,
+	.header-actions {
 		gap: 16px;
+	}
+
+	.header-socials {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.header-socials .header-social:has(.icon--instagram) {
+		display: none;
+	}
+
+	.header-social--phone {
+		display: flex;
+	}
+
+	.header-social {
+		width: 40px;
+		height: 40px;
+	}
+
+	.header-logo {
+		top: -27px;
+		width: 106px;
+		height: 111px;
+	}
+
+	.header-logo__plate {
+		width: 94.81px;
+		height: 111px;
+	}
+
+	.header-logo__image {
+		position: absolute;
+		left: 19.66px;
+		top: 32.38px;
+		width: 68.8px;
+		height: 74px;
+		max-width: none;
 	}
 
 	.header-nav.is-open {

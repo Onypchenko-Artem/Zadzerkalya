@@ -27,6 +27,10 @@
 	}
 
 	.home .site-main > .faq-scroll + .form-home {
-		margin-top: -80px;
+		margin-top: 80px;
+	}
+
+	.home .site-footer {
+		margin-top: 80px;
 	}
 }
