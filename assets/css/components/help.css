@@ -264,6 +264,12 @@
 		aspect-ratio: auto;
 	}
 
+	.help__reasons::before,
+	.help__reasons::after,
+	.help__reasons li:not(:last-child)::after {
+		background-image: url("../../images/help-reasons-line-tablet.svg");
+	}
+
 	.help__reasons li:not(:last-child)::after {
 		margin-top: 12px;
 	}
@@ -407,6 +413,12 @@
 		flex-basis: 8px;
 		height: 8px;
 		aspect-ratio: auto;
+	}
+
+	.help__reasons::before,
+	.help__reasons::after,
+	.help__reasons li:not(:last-child)::after {
+		background-image: url("../../images/list-line.svg");
 	}
 
 	.help__reasons::after {

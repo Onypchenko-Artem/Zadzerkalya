@@ -225,9 +225,9 @@
 	.benefits__intro {
 		display: grid;
 		flex: none;
-		grid-template-columns: 259px minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		grid-template-rows: auto 1fr;
-		column-gap: 48px;
+		column-gap: 0;
 		align-items: start;
 		width: 100%;
 		height: 260px;

@@ -178,8 +178,14 @@
 	.service-when__line {
 		display: block;
 		flex-basis: auto;
+		width: 100%;
 		height: 9px;
 		object-fit: fill;
+		content: url("../../images/service-when-line-tablet.svg");
+	}
+
+	.service-when__line--bottom {
+		transform: scaleX(-1);
 	}
 
 	.service-when__number {
@@ -257,10 +263,13 @@
 		width: 100%;
 		height: 10px;
 		object-fit: fill;
+		content: normal;
+		transform: none;
 	}
 
 	.service-when__line--bottom {
 		height: 9px;
+		transform: none;
 	}
 
 	.service-when__number {

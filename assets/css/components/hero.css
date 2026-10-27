@@ -244,7 +244,7 @@
 @media (max-width: 1279px) {
 	.hero {
 		margin-top: -107px;
-		padding: 200px 24px 25px;
+		padding: 134px 24px 25px;
 	}
 
 	.hero-top-lines {
@@ -308,10 +308,6 @@
 		width: 172px;
 		height: 158px;
 		margin-top: auto;
-	}
-
-	.hero-illustration img {
-		transform: scaleX(-1);
 	}
 
 	.hero-form {
@@ -490,10 +486,6 @@
 		width: 136px;
 		height: 125px;
 		margin-top: 0;
-	}
-
-	.hero-illustration img {
-		transform: scaleX(-1);
 	}
 
 	.hero-description > p {

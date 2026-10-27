@@ -331,12 +331,14 @@
 		-webkit-line-clamp: 4;
 	}
 
-	.services-showcase__line {
+	.services-showcase__line,
+	.services-showcase__line--reverse {
 		flex: 0 0 10px;
 		width: 100%;
 		height: 10px;
 		aspect-ratio: auto;
-		background-size: 100% 5px;
+		background-image: url("../../images/services-showcase-line-tablet.svg");
+		background-size: 100% 100%;
 	}
 
 	.services-showcase__image-placeholder {
