@@ -282,8 +282,10 @@
 	}
 
 	.faq__line {
-		height: 5px;
+		height: 6px;
 		aspect-ratio: auto;
+		background-image: url("../../images/faq-line-tablet.svg");
+		background-size: 100% 100%;
 	}
 
 	.faq__item p,

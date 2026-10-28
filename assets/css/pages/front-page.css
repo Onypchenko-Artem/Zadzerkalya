@@ -21,6 +21,16 @@
 	}
 }
 
+@media (max-width: 1279px) and (min-width: 768px) {
+	.home .site-main > .faq-scroll + .form-home .form-home__content {
+		top: 240px;
+	}
+
+	.home .site-footer {
+		margin-top: 80px;
+	}
+}
+
 @media (max-width: 767px) {
 	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
 		margin-top: 80px;

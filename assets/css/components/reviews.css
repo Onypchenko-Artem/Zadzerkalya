@@ -360,9 +360,12 @@
 	}
 
 	.reviews__line {
-		flex-basis: 10px;
-		height: 10px;
+		flex-basis: 8px;
+		height: 8px;
 		aspect-ratio: auto;
+		background-image: url("../../images/reviews-line-tablet.svg");
+		background-size: 100% 100%;
+		opacity: 1;
 	}
 
 	.reviews__text {

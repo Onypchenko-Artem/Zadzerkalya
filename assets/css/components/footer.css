@@ -317,6 +317,9 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.site-footer {
+		display: grid;
+		grid-template-columns: 24px 356px minmax(0, 1fr) 309px 24px;
+		grid-template-rows: 109px auto minmax(0, 1fr) auto calc(977px - 109px - 760px);
 		height: 977px;
 		border-radius: 150px 150px 0 0;
 	}
@@ -346,20 +349,45 @@
 		background: url("../../images/footer-devider-tablet.svg") center / 100% 100% no-repeat;
 	}
 
+	.site-footer__brand,
+	.site-footer__details {
+		position: relative;
+		top: auto;
+		right: auto;
+		left: auto;
+		display: grid;
+		grid-row: 2 / 5;
+		grid-template-rows: subgrid;
+		gap: 0;
+		width: auto;
+		height: auto;
+	}
+
 	.site-footer__brand {
-		top: 109px;
-		left: 24px;
-		gap: 90px;
-		width: 356px;
+		grid-column: 2;
+		align-items: center;
+	}
+
+	.site-footer__details {
+		grid-column: 4;
+		grid-template-columns: 1fr;
+		align-items: start;
 	}
 
 	.site-footer__logo {
+		position: absolute;
+		top: 0;
+		left: 50%;
 		width: 220px;
 		max-width: 100%;
 		height: 233px;
+		transform: translateX(-50%);
 	}
 
 	.site-footer__brand p {
+		grid-row: 3;
+		align-self: start;
+		justify-self: center;
 		width: 346px;
 		max-width: 100%;
 		font-size: 38px;
@@ -369,18 +397,6 @@
 
 	.site-footer__tagline-anim {
 		aspect-ratio: 346 / 48;
-	}
-
-	.site-footer__details {
-		top: 109px;
-		right: 24px;
-		left: auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 52px;
-		width: 309px;
-		height: 760px;
 	}
 
 	.site-footer__section {
@@ -407,7 +423,6 @@
 		font-weight: 500;
 		line-height: 1.1;
 		letter-spacing: 0;
-		text-transform: none;
 	}
 
 	.site-footer__section--contacts h2 {
@@ -425,9 +440,26 @@
 	.site-footer__section--contacts,
 	.site-footer__section--hours,
 	.site-footer__section--menu {
+		grid-column: 1;
 		grid-template-columns: 94px 1fr;
 		column-gap: 16px;
 		min-height: 0;
+	}
+
+	.site-footer__section--contacts {
+		grid-row: 1;
+		align-self: start;
+	}
+
+	.site-footer__section--hours {
+		grid-row: 2;
+		align-self: center;
+	}
+
+	.site-footer__section--menu {
+		grid-row: 3;
+		align-self: start;
+		padding-top: 12px;
 	}
 
 	.site-footer__section-content,
@@ -451,9 +483,13 @@
 	}
 
 	.site-footer__bottom {
-		right: 0;
-		bottom: 0;
-		left: 0;
+		position: relative;
+		grid-column: 1 / -1;
+		grid-row: 5;
+		align-self: end;
+		right: auto;
+		bottom: auto;
+		left: auto;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
