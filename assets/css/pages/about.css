@@ -973,7 +973,7 @@
 		height: auto;
 		min-height: 1068px;
 		margin-top: -170px;
-		padding: 240px 24px 0;
+		padding: 205px 24px 0;
 		background-size: 96px 100%, 100% 100%;
 	}
 
@@ -1021,9 +1021,9 @@
 	}
 
 	.about-hero__line {
-		width: calc(100% - 16px);
+		width: 100%;
 		height: 9px;
-		margin-inline: 8px;
+		margin: 0;
 		aspect-ratio: auto;
 	}
 
@@ -1046,9 +1046,10 @@
 	.about-hero__scene-image {
 		width: 100%;
 		height: auto;
-		aspect-ratio: 704 / 408;
+		max-height: 408px;
+		aspect-ratio: auto;
 		border-radius: 24px;
-		object-fit: cover;
+		object-fit: contain;
 	}
 
 	.about-hero__right-line {
@@ -1212,7 +1213,7 @@
 	.about-relocation {
 		position: relative;
 		isolation: isolate;
-		padding: 80px 24px 0;
+		padding: 40px 24px 0;
 	}
 
 	.about-relocation__inner {
@@ -1254,7 +1255,8 @@
 	}
 
 	.about-relocation__text p:nth-child(2) {
-		max-width: 628px;
+		width: 100%;
+		max-width: none;
 	}
 
 	.about-relocation__decor {
@@ -1374,7 +1376,7 @@
 	.about-ending__rabbit svg {
 		width: 145px;
 		height: 21px;
-		margin-top: -4px;
+		margin-top: -15px;
 	}
 
 	.about-ending__rabbit path {
@@ -1414,11 +1416,15 @@
 	.about-gallery {
 		z-index: 2;
 		gap: 56px;
-		padding: 0 24px;
+		padding: 120px 24px 0;
 	}
 
 	.about-gallery + .form-home {
-		margin-top: -120px;
+		margin-top: -160px;
+	}
+
+	.about-gallery + .form-home .form-home__content {
+		top: 240px;
 	}
 
 	.about-gallery h2 {
@@ -1606,9 +1612,9 @@
 	.about-hero__scene-image {
 		width: 100%;
 		height: auto;
-		aspect-ratio: 361 / 266;
+		aspect-ratio: auto;
 		border-radius: 24px;
-		object-fit: cover;
+		object-fit: contain;
 	}
 
 	.about-hero__right-line {

@@ -22,6 +22,10 @@
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
+	.home .site-main > .faq-scroll + .form-home {
+		margin-top: -160px;
+	}
+
 	.home .site-main > .faq-scroll + .form-home .form-home__content {
 		top: 240px;
 	}

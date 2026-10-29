@@ -65,6 +65,19 @@ $total_pages = max( 1, (int) $query->max_num_pages );
 $has_posts   = $query->have_posts();
 $prev_url    = $paged > 1 ? $feed_page_url( $paged - 1 ) . '#' . $heading_id : '';
 $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) . '#' . $heading_id : '';
+$visible     = 6;
+$page_start  = 1;
+$page_end    = $total_pages;
+
+if ( $total_pages > $visible ) {
+	$page_start = max( 1, $paged - (int) floor( ( $visible - 1 ) / 2 ) );
+	$page_end   = $page_start + $visible - 1;
+
+	if ( $page_end > $total_pages ) {
+		$page_end   = $total_pages;
+		$page_start = $page_end - $visible + 1;
+	}
+}
 ?>
 <section class="articles-feed" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>"<?php echo $ajax_filters ? ' data-ajax-filters' : ''; ?>>
 	<h2 id="<?php echo esc_attr( $heading_id ); ?>" class="articles-feed__title"><?php echo esc_html( $title ); ?></h2>
@@ -129,21 +142,15 @@ $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) . '#' . $hea
 						</div>
 					<?php endif; ?>
 
-					<div class="articles-feed__slider" aria-label="<?php esc_attr_e( 'Пагінація', 'zadzerkalya' ); ?>">
+					<nav class="articles-feed__slider" aria-label="<?php esc_attr_e( 'Пагінація', 'zadzerkalya' ); ?>">
 						<?php if ( $prev_url ) : ?>
 							<a class="articles-feed__arrow articles-feed__arrow--prev" href="<?php echo esc_url( $prev_url ); ?>" aria-label="<?php esc_attr_e( 'Попередня сторінка', 'zadzerkalya' ); ?>"></a>
 						<?php else : ?>
 							<span class="articles-feed__arrow articles-feed__arrow--prev is-disabled" aria-hidden="true"></span>
 						<?php endif; ?>
 
-						<div class="articles-feed__counter" aria-live="polite">
-							<span class="articles-feed__counter-value">
-								<span class="articles-feed__counter-current"><?php echo esc_html( (string) $paged ); ?>/</span><span class="articles-feed__counter-total"><?php echo esc_html( (string) $total_pages ); ?></span>
-							</span>
-						</div>
-
 						<div class="articles-feed__pages">
-							<?php for ( $page = 1; $page <= $total_pages; $page++ ) : ?>
+							<?php for ( $page = $page_start; $page <= $page_end; $page++ ) : ?>
 								<?php $is_current = $page === $paged; ?>
 								<?php if ( $is_current ) : ?>
 									<span class="articles-feed__page is-active" aria-current="page"><?php echo esc_html( (string) $page ); ?></span>
@@ -158,7 +165,7 @@ $next_url    = $paged < $total_pages ? $feed_page_url( $paged + 1 ) . '#' . $hea
 						<?php else : ?>
 							<span class="articles-feed__arrow articles-feed__arrow--next is-disabled" aria-hidden="true"></span>
 						<?php endif; ?>
-					</div>
+					</nav>
 				</div>
 			<?php else : ?>
 				<?php get_template_part( 'template-parts/content', 'none' ); ?>

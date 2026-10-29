@@ -260,6 +260,12 @@
 	}
 }
 
+@media (max-width: 1279px) and (min-width: 768px) {
+	.form-home {
+		margin-top: -69px;
+	}
+}
+
 @media (max-width: 767px) {
 	.form-home {
 		height: 716px;

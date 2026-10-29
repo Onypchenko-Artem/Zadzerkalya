@@ -131,6 +131,8 @@ $nav_socials = array(
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>
+			</div>
+			<div class="header-nav__end">
 				<div class="header-nav__socials">
 					<?php foreach ( $nav_socials as $network => $url ) : ?>
 						<?php if ( $url ) : ?>
@@ -143,17 +145,17 @@ $nav_socials = array(
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
+				<?php
+				zadzerkalya_button(
+					array(
+						'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
+						'url'     => $contacts,
+						'variant' => 'secondary',
+						'anim'    => 'button-secondary-mobile',
+					)
+				);
+				?>
 			</div>
-			<?php
-			zadzerkalya_button(
-				array(
-					'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
-					'url'     => $contacts,
-					'variant' => 'secondary',
-					'anim'    => 'button-secondary-mobile',
-				)
-			);
-			?>
 		</div>
 	</nav>
 </header>

@@ -43,6 +43,10 @@
 	:is(.single-post, .single-event) .recommend {
 		padding-bottom: 0;
 	}
+
+	:is(.single-post, .single-event) .form-home {
+		margin-top: -69px;
+	}
 }
 
 @media (max-width: 767px) {
