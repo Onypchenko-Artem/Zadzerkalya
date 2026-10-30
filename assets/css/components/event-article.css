@@ -514,6 +514,21 @@
 		gap: 12px;
 	}
 
+	.event-article__author-info .event-article__rule,
+	.event-article__aside .event-article__meta-row::after {
+		box-sizing: border-box;
+		display: block;
+		width: 100%;
+		height: 1px;
+		min-height: 0;
+		padding: 0;
+		font-size: 0;
+		line-height: 0;
+		border: 0;
+		border-top: 1px solid var(--color-night-sky);
+		background: none;
+	}
+
 	.event-article__author-name {
 		font-size: 20px;
 		line-height: 1.35;
@@ -666,8 +681,7 @@
 	.event-article__meta-row::after {
 		content: "";
 		grid-column: 1 / -1;
-		height: 1px;
-		background: var(--color-night-sky);
+		justify-self: stretch;
 	}
 
 	.event-article__meta dt,
@@ -738,6 +752,11 @@
 		width: 100%;
 		height: 260px;
 		align-self: auto;
+	}
+
+	.event-article__author-info .event-article__rule,
+	.event-article__aside .event-article__meta-row::after {
+		background: none;
 	}
 
 	.event-article__author-name {
