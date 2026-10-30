@@ -1424,7 +1424,8 @@
 	}
 
 	.about-gallery + .form-home .form-home__content {
-		top: 240px;
+		top: auto;
+		margin-top: 240px;
 	}
 
 	.about-gallery h2 {

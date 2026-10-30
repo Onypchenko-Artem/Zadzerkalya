@@ -224,53 +224,105 @@ body.contact-popup-open {
 	overflow: hidden;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.contact-popup__dialog {
-		gap: 24px;
+		gap: 28px;
 		width: 600px;
-		padding: 80px 32px 48px;
-		border-radius: 28px;
+		height: auto;
+		padding: 104px 56px 48px;
+		border-radius: 32px;
 	}
 
 	.contact-popup__rabbit {
-		top: 6px;
-		left: -4px;
-		width: 100px;
-		height: 112px;
+		top: 14px;
+		left: 0;
+		width: 115px;
+		height: 116px;
 	}
 
 	.contact-popup__close {
-		top: 16px;
-		right: 16px;
-		width: 36px;
-		height: 36px;
+		top: 20px;
+		right: 20px;
+		width: 48px;
+		height: 48px;
 	}
 
 	.contact-popup__close svg {
-		width: 36px;
-		height: 36px;
+		width: 48px;
+		height: 48px;
+	}
+
+	.contact-popup__heading {
+		gap: 12px;
+		width: 486px;
+		max-width: 100%;
 	}
 
 	.contact-popup__heading h2 {
-		font-size: 28px;
+		width: 100%;
+		font-size: 40px;
+		font-weight: 500;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+	}
+
+	.contact-popup__heading p {
+		width: 100%;
+		max-width: none;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.contact-popup__form {
+		gap: 20px;
+		width: 345px;
+	}
+
+	.contact-popup__phone {
+		gap: 6px;
+		width: 345px;
+	}
+
+	.contact-popup__field,
+	.contact-popup__form .form-notice,
+	.contact-popup__form .form-consent {
+		width: 345px;
+	}
+
+	.contact-popup__field label {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.4;
 	}
 
 	.contact-popup__field input {
-		height: 64px;
-		padding: 16px 18px;
+		height: 48px;
+		max-height: 90px;
+		padding: 12px 20px;
 		font-size: 18px;
-		border-radius: 16px;
+		font-weight: 400;
+		line-height: 1.35;
+		border-radius: 8px;
+	}
+
+	.contact-popup__form .form-consent {
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1.4;
 	}
 
 	.contact-popup__form .lottie-button--primary {
-		--lottie-btn-w: 360px;
-		--lottie-btn-h: 72px;
-		width: 360px;
-		min-width: 0;
+		--lottie-btn-w: 293px;
+		--lottie-btn-h: 66px;
+		width: 293px;
+		min-width: 293px;
 	}
 
 	.contact-popup__form .lottie-button__label {
-		font-size: 18px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 }
 

@@ -262,7 +262,18 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.form-home {
+		height: auto;
 		margin-top: -69px;
+		padding-bottom: 80px;
+	}
+
+	.form-home__content {
+		position: relative;
+		top: auto;
+		left: auto;
+		margin-top: 149px;
+		margin-inline: auto;
+		transform: none;
 	}
 }
 
