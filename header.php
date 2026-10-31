@@ -38,12 +38,13 @@ $nav_socials = array(
 			<span class="screen-reader-text"><?php esc_html_e( 'Меню', 'zadzerkalya' ); ?></span>
 		</button>
 
-		<a class="header-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<a class="header-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"<?php echo has_custom_logo() ? '' : ' data-header-logo data-anim-base="' . esc_url( ZADZERKALYA_URI . '/assets/animations/logo-mirror-parts/' ) . '"'; ?>>
 			<span class="header-logo__plate" aria-hidden="true"></span>
 			<?php if ( has_custom_logo() ) : ?>
 				<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'class' => 'header-logo__image', 'alt' => get_bloginfo( 'name' ) ) ); ?>
 			<?php else : ?>
 				<img class="header-logo__image" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/logo.svg' ); ?>" width="119" height="128" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+				<span class="header-logo__anim" data-header-logo-anim aria-hidden="true"></span>
 			<?php endif; ?>
 		</a>
 

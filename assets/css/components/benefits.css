@@ -181,6 +181,13 @@
 	line-height: 1.35;
 }
 
+.benefits.is-copy-aligned > h2 {
+	align-self: flex-start;
+	width: calc(1368 * var(--u));
+	margin-left: var(--benefits-list-left, auto);
+	text-align: left;
+}
+
 .benefits.is-copy-aligned .benefits__item {
 	position: relative;
 	justify-content: flex-start;
@@ -206,8 +213,12 @@
 		padding: 0 24px;
 	}
 
-	.benefits > h2 {
+	.benefits > h2,
+	.benefits.is-copy-aligned > h2 {
+		align-self: auto;
+		width: 100%;
 		height: auto;
+		margin-left: 0;
 		font-size: 40px;
 		font-weight: 500;
 		line-height: 1.08;
@@ -354,8 +365,12 @@
 		padding: 0 16px;
 	}
 
-	.benefits > h2 {
+	.benefits > h2,
+	.benefits.is-copy-aligned > h2 {
+		align-self: auto;
+		width: 100%;
 		height: auto;
+		margin-left: 0;
 		font-size: 26px;
 		font-weight: 500;
 		line-height: 1.12;

@@ -76,7 +76,7 @@ $open = ! empty( $args['open'] );
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => __( 'забронювати консультацію', 'zadzerkalya' ),
+					'label'   => __( 'забронювати участь', 'zadzerkalya' ),
 					'variant' => 'primary',
 					'type'    => 'submit',
 					'name'    => 'zadzerkalya_contact_submit',

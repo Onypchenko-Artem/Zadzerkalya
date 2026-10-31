@@ -575,12 +575,23 @@
 			if (hidden) {
 				root.classList.remove('is-copy-aligned');
 				root.style.removeProperty('--copy-left');
+				root.style.removeProperty('--benefits-list-left');
 				return;
 			}
 
 			const left = placeLeft - anchor.getBoundingClientRect().left;
 			root.style.setProperty('--copy-left', `${left}px`);
 			root.classList.add('is-copy-aligned');
+
+			const list = root.querySelector('.benefits__list');
+
+			if (!list) {
+				return;
+			}
+
+			const pad = Number.parseFloat(getComputedStyle(root).paddingLeft) || 0;
+			const listLeft = list.getBoundingClientRect().left - root.getBoundingClientRect().left - pad;
+			root.style.setProperty('--benefits-list-left', `${listLeft}px`);
 		});
 	};
 
@@ -1465,6 +1476,140 @@
 		input.addEventListener('input', paint);
 		input.addEventListener('change', paint);
 	});
+})();
+
+(() => {
+	const logo = document.querySelector('[data-header-logo]');
+	if (!logo) {
+		return;
+	}
+
+	const base = logo.dataset.animBase || '';
+	const logoEl = logo.querySelector('[data-header-logo-anim]');
+	if (!base || !logoEl) {
+		return;
+	}
+
+	const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+	let booted = false;
+	let logoAnim = null;
+	let currentBp = '';
+	let finished = false;
+	let playing = false;
+
+	const breakpoint = () => {
+		const width = window.innerWidth;
+		if (width <= 767) {
+			return 'mobile';
+		}
+		if (width <= 1279) {
+			return 'tablet';
+		}
+		return 'desktop';
+	};
+
+	const whenReady = (animation) => new Promise((resolve, reject) => {
+		animation.addEventListener('DOMLoaded', resolve);
+		animation.addEventListener('data_failed', reject);
+	});
+
+	const destroy = () => {
+		if (logoAnim) {
+			logoAnim.destroy();
+			logoAnim = null;
+		}
+		logoEl.replaceChildren();
+	};
+
+	const showFinal = () => {
+		if (!logoAnim) {
+			return;
+		}
+		logoAnim.goToAndStop(logoAnim.totalFrames - 1, true);
+		finished = true;
+		playing = false;
+	};
+
+	const mount = async () => {
+		const bp = breakpoint();
+		if (bp === currentBp && logoAnim) {
+			return true;
+		}
+
+		currentBp = bp;
+		destroy();
+		finished = false;
+		playing = false;
+
+		logoAnim = lottie.loadAnimation({
+			container: logoEl,
+			renderer: 'svg',
+			loop: false,
+			autoplay: false,
+			path: `${base}logo-only-${bp}.json`,
+			rendererSettings: {
+				preserveAspectRatio: 'xMidYMid meet',
+			},
+		});
+
+		try {
+			await whenReady(logoAnim);
+		} catch (error) {
+			destroy();
+			logo.classList.remove('is-animated');
+			return false;
+		}
+
+		logoAnim.goToAndStop(0, true);
+		if (reduce.matches) {
+			showFinal();
+		}
+		logo.classList.add('is-animated');
+		return true;
+	};
+
+	const play = async () => {
+		if (playing || finished || typeof lottie === 'undefined') {
+			return;
+		}
+
+		const ready = await mount();
+		if (!ready || finished || reduce.matches || !logoAnim) {
+			return;
+		}
+
+		playing = true;
+		logoAnim.goToAndPlay(0, true);
+		logoAnim.addEventListener('complete', () => {
+			finished = true;
+			playing = false;
+		});
+	};
+
+	const boot = () => {
+		if (booted || typeof lottie === 'undefined') {
+			return;
+		}
+		booted = true;
+		play();
+
+		let timer;
+		window.addEventListener('resize', () => {
+			window.clearTimeout(timer);
+			timer = window.setTimeout(async () => {
+				if (!logo.classList.contains('is-animated') || breakpoint() === currentBp || playing) {
+					return;
+				}
+				const ready = await mount();
+				if (ready) {
+					showFinal();
+				}
+			}, 200);
+		});
+	};
+
+	boot();
+	window.addEventListener('load', boot);
 })();
 
 (() => {

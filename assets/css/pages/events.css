@@ -1,3 +1,11 @@
+@media (min-width: 1280px) {
+	:is(.events-page, .blog) .about-hero__scene-image {
+		/* Пропорція ілюстрації на банері спеціалістів, щоб висота блоків збігалась. */
+		height: calc(712 * 687 / 760 * var(--u));
+		object-fit: contain;
+	}
+}
+
 .page-template-events .articles-feed,
 .post-type-archive-event .articles-feed {
 	position: relative;
