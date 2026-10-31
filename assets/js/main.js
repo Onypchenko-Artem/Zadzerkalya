@@ -810,40 +810,80 @@
 				return;
 			}
 
-			let end = track.querySelector('.service-slider__end');
-			if (!end) {
-				end = document.createElement('div');
-				end.className = 'service-slider__end';
-				end.setAttribute('aria-hidden', 'true');
-				track.append(end);
-			}
+			const originals = () => [...track.querySelectorAll('.service-slider__slide:not([data-clone])')];
+			const canLoop = () => originals().length > 1;
 
-			const slides = () => [...track.querySelectorAll('.service-slider__slide')];
-
-			const placeEnd = () => {
-				const first = slides()[0];
-				const extra = first ? Math.max(0, viewport.clientWidth - first.getBoundingClientRect().width) : 0;
-				const width = `${Math.round(extra)}px`;
-				if (end.style.width !== width) {
-					end.style.flex = `0 0 ${width}`;
-					end.style.width = width;
+			const buildLoop = () => {
+				if (!canLoop() || track.querySelector('[data-clone]')) {
+					return;
 				}
+
+				originals().forEach((slide) => {
+					const clone = slide.cloneNode(true);
+					clone.dataset.clone = 'after';
+					clone.setAttribute('aria-hidden', 'true');
+					clone.querySelectorAll('a, button, input, textarea, select').forEach((node) => {
+						node.setAttribute('tabindex', '-1');
+					});
+					track.append(clone);
+				});
 			};
 
-			const slideStart = (slide) => viewport.scrollLeft + slide.getBoundingClientRect().left - viewport.getBoundingClientRect().left;
+			const loopWidth = () => {
+				const first = originals()[0];
+				const clone = track.querySelector('.service-slider__slide[data-clone]');
+				if (!first || !clone) {
+					return 0;
+				}
 
-			const nearestIndex = () => {
-				const items = slides();
-				const left = viewport.scrollLeft;
-				let index = 0;
+				const size = clone.offsetLeft - first.offsetLeft;
+				return size > 1 ? size : 0;
+			};
 
-				items.forEach((slide, i) => {
-					if (slideStart(slide) <= left + 2) {
-						index = i;
-					}
-				});
+			const stepSize = () => {
+				const items = originals();
+				if (items.length > 1) {
+					return items[1].offsetLeft - items[0].offsetLeft;
+				}
 
-				return index;
+				const slide = items[0];
+				if (!slide) {
+					return 0;
+				}
+
+				const margin = Number.parseFloat(getComputedStyle(slide).marginRight) || 0;
+				return slide.getBoundingClientRect().width + margin;
+			};
+
+			let position = 0;
+			let destination = 0;
+			let origin = 0;
+			let frame = 0;
+			let animating = false;
+			const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+			const apply = () => {
+				track.style.transform = `translateX(${position}px)`;
+			};
+
+			const contain = (value) => {
+				const half = loopWidth();
+				if (half < 2) {
+					return value;
+				}
+
+				let next = value;
+				while (next <= -half) {
+					next += half;
+					origin += half;
+					destination += half;
+				}
+				while (next > 0) {
+					next -= half;
+					origin -= half;
+					destination -= half;
+				}
+				return next;
 			};
 
 			const setDisabled = (button, disabled) => {
@@ -852,35 +892,65 @@
 			};
 
 			const updateState = () => {
-				const items = slides();
-				const index = nearestIndex();
-				const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-				setDisabled(previous, index <= 0 || maxScroll <= 1);
-				setDisabled(next, items.length < 2 || index >= items.length - 1 || maxScroll <= 1);
+				if (canLoop()) {
+					setDisabled(previous, false);
+					setDisabled(next, false);
+					return;
+				}
+
+				setDisabled(previous, true);
+				setDisabled(next, true);
 			};
+
+			let layingOut = false;
 
 			const relayout = () => {
-				placeEnd();
+				if (layingOut) {
+					return;
+				}
+
+				layingOut = true;
+				if (canLoop()) {
+					buildLoop();
+				}
+
+				if (!animating) {
+					const half = loopWidth();
+					const step = stepSize();
+					if (half > 1 && step > 1) {
+						const steps = Math.round(-position / step);
+						position = -steps * step;
+						while (position <= -half) {
+							position += half;
+						}
+						while (position > 0) {
+							position -= half;
+						}
+						destination = position;
+						origin = position;
+						apply();
+					}
+				}
+
 				updateState();
+				layingOut = false;
 			};
 
-			let frame = 0;
-			let animating = false;
-			let index = 0;
-			const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-			const animateTo = (target) => {
-				const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-				const destination = Math.max(0, Math.min(target, maxScroll));
-				const start = viewport.scrollLeft;
-				const distance = destination - start;
-
+			const animateTo = () => {
+				origin = position;
 				cancelAnimationFrame(frame);
 
-				if (Math.abs(distance) < 1 || motion.matches) {
+				const finish = () => {
+					position = contain(destination);
+					destination = position;
+					origin = position;
 					animating = false;
-					viewport.scrollLeft = destination;
+					apply();
 					updateState();
+				};
+
+				if (Math.abs(destination - position) < 1 || motion.matches) {
+					finish();
 					return;
 				}
 
@@ -891,31 +961,29 @@
 				const step = (now) => {
 					const progress = Math.min(1, (now - started) / duration);
 					const eased = 1 - (1 - progress) ** 3;
-					viewport.scrollLeft = start + distance * eased;
 
 					if (progress < 1) {
+						position = contain(origin + (destination - origin) * eased);
+						apply();
 						frame = requestAnimationFrame(step);
 						return;
 					}
 
-					animating = false;
-					viewport.scrollLeft = destination;
-					updateState();
+					finish();
 				};
 
 				frame = requestAnimationFrame(step);
 			};
 
-			const scrollToIndex = (nextIndex) => {
-				const items = slides();
-				const clamped = Math.max(0, Math.min(nextIndex, items.length - 1));
-				const slide = items[clamped];
-				if (!slide) {
+			const move = (direction) => {
+				const step = stepSize();
+				if (step < 1 || loopWidth() < 2) {
 					return;
 				}
 
-				index = clamped;
-				animateTo(slideStart(slide));
+				cancelAnimationFrame(frame);
+				destination = (animating ? destination : position) - direction * step;
+				animateTo();
 			};
 
 			const onControlClick = (event) => {
@@ -926,17 +994,11 @@
 
 				event.preventDefault();
 				const direction = arrow.classList.contains('service-slider__arrow--next') ? 1 : -1;
-				const base = animating ? index : nearestIndex();
-				scrollToIndex(base + direction);
+				move(direction);
 			};
 
 			previous.addEventListener('click', onControlClick);
 			next.addEventListener('click', onControlClick);
-			viewport.addEventListener('scroll', () => {
-				if (!animating) {
-					updateState();
-				}
-			}, { passive: true });
 			window.addEventListener('resize', relayout);
 
 			if (window.ResizeObserver) {
@@ -945,7 +1007,6 @@
 			}
 
 			relayout();
-			index = nearestIndex();
 			window.addEventListener('load', relayout);
 		});
 	};

@@ -390,7 +390,7 @@
 .event-article__share-label {
 	margin: 0;
 	font-family: var(--text-body-s-family);
-	font-size: calc(16 * var(--u));
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.4;
 	white-space: nowrap;
@@ -848,7 +848,7 @@
 	}
 
 	.event-article__share-label {
-		font-size: 15px;
+		font-size: 16px;
 	}
 
 	:is(.single-post, .single-event) .event-article {
@@ -914,9 +914,13 @@
 	}
 
 	:is(.single-post, .single-event) .event-article__meta dt,
-	:is(.single-post, .single-event) .event-article__meta dd,
-	:is(.single-post, .single-event) .event-article__share-label {
+	:is(.single-post, .single-event) .event-article__meta dd {
 		font-size: 13px;
+		line-height: 1.4;
+	}
+
+	:is(.single-post, .single-event) .event-article__share-label {
+		font-size: 16px;
 		line-height: 1.4;
 	}
 
