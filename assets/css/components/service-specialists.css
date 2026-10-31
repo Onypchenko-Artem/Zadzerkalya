@@ -207,11 +207,11 @@
 	}
 
 	.service-specialists__counter {
-		align-items: flex-end;
+		align-items: center;
 		justify-content: center;
 		width: 50px;
 		height: 78px;
-		padding: 8px 4px;
+		padding: 0 4px;
 	}
 
 	.service-specialists__counter-current {

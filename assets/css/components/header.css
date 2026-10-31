@@ -158,7 +158,7 @@
 .header-address a {
 	font-family: var(--text-menu-family);
 	font-size: var(--text-menu-size);
-	font-weight: var(--text-menu-weight);
+	font-weight: 400;
 	line-height: var(--text-menu-line);
 	white-space: nowrap;
 	color: inherit;
@@ -186,7 +186,7 @@
 .header-phones a {
 	font-family: var(--text-menu-family);
 	font-size: var(--text-menu-size);
-	font-weight: var(--text-menu-weight);
+	font-weight: 400;
 	line-height: var(--text-menu-line);
 	white-space: nowrap;
 }

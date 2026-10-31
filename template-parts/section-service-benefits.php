@@ -185,11 +185,15 @@ $render_card = static function ( $card ) {
 	}
 
 	$step = $pitch;
+	$tablet_pitch = 198 / $count;
 	?>
 	<article class="service-benefits__card">
 		<div class="service-benefits__card-top">
 			<div class="service-benefits__mark" aria-hidden="true">
-				<img class="service-benefits__spiral service-benefits__spiral--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="">
+				<picture class="service-benefits__spiral service-benefits__spiral--left">
+					<source media="(max-width: 1279px) and (min-width: 768px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
+					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="" width="136" height="55">
+				</picture>
 				<span class="service-benefits__digits">
 					<?php for ( $i = 0; $i < $count; $i++ ) : ?>
 						<?php
@@ -197,11 +201,15 @@ $render_card = static function ( $card ) {
 						$nexty = $points[ min( $count - 1, $i + 1 ) ];
 						$steps = ( 0 === $i || ( $count - 1 ) === $i ) ? 1 : 2;
 						$rot   = rad2deg( atan2( $nexty - $prev, $steps * $step ) );
+						$rot_t = rad2deg( atan2( $nexty - $prev, $steps * $tablet_pitch ) );
 						?>
-						<span style="--y: <?php echo esc_attr( (string) round( $points[ $i ], 2 ) ); ?>; --r: <?php echo esc_attr( (string) round( $rot, 2 ) ); ?>"><?php echo esc_html( $number ); ?></span>
+						<span style="--y: <?php echo esc_attr( (string) round( $points[ $i ], 2 ) ); ?>; --r: <?php echo esc_attr( (string) round( $rot, 2 ) ); ?>; --rt: <?php echo esc_attr( (string) round( $rot_t, 2 ) ); ?>"><?php echo esc_html( $number ); ?></span>
 					<?php endfor; ?>
 				</span>
-				<img class="service-benefits__spiral" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="">
+				<picture class="service-benefits__spiral">
+					<source media="(max-width: 1279px) and (min-width: 768px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
+					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="" width="136" height="55">
+				</picture>
 			</div>
 			<?php if ( '' !== $card['title'] ) : ?>
 				<h3><?php echo esc_html( $card['title'] ); ?></h3>

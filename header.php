@@ -92,7 +92,7 @@ $nav_socials = array(
 				<?php
 				zadzerkalya_button(
 					array(
-						'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
+						'label'   => __( 'звʼяжіться з нами', 'zadzerkalya' ),
 						'url'     => $contacts,
 						'variant' => 'secondary',
 						'anim'    => 'button-secondary-mobile',
@@ -148,7 +148,7 @@ $nav_socials = array(
 				<?php
 				zadzerkalya_button(
 					array(
-						'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
+						'label'   => __( 'звʼяжіться з нами', 'zadzerkalya' ),
 						'url'     => $contacts,
 						'variant' => 'secondary',
 						'anim'    => 'button-secondary-mobile',

@@ -71,7 +71,7 @@ $items = array(
 					);
 					?>
 				</div>
-				<img class="price-list__separator" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-row-line.svg' ); ?>" width="1827" height="16" alt="" aria-hidden="true">
+				<img class="price-list__separator" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-row-line.svg' ); ?>" width="721" height="5" alt="" aria-hidden="true">
 			</article>
 		<?php endforeach; ?>
 	</div>

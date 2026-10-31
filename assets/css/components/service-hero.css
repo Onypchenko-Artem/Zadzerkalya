@@ -340,7 +340,7 @@
 		max-width: none;
 		height: 9px;
 		margin: 0;
-		padding-inline: 8px;
+		/*padding-inline: 8px;*/
 		aspect-ratio: auto;
 		background-origin: content-box;
 		background-clip: content-box;
@@ -371,7 +371,7 @@
 		box-sizing: border-box;
 		width: auto;
 		height: 37px;
-		padding: 8px;
+		/*padding: 8px;*/
 		aspect-ratio: auto;
 		background-origin: content-box;
 		background-clip: content-box;

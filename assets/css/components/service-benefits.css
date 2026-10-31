@@ -195,6 +195,12 @@
 	flex: 0 0 calc(136 * var(--u));
 	width: calc(136 * var(--u));
 	height: calc(55 * var(--u));
+}
+
+.service-benefits__spiral img {
+	display: block;
+	width: 100%;
+	height: 100%;
 	object-fit: contain;
 }
 
@@ -373,15 +379,15 @@
 
 	.service-benefits__spiral {
 		flex: none;
-		width: 40px;
-		min-width: 40px;
+		width: 38px;
+		min-width: 38px;
 		height: 16px;
 		aspect-ratio: auto;
 	}
 
 	.service-benefits__digits {
-		flex: 1 1 auto;
-		width: auto;
+		flex: 0 0 198px;
+		width: 198px;
 		max-width: 198px;
 		height: 40px;
 		aspect-ratio: auto;
@@ -389,8 +395,9 @@
 
 	.service-benefits__digits span {
 		font-size: 18px;
-		line-height: 23px;
-		letter-spacing: 0.2em;
+		line-height: 1;
+		letter-spacing: 0;
+		transform: translateY(calc(var(--y) * 1px)) rotate(calc(var(--rt) * 1deg));
 	}
 }
 

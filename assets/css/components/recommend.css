@@ -135,6 +135,8 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.recommend {
+		position: relative;
+		z-index: 2;
 		gap: 56px;
 		padding: 0 24px;
 		overflow-x: clip;
@@ -164,13 +166,15 @@
 	}
 
 	.recommend__viewport {
-		width: calc(100% + 32px);
-		margin-right: -32px;
+		width: calc(100% + 48px);
+		margin-inline: -24px;
+		scroll-padding-inline: 24px;
 	}
 
 	.recommend__track {
 		--recommend-card: 353px;
 		gap: 16px;
+		padding-inline: 24px;
 	}
 
 	.recommend__track .article-card {

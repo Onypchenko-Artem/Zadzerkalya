@@ -779,8 +779,9 @@
 
 		const updateState = () => {
 			const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-			previous.disabled = viewport.scrollLeft <= 1;
-			next.disabled = viewport.scrollLeft >= maxScroll - 1;
+			const canScroll = maxScroll > 8;
+			previous.disabled = !canScroll || viewport.scrollLeft <= 8;
+			next.disabled = !canScroll || maxScroll - viewport.scrollLeft <= 8;
 		};
 
 		previous.addEventListener('click', () => {

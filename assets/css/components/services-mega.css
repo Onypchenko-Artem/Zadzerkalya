@@ -222,7 +222,7 @@ body.services-mega-open {
 @media (max-width: 1279px) and (min-width: 768px) {
 	.services-mega {
 		z-index: 38;
-		padding-top: 240px;
+		padding-top: 156px;
 		padding-bottom: 40px;
 		background: var(--color-chewing-gum);
 	}
@@ -264,7 +264,7 @@ body.services-mega-open {
 		grid-column: 3;
 		grid-row: 1 / -1;
 		justify-self: center;
-		width: 8px;
+		width: 9px;
 		background: url("../../images/services-mega-rule.svg") center / 100% 100% no-repeat;
 	}
 
@@ -279,11 +279,11 @@ body.services-mega-open {
 		grid-column: 4;
 		grid-row: 2;
 		align-self: end;
-		justify-self: end;
+		justify-self: start;
 		width: 338px;
 		max-width: calc(100% - 40px);
 		height: 246px;
-		margin: 0 0 40px;
+		margin: 0 0 0 40px;
 		aspect-ratio: auto;
 		border-radius: 150px;
 	}
@@ -325,6 +325,8 @@ body.services-mega-open {
 
 	.services-mega__panel {
 		gap: 16px;
+		width: 320px;
+		max-width: 100%;
 	}
 }
 
