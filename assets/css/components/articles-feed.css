@@ -128,7 +128,22 @@
 	width: 100%;
 	min-width: 0;
 	max-width: none;
-	height: calc(792 * var(--u));
+	height: calc(718 * var(--u));
+}
+
+.articles-feed .article-card .lottie-button--primary {
+	--lottie-btn-w: calc(356 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
+	width: calc(356 * var(--u));
+	min-width: 0;
+	max-width: 100%;
+}
+
+.articles-feed .article-card .lottie-button--primary .lottie-button__label {
+	padding-inline: calc(16 * var(--u));
+	font-size: calc(18 * var(--u));
+	font-weight: 400;
+	line-height: 1.4;
 }
 
 .articles-feed__pagination {
@@ -284,6 +299,21 @@
 		min-width: 0;
 		max-width: none;
 		height: auto;
+	}
+
+	.articles-feed .article-card .lottie-button--primary {
+		--lottie-btn-w: 293px;
+		--lottie-btn-h: 66px;
+		width: max-content;
+		min-width: var(--lottie-btn-w);
+		max-width: 100%;
+	}
+
+	.articles-feed .article-card .lottie-button--primary .lottie-button__label {
+		padding-inline: 18px;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
 	.articles-feed__pagination {

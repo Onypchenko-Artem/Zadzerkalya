@@ -100,7 +100,7 @@
 	width: 100%;
 	margin: 0;
 	font-family: var(--text-h2-family);
-	font-size: calc(58 * var(--u));
+	font-size: calc(48 * var(--u));
 	font-weight: 500;
 	line-height: 1.06;
 	letter-spacing: -0.04em;

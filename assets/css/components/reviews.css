@@ -36,10 +36,10 @@
 }
 
 .reviews__heading p {
-	/*width: min(100%, calc(574 * var(--u)));*/
+	width: min(100%, calc(574 * var(--u)));
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
-	font-weight: var(--text-body-l-weight);
+	font-weight: 400;
 	line-height: 1.35;
 	text-wrap: balance;
 }
@@ -59,7 +59,6 @@
 	justify-content: center;
 	align-items: center;
 	gap: calc(32 * var(--u));
-	margin-top: calc(4 * var(--u));
 }
 
 .reviews__arrow {
@@ -90,7 +89,7 @@
 
 .reviews__viewport {
 	width: 100%;
-	height: calc(598 * var(--u));
+	height: calc(562 * var(--u));
 	overflow-x: auto;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
@@ -116,7 +115,7 @@
 	align-items: flex-start;
 	gap: 0;
 	width: calc(558 * var(--u));
-	height: calc(598 * var(--u));
+	height: calc(562 * var(--u));
 	padding: calc(32 * var(--u));
 	background: #fff;
 	border: 1px solid var(--color-night-sky);
@@ -125,7 +124,7 @@
 }
 
 .reviews__card-header + .reviews__line {
-	margin-top: calc(32 * var(--u));
+	margin-top: calc(24 * var(--u));
 }
 
 .reviews__line + .reviews__text {
@@ -137,7 +136,7 @@
 }
 
 .reviews__line--reverse + .reviews__more {
-	margin-top: calc(32 * var(--u));
+	margin-top: calc(4 * var(--u));
 }
 
 .reviews__card-header {
@@ -174,8 +173,8 @@
 	height: calc(78 * var(--u));
 	font-family: var(--text-slider-family);
 	font-size: calc(21 * var(--u));
-	font-weight: var(--text-slider-weight);
-	line-height: 1;
+	font-weight: 700;
+	line-height: calc(26 * var(--u));
 	letter-spacing: 0.03em;
 }
 
@@ -188,23 +187,24 @@
 
 .reviews__counter strong {
 	font-size: calc(24 * var(--u));
+	font-weight: 700;
+	line-height: calc(30 * var(--u));
 }
 
 .reviews__card-header h3 {
 	font-family: var(--text-body-l-family);
-	font-size: calc(24 * var(--u));
-	font-weight: var(--text-body-l-weight);
+	font-size: calc(22 * var(--u));
+	font-weight: 400;
 	line-height: 1.35;
 	text-align: right;
 }
 
 .reviews__line {
-	flex: 0 0 auto;
+	flex: 0 0 calc(10 * var(--u));
 	width: 100%;
-	height: auto;
-	aspect-ratio: 498 / 16;
+	height: calc(10 * var(--u));
+	aspect-ratio: auto;
 	background: url("../../images/review-line.svg") center / 100% 100% no-repeat;
-	opacity: 0.75;
 }
 
 .reviews__line--reverse {
@@ -219,7 +219,7 @@
 	overflow: hidden;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
-	font-weight: var(--text-body-l-weight);
+	font-weight: 400;
 	line-height: 1.35;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 8;
@@ -253,7 +253,7 @@
 	padding: calc(10 * var(--u));
 	font-family: var(--text-body-s-family);
 	font-size: calc(16 * var(--u));
-	font-weight: var(--text-body-s-weight);
+	font-weight: 400;
 	line-height: 1.4;
 	color: var(--color-grey-hug);
 	background: transparent;

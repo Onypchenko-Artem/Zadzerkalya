@@ -8,7 +8,7 @@
 }
 
 .home .site-main > .faq-scroll + .form-home {
-	margin-top: calc(-200 * var(--u));
+	margin-top: calc(-400 * var(--u));
 }
 
 @media (max-width: 1279px) {

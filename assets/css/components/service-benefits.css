@@ -239,8 +239,8 @@
 .service-benefits__card h3 {
 	width: 100%;
 	font-family: var(--font-family-body);
-	font-size: calc(32 * var(--u));
-	font-weight: 400;
+	font-size: calc(28 * var(--u));
+	font-weight: 300;
 	line-height: 1.2;
 }
 
@@ -248,7 +248,7 @@
 	width: 100%;
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -367,7 +367,7 @@
 
 	.service-benefits__card p {
 		font-size: 18px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
 	}
 

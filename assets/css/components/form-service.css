@@ -126,7 +126,7 @@
 	flex: none;
 	width: calc(735 * var(--u));
 	font-family: var(--font-family-body);
-	font-size: calc(32 * var(--u));
+	font-size: calc(28 * var(--u));
 	font-weight: 300;
 	line-height: 1.2;
 }

@@ -75,8 +75,8 @@
 	flex: 0 0 auto;
 	width: 100%;
 	height: auto;
-	aspect-ratio: 510 / 14;
-	background: url("../../images/service-card-line.svg") center / 100% 100% no-repeat;
+	aspect-ratio: 511 / 9;
+	background: url("../../images/service-card-line.svg?v=3") center / 100% 100% no-repeat;
 }
 
 .service-card__photo {
