@@ -111,7 +111,11 @@
 			return;
 		}
 
-		mega.style.paddingTop = `${header.offsetHeight}px`;
+		const logo = header.querySelector('.header-logo');
+		const headerBottom = header.getBoundingClientRect().bottom;
+		const logoBottom = logo ? logo.getBoundingClientRect().bottom : headerBottom;
+
+		mega.style.paddingTop = `${Math.ceil(Math.max(headerBottom, logoBottom))}px`;
 	};
 
 	const open = () => {
@@ -279,8 +283,19 @@
 	const onViewportChange = () => {
 		if (!canOpen()) {
 			close();
+			return;
+		}
+
+		if (isOpen) {
+			syncOffset();
 		}
 	};
+
+	window.addEventListener('resize', () => {
+		if (isOpen) {
+			syncOffset();
+		}
+	});
 
 	desktop.addEventListener('change', onViewportChange);
 	tablet.addEventListener('change', onViewportChange);

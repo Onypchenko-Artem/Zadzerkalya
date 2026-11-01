@@ -1,5 +1,7 @@
 .about-hero {
 	position: relative;
+	box-sizing: border-box;
+	height: calc(780 * var(--u));
 	margin-top: calc(-118 * var(--u));
 	padding: calc(198 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
 	overflow: hidden;
@@ -50,7 +52,8 @@
 	grid-template-columns: calc(927 * var(--u)) minmax(0, 1fr);
 	width: 100%;
 	max-width: calc(1824 * var(--u));
-	min-height: calc(591 * var(--u));
+	height: 100%;
+	min-height: 0;
 	margin-inline: auto;
 }
 
@@ -163,18 +166,23 @@
 	justify-content: space-between;
 	gap: calc(40 * var(--u));
 	min-width: 0;
+	min-height: 0;
 	padding-left: calc(56 * var(--u));
 }
 
 .about-hero__scene {
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
 	width: calc(712 * var(--u));
+	min-height: 0;
 	margin-inline: auto;
 }
 
 .about-hero__scene-image {
 	display: block;
 	width: 100%;
-	height: auto;
+	height: 100%;
 	border-radius: calc(32 * var(--u));
 	object-fit: contain;
 }

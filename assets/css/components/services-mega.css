@@ -1,12 +1,15 @@
 .services-mega {
 	position: fixed;
-	inset: 0;
+	top: 0;
+	left: 0;
+	right: 0;
 	z-index: 35;
 	display: flex;
 	flex-direction: column;
-	padding-top: calc(118 * var(--u));
-	padding-bottom: 100px;
-	background: transparent;
+	height: calc(1046 * var(--u));
+	max-height: 100vh;
+	padding-top: calc(153 * var(--u));
+	background: var(--color-lemon-cream);
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
@@ -21,32 +24,13 @@
 
 .services-mega::before,
 .services-mega::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-}
-
-.services-mega::before {
-	z-index: 0;
-	top: 0;
-	bottom: 100px;
-	background: var(--color-lemon-cream);
-}
-
-.services-mega::after {
-	z-index: 1;
-	bottom: 0;
-	height: 100px;
-	background: color-mix(in srgb, var(--color-lemon-cream) 35%, transparent);
-	backdrop-filter: blur(18px);
-	pointer-events: none;
+	content: none;
 }
 
 .services-mega__close {
 	position: absolute;
 	z-index: 2;
-	top: calc(64 * var(--u));
+	top: 0;
 	right: calc(48 * var(--u));
 	width: 40px;
 	height: 40px;
@@ -73,15 +57,15 @@ body.services-mega-open {
 	grid-template-columns:
 		calc(405 * var(--u))
 		calc(25 * var(--u))
-		1px
-		calc(38 * var(--u))
+		calc(9 * var(--u))
+		calc(30 * var(--u))
 		calc(320 * var(--u))
 		calc(124 * var(--u))
 		minmax(0, 1fr);
 	grid-template-rows: 1fr;
 	flex: 1;
 	min-height: 0;
-	padding: calc(64 * var(--u)) calc(48 * var(--u)) calc(48 * var(--u));
+	padding: 0 calc(48 * var(--u)) calc(52 * var(--u));
 	overflow: hidden;
 }
 
@@ -99,7 +83,8 @@ body.services-mega-open {
 	grid-column: 3;
 	grid-row: 1;
 	align-self: stretch;
-	width: 8px;
+	width: 100%;
+	margin-top: calc(8 * var(--u));
 	background: url("../../images/services-mega-rule.svg") center / 100% 100% no-repeat;
 }
 
@@ -149,17 +134,17 @@ body.services-mega-open {
 
 .services-mega__all,
 .services-mega__cat {
-	font-family: var(--text-h3-med-family);
-	font-size: calc(var(--text-h3-med-size) - 2px);
-	font-weight: var(--text-h3-med-weight);
-	line-height: var(--text-h3-med-line);
-	letter-spacing: var(--text-h3-med-tracking);
+	font-family: var(--font-family-body);
+	font-size: calc(28 * var(--u));
+	font-weight: 400;
+	line-height: 1.2;
+	letter-spacing: 0;
 }
 
 .services-mega__service {
 	font-family: var(--font-family-body);
 	font-weight: 400;
-	font-size: calc(26 * var(--u) - 2px);
+	font-size: calc(26 * var(--u));
 	line-height: 1.35;
 }
 
@@ -169,9 +154,9 @@ body.services-mega-open {
 	content: "";
 	position: absolute;
 	left: 0;
-	bottom: calc(-6 * var(--u));
+	bottom: calc(-5 * var(--u));
 	width: 100%;
-	height: 6px;
+	height: 3px;
 	background: url("../../images/menu-underline.svg") left center / 100% 100% no-repeat;
 	clip-path: inset(0 100% 0 0);
 	transition: clip-path 0.45s ease;
@@ -221,14 +206,20 @@ body.services-mega-open {
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.services-mega {
+		bottom: 0;
 		z-index: 38;
+		height: auto;
+		max-height: none;
 		padding-top: 156px;
 		padding-bottom: 40px;
 		background: var(--color-chewing-gum);
 	}
 
 	.services-mega::before {
-		bottom: 0;
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 0;
 		background: var(--color-chewing-gum);
 	}
 
@@ -265,6 +256,7 @@ body.services-mega-open {
 		grid-row: 1 / -1;
 		justify-self: center;
 		width: 9px;
+		margin-top: 0;
 		background: url("../../images/services-mega-rule.svg") center / 100% 100% no-repeat;
 	}
 

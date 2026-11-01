@@ -1,7 +1,7 @@
 .service-hero {
 	position: relative;
 	box-sizing: border-box;
-	height: calc(870 * var(--u));
+	height: calc(840 * var(--u));
 	margin-top: calc(-118 * var(--u));
 	padding: calc(166 * var(--u)) calc(48 * var(--u)) 0;
 	overflow: hidden;
