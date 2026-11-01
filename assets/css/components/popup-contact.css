@@ -203,7 +203,7 @@
 }
 
 .contact-popup__form .lottie-button__label {
-	font-size: 22px;
+	font-size: calc(18 * var(--u));
 	line-height: 1.35;
 }
 

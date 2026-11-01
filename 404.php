@@ -16,7 +16,7 @@ get_header();
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => __( 'На головну', 'zadzerkalya' ),
+					'label'   => __( 'на головну', 'zadzerkalya' ),
 					'url'     => home_url( '/' ),
 					'variant' => 'secondary',
 				)

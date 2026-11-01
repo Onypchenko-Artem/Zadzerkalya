@@ -8,7 +8,7 @@
 	flex-direction: column;
 	height: calc(1046 * var(--u));
 	max-height: 100vh;
-	padding-top: calc(153 * var(--u));
+	padding-top: calc(156.525 * var(--u));
 	background: var(--color-lemon-cream);
 	opacity: 0;
 	visibility: hidden;

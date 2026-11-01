@@ -41,7 +41,7 @@ get_header();
 				<?php
 				zadzerkalya_button(
 					array(
-						'label'   => __( 'Записатися', 'zadzerkalya' ),
+						'label'   => __( 'записатися', 'zadzerkalya' ),
 						'url'     => zadzerkalya_get_page_url( 'contacts' ),
 						'variant' => 'primary',
 					)

@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: calc(64 * var(--u));
-	margin-top: calc(200 * var(--u));
+	margin-top: calc(124 * var(--u));
 	padding: 0 calc(48 * var(--u));
 	color: var(--color-night-sky);
 }

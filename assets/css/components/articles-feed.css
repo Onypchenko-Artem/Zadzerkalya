@@ -3,7 +3,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: calc(64 * var(--u));
-	padding-top: calc(200 * var(--u));
+	padding-top: calc(124 * var(--u));
 	color: var(--color-night-sky);
 }
 

@@ -19,7 +19,7 @@ if ( ! $hero_title ) {
 }
 
 if ( ! $hero_btn ) {
-	$hero_btn = __( 'Забронювати первинну консультацію', 'zadzerkalya' );
+	$hero_btn = __( 'забронювати первинну консультацію', 'zadzerkalya' );
 }
 ?>
 <main id="content" class="site-main">
@@ -42,9 +42,22 @@ if ( ! $hero_btn ) {
 
 					<div class="hero-details">
 						<div class="hero-description">
-							<?php if ( $hero_text ) : ?>
-								<p><?php echo wp_kses_post( nl2br( $hero_text ) ); ?></p>
-							<?php endif; ?>
+							<div class="hero-lead">
+								<?php if ( $hero_text ) : ?>
+									<p><?php echo wp_kses_post( nl2br( $hero_text ) ); ?></p>
+								<?php endif; ?>
+								<div class="hero-cta">
+									<?php
+									zadzerkalya_button(
+										array(
+											'label'   => $hero_btn,
+											'url'     => '#contact-form',
+											'variant' => 'primary',
+										)
+									);
+									?>
+								</div>
+							</div>
 
 							<div class="hero-illustration">
 								<?php
@@ -52,6 +65,9 @@ if ( ! $hero_btn ) {
 									?>
 									<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/hero-rabbit.png' ); ?>" alt="" aria-hidden="true">
 								<?php endif; ?>
+								<svg class="hero-illustration__line" width="247" height="18" viewBox="0 0 247 18" fill="none" aria-hidden="true" focusable="false">
+									<path d="M0.575684 16.576C22.0749 16.576 50.2646 16.3146 79.8698 15.2409C99.8151 14.5176 112.541 10.0486 134.827 6.34338C151.746 3.53044 180.485 1.79151 199.796 0.92694C219.106 0.0623723 228.228 0.883501 234.239 2.42538C240.25 3.96725 242.873 6.20499 245.576 8.51054" stroke="#0F1A2D" stroke-width="1.15182" stroke-linecap="round"/>
+								</svg>
 							</div>
 						</div>
 

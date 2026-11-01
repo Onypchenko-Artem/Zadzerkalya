@@ -14,7 +14,7 @@ $url = zadzerkalya_get_page_url( 'contacts' );
 		<?php
 		zadzerkalya_button(
 			array(
-				'label'   => __( 'Звʼяжіться з нами', 'zadzerkalya' ),
+				'label'   => __( 'звʼяжіться з нами', 'zadzerkalya' ),
 				'url'     => $url,
 				'variant' => 'secondary',
 			)

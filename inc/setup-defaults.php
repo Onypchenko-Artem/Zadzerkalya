@@ -106,7 +106,7 @@ function zadzerkalya_setup_defaults() {
 		set_theme_mod( 'zadzerkalya_hero_kicker', __( 'Центр психології та логопедії «Задзеркалля»', 'zadzerkalya' ) );
 		set_theme_mod( 'zadzerkalya_hero_title', __( 'Ми віримо в кожну дитину!', 'zadzerkalya' ) );
 		set_theme_mod( 'zadzerkalya_hero_text', __( '«Задзеркалля» — це місце, де змінюються долі, де страх поступається надії, а неможливе стає можливим через любов, прийняття та віру у кожну дитину.', 'zadzerkalya' ) );
-		set_theme_mod( 'zadzerkalya_hero_btn', __( 'Забронювати первинну консультацію', 'zadzerkalya' ) );
+		set_theme_mod( 'zadzerkalya_hero_btn', __( 'забронювати первинну консультацію', 'zadzerkalya' ) );
 		set_theme_mod( 'zadzerkalya_hero_btn_url', $contacts_id ? get_permalink( $contacts_id ) : home_url( '/contacts/' ) );
 	}
 
@@ -245,7 +245,7 @@ function zadzerkalya_apply_hero_design_defaults() {
 		),
 		'hero_btn' => array(
 			'old' => __( 'Записатися', 'zadzerkalya' ),
-			'new' => __( 'Забронювати первинну консультацію', 'zadzerkalya' ),
+			'new' => __( 'забронювати первинну консультацію', 'zadzerkalya' ),
 		),
 	);
 

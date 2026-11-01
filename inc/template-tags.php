@@ -414,13 +414,21 @@ function zadzerkalya_button( $args = array() ) {
 			continue;
 		}
 
+		$label_line    = preg_replace_callback(
+			'/^\s*\p{L}/u',
+			static function ( $match ) {
+				return function_exists( 'mb_strtolower' ) ? mb_strtolower( $match[0], 'UTF-8' ) : strtolower( $match[0] );
+			},
+			$label_line,
+			1
+		);
 		$label_parts[] = esc_html( $label_line );
 	}
 
 	if ( count( $label_parts ) > 1 ) {
 		$label = implode( '<br>', $label_parts );
 	} else {
-		$label = esc_html( $args['label'] );
+		$label = $label_parts[0] ?? '';
 	}
 	$class   = 'lottie-button lottie-button--' . $variant;
 	$anim      = preg_replace( '/[^a-z0-9-]/', '', (string) $args['anim'] );

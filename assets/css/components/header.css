@@ -103,7 +103,7 @@
 	display: block;
 	width: calc(131 * var(--u));
 	height: calc(141 * var(--u));
-	transform: translateX(-50%);
+	transform: translateX(-50%) scale(1.05);
 	pointer-events: auto;
 }
 
@@ -257,7 +257,7 @@
 
 .header-bar .lottie-button--secondary .lottie-button__label {
 	padding-inline: 3px;
-	font-size: calc(22 * var(--u));
+	font-size: calc(18 * var(--u));
 	line-height: 1.26;
 }
 

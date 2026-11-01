@@ -6,7 +6,7 @@
 	justify-content: space-between;
 	align-items: flex-start;
 	gap: min(calc(131 * var(--u)), calc((100% - calc(96 * var(--u)) - var(--event-col-author) - var(--event-col-body) - var(--event-col-aside)) / 2));
-	padding: calc(200 * var(--u)) calc(48 * var(--u)) calc(200 * var(--u));
+	padding: calc(124 * var(--u)) calc(48 * var(--u)) calc(124 * var(--u));
 	color: var(--color-night-sky);
 }
 

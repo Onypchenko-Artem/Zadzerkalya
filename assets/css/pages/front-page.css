@@ -1,5 +1,5 @@
 .home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
-	margin-top: calc(200 * var(--u));
+	margin-top: calc(124 * var(--u));
 }
 
 .home .site-main > .faq-scroll {

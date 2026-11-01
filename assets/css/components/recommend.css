@@ -131,7 +131,7 @@
 }
 
 .single-post .recommend .article-card .lottie-button__label {
-	font-size: calc(20 * var(--u));
+	font-size: calc(18 * var(--u));
 }
 
 .single-post .recommend .article-card .lottie-button--primary .lottie-button__label {

@@ -1,5 +1,5 @@
 .services-showcase {
-	padding: calc(200 * var(--u)) calc(48 * var(--u));
+	padding: calc(124 * var(--u)) calc(48 * var(--u));
 	color: var(--color-night-sky);
 	background: var(--color-lemon-cream);
 }

@@ -25,7 +25,8 @@ get_header();
 		$story_photo  = $about_field( 'about_story_founder_photo' );
 		$story_name   = $about_field( 'about_story_founder_name', 'Плєхова Софія Володимирівна' );
 		$story_role   = $about_field( 'about_story_founder_role', 'Засновниця центру, психолог, АВА-терапевт, спеціаліст з терапії TOMATIS.' );
-		$story_art    = $about_field( 'about_story_illustration' );
+		$story_art      = $about_field( 'about_story_illustration' );
+		$story_art_top  = $about_field( 'about_story_illustration_top' );
 		$story_title  = $about_field( 'about_story_title', 'Історія, що почалася з любові — і стала місією. Моя дорога до «Задзеркалля»' );
 		$story_lead   = $about_field( 'about_story_lead', 'Мій шлях у професію почався не з теорії, а з самого життя — з реальних історій дітей, які потребували більше, аніж просто стандартних рішень. І від моменту мого знайомства з ТІММІ, хто сприймає наш світ інакше, я зрозуміла, що хочу бути поруч — і допомагати їм знайти у цьому світі шлях свій, унікальний.' );
 		$mission_text = $about_field( 'about_mission_text', 'Так і зʼявилося «Задзеркалля» — простір, у якому дітки з особливостями розвитку отримують підтримку, необхідні навички, можливість стати самостійнішими та щасливішими у цьому світі.' );
@@ -148,8 +149,11 @@ get_header();
 
 				<div class="about-story__body">
 					<div class="about-story__side">
+						<?php if ( $story_art_top ) : ?>
+							<?php zadzerkalya_acf_image( $story_art_top, 'large', array( 'class' => 'about-story__art', 'alt' => '' ) ); ?>
+						<?php endif; ?>
 						<?php if ( $story_art ) : ?>
-							<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration' ) ); ?>
+							<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration', 'alt' => '' ) ); ?>
 						<?php else : ?>
 							<div class="about-story__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Ілюстрацію буде додано', 'zadzerkalya' ); ?>">
 								<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
@@ -450,7 +454,7 @@ get_header();
 	$specialists = new WP_Query(
 		array(
 			'post_type'           => 'specialist',
-			'posts_per_page'      => 3,
+			'posts_per_page'      => 4,
 			'orderby'             => array(
 				'menu_order' => 'ASC',
 				'title'      => 'ASC',
