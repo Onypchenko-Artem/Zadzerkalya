@@ -119,7 +119,7 @@
 .prices-page .form-home {
 	position: relative;
 	z-index: 0;
-	margin-top: calc((200 - 400) * var(--u));
+	margin-top: calc(-400 * var(--u));
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
@@ -270,6 +270,6 @@
 	}
 
 	.prices-page .form-home {
-		margin-top: -100px;
+		margin-top: 80px;
 	}
 }

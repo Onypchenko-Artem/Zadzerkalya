@@ -200,11 +200,12 @@
 }
 
 .reviews__line {
-	flex: 0 0 calc(10 * var(--u));
+	align-self: stretch;
+	flex: none;
 	width: 100%;
-	height: calc(10 * var(--u));
-	aspect-ratio: auto;
-	background: url("../../images/review-line.svg") center / 100% 100% no-repeat;
+	height: auto;
+	aspect-ratio: 495 / 11;
+	background: url("../../images/review-line.svg") left center / 100% 100% no-repeat;
 }
 
 .reviews__line--reverse {
@@ -360,10 +361,8 @@
 	}
 
 	.reviews__line {
-		flex-basis: 8px;
-		height: 8px;
-		aspect-ratio: auto;
-		background-image: url("../../images/reviews-line-tablet.svg");
+		aspect-ratio: 495 / 11;
+		background-image: url("../../images/review-line.svg");
 		background-size: 100% 100%;
 		opacity: 1;
 	}

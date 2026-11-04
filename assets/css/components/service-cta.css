@@ -22,16 +22,24 @@
 
 .service-cta--custom-background {
 	box-sizing: border-box;
-	height: calc(100dvh - 118 * var(--u) - 40px);
-	max-height: calc(100dvh - 118 * var(--u) - 40px);
+	height: min(calc(100dvh - 118 * var(--u) - 40px), calc(764 * var(--u)));
+	max-height: calc(764 * var(--u));
 }
 
-.service-cta--custom-background .service-cta__row-text h3 {
-	font-size: 26px;
+.service-cta--custom-background .service-cta__slider .service-cta__row-text h3 {
+	font-size: clamp(calc(26px * 1280 / 1920), calc(26 * 100vw / 1920), 26px);
 }
 
-.service-cta--custom-background .service-cta__row-text p {
-	font-size: 18px;
+.service-cta--custom-background .service-cta__slider .service-cta__row-text p {
+	font-size: clamp(calc(18px * 1280 / 1920), calc(18 * 100vw / 1920), 18px);
+}
+
+.service-cta--custom-background .service-cta__slider .service-cta__counter-current {
+	font-size: clamp(calc(24px * 1280 / 1920), calc(24 * 100vw / 1920), 24px);
+}
+
+.service-cta--custom-background .service-cta__slider .service-cta__counter-total {
+	font-size: clamp(calc(21px * 1280 / 1920), calc(21 * 100vw / 1920), 21px);
 }
 
 .service-cta--custom-background .service-cta__panel {
@@ -392,14 +400,12 @@
 		gap: 12px;
 	}
 
-	.service-cta__row h3,
-	.service-cta--custom-background .service-cta__row-text h3 {
+	.service-cta__row h3 {
 		font-size: 24px;
 		line-height: 1.2;
 	}
 
-	.service-cta__row p,
-	.service-cta--custom-background .service-cta__row-text p {
+	.service-cta__row p {
 		font-family: var(--text-body-l-family);
 		font-size: 20px;
 		line-height: 1.35;

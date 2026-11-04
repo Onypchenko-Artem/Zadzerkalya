@@ -53,7 +53,7 @@
 }
 
 .form-service__intro h2 {
-	width: min(100%, calc(902 * var(--u)));
+	width: 100%;
 	font-family: var(--font-family-heading);
 	font-size: calc(58 * var(--u));
 	font-weight: 500;

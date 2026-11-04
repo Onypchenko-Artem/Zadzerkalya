@@ -2,6 +2,8 @@
 	position: relative;
 	width: 100%;
 	height: calc(2290 * var(--u));
+	margin-top: calc(-400 * var(--u));
+	margin-bottom: -50px;
 	overflow: hidden;
 	color: var(--color-night-sky);
 	background: var(--color-chewing-gum);
@@ -298,6 +300,7 @@
 @media (max-width: 767px) {
 	.form-home {
 		height: 716px;
+		margin-top: 80px;
 	}
 
 	.form-home__background {

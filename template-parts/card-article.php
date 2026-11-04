@@ -31,10 +31,10 @@ $minutes = zadzerkalya_reading_time_minutes();
 				<a class="article-card__photo" href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
 					<?php
 					if ( has_post_thumbnail() ) {
-						the_post_thumbnail( 'zadzerkalya-card' );
+						the_post_thumbnail( 'large' );
 					} elseif ( function_exists( 'get_field' ) ) {
 						// Запасне фото — з hero події / новини.
-						zadzerkalya_acf_image( get_field( 'event_hero_photo' ), 'zadzerkalya-card', array( 'alt' => '' ) );
+						zadzerkalya_acf_image( get_field( 'event_hero_photo' ), 'large', array( 'alt' => '' ) );
 					}
 					?>
 				</a>
