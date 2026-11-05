@@ -124,7 +124,7 @@ if ( ! $privacy_url ) {
 	<div class="site-footer__bottom">
 		<p class="site-footer__credits">
 			<span><?php esc_html_e( 'Хто зробив цей сайт?', 'zadzerkalya' ); ?></span>
-			<strong>KSANTY WEB</strong>
+			<strong><a href="<?php echo esc_url( 'https://ksantyweb.com/' ); ?>" target="_blank" rel="noopener noreferrer">KSANTY WEB</a></strong>
 		</p>
 		<p class="site-footer__copyright">
 			<span>&copy;<?php echo esc_html( gmdate( 'Y' ) ); ?>. <?php bloginfo( 'name' ); ?></span>

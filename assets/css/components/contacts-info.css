@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	width: 100%;
 	min-height: calc(432 * var(--u));
-	margin-top: calc(124 * var(--u));
+	margin-top: calc(110 * var(--u));
 	padding-inline: calc(48 * var(--u));
 	color: var(--color-night-sky);
 }
@@ -30,7 +30,7 @@
 
 .contacts-info__row {
 	display: grid;
-	grid-template-columns: max-content calc(370 * var(--u));
+	grid-template-columns: max-content var(--header-actions-w);
 	justify-content: space-between;
 	align-items: start;
 	gap: calc(12 * var(--u));

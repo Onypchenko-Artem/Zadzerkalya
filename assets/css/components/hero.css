@@ -124,6 +124,7 @@
 	font-size: calc(22 * var(--u));
 	font-weight: 300;
 	line-height: 1.35;
+	letter-spacing: 0;
 	color: var(--color-night-sky);
 }
 
@@ -156,14 +157,15 @@
 	width: calc(175 * var(--u));
 	height: calc(243 * var(--u));
 	object-fit: contain;
+	/*transform: scaleX(-1);*/
 }
 
 .hero-illustration__line {
 	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	height: calc(18 * var(--u));
+	left: calc(1 * var(--u));
+	top: calc(226 * var(--u));
+	width: calc(245 * var(--u));
+	height: calc(16 * var(--u));
 }
 
 .hero-form {
@@ -391,6 +393,7 @@
 		position: static;
 		width: 100%;
 		height: 100%;
+		transform: none;
 	}
 
 	.hero-illustration__line {

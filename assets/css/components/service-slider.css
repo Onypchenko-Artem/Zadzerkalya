@@ -158,10 +158,13 @@
 	text-align: center;
 }
 
+.single-post .service-slider .lottie-button__label {
+	font-size: 14px;
+}
+
 .service-slider .lottie-button--primary .lottie-button__label {
 	padding-inline: calc(12 * var(--u));
 	white-space: nowrap;
-	transform: translateY(calc(2 * var(--u)));
 }
 
 .event-article__body .service-slider {
@@ -273,7 +276,6 @@
 	.service-slider .lottie-button--primary .lottie-button__label {
 		padding-inline: 12px;
 		white-space: normal;
-		transform: translateY(2px);
 	}
 
 	.event-article__body h2.service-slider__title {
@@ -407,8 +409,13 @@
 		min-width: 0;
 	}
 
-	:is(.single-post, .single-event) .service-slider .lottie-button__label {
+	.single-event .service-slider .lottie-button__label {
 		font-size: 10px;
+		line-height: 1.26;
+	}
+
+	.single-post .service-slider .lottie-button__label {
+		font-size: 14px;
 		line-height: 1.26;
 	}
 

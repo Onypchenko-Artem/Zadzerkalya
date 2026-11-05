@@ -198,7 +198,7 @@
 }
 
 .about-story {
-	padding: calc(124 * var(--u)) calc(48 * var(--u)) 0;
+	padding: calc(110 * var(--u)) calc(48 * var(--u)) 0;
 	background: var(--color-chewing-gum);
 	color: var(--color-night-sky);
 }
@@ -676,7 +676,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: calc(56 * var(--u));
-	padding: calc(124 * var(--u)) calc(48 * var(--u)) 0;
+	padding: calc(110 * var(--u)) calc(48 * var(--u)) 0;
 	overflow: hidden;
 	color: var(--color-night-sky);
 }

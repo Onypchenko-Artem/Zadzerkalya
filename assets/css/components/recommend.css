@@ -102,7 +102,7 @@
 :is(.single-post, .single-event) .recommend__track .article-card {
 	height: auto;
 	gap: calc(24 * var(--u));
-	padding: calc(28 * var(--u));
+	padding: calc(28 * var(--u)) calc(28 * var(--u)) calc(24 * var(--u));
 }
 
 :is(.single-post, .single-event) .recommend .article-card__content {
@@ -136,8 +136,12 @@
 	max-width: 100%;
 }
 
-:is(.single-post, .single-event) .recommend .article-card .lottie-button__label {
+.single-event .recommend .article-card .lottie-button__label {
 	font-size: calc(18 * var(--u));
+}
+
+.single-post .recommend .article-card .lottie-button__label {
+	font-size: 14px;
 }
 
 :is(.single-post, .single-event) .recommend .article-card .lottie-button--primary .lottie-button__label {
@@ -193,7 +197,7 @@
 		width: 353px;
 		height: auto;
 		gap: 24px;
-		padding: 26px;
+		padding: 26px 26px 24px;
 		border-radius: 16px;
 	}
 
@@ -275,7 +279,7 @@
 	:is(.single-post, .single-event) .recommend__track .article-card {
 		height: auto;
 		gap: 24px;
-		padding: 26px;
+		padding: 26px 26px 24px;
 	}
 
 	:is(.single-post, .single-event) .recommend .article-card__content {
@@ -352,7 +356,7 @@
 		width: var(--recommend-card);
 		height: auto;
 		gap: 24px;
-		padding: 20px;
+		padding: 20px 20px 24px;
 		border-radius: 16px;
 	}
 
@@ -405,7 +409,7 @@
 	:is(.single-post, .single-event) .recommend__track .article-card {
 		height: auto;
 		gap: 24px;
-		padding: 20px;
+		padding: 20px 20px 24px;
 	}
 
 	:is(.single-post, .single-event) .recommend .article-card__title {
@@ -474,7 +478,7 @@
 	:is(.single-post, .single-event) .recommend__track .article-card {
 		height: auto;
 		gap: 24px;
-		padding: 16px;
+		padding: 16px 16px 24px;
 		border-radius: 8px;
 	}
 
@@ -537,9 +541,16 @@
 		min-width: 153px;
 	}
 
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button__label,
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary .lottie-button__label {
+	.single-event .recommend .article-card .lottie-button__label,
+	.single-event .recommend .article-card .lottie-button--primary .lottie-button__label {
 		font-size: 10px;
+		line-height: 1.26;
+		padding-inline: 8px;
+	}
+
+	.single-post .recommend .article-card .lottie-button__label,
+	.single-post .recommend .article-card .lottie-button--primary .lottie-button__label {
+		font-size: 14px;
 		line-height: 1.26;
 		padding-inline: 8px;
 	}

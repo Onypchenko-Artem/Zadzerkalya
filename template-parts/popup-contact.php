@@ -5,18 +5,20 @@
  * @package Zadzerkalya
  *
  * @var array $args {
- *     @type string $event_title Назва події для листа.
- *     @type string $source      Джерело заявки для обробника форми.
- *     @type bool   $open        Відкрити одразу (після відправки форми).
+ *     @type string $event_title  Назва події для листа.
+ *     @type string $source       Джерело заявки для обробника форми.
+ *     @type string $button_label Підпис кнопки відправки.
+ *     @type bool   $open         Відкрити одразу (після відправки форми).
  * }
  */
 
 $args = wp_parse_args(
 	$args ?? array(),
 	array(
-		'event_title' => '',
-		'source'      => 'event-next',
-		'open'        => false,
+		'event_title'  => '',
+		'source'       => 'event-next',
+		'button_label' => __( 'забронювати участь', 'zadzerkalya' ),
+		'open'         => false,
 	)
 );
 
@@ -76,7 +78,7 @@ $open = ! empty( $args['open'] );
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => __( 'забронювати участь', 'zadzerkalya' ),
+					'label'   => $args['button_label'],
 					'variant' => 'primary',
 					'type'    => 'submit',
 					'name'    => 'zadzerkalya_contact_submit',

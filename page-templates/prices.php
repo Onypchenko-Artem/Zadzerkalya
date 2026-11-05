@@ -39,8 +39,9 @@ $hero_background = $field( 'prices_hero_background' );
 		'template-parts/popup',
 		'contact',
 		array(
-			'source' => 'price-popup',
-			'open'   => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'source'       => 'price-popup',
+			'button_label' => __( 'забронювати консультацію', 'zadzerkalya' ),
+			'open'         => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		)
 	);
 	?>

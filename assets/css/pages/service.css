@@ -1,5 +1,5 @@
 .service-page > * + * {
-	margin-top: calc(124 * var(--u));
+	margin-top: calc(110 * var(--u));
 }
 
 .service-page .service-benefits {

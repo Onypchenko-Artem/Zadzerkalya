@@ -9,7 +9,7 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: start;
-	gap: calc(542 * var(--u));
+	gap: 0;
 	width: 100%;
 	height: calc(192 * var(--u));
 	margin-bottom: calc(96 * var(--u));
@@ -37,9 +37,10 @@
 }
 
 .services-showcase__heading p {
-	flex: 0 0 calc(368 * var(--u));
-	width: calc(368 * var(--u));
+	flex: 0 0 var(--header-actions-w);
+	width: var(--header-actions-w);
 	max-height: calc(120 * var(--u));
+	margin-left: auto;
 	overflow: hidden;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
@@ -58,8 +59,8 @@
 	top: auto;
 	right: auto;
 	left: auto;
-	flex: 0 0 calc(368 * var(--u));
-	width: calc(368 * var(--u));
+	flex: 0 0 var(--header-actions-w);
+	width: var(--header-actions-w);
 	margin-left: auto;
 	text-align: left;
 }
@@ -152,9 +153,10 @@
 .services-showcase__card h3 {
 	align-self: stretch;
 	width: min(100%, calc(512 * var(--u)));
-	height: calc(95 * var(--u));
-	max-height: calc(95 * var(--u));
-	margin-bottom: calc(24 * var(--u));
+	/* 3 рядки 28×1.2 = 100.8; +2px, щоб overflow не зрізав хвостики р, у, д */
+	height: calc(100.8 * var(--u) + 2px);
+	max-height: calc(100.8 * var(--u) + 2px);
+	margin-bottom: calc(18.2 * var(--u) - 2px);
 	overflow: hidden;
 	font-family: var(--text-h3-med-family);
 	font-size: calc(28 * var(--u));
@@ -337,13 +339,13 @@
 
 	.services-showcase__link {
 		width: 100%;
-		margin-bottom: 16px;
+		margin-bottom: 12px;
 	}
 
 	.services-showcase__card h3 {
 		width: 100%;
-		height: 116px;
-		max-height: 116px;
+		height: calc(24px * 1.2 * 4 + 4px);
+		max-height: calc(24px * 1.2 * 4 + 4px);
 		margin-bottom: 0;
 		overflow: hidden;
 		font-size: 24px;
@@ -508,7 +510,7 @@
 	.services-showcase__card h3 {
 		width: 100%;
 		height: auto;
-		max-height: 116px;
+		max-height: calc(18px * 1.22 * 5 + 4px);
 		margin: 0;
 		overflow: hidden;
 		font-family: var(--font-family-body);

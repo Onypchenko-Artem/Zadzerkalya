@@ -129,12 +129,14 @@
 	margin: 0;
 }
 
-.service-cta__content .lottie-button--primary {
-	--lottie-btn-w: calc(440 * var(--u));
-	--lottie-btn-h: calc(94 * var(--u));
+.service-cta__content .lottie-button--primary,
+.service-cta__content .lottie-button--secondary {
+	--lottie-btn-w: calc(353 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
-.service-cta__content .lottie-button--primary .lottie-button__label {
+.service-cta__content .lottie-button--primary .lottie-button__label,
+.service-cta__content .lottie-button--secondary .lottie-button__label {
 	padding-inline: calc(8 * var(--u));
 }
 

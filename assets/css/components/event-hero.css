@@ -1,9 +1,9 @@
 .event-hero {
 	position: relative;
 	box-sizing: border-box;
-	height: calc(886 * var(--u));
+	height: calc(780 * var(--u));
 	margin-top: calc(-118 * var(--u));
-	padding: calc(190 * var(--u)) calc(48 * var(--u)) calc(28 * var(--u));
+	padding: calc(163 * var(--u)) calc(48 * var(--u)) calc(32 * var(--u));
 	overflow: hidden;
 	background-position: center;
 	background-size: cover;
@@ -97,24 +97,24 @@
 
 .event-hero__title {
 	display: flex;
-	flex: none;
+	flex: 1 1 auto;
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: stretch;
 	gap: calc(27 * var(--u));
 	width: 100%;
-	min-height: calc(555 * var(--u));
+	min-height: 0;
 	padding: 0;
 }
 
 .event-hero h1 {
 	display: flex;
-	flex: none;
+	flex: 1 1 auto;
 	flex-direction: column;
 	align-self: stretch;
 	justify-content: flex-end;
 	width: 100%;
-	min-height: calc(300 * var(--u));
+	min-height: 0;
 	margin: 0;
 	font-family: var(--text-h1-family);
 	font-size: calc(64 * var(--u));
@@ -169,6 +169,15 @@
 .event-hero__title--solo h1 {
 	justify-content: flex-start;
 	padding-top: 24px;
+}
+
+.policy-page .event-hero__title {
+	justify-content: center;
+}
+
+.policy-page .event-hero h1 {
+	flex: none;
+	padding-top: 0;
 }
 
 .event-hero__bottom-line {

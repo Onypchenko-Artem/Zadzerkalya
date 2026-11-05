@@ -1,9 +1,9 @@
 .service-hero {
 	position: relative;
 	box-sizing: border-box;
-	height: calc(840 * var(--u));
+	height: calc(780 * var(--u));
 	margin-top: calc(-118 * var(--u));
-	padding: calc(166 * var(--u)) calc(48 * var(--u)) 0;
+	padding: calc(48 * var(--u)) calc(48 * var(--u)) 0;
 	overflow: hidden;
 	background-position: center;
 	background-size: cover;
@@ -33,7 +33,7 @@
 .service-hero__main {
 	display: flex;
 	align-self: stretch;
-	align-items: stretch;
+	align-items: flex-end;
 	min-height: 0;
 	min-width: 0;
 }
@@ -41,25 +41,28 @@
 .service-hero__container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: calc(36 * var(--u));
 	width: calc(896 * var(--u));
-	height: 100%;
+	height: calc(620 * var(--u));
 	min-height: 0;
 	min-width: 0;
 }
 
 .service-hero__content {
 	box-sizing: border-box;
-	flex: 1 1 auto;
+	flex: none;
+	width: 100%;
+	height: calc(550 * var(--u));
 	min-height: 0;
-	padding-block: calc(8 * var(--u));
+	padding: calc(8 * var(--u)) 0;
 }
 
 .service-hero__breadcrumbs-container {
 	display: flex;
 	flex-direction: column;
-	gap: calc(48 * var(--u));
-	height: 100%;
+	gap: calc(8 * var(--u));
+	height: calc(534 * var(--u));
 	min-height: 0;
 }
 
@@ -101,23 +104,25 @@
 
 .service-hero__title {
 	display: flex;
-	flex: 1 1 auto;
+	flex: none;
 	flex-direction: column;
 	align-items: flex-start;
-	justify-content: space-between;
-	gap: calc(27 * var(--u));
+	justify-content: flex-start;
+	gap: calc(8 * var(--u));
 	width: 100%;
+	height: calc(504 * var(--u));
 	min-height: 0;
 }
 
 .service-hero h1 {
 	width: 100%;
+	height: calc(288 * var(--u));
 	margin: 0;
 	font-family: var(--text-h1-family);
-	font-size: calc(64 * var(--u));
+	font-size: calc(58 * var(--u));
 	font-weight: 500;
-	line-height: 1.05;
-	letter-spacing: -0.05em;
+	line-height: 1.06;
+	letter-spacing: -0.04em;
 	text-transform: uppercase;
 	color: var(--color-night-sky);
 }
@@ -125,19 +130,23 @@
 .service-hero__copy {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	align-items: flex-start;
 	gap: calc(32 * var(--u));
 	width: calc(512 * var(--u));
+	height: calc(208 * var(--u));
 	max-width: 100%;
-	margin-top: auto;
+	margin-top: 0;
 }
 
 .service-hero__description {
 	width: 100%;
+	height: calc(90 * var(--u));
 	font-family: var(--text-body-l-family);
-	font-size: calc(24 * var(--u));
+	font-size: calc(22 * var(--u));
 	font-weight: 400;
 	line-height: 1.35;
+	letter-spacing: 0;
 	color: var(--color-night-sky);
 }
 
@@ -151,35 +160,37 @@
 }
 
 .service-hero__copy .lottie-button--primary {
-	--lottie-btn-w: calc(436 * var(--u));
-	--lottie-btn-h: calc(88 * var(--u));
+	--lottie-btn-w: calc(356 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .service-hero__copy .lottie-button--primary .lottie-button__label {
-	padding-inline: calc(12 * var(--u));
+	padding-inline: calc(16 * var(--u));
+	font-size: calc(18 * var(--u));
+	line-height: 1.4;
 }
 
 .service-hero__bottom-line {
 	display: block;
 	flex-shrink: 0;
-	align-self: stretch;
-	width: 100%;
-	max-width: calc(875 * var(--u));
-	height: auto;
-	aspect-ratio: 875 / 16;
-	margin-top: auto;
+	width: calc(872 * var(--u));
+	max-width: calc(872 * var(--u));
+	height: calc(11 * var(--u));
+	aspect-ratio: auto;
+	margin-top: 0;
 	background: url("../../images/about-left-line.svg") center / 100% 100% no-repeat;
 }
 
 .service-hero__vertical-line {
 	position: absolute;
-	top: 0;
+	top: auto;
+	bottom: 0;
 	left: 50.2%;
 	z-index: 1;
 	width: calc(23 * var(--u));
-	height: 100%;
+	height: calc(646 * var(--u));
 	max-width: none;
-	background: url("../../images/about-vertical-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/service-hero-vertical-line.svg") center / calc(8 * var(--u)) calc(601 * var(--u)) no-repeat;
 	transform: translateX(-50%);
 	pointer-events: none;
 }
@@ -198,7 +209,8 @@
 	width: calc(897 * var(--u));
 	height: 100%;
 	min-height: 0;
-	padding: calc(96 * var(--u)) 0 0 calc(40 * var(--u));
+	justify-content: flex-start;
+	padding: calc(156 * var(--u)) 0 0 0;
 	gap: calc(30 * var(--u));
 }
 
@@ -217,10 +229,12 @@
 }
 
 .service-hero__photo-line {
-	align-self: stretch;
+	align-self: flex-start;
 	flex-shrink: 0;
-	width: 100%;
-	aspect-ratio: 895 / 34;
+	width: calc(892 * var(--u));
+	height: calc(28 * var(--u));
+	margin-left: calc(8 * var(--u));
+	aspect-ratio: auto;
 	background: url("../../images/about-right-line.svg") center / 100% 100% no-repeat;
 }
 
@@ -258,6 +272,7 @@
 		width: 100%;
 		height: auto;
 		min-height: 0;
+		align-items: stretch;
 	}
 
 	.service-hero__container {
@@ -292,11 +307,13 @@
 
 	.service-hero__title {
 		gap: 27px;
+		height: auto;
 		min-height: 0;
 		justify-content: flex-start;
 	}
 
 	.service-hero h1 {
+		height: auto;
 		font-size: 44px;
 		font-weight: 500;
 		line-height: 1.06;
@@ -309,6 +326,7 @@
 		align-items: flex-start;
 		gap: 16px;
 		width: 100%;
+		height: auto;
 		max-width: none;
 		margin-top: 0;
 	}
@@ -316,6 +334,7 @@
 	.service-hero__description {
 		flex: 1 1 auto;
 		width: auto;
+		height: auto;
 		max-width: 420px;
 		font-size: 20px;
 		font-weight: 400;
@@ -331,6 +350,8 @@
 
 	.service-hero__copy .lottie-button--primary .lottie-button__label {
 		padding-inline: 12px;
+		font-size: 14px;
+		line-height: 1.35;
 	}
 
 	.service-hero__bottom-line {
@@ -371,6 +392,7 @@
 		box-sizing: border-box;
 		width: auto;
 		height: 37px;
+		margin-left: 0;
 		/*padding: 8px;*/
 		aspect-ratio: auto;
 		background-origin: content-box;
@@ -413,9 +435,11 @@
 
 	.service-hero__title {
 		gap: 20px;
+		height: auto;
 	}
 
 	.service-hero h1 {
+		height: auto;
 		font-size: 36px;
 	}
 
@@ -424,9 +448,11 @@
 		align-items: flex-start;
 		gap: 20px;
 		width: 100%;
+		height: auto;
 	}
 
 	.service-hero__description {
+		height: auto;
 		font-size: 16px;
 	}
 
@@ -441,6 +467,16 @@
 
 	.service-hero__bottom-line {
 		max-width: none;
+		height: auto;
+		aspect-ratio: 875 / 16;
+	}
+
+	.service-hero__photo-line {
+		align-self: stretch;
+		width: 100%;
+		height: auto;
+		margin-left: 0;
+		aspect-ratio: 895 / 34;
 	}
 
 	.service-hero__vertical-line {
