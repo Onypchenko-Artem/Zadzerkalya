@@ -93,9 +93,12 @@ if ( ! $items ) {
 					<?php
 					zadzerkalya_button(
 						array(
-							'label'   => $card_button,
-							'url'     => '#contact-form',
-							'variant' => 'primary',
+							'label'      => $card_button,
+							'url'        => '#contact-form',
+							'variant'    => 'primary',
+							'attributes' => array(
+								'data-service' => $item['title'],
+							),
 						)
 					);
 					?>

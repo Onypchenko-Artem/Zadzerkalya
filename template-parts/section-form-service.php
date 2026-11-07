@@ -115,6 +115,7 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 				<?php zadzerkalya_contact_notice(); ?>
 				<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 				<input type="hidden" name="zadzerkalya_form_source" value="service">
+				<input type="hidden" name="zadzerkalya_service" value="<?php echo esc_attr( get_the_title() ); ?>" data-service-field>
 
 				<p class="hp-field" aria-hidden="true">
 					<label><?php esc_html_e( 'Сайт', 'zadzerkalya' ); ?>

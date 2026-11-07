@@ -57,6 +57,7 @@ function zadzerkalya_handle_contact_form() {
 		$phone = '';
 	}
 	$message = isset( $_POST['zadzerkalya_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['zadzerkalya_message'] ) ) : '';
+	$service = isset( $_POST['zadzerkalya_service'] ) ? sanitize_text_field( wp_unslash( $_POST['zadzerkalya_service'] ) ) : '';
 	$is_hero    = 'hero' === $source;
 	$is_service = 'service' === $source;
 	$is_consult = $is_hero || $is_service || $is_event_next || $is_prices;
@@ -93,11 +94,15 @@ function zadzerkalya_handle_contact_form() {
 	} else {
 		$subject = sprintf( __( 'Заявка з сайту від %s', 'zadzerkalya' ), $name );
 	}
+	if ( $service ) {
+		$subject .= ' — ' . $service;
+	}
 	$body    = sprintf(
-		"Імʼя: %s\nEmail: %s\nТелефон: %s\n\n%s",
+		"Імʼя: %s\nEmail: %s\nТелефон: %s\n%s\n%s",
 		$name,
 		$email,
 		$phone,
+		$service ? sprintf( "Послуга: %s\n", $service ) : '',
 		$message
 	);
 

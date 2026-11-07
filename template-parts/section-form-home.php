@@ -12,6 +12,7 @@ $args = wp_parse_args(
 		'description'  => __( 'Зробіть перший крок на шляху до розвитку вашої дитини — запишіться на первинну консультацію вже зараз!', 'zadzerkalya' ),
 		'button_label' => __( 'забронювати первинну консультацію', 'zadzerkalya' ),
 		'source'       => 'home',
+		'service'      => '',
 	)
 );
 ?>
@@ -39,6 +40,7 @@ $args = wp_parse_args(
 			<?php zadzerkalya_contact_notice(); ?>
 			<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 			<input type="hidden" name="zadzerkalya_form_source" value="<?php echo esc_attr( $args['source'] ); ?>">
+			<input type="hidden" name="zadzerkalya_service" value="<?php echo esc_attr( $args['service'] ); ?>" data-service-field>
 
 			<p class="hp-field" aria-hidden="true">
 				<label><?php esc_html_e( 'Сайт', 'zadzerkalya' ); ?>

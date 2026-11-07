@@ -205,6 +205,34 @@
         "variable": "night sky"
       },
       "bytes": 34239
+    },
+    {
+      "file": "button-primary-desktop-short.json",
+      "variant": "Primary",
+      "breakpoint": "Desktop short",
+      "figmaNodeId": "6102:16850 (356×70)",
+      "button": {
+        "w": 356,
+        "h": 70
+      },
+      "canvas": {
+        "w": 368,
+        "h": 82,
+        "inset": -6
+      },
+      "label": "забронювати первинну консультацію",
+      "text": {
+        "x": 32,
+        "y": 23,
+        "w": 301,
+        "h": 25,
+        "fontSize": 18,
+        "fontFamily": "Inter Tight",
+        "lineHeightPercent": 140,
+        "color": "#0F1A2D",
+        "variable": "night sky"
+      },
+      "bytes": 39000
     }
   ]
 }

@@ -1,0 +1,147 @@
+{
+    "key": "group_zadzerkalya_prices_list",
+    "title": "Вартість послуг: Прайс-лист",
+    "fields": [
+        {
+            "key": "field_zadzerkalya_prices_list_title",
+            "label": "Заголовок",
+            "name": "prices_list_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Якщо порожньо, на сайті лишається стандартний текст з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Вартість",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_prices_list_items",
+            "label": "Послуги",
+            "name": "prices_list_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Порядок рядків = порядок на сайті. Якщо список порожній, показується стандартний прайс з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_zadzerkalya_prices_list_item_service",
+            "button_label": "Додати послугу",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_zadzerkalya_prices_list_item_service",
+                    "label": "Послуга",
+                    "name": "service",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "Назва в прайсі стане посиланням на сторінку послуги.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "post_type": [
+                        "service"
+                    ],
+                    "post_status": [
+                        "publish"
+                    ],
+                    "taxonomy": "",
+                    "return_format": "id",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 0,
+                    "bidirectional": 0,
+                    "ui": 1,
+                    "bidirectional_target": [],
+                    "parent_repeater": "field_zadzerkalya_prices_list_items"
+                },
+                {
+                    "key": "field_zadzerkalya_prices_list_item_title",
+                    "label": "Назва в прайсі",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Якщо порожньо — береться назва обраної послуги.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "35",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "Індивідуальне заняття",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_zadzerkalya_prices_list_items"
+                },
+                {
+                    "key": "field_zadzerkalya_prices_list_item_price",
+                    "label": "Вартість",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "Кожен новий рядок виводиться окремим рядком ціни.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "rows": 2,
+                    "placeholder": "700 грн",
+                    "new_lines": "",
+                    "parent_repeater": "field_zadzerkalya_prices_list_items"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates/prices.php"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Список послуг і цін на шаблоні «Вартість послуг».",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1794005300
+}

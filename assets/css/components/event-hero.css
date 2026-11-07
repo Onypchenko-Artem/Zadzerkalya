@@ -138,7 +138,7 @@
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 	color: var(--color-night-sky);
 }
@@ -395,7 +395,7 @@
 		max-width: 443px;
 		min-height: 0;
 		font-size: 20px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
 	}
 
@@ -580,7 +580,7 @@
 		max-width: none;
 		min-height: 0;
 		font-size: 15px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
 	}
 
@@ -709,7 +709,7 @@
 		max-width: none;
 		min-height: 0;
 		font-size: 15px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
 	}
 

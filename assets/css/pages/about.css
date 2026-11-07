@@ -122,7 +122,7 @@
 	margin: 0;
 	font-family: var(--text-body-l-family);
 	font-size: calc(24 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 }
 
@@ -1608,7 +1608,7 @@
 	.about-hero__quote :is(ul, ol) {
 		max-width: 443px;
 		font-size: 15px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
 	}
 

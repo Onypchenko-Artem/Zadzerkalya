@@ -46,8 +46,11 @@ $button_url   = $args['button_url'] ?? '#contact-form';
 	zadzerkalya_button(
 		array(
 			'label'   => $button_label,
-			'url'     => $button_url,
-			'variant' => 'primary',
+			'url'        => $button_url,
+			'variant'    => 'primary',
+			'attributes' => array(
+				'data-service' => get_the_title(),
+			),
 		)
 	);
 	?>

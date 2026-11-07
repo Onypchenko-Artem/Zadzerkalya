@@ -55,6 +55,7 @@ $open = ! empty( $args['open'] );
 			<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 			<input type="hidden" name="zadzerkalya_form_source" value="<?php echo esc_attr( $args['source'] ); ?>">
 			<input type="hidden" name="zadzerkalya_event_title" value="<?php echo esc_attr( $args['event_title'] ); ?>">
+			<input type="hidden" name="zadzerkalya_service" value="" data-service-field>
 
 			<p class="hp-field" aria-hidden="true">
 				<label><?php esc_html_e( 'Сайт', 'zadzerkalya' ); ?>

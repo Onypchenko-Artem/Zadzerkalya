@@ -333,3 +333,81 @@ function zadzerkalya_fix_services_menu_url() {
 	update_option( 'zadzerkalya_services_menu_v1', 1 );
 }
 add_action( 'init', 'zadzerkalya_fix_services_menu_url', 30 );
+
+function zadzerkalya_price_title_key( $title ) {
+	$title = str_replace( array( '«', '»', '"', '“', '”', '’', "'" ), '', (string) $title );
+
+	return mb_strtolower( trim( preg_replace( '/\s+/u', ' ', $title ) ) );
+}
+
+/**
+ * Стандартний прайс переноситься в репітер сторінки «Вартість послуг»,
+ * щоб його можна було редагувати в адмінці. Наявні рядки лишаються першими,
+ * стандартні позиції з такою ж назвою не дублюються.
+ */
+function zadzerkalya_seed_price_list() {
+	if ( get_option( 'zadzerkalya_price_list_seeded_v2' ) || ! function_exists( 'update_field' ) ) {
+		return;
+	}
+
+	$page_ids = get_posts(
+		array(
+			'post_type'      => 'page',
+			'post_status'    => 'any',
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'meta_key'       => '_wp_page_template',
+			'meta_value'     => 'page-templates/prices.php',
+		)
+	);
+
+	if ( ! $page_ids ) {
+		return;
+	}
+
+	$services = array();
+	foreach ( get_posts( array( 'post_type' => 'service', 'post_status' => 'publish', 'posts_per_page' => -1 ) ) as $service ) {
+		$services[ zadzerkalya_price_title_key( $service->post_title ) ] = (int) $service->ID;
+	}
+
+	foreach ( $page_ids as $page_id ) {
+		$rows     = get_field( 'prices_list_items', $page_id, false );
+		$rows     = is_array( $rows ) ? array_values( $rows ) : array();
+		$existing = array();
+		$added    = false;
+
+		foreach ( $rows as $row ) {
+			$row_title = trim( (string) ( $row['field_zadzerkalya_prices_list_item_title'] ?? '' ) );
+			if ( '' === $row_title && ! empty( $row['field_zadzerkalya_prices_list_item_service'] ) ) {
+				$row_title = get_the_title( (int) $row['field_zadzerkalya_prices_list_item_service'] );
+			}
+			$existing[ zadzerkalya_price_title_key( $row_title ) ] = true;
+		}
+
+		foreach ( zadzerkalya_get_default_price_items() as $item ) {
+			$key = zadzerkalya_price_title_key( $item['title'] );
+			if ( isset( $existing[ $key ] ) ) {
+				continue;
+			}
+
+			$rows[] = array(
+				'field_zadzerkalya_prices_list_item_service' => $services[ $key ] ?? '',
+				'field_zadzerkalya_prices_list_item_title'   => $item['title'],
+				'field_zadzerkalya_prices_list_item_price'   => $item['price'],
+			);
+			$added  = true;
+		}
+
+		if ( $added ) {
+			// update_metadata знімає слеші, а в цінах є «2500\3000».
+			update_field( 'field_zadzerkalya_prices_list_items', wp_slash( $rows ), $page_id );
+		}
+
+		if ( '' === trim( (string) get_field( 'prices_list_title', $page_id ) ) ) {
+			update_field( 'field_zadzerkalya_prices_list_title', __( 'Вартість', 'zadzerkalya' ), $page_id );
+		}
+	}
+
+	update_option( 'zadzerkalya_price_list_seeded_v2', 1 );
+}
+add_action( 'init', 'zadzerkalya_seed_price_list', 40 );

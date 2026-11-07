@@ -344,14 +344,7 @@ function zadzerkalya_form_consent() {
 		$privacy_url = home_url( '/privacy-policy/' );
 	}
 
-	$consent_url  = home_url( '/zgoda-na-obrobku-personalnyh-danyh/' );
-	$consent_page = get_page_by_path( 'zgoda-na-obrobku-personalnyh-danyh' );
-	if ( ! $consent_page ) {
-		$consent_page = get_page_by_path( 'consent' );
-	}
-	if ( $consent_page instanceof WP_Post ) {
-		$consent_url = get_permalink( $consent_page );
-	}
+	$consent_url = $privacy_url . '#consent';
 
 	printf(
 		'<p class="form-consent">%1$s <a href="%2$s">%3$s</a> %4$s <a href="%5$s">%6$s</a>.</p>',
@@ -1774,4 +1767,34 @@ function zadzerkalya_policy_prepare_content( $html ) {
 	$result['content'] = $content;
 
 	return $result;
+}
+
+/**
+ * Стандартний прайс сторінки «Вартість послуг».
+ */
+function zadzerkalya_get_default_price_items() {
+	return array(
+		array( 'title' => 'Первинна консультація', 'price' => '850 грн' ),
+		array( 'title' => 'Індивідуальне заняття', 'price' => '700 грн' ),
+		array( 'title' => 'Групове заняття', 'price' => '600 грн' ),
+		array( 'title' => 'Підготовка до школи', 'price' => "600 грн (груповий формат),\n700 грн (індивідуальний формат)" ),
+		array( 'title' => 'Консультація для батьків', 'price' => '850 грн' ),
+		array( 'title' => 'Туалетний тренінг', 'price' => '850 грн' ),
+		array( 'title' => 'Корекція харчової поведінки', 'price' => '750 грн' ),
+		array( 'title' => '«Маленький садочок»', 'price' => '1050 грн (3 години)' ),
+		array( 'title' => 'Масаж', 'price' => '750 грн' ),
+		array( 'title' => 'Психотерапія', 'price' => '850 грн' ),
+		array( 'title' => 'Психолог для підлітків', 'price' => '750 грн' ),
+		array( 'title' => 'Діагностика ADOS-2', 'price' => '2500\\3000 грн' ),
+		array( 'title' => 'Діагностика РДУГ CONNERS-3', 'price' => '2500\\3000 грн' ),
+		array( 'title' => 'Нейродіагностика', 'price' => '2500 грн' ),
+		array( 'title' => 'Діагностика VB-MAPP', 'price' => 'від 5000 грн' ),
+		array( 'title' => 'Складання індивідуальної програми розвитку', 'price' => 'від 3000 грн' ),
+		array( 'title' => 'Консультації для асистентів, вихователів та вчителів', 'price' => 'від 2000 грн' ),
+		array( 'title' => 'Терапія TOMATIS', 'price' => '10 600 грн' ),
+		array( 'title' => 'Консультація психіатра', 'price' => '600-800 грн' ),
+		array( 'title' => 'Профорієнтаційне тестування', 'price' => '2500 грн' ),
+		array( 'title' => 'Написання характеристики дитини', 'price' => 'від 500 грн' ),
+		array( 'title' => 'Тренінг «Стоп-незнайомець»', 'price' => '400 грн (груповий формат), від 700 грн (індивідуальний формат)' ),
+	);
 }

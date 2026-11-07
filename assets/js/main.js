@@ -429,6 +429,7 @@
 				const currentBreakpoint = breakpoint();
 				const mobileRows = button.dataset.mobileRows || '1';
 				const name = button.dataset.anim
+					|| (currentBreakpoint === 'desktop' && button.dataset.animDesktop)
 					|| (variant === 'primary' && currentBreakpoint === 'mobile'
 						? `button-primary-mobile-${mobileRows}-rows`
 						: `button-${variant}-${currentBreakpoint}`);
@@ -1246,6 +1247,41 @@
 	);
 
 	items.forEach(({ heading }) => observer.observe(heading));
+})();
+
+(() => {
+	if (!document.querySelector('[data-service-field]')) {
+		return;
+	}
+
+	const targetOf = (trigger) => {
+		if (trigger.hasAttribute('data-contact-popup-open')) {
+			return document.querySelector('[data-contact-popup]');
+		}
+
+		if (!trigger.hash || trigger.pathname !== window.location.pathname) {
+			return null;
+		}
+
+		try {
+			return document.querySelector(trigger.hash);
+		} catch {
+			return null;
+		}
+	};
+
+	document.addEventListener('click', (event) => {
+		const trigger = event.target.closest('a[href*="#"], [data-contact-popup-open]');
+		const target = trigger ? targetOf(trigger) : null;
+		if (!target) {
+			return;
+		}
+
+		const fields = target.matches('[data-service-field]') ? [target] : target.querySelectorAll('[data-service-field]');
+		fields.forEach((field) => {
+			field.value = trigger.dataset.service ?? field.defaultValue;
+		});
+	});
 })();
 
 (() => {

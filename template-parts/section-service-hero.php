@@ -90,9 +90,10 @@ if ( $background_url ) {
 										<?php
 										zadzerkalya_button(
 											array(
-												'label'   => $button_label,
-												'url'     => $button_url,
-												'variant' => $button_variant,
+												'label'      => $button_label,
+												'url'        => $button_url,
+												'variant'    => $button_variant,
+												'attributes' => 'primary' === $button_variant ? array( 'data-anim-desktop' => 'button-primary-desktop-short' ) : array(),
 											)
 										);
 										?>

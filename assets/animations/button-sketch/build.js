@@ -46,7 +46,7 @@ function parsePath(d, dx, dy) {
 }
 
 // Точні межі кривої (як transform-box: fill-box у CSS) — щільна вибірка кожного сегмента.
-function bounds(shape) {
+function bbox(shape) {
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
   const n = shape.v.length, segs = shape.c ? n : n - 1;
   for (let k = 0; k < segs; k++) {
@@ -60,8 +60,49 @@ function bounds(shape) {
       x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y);
     }
   }
-  return { cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
+  return { x0, y0, x1, y1 };
 }
+
+function bounds(shape) {
+  const b = bbox(shape);
+  return { cx: (b.x0 + b.x1) / 2, cy: (b.y0 + b.y1) / 2 };
+}
+
+// Вписує контур у рамку з Figma (x, y, w, h — межі кривої всередині кнопки).
+function fitPath(outline, box) {
+  const [[, , tx], [, , ty]] = outline.transform;
+  const d = outline.paths.join(" ");
+  const b = bbox(parsePath(d, tx, ty));
+  const sx = box.w / (b.x1 - b.x0), sy = box.h / (b.y1 - b.y0);
+  let axis = 0;
+  const paths = [d.replace(/[MCZ]|-?\d*\.?\d+(?:e[-+]?\d+)?/g, (tok) => {
+    if (/[MCZ]/.test(tok)) return tok;
+    const n = parseFloat(tok);
+    const out = axis === 0 ? box.x + (n + tx - b.x0) * sx : box.y + (n + ty - b.y0) * sy;
+    axis = 1 - axis;
+    return String(r3(out));
+  })];
+  return { ...outline, transform: [[1, 0, 0], [0, 1, 0]], paths, strokeWeight: box.stroke };
+}
+
+// Desktop short (356×70) — менший Primary для десктопа (банер послуги). У Figma — та сама кнопка,
+// масштабована у 356×70, тому контури беруться з Desktop і вписуються в рамки макета.
+const desktopPrimary = data.variants.find((v) => v.properties.Variant === "Primary" && v.properties.Breakpoint === "Desktop");
+const SHORT_OUTLINES = {
+  "Ellipse 4": { x: 2.92, y: 0, w: 350, h: 70, stroke: 0.797753 },
+  "Ellipse 5": { x: 2.49, y: 1, w: 350, h: 69, stroke: 0.797753 },
+  "Ellipse 6": { x: 0.76, y: 0, w: 353, h: 70, stroke: 0.797753 }
+};
+data.variants.push({
+  ...desktopPrimary,
+  nodeId: desktopPrimary.nodeId + " (356×70)",
+  properties: { ...desktopPrimary.properties, Breakpoint: "Desktop short" },
+  w: 356,
+  h: 70,
+  fill: { ...desktopPrimary.fill, x: 9, y: 3, w: 347, h: 66 },
+  outlines: desktopPrimary.outlines.map((o) => fitPath(o, SHORT_OUTLINES[o.name])),
+  text: { ...desktopPrimary.text, x: 32, y: 23, w: 301, h: 25, fontSize: 18, lineHeight: { unit: "PERCENT", value: 140 } }
+});
 
 const round = (shape) => ({ c: shape.c, v: shape.v.map((p) => p.map(r3)), i: shape.i.map((p) => p.map(r3)), o: shape.o.map((p) => p.map(r3)) });
 const tr = () => ({ ty: "tr", p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, sk: { a: 0, k: 0 }, sa: { a: 0, k: 0 } });

@@ -133,7 +133,7 @@
 	justify-content: space-between;
 	align-items: flex-start;
 	gap: calc(32 * var(--u));
-	width: calc(512 * var(--u));
+	width: calc(450 * var(--u));
 	height: calc(208 * var(--u));
 	max-width: 100%;
 	margin-top: 0;
@@ -144,7 +144,7 @@
 	height: calc(90 * var(--u));
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.35;
 	letter-spacing: 0;
 	color: var(--color-night-sky);
@@ -159,6 +159,10 @@
 	display: block;
 }
 
+.service-hero__copy > .lottie-button {
+	margin-top: auto;
+}
+
 .service-hero__copy .lottie-button--primary {
 	--lottie-btn-w: calc(356 * var(--u));
 	--lottie-btn-h: calc(70 * var(--u));
@@ -167,7 +171,9 @@
 .service-hero__copy .lottie-button--primary .lottie-button__label {
 	padding-inline: calc(16 * var(--u));
 	font-size: calc(18 * var(--u));
+	font-weight: 400;
 	line-height: 1.4;
+	transform: translate(calc(4.5 * var(--u)), calc(0.5 * var(--u)));
 }
 
 .service-hero__bottom-line {
@@ -337,8 +343,12 @@
 		height: auto;
 		max-width: 420px;
 		font-size: 20px;
-		font-weight: 400;
+		font-weight: 300;
 		line-height: 1.35;
+	}
+
+	.service-hero__copy > .lottie-button {
+		margin-top: 0;
 	}
 
 	.service-hero__copy .lottie-button--primary,
@@ -352,6 +362,7 @@
 		padding-inline: 12px;
 		font-size: 14px;
 		line-height: 1.35;
+		transform: translateY(2px);
 	}
 
 	.service-hero__bottom-line {
