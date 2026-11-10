@@ -1,6 +1,6 @@
 <?php
 /**
- * Текст політики: зміст, колонка документа, дата дії.
+ * Текст політики: зміст, колонка документа з назвою (h2 — h1 вже в банері) і датою дії.
  *
  * @package Zadzerkalya
  *
@@ -12,6 +12,7 @@
 $effective_date = $args['effective_date'] ?? '';
 $prepared       = zadzerkalya_policy_prepare_content( apply_filters( 'the_content', get_the_content() ) );
 $toc            = $prepared['toc'];
+$title          = '' !== $prepared['title'] ? $prepared['title'] : get_the_title();
 ?>
 <section class="policy">
 	<?php if ( $toc ) : ?>
@@ -28,18 +29,19 @@ $toc            = $prepared['toc'];
 		</nav>
 	<?php endif; ?>
 
-	<article class="policy__body event-article__body">
-		<?php echo $prepared['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</article>
+	<div class="policy__main">
+		<header class="policy__head">
+			<h2 class="policy__title"><?php echo esc_html( $title ); ?></h2>
+			<?php if ( $effective_date ) : ?>
+				<p class="policy__date">
+					<?php esc_html_e( 'Діє з:', 'zadzerkalya' ); ?>
+					<time><?php echo esc_html( $effective_date ); ?></time>
+				</p>
+			<?php endif; ?>
+		</header>
 
-	<?php if ( $effective_date ) : ?>
-		<aside class="policy__aside">
-			<dl class="policy__meta">
-				<div class="policy__meta-row">
-					<dt><?php esc_html_e( 'Діє з:', 'zadzerkalya' ); ?></dt>
-					<dd><?php echo esc_html( $effective_date ); ?></dd>
-				</div>
-			</dl>
-		</aside>
-	<?php endif; ?>
+		<article class="policy__body event-article__body">
+			<?php echo $prepared['content']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</article>
+	</div>
 </section>

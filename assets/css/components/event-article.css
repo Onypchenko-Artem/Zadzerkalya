@@ -1035,3 +1035,9 @@
 		order: 4;
 	}
 }
+
+.single-post .event-article__body :is(ul, ol):has(> li:only-child):not(blockquote + *) {
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+}

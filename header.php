@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $address    = zadzerkalya_theme_mod( 'address', 'м. Львів, вул. Камʼянецька 1' );
 $phones     = zadzerkalya_phones();
 $instagram  = zadzerkalya_social_url( 'instagram' );
-$telegram   = zadzerkalya_theme_mod( 'telegram' );
+$telegram   = zadzerkalya_social_url( 'telegram' );
 $facebook   = zadzerkalya_social_url( 'facebook' );
 $contacts   = zadzerkalya_get_page_url( 'contacts' );
 $nav_socials = array(

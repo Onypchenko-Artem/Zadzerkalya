@@ -132,8 +132,9 @@ $flag = static function ( $name, $default = true ) {
 			'template-parts/section',
 			'form-home',
 			array(
-				'source'  => 'service',
-				'service' => get_the_title(),
+				'source'       => 'service',
+				'service'      => get_the_title(),
+				'button_label' => $button_label,
 			)
 		);
 	endwhile;

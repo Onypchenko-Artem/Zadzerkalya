@@ -20,7 +20,7 @@ if ( count( $hours_lines ) < 2 ) {
 
 $socials = array(
 	'instagram' => zadzerkalya_social_url( 'instagram' ),
-	'telegram'  => zadzerkalya_theme_mod( 'telegram' ),
+	'telegram'  => zadzerkalya_social_url( 'telegram' ),
 	'facebook'  => zadzerkalya_social_url( 'facebook' ),
 );
 

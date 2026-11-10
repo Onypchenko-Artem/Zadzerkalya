@@ -127,7 +127,8 @@
 }
 
 .price-list .lottie-button--primary {
-	--lottie-btn-w: calc(370 * var(--u));
+	--lottie-btn-w: calc(356 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .prices-page .form-home {

@@ -43,6 +43,7 @@ function zadzerkalya_customize_register( $wp_customize ) {
 		$defaults = array(
 			'instagram' => 'https://www.instagram.com/zadzerkallia_lviv/',
 			'facebook'  => 'https://www.facebook.com/zadzerkallya.lviv/',
+			'telegram'  => 'https://t.me/zadzerkallya',
 		);
 		$default  = $defaults[ $key ] ?? '';
 
@@ -176,6 +177,7 @@ function zadzerkalya_social_url( $network ) {
 	$defaults = array(
 		'instagram' => 'https://www.instagram.com/zadzerkallia_lviv/',
 		'facebook'  => 'https://www.facebook.com/zadzerkallya.lviv/',
+		'telegram'  => 'https://t.me/zadzerkallya',
 	);
 	$legacy   = array(
 		'instagram' => 'https://www.instagram.com/zadzerkallya_lviv/',

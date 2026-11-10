@@ -205,6 +205,17 @@
 	padding-inline: calc(12 * var(--u));
 }
 
+@media (min-width: 1280px) {
+	.form-service--composition-1 .form-service__form .lottie-button--primary {
+		--lottie-btn-w: 0px;
+		--lottie-btn-h: calc(70 * var(--u));
+	}
+
+	.form-service--composition-1 .form-service__form .lottie-button--primary .lottie-button__label {
+		padding-inline: calc(38 * var(--u));
+	}
+}
+
 @media (max-width: 1279px) and (min-width: 768px) {
 	.form-service {
 		gap: 20px;

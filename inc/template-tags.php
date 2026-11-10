@@ -1641,14 +1641,16 @@ function zadzerkalya_policy_enhance_contacts( DOMElement $root ) {
 /**
  * Зміст політики: заголовки і верхні пункти нумерованих списків.
  *
- * Перший ненумерований h2 — назва документа, у зміст не входить.
+ * Ненумерований h2 на самому початку тексту — назва документа: його вирізано
+ * з вмісту і повернуто в title, у зміст він не входить.
  *
  * @param string $html HTML вмісту сторінки.
- * @return array{content: string, toc: array<int, array{id: string, text: string}>}
+ * @return array{content: string, title: string, toc: array<int, array{id: string, text: string}>}
  */
 function zadzerkalya_policy_prepare_content( $html ) {
 	$result = array(
 		'content' => $html,
+		'title'   => '',
 		'toc'     => array(),
 	);
 
@@ -1676,6 +1678,15 @@ function zadzerkalya_policy_prepare_content( $html ) {
 
 	zadzerkalya_policy_enhance_contacts( $root );
 
+	$leading = $xpath->query( './*[1]', $root )->item( 0 );
+	if ( $leading instanceof DOMElement && 'h2' === strtolower( $leading->nodeName ) ) {
+		$leading_text = zadzerkalya_policy_node_label( $leading );
+		if ( '' !== $leading_text && ! preg_match( '/^\d+\./u', $leading_text ) ) {
+			$result['title'] = $leading_text;
+			$root->removeChild( $leading );
+		}
+	}
+
 	$nodes = $xpath->query(
 		'.//*[self::h2 or self::h3 or self::h4 or self::li][not(ancestor::li)]',
 		$root
@@ -1684,9 +1695,8 @@ function zadzerkalya_policy_prepare_content( $html ) {
 		return $result;
 	}
 
-	$seen             = array();
-	$is_first_heading = true;
-	$list_numbers     = array();
+	$seen         = array();
+	$list_numbers = array();
 
 	foreach ( $nodes as $node ) {
 		if ( ! $node instanceof DOMElement ) {
@@ -1732,17 +1742,6 @@ function zadzerkalya_policy_prepare_content( $html ) {
 			if ( '' === $text ) {
 				continue;
 			}
-
-			if ( $is_first_heading && 'h2' === $tag && ! preg_match( '/^\d+\./u', $text ) ) {
-				$is_first_heading = false;
-				$id               = $node->getAttribute( 'id' );
-				if ( '' === $id ) {
-					$node->setAttribute( 'id', zadzerkalya_policy_heading_id( $text, $seen ) );
-				}
-				continue;
-			}
-
-			$is_first_heading = false;
 		}
 
 		$id = $target->getAttribute( 'id' );
