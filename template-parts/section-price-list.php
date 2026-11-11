@@ -6,7 +6,6 @@
  */
 
 $title = function_exists( 'get_field' ) ? trim( (string) get_field( 'prices_list_title' ) ) : '';
-$title = '' !== $title ? $title : __( 'Вартість', 'zadzerkalya' );
 
 $rows  = function_exists( 'get_field' ) ? get_field( 'prices_list_items' ) : null;
 $items = array();
@@ -43,12 +42,14 @@ if ( ! $items ) {
 }
 
 ?>
-<section class="price-list" aria-labelledby="price-list-title">
-	<header class="price-list__heading">
-		<img class="price-list__heading-line price-list__heading-line--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-heading-line-left.svg' ); ?>" alt="" aria-hidden="true">
-		<h2 id="price-list-title"><?php echo esc_html( $title ); ?></h2>
-		<img class="price-list__heading-line price-list__heading-line--right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-heading-line-right.svg' ); ?>" alt="" aria-hidden="true">
-	</header>
+<section class="price-list"<?php echo '' !== $title ? ' aria-labelledby="price-list-title"' : ''; ?>>
+	<?php if ( '' !== $title ) : ?>
+		<header class="price-list__heading">
+			<img class="price-list__heading-line price-list__heading-line--left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-heading-line-left.svg' ); ?>" alt="" aria-hidden="true">
+			<h2 id="price-list-title"><?php echo esc_html( $title ); ?></h2>
+			<img class="price-list__heading-line price-list__heading-line--right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/price-heading-line-right.svg' ); ?>" alt="" aria-hidden="true">
+		</header>
+	<?php endif; ?>
 
 	<div class="price-list__items">
 		<?php foreach ( $items as $item ) : ?>
@@ -81,10 +82,12 @@ if ( ! $items ) {
 							'variant'    => 'primary',
 							'type'       => 'button',
 							'attributes' => array(
-								'data-contact-popup-open' => 'true',
-								'aria-haspopup'           => 'dialog',
-								'aria-controls'           => 'contact-popup',
-								'data-service'            => $item['title'],
+								'data-contact-popup-open'   => 'true',
+								'data-contact-popup-label'  => __( 'забронювати консультацію', 'zadzerkalya' ),
+								'data-contact-popup-source' => 'price-popup',
+								'aria-haspopup'             => 'dialog',
+								'aria-controls'             => 'contact-popup',
+								'data-service'              => $item['title'],
 							),
 						)
 					);

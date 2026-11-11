@@ -63,7 +63,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: calc(104 * var(--u));
+	gap: calc(64 * var(--u));
 	width: 100%;
 }
 
@@ -90,6 +90,19 @@
 	object-fit: fill;
 	transform: scaleX(-1);
 	pointer-events: none;
+}
+
+.service-benefits__aside .lottie-button--primary {
+	--lottie-btn-w: calc(356 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
+}
+
+.service-benefits__aside .lottie-button--primary .lottie-button__label {
+	padding-inline: calc(16 * var(--u));
+	font-size: calc(18 * var(--u));
+	font-weight: 400;
+	line-height: 1.4;
+	transform: translate(calc(4.5 * var(--u)), calc(0.5 * var(--u)));
 }
 
 .service-benefits__aside .lottie-button--primary .lottie-button__anim path[fill] {
@@ -343,6 +356,13 @@
 		--lottie-btn-h: 66px;
 	}
 
+	.service-benefits__aside .lottie-button--primary .lottie-button__label {
+		padding-inline: 12px;
+		font-size: 14px;
+		line-height: 1.35;
+		transform: translateY(2px);
+	}
+
 	.service-benefits__card,
 	.service-benefits__row--lead .service-benefits__card {
 		flex: none;
@@ -419,6 +439,15 @@
 
 	.service-benefits__aside {
 		align-items: center;
+	}
+
+	.service-benefits__aside .lottie-button--primary {
+		--lottie-btn-w: 240px;
+		--lottie-btn-h: 62px;
+	}
+
+	.service-benefits__aside .lottie-button--primary .lottie-button__label {
+		padding-inline: 16px;
 	}
 
 	.service-benefits__main {

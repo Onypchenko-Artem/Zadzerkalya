@@ -248,7 +248,7 @@
 .header-bar .lottie-button--secondary {
 	flex: none;
 	--lottie-btn-w: 245px;
-	--lottie-btn-h: 58px;
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .header-bar .lottie-button__anim {

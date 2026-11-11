@@ -24,12 +24,12 @@ a.lottie-button:hover {
 
 .lottie-button--primary {
 	--lottie-btn-w: calc(447 * var(--u));
-	--lottie-btn-h: calc(94 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .lottie-button--secondary {
 	--lottie-btn-w: calc(242 * var(--u));
-	--lottie-btn-h: calc(94 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .lottie-button__anim {

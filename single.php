@@ -22,7 +22,10 @@ get_header();
 		$hero_description = $field( 'event_hero_description' );
 		$hero_photo       = $field( 'event_hero_photo', get_post_thumbnail_id() );
 		$hero_background  = $field( 'event_hero_background' );
-		$event_author     = $field( 'event_author' );
+		$author_photo     = $field( 'post_author_photo' );
+		$author_name      = $field( 'post_author_name' );
+		$author_position  = $field( 'post_author_position' );
+		$author_education = $field( 'post_author_education' );
 		$minutes          = zadzerkalya_reading_time_minutes();
 		/* translators: %d — хвилини читання. */
 		$reading_time     = sprintf( _n( '%d хв', '%d хв', $minutes, 'zadzerkalya' ), $minutes );
@@ -46,10 +49,13 @@ get_header();
 			'template-parts/section',
 			'event-article',
 			array(
-				'author'       => $event_author,
-				'date'         => get_the_date( 'Y-m-d' ),
-				'reading_time' => $reading_time,
-				'share'        => true,
+				'author_photo'     => $author_photo,
+				'author_name'      => $author_name,
+				'author_position'  => $author_position,
+				'author_education' => $author_education,
+				'date'             => get_the_date( 'Y-m-d' ),
+				'reading_time'     => $reading_time,
+				'share'            => true,
 			)
 		);
 

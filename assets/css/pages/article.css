@@ -1,3 +1,14 @@
+/* form-home тягнеться вгору з overflow:hidden — стаття має бути вище, інакше ріже excerpt */
+:is(.single-post, .single-event) .event-article,
+:is(.single-post, .single-event) .recommend {
+	position: relative;
+	z-index: 1;
+}
+
+:is(.single-post, .single-event) .form-home {
+	z-index: 0;
+}
+
 .article-hero img {
 	width: 100%;
 	border-radius: calc(24 * var(--u));

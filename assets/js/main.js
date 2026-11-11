@@ -365,7 +365,19 @@
 				item.classList.remove('is-collapsed');
 				panel.style.removeProperty('height');
 				panel.style.removeProperty('opacity');
+				document.dispatchEvent(new CustomEvent('faq:frame'));
 			};
+
+			const notify = () => {
+				if (!animation) {
+					return;
+				}
+
+				document.dispatchEvent(new CustomEvent('faq:frame'));
+				window.requestAnimationFrame(notify);
+			};
+
+			window.requestAnimationFrame(notify);
 		};
 
 		summary.addEventListener('click', (event) => {
@@ -503,21 +515,78 @@
 			return;
 		}
 
+		const isFaq = shell.classList.contains('faq-scroll');
 		let scrollDistance = 0;
+		let desiredDistance = 0;
 		let stickyOffset = 0;
 		let frame = 0;
+		let reveal = 0;
+		let lastLinked = 0;
+		let lastScrollY = 0;
+		let hasLinked = false;
 
-		const sync = () => {
-			frame = 0;
-
+		const paint = () => {
 			if (!media.matches || !scrollDistance) {
 				track.style.transform = '';
+				reveal = 0;
+				hasLinked = false;
 				return;
 			}
 
 			const start = shell.getBoundingClientRect().top + window.scrollY - stickyOffset;
-			const progress = Math.min(Math.max(window.scrollY - start, 0), scrollDistance);
-			track.style.transform = `translate3d(0, ${-progress}px, 0)`;
+			const linked = Math.min(Math.max(window.scrollY - start, 0), scrollDistance);
+
+			if (!hasLinked) {
+				lastLinked = linked;
+				lastScrollY = window.scrollY;
+				hasLinked = true;
+			} else {
+				const linkedDelta = linked - lastLinked;
+				const scrollDelta = window.scrollY - lastScrollY;
+				const unsolicited = linkedDelta - Math.max(scrollDelta, 0);
+				if (reveal > 0 && unsolicited > 0.5) {
+					reveal = Math.max(0, reveal - unsolicited);
+				}
+				lastLinked = linked;
+				lastScrollY = window.scrollY;
+			}
+
+			const maxProgress = Math.max(track.offsetHeight - list.clientHeight, 0);
+			reveal = Math.min(reveal, Math.max(0, maxProgress - linked));
+			track.style.transform = `translate3d(0, ${-(linked + reveal)}px, 0)`;
+		};
+
+		const sync = () => {
+			frame = 0;
+			paint();
+		};
+
+		// The answer keeps growing downward. If it would leave the visible
+		// list, shift only the list — not the image — just enough to show it.
+		const revealClipped = () => {
+			if (!isFaq || !media.matches || !scrollDistance) {
+				return;
+			}
+
+			const listBottom = list.getBoundingClientRect().bottom;
+			const limit = Math.min(listBottom, window.innerHeight - 16);
+			let overflow = 0;
+
+			track.querySelectorAll('.faq__item[open]:not(.is-collapsed)').forEach((item) => {
+				overflow = Math.max(overflow, item.getBoundingClientRect().bottom - limit);
+			});
+
+			if (overflow <= 1) {
+				return;
+			}
+
+			const before = reveal;
+			reveal += overflow;
+			paint();
+
+			if (Math.abs(reveal - before) < 0.5) {
+				reveal = before;
+			}
 		};
 
 		const requestSync = () => {
@@ -526,39 +595,75 @@
 			}
 		};
 
-		const measure = () => {
+		// Growing the pin after the block has started to leave pulls the
+		// section back down and shifts the list up. Keep the current length
+		// until the section is pinned again, so an answer opens downward.
+		const commitDistance = (next, force = false) => {
+			if (!force && next === scrollDistance) {
+				return;
+			}
+
+			const topBefore = section.getBoundingClientRect().top;
+			const released = topBefore < stickyOffset - 0.5;
+
+			if (!force && released) {
+				return;
+			}
+
+			const previous = scrollDistance;
+			const height = section.offsetHeight;
+			scrollDistance = next;
+			shell.style.setProperty('--pinned-list-height', `${height + next}px`);
+
+			if (!force && Math.abs(section.getBoundingClientRect().top - topBefore) > 0.5) {
+				scrollDistance = previous;
+				shell.style.setProperty('--pinned-list-height', `${height + previous}px`);
+			}
+		};
+
+		const measure = (force = false) => {
 			if (!media.matches) {
 				shell.classList.remove('is-scroll-driven');
 				shell.style.removeProperty('--pinned-list-height');
 				track.style.transform = '';
 				scrollDistance = 0;
+				desiredDistance = 0;
 				stickyOffset = 0;
+				reveal = 0;
+				hasLinked = false;
 				return;
 			}
 
 			shell.classList.add('is-scroll-driven');
-			scrollDistance = Math.max(track.offsetHeight - list.clientHeight, 0);
 			stickyOffset = Number.parseFloat(getComputedStyle(section).top) || 0;
-			shell.style.setProperty(
-				'--pinned-list-height',
-				`${section.offsetHeight + scrollDistance}px`
-			);
+			desiredDistance = Math.max(track.offsetHeight - list.clientHeight, 0);
+			commitDistance(desiredDistance, force);
+			revealClipped();
 			requestSync();
 		};
 
-		window.addEventListener('scroll', requestSync, { passive: true });
-		window.addEventListener('resize', measure);
-		window.addEventListener('load', measure);
-		media.addEventListener('change', measure);
+		window.addEventListener('scroll', () => {
+			if (desiredDistance !== scrollDistance) {
+				commitDistance(desiredDistance);
+			}
+			requestSync();
+		}, { passive: true });
+
+		if (isFaq) {
+			document.addEventListener('faq:frame', revealClipped);
+		}
+		window.addEventListener('resize', () => measure(true));
+		window.addEventListener('load', () => measure(true));
+		media.addEventListener('change', () => measure(true));
 
 		if ('ResizeObserver' in window) {
-			const observer = new ResizeObserver(measure);
+			const observer = new ResizeObserver(() => measure(false));
 			observer.observe(section);
 			observer.observe(list);
 			observer.observe(track);
 		}
 
-		measure();
+		measure(true);
 	});
 })();
 
@@ -1166,19 +1271,32 @@
 
 	const align = (section) => {
 		const aside = section.querySelector('.service-benefits__aside');
-		const row = section.querySelector('.service-benefits__row:nth-child(2)');
+		const foot = section.querySelector('.service-benefits__aside-foot');
+		const main = section.querySelector('.service-benefits__main');
 
-		if (!aside) {
+		if (!aside || !foot || !main) {
 			return;
 		}
 
-		if (!desktop.matches || !row) {
+		if (!desktop.matches) {
 			aside.style.marginTop = '';
+			section.style.paddingBottom = '';
 			return;
 		}
 
-		const offset = row.getBoundingClientRect().top - section.getBoundingClientRect().top;
-		aside.style.marginTop = `${Math.max(0, Math.round(offset))}px`;
+		aside.style.marginTop = '0px';
+		section.style.paddingBottom = '0px';
+
+		const fs = Math.min(1, Math.max(1280 / 1920, window.innerWidth / 1920));
+		const gap = 110 * fs;
+		const room = main.getBoundingClientRect().height - aside.getBoundingClientRect().height;
+
+		if (room >= gap) {
+			aside.style.marginTop = `${room - gap}px`;
+			return;
+		}
+
+		section.style.paddingBottom = `${gap - Math.max(0, room)}px`;
 	};
 
 	const alignAll = () => {
@@ -1291,12 +1409,42 @@
 	}
 
 	const dialog = popup.querySelector('.contact-popup__dialog');
+	const submit = popup.querySelector('.lottie-button--primary');
+	const labelEl = submit?.querySelector('.lottie-button__label');
+	const sourceField = popup.querySelector('[name="zadzerkalya_form_source"]');
+	const eventField = popup.querySelector('[name="zadzerkalya_event_title"]');
 	let lastFocus = null;
 
 	const focusable = () => [...popup.querySelectorAll('button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])')]
 		.filter((node) => !node.closest('.hp-field') && !node.hasAttribute('disabled') && node.getClientRects().length);
 
-	const open = () => {
+	const formatLabel = (value) => String(value)
+		.split(/\r\n|\n|\r/)
+		.map((line) => line.trim())
+		.filter(Boolean)
+		.map((line) => line.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+		.join('<br>');
+
+	const applyTrigger = (trigger) => {
+		if (!trigger) {
+			return;
+		}
+
+		if (labelEl && trigger.dataset.contactPopupLabel) {
+			labelEl.innerHTML = formatLabel(trigger.dataset.contactPopupLabel);
+		}
+
+		if (sourceField && trigger.dataset.contactPopupSource) {
+			sourceField.value = trigger.dataset.contactPopupSource;
+		}
+
+		if (eventField && Object.prototype.hasOwnProperty.call(trigger.dataset, 'contactPopupEvent')) {
+			eventField.value = trigger.dataset.contactPopupEvent || '';
+		}
+	};
+
+	const open = (trigger) => {
+		applyTrigger(trigger);
 		lastFocus = document.activeElement;
 		popup.hidden = false;
 		document.body.classList.add('contact-popup-open');
@@ -1318,7 +1466,7 @@
 	document.querySelectorAll('[data-contact-popup-open]').forEach((button) => {
 		button.addEventListener('click', (event) => {
 			event.preventDefault();
-			open();
+			open(button);
 		});
 	});
 

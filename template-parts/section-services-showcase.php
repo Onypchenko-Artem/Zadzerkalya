@@ -77,32 +77,18 @@ if ( ! $items ) {
 			</div>
 
 			<?php foreach ( $items as $item ) : ?>
-				<article class="services-showcase__card">
-					<a class="services-showcase__link" href="<?php echo esc_url( $item['url'] ); ?>">
-						<h3><?php echo esc_html( $item['title'] ); ?></h3>
-					</a>
-					<span class="services-showcase__line" aria-hidden="true"></span>
-					<div class="services-showcase__image-placeholder">
-						<?php
-						if ( ! zadzerkalya_acf_image( $item['image'], 'large', array( 'alt' => $item['title'] ) ) ) :
-							?>
-							<span><?php esc_html_e( 'Фото', 'zadzerkalya' ); ?></span>
-						<?php endif; ?>
-					</div>
-					<span class="services-showcase__line services-showcase__line--reverse" aria-hidden="true"></span>
-					<?php
-					zadzerkalya_button(
-						array(
-							'label'      => $card_button,
-							'url'        => '#contact-form',
-							'variant'    => 'primary',
-							'attributes' => array(
-								'data-service' => $item['title'],
-							),
-						)
-					);
-					?>
-				</article>
+				<?php
+				get_template_part(
+					'template-parts/card',
+					'service',
+					array(
+						'title'        => $item['title'],
+						'url'          => $item['url'],
+						'image'        => $item['image'],
+						'button_label' => $card_button,
+					)
+				);
+				?>
 			<?php endforeach; ?>
 		</div>
 

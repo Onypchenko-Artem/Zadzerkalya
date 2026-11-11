@@ -5,48 +5,69 @@
  * @package Zadzerkalya
  *
  * @var array $args {
- *     @type mixed  $author        Запис спеціаліста (WP_Post, id) або порожньо.
- *     @type string $date          Дата (Y-m-d).
- *     @type string $time          Час події.
- *     @type string $place         Місце.
- *     @type string $price         Вартість.
- *     @type string $reading_time  Час прочитання (текст для виводу).
- *     @type bool   $share         Показати блок «Поширити статтю».
- *     @type string $button_label  Текст кнопки (порожньо — без кнопки).
- *     @type string $button_url    Посилання кнопки.
- *     @type bool   $button_popup  Кнопка відкриває попап контакту.
+ *     @type mixed  $author            Запис спеціаліста (WP_Post, id) або порожньо.
+ *     @type mixed  $author_photo      ID / масив / URL фото автора.
+ *     @type string $author_name       Імʼя автора.
+ *     @type string $author_position   Посада автора.
+ *     @type string $author_education  Освіта автора.
+ *     @type string $date              Дата (Y-m-d).
+ *     @type string $time              Час події.
+ *     @type string $place             Місце.
+ *     @type string $price             Вартість.
+ *     @type string $reading_time      Час прочитання (текст для виводу).
+ *     @type bool   $share             Показати блок «Поширити статтю».
+ *     @type string $button_label      Текст кнопки (порожньо — без кнопки).
+ *     @type string $button_url        Посилання кнопки.
+ *     @type bool   $button_popup      Кнопка відкриває попап контакту.
  * }
  */
 
-$author_raw    = $args['author'] ?? null;
-$date          = $args['date'] ?? '';
-$time          = $args['time'] ?? '';
-$place         = $args['place'] ?? '';
-$price         = $args['price'] ?? '';
-$reading_time  = $args['reading_time'] ?? '';
-$show_share    = ! empty( $args['share'] );
-$button_label  = $args['button_label'] ?? '';
-$button_url    = $args['button_url'] ?? '';
-$button_popup  = ! empty( $args['button_popup'] );
+$author_raw       = $args['author'] ?? null;
+$author_photo     = $args['author_photo'] ?? null;
+$author_name      = isset( $args['author_name'] ) ? (string) $args['author_name'] : '';
+$author_position  = isset( $args['author_position'] ) ? (string) $args['author_position'] : '';
+$author_education = isset( $args['author_education'] ) ? (string) $args['author_education'] : '';
+$date             = $args['date'] ?? '';
+$time             = $args['time'] ?? '';
+$place            = $args['place'] ?? '';
+$price            = $args['price'] ?? '';
+$reading_time     = $args['reading_time'] ?? '';
+$show_share       = ! empty( $args['share'] );
+$button_label     = $args['button_label'] ?? '';
+$button_url       = $args['button_url'] ?? '';
+$button_popup     = ! empty( $args['button_popup'] );
 
 $share_url   = $show_share ? get_permalink() : '';
 $share_title = $show_share ? get_the_title() : '';
 $share_telegram = $share_url ? 'https://t.me/share/url?url=' . rawurlencode( $share_url ) . '&text=' . rawurlencode( $share_title ) : '';
 $share_facebook = $share_url ? 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode( $share_url ) : '';
 
-$author = null;
-if ( $author_raw instanceof WP_Post ) {
-	$author = $author_raw;
-} elseif ( is_numeric( $author_raw ) ) {
-	$author = get_post( (int) $author_raw );
-} elseif ( is_array( $author_raw ) && ! empty( $author_raw['ID'] ) ) {
-	$author = get_post( (int) $author_raw['ID'] );
+$has_manual_author = array_key_exists( 'author_photo', $args )
+	|| array_key_exists( 'author_name', $args )
+	|| array_key_exists( 'author_position', $args )
+	|| array_key_exists( 'author_education', $args );
+
+if ( ! $has_manual_author && $author_raw ) {
+	$author = null;
+	if ( $author_raw instanceof WP_Post ) {
+		$author = $author_raw;
+	} elseif ( is_numeric( $author_raw ) ) {
+		$author = get_post( (int) $author_raw );
+	} elseif ( is_array( $author_raw ) && ! empty( $author_raw['ID'] ) ) {
+		$author = get_post( (int) $author_raw['ID'] );
+	}
+
+	if ( $author ) {
+		$author_name      = get_the_title( $author );
+		$author_position  = (string) get_post_meta( $author->ID, '_zdk_position', true );
+		$author_education = (string) get_post_meta( $author->ID, '_zdk_education', true );
+		$author_photo     = get_post_thumbnail_id( $author );
+	}
 }
 
-$author_name      = $author ? get_the_title( $author ) : '';
-$author_position  = $author ? get_post_meta( $author->ID, '_zdk_position', true ) : '';
-$author_education = $author ? get_post_meta( $author->ID, '_zdk_education', true ) : '';
-$author_url       = '';
+$author_url      = '';
+$author_has_text = ( '' !== $author_name || '' !== $author_position || '' !== $author_education );
+$show_author     = $author_has_text || ! empty( $author_photo );
 
 $date_display = '';
 if ( $date ) {
@@ -89,55 +110,49 @@ if ( $price ) {
 }
 ?>
 <section class="event-article">
-	<?php if ( $author_name ) : ?>
+	<?php if ( $show_author ) : ?>
 		<aside class="event-article__author">
-			<?php
-			$author_photo = $author ? get_the_post_thumbnail( $author, 'zadzerkalya-portrait', array( 'alt' => $author_name ) ) : '';
-			?>
-			<?php if ( $author_url ) : ?>
-				<a class="event-article__author-photo" href="<?php echo esc_url( $author_url ); ?>">
-					<?php
-					if ( $author_photo ) {
-						echo $author_photo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					} else {
-						echo '<span class="event-article__author-photo-empty" aria-hidden="true"></span>';
-					}
-					?>
-				</a>
-			<?php else : ?>
-				<div class="event-article__author-photo">
-					<?php
-					if ( $author_photo ) {
-						echo $author_photo; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					} else {
-						echo '<span class="event-article__author-photo-empty" aria-hidden="true"></span>';
-					}
-					?>
-				</div>
+			<?php if ( ! empty( $author_photo ) ) : ?>
+				<?php
+				$author_photo_alt = $author_name ? $author_name : __( 'Автор статті', 'zadzerkalya' );
+				?>
+				<?php if ( $author_url ) : ?>
+					<a class="event-article__author-photo" href="<?php echo esc_url( $author_url ); ?>">
+						<?php zadzerkalya_acf_image( $author_photo, 'zadzerkalya-portrait', array( 'alt' => $author_photo_alt ) ); ?>
+					</a>
+				<?php else : ?>
+					<div class="event-article__author-photo">
+						<?php zadzerkalya_acf_image( $author_photo, 'zadzerkalya-portrait', array( 'alt' => $author_photo_alt ) ); ?>
+					</div>
+				<?php endif; ?>
 			<?php endif; ?>
 
-			<div class="event-article__author-info">
-				<?php if ( $author_url ) : ?>
-					<a class="event-article__author-name" href="<?php echo esc_url( $author_url ); ?>"><?php echo esc_html( $author_name ); ?></a>
-				<?php else : ?>
-					<p class="event-article__author-name"><?php echo esc_html( $author_name ); ?></p>
-				<?php endif; ?>
+			<?php if ( $author_has_text ) : ?>
+				<div class="event-article__author-info">
+					<?php if ( $author_name ) : ?>
+						<?php if ( $author_url ) : ?>
+							<a class="event-article__author-name" href="<?php echo esc_url( $author_url ); ?>"><?php echo esc_html( $author_name ); ?></a>
+						<?php else : ?>
+							<p class="event-article__author-name"><?php echo esc_html( $author_name ); ?></p>
+						<?php endif; ?>
+					<?php endif; ?>
 
-				<div class="event-article__author-text">
-					<span class="event-article__rule" aria-hidden="true"></span>
-					<?php if ( $author_position ) : ?>
-						<p class="event-article__author-position"><?php echo esc_html( $author_position ); ?></p>
-					<?php endif; ?>
-					<?php if ( $author_education ) : ?>
-						<p class="event-article__author-education"><?php echo esc_html( sprintf( __( 'Освіта: %s', 'zadzerkalya' ), $author_education ) ); ?></p>
-					<?php endif; ?>
-					<?php if ( $author_position || $author_education ) : ?>
+					<div class="event-article__author-text">
 						<span class="event-article__rule" aria-hidden="true"></span>
-					<?php endif; ?>
-					<p class="event-article__author-role"><?php esc_html_e( 'автор статті', 'zadzerkalya' ); ?></p>
-					<span class="event-article__rule" aria-hidden="true"></span>
+						<?php if ( $author_position ) : ?>
+							<p class="event-article__author-position"><?php echo esc_html( $author_position ); ?></p>
+						<?php endif; ?>
+						<?php if ( $author_education ) : ?>
+							<p class="event-article__author-education"><?php echo esc_html( sprintf( __( 'Освіта: %s', 'zadzerkalya' ), $author_education ) ); ?></p>
+						<?php endif; ?>
+						<?php if ( $author_position || $author_education ) : ?>
+							<span class="event-article__rule" aria-hidden="true"></span>
+						<?php endif; ?>
+						<p class="event-article__author-role"><?php esc_html_e( 'автор статті', 'zadzerkalya' ); ?></p>
+						<span class="event-article__rule" aria-hidden="true"></span>
+					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 		</aside>
 	<?php endif; ?>
 
@@ -207,9 +222,12 @@ if ( $price ) {
 					'variant'    => 'primary',
 					'type'       => 'button',
 					'attributes' => array(
-						'data-contact-popup-open' => 'true',
-						'aria-haspopup'           => 'dialog',
-						'aria-controls'           => 'contact-popup',
+						'data-contact-popup-open'   => 'true',
+						'data-contact-popup-label'  => $button_label,
+						'data-contact-popup-source' => 'event-next',
+						'data-contact-popup-event'  => get_the_title(),
+						'aria-haspopup'             => 'dialog',
+						'aria-controls'             => 'contact-popup',
 					),
 				)
 			);

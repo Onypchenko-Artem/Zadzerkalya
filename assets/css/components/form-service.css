@@ -198,7 +198,7 @@
 
 .form-service__form .lottie-button--primary {
 	--lottie-btn-w: calc(436 * var(--u));
-	--lottie-btn-h: calc(88 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 }
 
 .form-service__form .lottie-button--primary .lottie-button__label {

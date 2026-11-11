@@ -1,3 +1,7 @@
+.faq-scroll {
+	overflow-anchor: none;
+}
+
 .faq-scroll.is-scroll-driven {
 	position: relative;
 	height: var(--pinned-list-height);

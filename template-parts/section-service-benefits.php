@@ -238,9 +238,10 @@ $render_card = static function ( $card ) {
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => $args['button_label'],
-					'url'     => $button_url,
-					'variant' => $args['button_variant'],
+					'label'      => $args['button_label'],
+					'url'        => $button_url,
+					'variant'    => $args['button_variant'],
+					'attributes' => 'primary' === $args['button_variant'] ? array( 'data-anim-desktop' => 'button-primary-desktop-short' ) : array(),
 				)
 			);
 			?>

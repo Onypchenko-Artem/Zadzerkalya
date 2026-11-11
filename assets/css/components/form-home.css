@@ -155,6 +155,17 @@
 	text-align: center;
 }
 
+@media (min-width: 1280px) {
+	.form-home__form > .lottie-button--primary {
+		--lottie-btn-w: calc(356 * var(--u));
+		--lottie-btn-h: calc(70 * var(--u));
+		width: calc(356 * var(--u));
+		min-width: calc(356 * var(--u));
+		height: calc(70 * var(--u));
+		min-height: calc(70 * var(--u));
+	}
+}
+
 @media (max-width: 1279px) {
 	.form-home {
 		height: 1014px;

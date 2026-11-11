@@ -7,7 +7,7 @@
 	inset: 0;
 	z-index: 80;
 	display: flex;
-	padding: 24px 16px;
+	padding: calc(24 * var(--u)) calc(16 * var(--u));
 	overflow: auto;
 }
 
@@ -23,15 +23,25 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 32px;
-	width: 640px;
+	gap: calc(32 * var(--u));
+	width: calc(640 * var(--u));
 	max-width: 100%;
 	margin: auto;
-	padding: 104px 64px 56px;
+	padding: calc(104 * var(--u)) calc(64 * var(--u)) calc(56 * var(--u));
 	background: var(--color-chewing-gum);
-	border: 1px solid var(--color-night-sky);
-	border-radius: 32px;
+	border: 0;
+	border-radius: calc(32 * var(--u));
 	isolation: isolate;
+}
+
+.contact-popup__dialog::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	border-radius: inherit;
+	box-shadow: inset 0 0 0 1px var(--color-night-sky);
+	pointer-events: none;
 }
 
 .contact-popup__clip {
@@ -56,10 +66,10 @@
 .contact-popup__rabbit {
 	position: absolute;
 	z-index: 2;
-	top: 8px;
-	left: -6px;
-	width: 122px;
-	height: 136px;
+	top: calc(8 * var(--u));
+	left: calc(-6 * var(--u));
+	width: calc(122 * var(--u));
+	height: calc(136 * var(--u));
 	max-width: none;
 	object-fit: contain;
 	pointer-events: none;
@@ -69,8 +79,8 @@
 .contact-popup__close {
 	position: absolute;
 	z-index: 6;
-	top: 24px;
-	right: 24px;
+	top: calc(24 * var(--u));
+	right: calc(24 * var(--u));
 	width: 40px;
 	height: 40px;
 	padding: 0;
@@ -97,7 +107,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 16px;
+	gap: calc(16 * var(--u));
 	width: 100%;
 	margin: 0;
 	text-align: center;
@@ -111,16 +121,16 @@
 
 .contact-popup__heading h2 {
 	font-family: var(--font-family-heading);
-	font-size: 32px;
+	font-size: calc(32 * var(--u));
 	font-weight: 500;
 	line-height: 1.2;
 	color: var(--color-night-sky);
 }
 
 .contact-popup__heading p {
-	max-width: 420px;
+	max-width: calc(420 * var(--u));
 	font-family: var(--text-body-s-family);
-	font-size: 16px;
+	font-size: calc(16 * var(--u));
 	font-weight: 400;
 	line-height: 1.4;
 	color: var(--color-grey-hug);
@@ -130,7 +140,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 24px;
+	gap: calc(24 * var(--u));
 	width: 100%;
 }
 
@@ -145,19 +155,19 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 4px;
+	gap: calc(4 * var(--u));
 }
 
 .contact-popup__field {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 4px;
+	gap: calc(4 * var(--u));
 }
 
 .contact-popup__field label {
 	font-family: var(--text-body-s-family);
-	font-size: 16px;
+	font-size: calc(16 * var(--u));
 	font-weight: 400;
 	line-height: 1.4;
 	color: var(--color-grey-hug);
@@ -165,16 +175,18 @@
 
 .contact-popup__field input {
 	width: 100%;
-	height: 78px;
-	padding: 23px 20px 20px;
+	height: calc(78 * var(--u));
+	padding: calc(23 * var(--u)) calc(20 * var(--u)) calc(20 * var(--u));
 	font-family: var(--text-body-m-family);
-	font-size: 22px;
+	font-size: calc(22 * var(--u));
 	font-weight: 400;
 	line-height: 1.4;
 	color: var(--color-grey-hug);
+	appearance: none;
 	background: var(--color-chewing-gum);
+	background-clip: padding-box;
 	border: 1px solid var(--color-night-sky);
-	border-radius: 20px;
+	border-radius: calc(20 * var(--u));
 	outline: none;
 }
 
@@ -184,7 +196,7 @@
 }
 
 .contact-popup__form .form-consent {
-	font-size: 14px;
+	font-size: calc(14 * var(--u));
 	font-weight: 300;
 	line-height: 1.4;
 }
@@ -195,16 +207,17 @@
 }
 
 .contact-popup__form .lottie-button--primary {
-	--lottie-btn-w: 436px;
-	--lottie-btn-h: 88px;
-	width: 436px;
-	min-width: 436px;
+	--lottie-btn-w: calc(356 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 	max-width: 100%;
 }
 
-.contact-popup__form .lottie-button__label {
+.contact-popup__form .lottie-button--primary .lottie-button__label {
+	padding-inline: calc(16 * var(--u));
 	font-size: calc(18 * var(--u));
-	line-height: 1.35;
+	font-weight: 400;
+	line-height: 1.4;
+	transform: translate(calc(4.5 * var(--u)), calc(0.5 * var(--u)));
 }
 
 .single-event .event-article__aside .lottie-button[data-contact-popup-open] {
@@ -315,14 +328,13 @@ body.contact-popup-open {
 	.contact-popup__form .lottie-button--primary {
 		--lottie-btn-w: 293px;
 		--lottie-btn-h: 66px;
-		width: 293px;
-		min-width: 293px;
 	}
 
-	.contact-popup__form .lottie-button__label {
+	.contact-popup__form .lottie-button--primary .lottie-button__label {
+		padding-inline: 12px;
 		font-size: 14px;
-		font-weight: 400;
 		line-height: 1.35;
+		transform: translateY(2px);
 	}
 }
 
@@ -386,13 +398,13 @@ body.contact-popup-open {
 	}
 
 	.contact-popup__form .lottie-button--primary {
-		--lottie-btn-w: 100%;
-		--lottie-btn-h: 64px;
-		width: 100%;
+		--lottie-btn-w: 240px;
+		--lottie-btn-h: 62px;
 	}
 
-	.contact-popup__form .lottie-button__label {
-		font-size: 14px;
-		white-space: normal;
+	.contact-popup__form .lottie-button--primary .lottie-button__label {
+		padding-inline: 16px;
+		font-size: 13px;
+		line-height: 1.26;
 	}
 }

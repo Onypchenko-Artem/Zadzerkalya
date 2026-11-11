@@ -135,6 +135,27 @@ if ( ! $privacy_url ) {
 		</p>
 	</div>
 </footer>
+<?php
+$popup_src = isset( $_GET['popup_src'] ) ? sanitize_key( wp_unslash( $_GET['popup_src'] ) ) : 'header'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+$popup_labels = array(
+	'header'      => __( 'звʼяжіться з нами', 'zadzerkalya' ),
+	'price-popup' => __( 'забронювати консультацію', 'zadzerkalya' ),
+	'event-next'  => __( "повідомити про наступну\nподію", 'zadzerkalya' ),
+);
+$popup_label = $popup_labels[ $popup_src ] ?? $popup_labels['header'];
+$popup_src   = isset( $popup_labels[ $popup_src ] ) ? $popup_src : 'header';
+
+get_template_part(
+	'template-parts/popup',
+	'contact',
+	array(
+		'source'       => $popup_src,
+		'button_label' => $popup_label,
+		'event_title'  => is_singular( 'event' ) ? get_the_title() : '',
+		'open'         => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	)
+);
+?>
 <?php wp_footer(); ?>
 </body>
 </html>

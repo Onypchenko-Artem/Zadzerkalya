@@ -1797,3 +1797,210 @@ function zadzerkalya_get_default_price_items() {
 		array( 'title' => 'Тренінг «Стоп-незнайомець»', 'price' => '400 грн (груповий формат), від 700 грн (індивідуальний формат)' ),
 	);
 }
+
+/**
+ * Чи є вузол цитатою статті (pre).
+ *
+ * @param DOMNode $node Вузол.
+ * @return bool
+ */
+function zadzerkalya_node_is_pre( $node ) {
+	return $node instanceof DOMElement && 'pre' === strtolower( $node->nodeName );
+}
+
+/**
+ * Порожній вузол між абзацами однієї цитати: пробіл, br або порожній p.
+ *
+ * @param DOMNode $node Вузол.
+ * @return bool
+ */
+function zadzerkalya_node_is_quote_bridge( $node ) {
+	if ( $node instanceof DOMComment ) {
+		return true;
+	}
+
+	if ( $node instanceof DOMText ) {
+		$text = str_replace( "\xC2\xA0", ' ', $node->textContent );
+
+		return '' === trim( $text );
+	}
+
+	if ( ! $node instanceof DOMElement ) {
+		return false;
+	}
+
+	$tag = strtolower( $node->nodeName );
+	if ( 'br' === $tag ) {
+		return true;
+	}
+
+	if ( 'p' !== $tag ) {
+		return false;
+	}
+
+	$text = str_replace( "\xC2\xA0", ' ', $node->textContent );
+	if ( '' !== trim( $text ) ) {
+		return false;
+	}
+
+	foreach ( $node->childNodes as $child ) {
+		if ( $child instanceof DOMText || $child instanceof DOMComment ) {
+			continue;
+		}
+		if ( $child instanceof DOMElement && 'br' === strtolower( $child->nodeName ) ) {
+			continue;
+		}
+
+		return false;
+	}
+
+	return true;
+}
+
+/**
+ * Текст цитати з переносами замість br.
+ *
+ * @param DOMElement $pre Цитата.
+ * @return string
+ */
+function zadzerkalya_pre_plain_text( DOMElement $pre ) {
+	$html = '';
+	foreach ( $pre->childNodes as $child ) {
+		$html .= $pre->ownerDocument->saveHTML( $child );
+	}
+
+	$html = preg_replace( '/<br\s*\/?\s*>/i', "\n", $html );
+	$html = wp_strip_all_tags( (string) $html );
+	$html = html_entity_decode( $html, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	$html = str_replace( "\xC2\xA0", ' ', $html );
+	$html = preg_replace( "/\n{3,}/", "\n\n", $html );
+
+	return trim( (string) $html );
+}
+
+/**
+ * Кілька pre підряд — одна цитата. Абзаци всередині, без окремих смужок.
+ *
+ * @param string $html HTML статті.
+ * @return string
+ */
+function zadzerkalya_merge_consecutive_pres( $html ) {
+	$previous = libxml_use_internal_errors( true );
+	$dom      = new DOMDocument();
+	$loaded   = $dom->loadHTML(
+		'<!DOCTYPE html><html><head><meta charset="utf-8"></head><body><div id="zdk-quote-root">' . $html . '</div></body></html>'
+	);
+	libxml_clear_errors();
+	libxml_use_internal_errors( $previous );
+
+	if ( ! $loaded ) {
+		return $html;
+	}
+
+	$xpath = new DOMXPath( $dom );
+	$root  = $xpath->query( '//*[@id="zdk-quote-root"]' )->item( 0 );
+	if ( ! $root instanceof DOMElement ) {
+		return $html;
+	}
+
+	$nodes = array();
+	foreach ( $root->childNodes as $child ) {
+		$nodes[] = $child;
+	}
+
+	$rebuild = array();
+	$quotes  = array();
+	$bridge  = array();
+	$changed = false;
+
+	$flush = static function () use ( &$rebuild, &$quotes, &$bridge, &$changed, $dom ) {
+		if ( ! $quotes ) {
+			foreach ( $bridge as $node ) {
+				$rebuild[] = $node;
+			}
+			$bridge = array();
+			return;
+		}
+
+		if ( count( $quotes ) > 1 ) {
+			$changed = true;
+			$parts   = array();
+			foreach ( $quotes as $quote ) {
+				$text = zadzerkalya_pre_plain_text( $quote );
+				if ( '' !== $text ) {
+					$parts[] = $text;
+				}
+			}
+
+			$pre = $dom->createElement( 'pre' );
+			if ( $quotes[0]->hasAttribute( 'class' ) ) {
+				$pre->setAttribute( 'class', $quotes[0]->getAttribute( 'class' ) );
+			}
+			$pre->appendChild( $dom->createTextNode( implode( "\n\n", $parts ) ) );
+			$rebuild[] = $pre;
+		} else {
+			$rebuild[] = $quotes[0];
+		}
+
+		foreach ( $bridge as $node ) {
+			$rebuild[] = $node;
+		}
+
+		$quotes = array();
+		$bridge = array();
+	};
+
+	foreach ( $nodes as $node ) {
+		if ( zadzerkalya_node_is_pre( $node ) ) {
+			$quotes[] = $node;
+			$bridge   = array();
+			continue;
+		}
+
+		if ( $quotes && zadzerkalya_node_is_quote_bridge( $node ) ) {
+			$bridge[] = $node;
+			continue;
+		}
+
+		$flush();
+		$rebuild[] = $node;
+	}
+	$flush();
+
+	if ( ! $changed ) {
+		return $html;
+	}
+
+	while ( $root->firstChild ) {
+		$root->removeChild( $root->firstChild );
+	}
+	foreach ( $rebuild as $node ) {
+		$root->appendChild( $node );
+	}
+
+	$content = '';
+	foreach ( $root->childNodes as $child ) {
+		$content .= $dom->saveHTML( $child );
+	}
+
+	return $content;
+}
+
+/**
+ * Збирає абзаци однієї цитати в один pre.
+ *
+ * @param string $content Вміст статті.
+ * @return string
+ */
+function zadzerkalya_merge_article_quote_paragraphs( $content ) {
+	if ( is_admin() || ! is_string( $content ) || false === strpos( $content, '<pre' ) ) {
+		return $content;
+	}
+
+	if ( ! is_singular( array( 'post', 'event' ) ) ) {
+		return $content;
+	}
+
+	return zadzerkalya_merge_consecutive_pres( $content );
+}
+add_filter( 'the_content', 'zadzerkalya_merge_article_quote_paragraphs', 12 );

@@ -133,7 +133,7 @@ $slide_count = count( $prepared_slides );
 											<p><?php echo esc_html( $row['description'] ); ?></p>
 										<?php endif; ?>
 									</div>
-									<img class="service-cta__line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-cta-line.svg' ); ?>" alt="" aria-hidden="true">
+									<img class="service-cta__line" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-cta-line.svg?ver=' . ZADZERKALYA_VERSION ); ?>" alt="" aria-hidden="true">
 								</article>
 							<?php endforeach; ?>
 						</div>

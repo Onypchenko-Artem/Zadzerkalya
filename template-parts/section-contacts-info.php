@@ -16,6 +16,7 @@ $hours   = zadzerkalya_theme_mod( 'hours', 'Пн-Сб | 09:00-19:00' );
 $phones  = zadzerkalya_phones();
 $socials = array(
 	'instagram' => zadzerkalya_social_url( 'instagram' ),
+	'telegram'  => zadzerkalya_social_url( 'telegram' ),
 	'facebook'  => zadzerkalya_social_url( 'facebook' ),
 );
 ?>

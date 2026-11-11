@@ -131,7 +131,7 @@
 
 :is(.single-post, .single-event) .recommend .article-card .lottie-button--primary {
 	--lottie-btn-w: calc(360 * var(--u));
-	--lottie-btn-h: calc(76 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
 	min-width: calc(360 * var(--u));
 	max-width: 100%;
 }

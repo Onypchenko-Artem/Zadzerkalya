@@ -16,8 +16,7 @@
 }
 
 .services-showcase__heading h2,
-.services-showcase__heading p,
-.services-showcase__card h3 {
+.services-showcase__heading p {
 	margin: 0;
 }
 
@@ -94,111 +93,11 @@
 	object-fit: contain;
 }
 
-.services-showcase__illustration-placeholder span,
-.services-showcase__image-placeholder span {
+.services-showcase__illustration-placeholder span {
 	font-family: var(--text-body-s-family);
 	font-size: var(--text-body-s-size);
 }
 
-.services-showcase__card {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0;
-	width: 100%;
-	max-width: calc(576 * var(--u));
-	min-width: 0;
-	height: calc(623 * var(--u));
-	padding: calc(32 * var(--u));
-	background: var(--color-lemon-cream);
-	border: 1px solid var(--color-night-sky);
-	border-radius: calc(20 * var(--u));
-	cursor: pointer;
-	transition: background-color 180ms ease;
-}
-
-.services-showcase__link {
-	align-self: stretch;
-	display: flex;
-	justify-content: center;
-	color: inherit;
-	text-decoration: none;
-}
-
-.services-showcase__link::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	z-index: 1;
-	border-radius: inherit;
-}
-
-.services-showcase__link:hover,
-.services-showcase__link:focus-visible {
-	color: inherit;
-}
-
-.services-showcase__card:hover,
-.services-showcase__card:focus-within {
-	background: var(--color-gentle-blue);
-}
-
-.services-showcase__card:hover .lottie-button--primary .lottie-button__anim path[fill],
-.services-showcase__card:focus-within .lottie-button--primary .lottie-button__anim path[fill] {
-	fill: var(--color-lemon-cream);
-}
-
-.services-showcase__card h3 {
-	align-self: stretch;
-	width: min(100%, calc(512 * var(--u)));
-	/* 3 рядки 28×1.2 = 100.8; +2px, щоб overflow не зрізав хвостики р, у, д */
-	height: calc(100.8 * var(--u) + 2px);
-	max-height: calc(100.8 * var(--u) + 2px);
-	margin-bottom: calc(18.2 * var(--u) - 2px);
-	overflow: hidden;
-	font-family: var(--text-h3-med-family);
-	font-size: calc(28 * var(--u));
-	font-weight: 400;
-	line-height: 1.2;
-}
-
-.services-showcase__line {
-	flex: 0 0 calc(9 * var(--u));
-	width: min(100%, calc(511 * var(--u)));
-	height: calc(9 * var(--u));
-	aspect-ratio: auto;
-	background: url("../../images/service-card-line.svg?v=3") center / 100% 100% no-repeat;
-}
-
-/*.services-showcase__line--reverse {*/
-/*	transform: scaleX(-1);*/
-/*}*/
-
-.services-showcase__image-placeholder img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-radius: inherit;
-}
-
-.services-showcase__image-placeholder {
-	display: flex;
-	flex: 0 0 calc(322 * var(--u));
-	justify-content: center;
-	align-items: center;
-	overflow: hidden;
-	width: min(100%, calc(506 * var(--u)));
-	height: calc(322 * var(--u));
-	margin: calc(8 * var(--u)) 0;
-	color: var(--color-grey-hug);
-	background:
-		linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(210, 233, 249, 0.8));
-	border-radius: calc(200 * var(--u));
-}
-
-.services-showcase__card .lottie-button,
 .services-showcase__all .lottie-button {
 	--lottie-btn-w: calc(356 * var(--u));
 	--lottie-btn-h: calc(70 * var(--u));
@@ -207,13 +106,6 @@
 	max-width: 100%;
 }
 
-.services-showcase__card .lottie-button {
-	position: relative;
-	z-index: 2;
-	margin-top: calc(12 * var(--u));
-}
-
-.services-showcase__card .lottie-button--primary .lottie-button__label,
 .services-showcase__all .lottie-button--primary .lottie-button__label {
 	padding-inline: calc(16 * var(--u));
 	font-size: calc(18 * var(--u));
@@ -327,54 +219,11 @@
 		background: url("../../images/service-card-line.svg?v=3") center / 100% 100% no-repeat;
 	}
 
-	.services-showcase__card {
+	.services-showcase__cards > .service-card {
 		flex: 0 0 calc((100% - 16px) / 2);
 		width: calc((100% - 16px) / 2);
-		max-width: none;
-		height: 507px;
-		padding: 26px;
-		gap: 8px;
-		border-radius: 16px;
 	}
 
-	.services-showcase__link {
-		width: 100%;
-		margin-bottom: 12px;
-	}
-
-	.services-showcase__card h3 {
-		width: 100%;
-		height: calc(24px * 1.2 * 4 + 4px);
-		max-height: calc(24px * 1.2 * 4 + 4px);
-		margin-bottom: 0;
-		overflow: hidden;
-		font-size: 24px;
-		font-weight: 500;
-		line-height: 1.2;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 4;
-	}
-
-	.services-showcase__line,
-	.services-showcase__line--reverse {
-		flex: 0 0 10px;
-		width: 100%;
-		height: 10px;
-		aspect-ratio: auto;
-		background-image: url("../../images/services-showcase-line-tablet.svg");
-		background-size: 100% 100%;
-	}
-
-	.services-showcase__image-placeholder {
-		flex: 0 0 189px;
-		width: 100%;
-		height: 189px;
-		margin: 0;
-		border-radius: 200px;
-	}
-
-	.services-showcase__card .lottie-button,
 	.services-showcase__all .lottie-button {
 		--lottie-btn-w: 293px;
 		--lottie-btn-h: 66px;
@@ -383,11 +232,6 @@
 		max-width: 100%;
 	}
 
-	.services-showcase__card .lottie-button {
-		margin-top: 16px;
-	}
-
-	.services-showcase__card .lottie-button--primary .lottie-button__label,
 	.services-showcase__all .lottie-button--primary .lottie-button__label {
 		padding-inline: 18px;
 		font-size: 14px;
@@ -489,80 +333,16 @@
 		text-align: left;
 	}
 
-	.services-showcase__card {
+	.services-showcase .service-card {
 		grid-column: 1 / -1;
-		align-items: center;
-		justify-content: center;
-		gap: 8px;
-		width: 100%;
-		max-width: none;
-		height: auto;
-		padding: 20px;
-		border-radius: 16px;
 	}
 
-	.services-showcase__link {
-		align-self: stretch;
-		width: 100%;
-		margin: 0 0 4px;
-	}
-
-	.services-showcase__card h3 {
-		width: 100%;
-		height: auto;
-		max-height: calc(18px * 1.22 * 5 + 4px);
-		margin: 0;
-		overflow: hidden;
-		font-family: var(--font-family-body);
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 1.22;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 5;
-	}
-
-	.services-showcase__line,
-	.services-showcase__line--reverse {
-		align-self: stretch;
-		flex: 0 0 10px;
-		width: 100%;
-		max-width: none;
-		height: 10px;
-		aspect-ratio: auto;
-		background-repeat: no-repeat;
-		background-position: center top 1px;
-		background-size: 100% 5px;
-	}
-
-	.services-showcase__image-placeholder {
-		align-self: stretch;
-		flex: 0 0 182px;
-		width: 100%;
-		height: 182px;
-		min-height: 0;
-		margin: 0;
-		border-radius: 200px;
-	}
-
-	.services-showcase__card .lottie-button {
-		align-self: center;
-		margin-top: 4px;
-	}
-
-	.services-showcase__card .lottie-button--primary,
 	.services-showcase__all .lottie-button--primary {
 		width: min(var(--lottie-btn-w), 100%);
 		min-width: 0;
 		max-width: 100%;
 	}
 
-	.services-showcase__card .lottie-button--primary {
-		--lottie-btn-w: 255px;
-		--lottie-btn-h: 60px;
-	}
-
-	.services-showcase__card .lottie-button--primary .lottie-button__label,
 	.services-showcase__all .lottie-button--primary .lottie-button__label {
 		padding-inline: 18px;
 		font-family: var(--font-family-body);

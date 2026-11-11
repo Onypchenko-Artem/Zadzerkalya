@@ -3,32 +3,89 @@
     "title": "Новина: Стаття",
     "fields": [
         {
-            "key": "field_zadzerkalya_post_author",
-            "label": "Автор",
-            "name": "event_author",
+            "key": "field_zadzerkalya_post_author_photo",
+            "label": "Фото автора",
+            "name": "post_author_photo",
             "aria-label": "",
-            "type": "post_object",
-            "instructions": "Спеціаліст, який відображається ліворуч від статті.",
+            "type": "image",
+            "instructions": "Необовʼязкове. Якщо заповнено лише фото — на сторінці виводиться тільки воно.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "25",
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "specialist"
-            ],
-            "post_status": [
-                "publish"
-            ],
-            "taxonomy": "",
-            "return_format": "object",
-            "multiple": 0,
-            "allow_null": 1,
-            "bidirectional": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "return_format": "id",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp",
+            "preview_size": "medium",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_zadzerkalya_post_author_name",
+            "label": "Імʼя автора",
+            "name": "post_author_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Необовʼязкове.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_post_author_position",
+            "label": "Посада",
+            "name": "post_author_position",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Необовʼязкове.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_post_author_education",
+            "label": "Освіта",
+            "name": "post_author_education",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Необовʼязкове.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_zadzerkalya_post_reading_time",
@@ -74,5 +131,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790680001
+    "modified": 1791736800
 }

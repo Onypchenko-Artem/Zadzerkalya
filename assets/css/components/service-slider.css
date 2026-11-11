@@ -75,8 +75,8 @@
 }
 
 .service-slider__track {
-	--service-slide: min(calc(398 * var(--u)), calc(100cqw - 48px));
-	--service-slide-gap: calc(16 * var(--u));
+	--service-slide: min(calc(576 * var(--u)), 100cqw);
+	--service-slide-gap: calc(48 * var(--u));
 	display: flex;
 	align-items: stretch;
 	width: max-content;
@@ -96,75 +96,7 @@
 }
 
 .service-slider .service-card {
-	flex: 1 1 auto;
-	justify-content: flex-start;
-	gap: calc(16 * var(--u));
-	width: 100%;
 	max-width: none;
-	height: auto;
-	padding: calc(20 * var(--u));
-	border-radius: calc(14 * var(--u));
-}
-
-.service-slider .service-card > .lottie-button {
-	margin-top: auto;
-}
-
-.service-slider .service-card__head,
-.service-slider .service-card__title {
-	width: 100%;
-	height: calc(115 * var(--u));
-	max-height: calc(115 * var(--u));
-}
-
-.service-slider .service-card__title {
-	font-size: calc(22 * var(--u));
-	font-weight: 500;
-	line-height: 1.1;
-	-webkit-line-clamp: 4;
-}
-
-.service-slider .service-card__media {
-	gap: calc(6 * var(--u));
-	width: 100%;
-}
-
-.service-slider .service-card__line {
-	flex-basis: auto;
-	height: auto;
-}
-
-.service-slider .service-card__photo {
-	width: calc(356 * var(--u));
-	height: calc(227 * var(--u));
-	border-radius: calc(140 * var(--u));
-}
-
-.service-slider .service-card .lottie-button--primary {
-	--lottie-btn-w: calc(293 * var(--u));
-	--lottie-btn-h: calc(66 * var(--u));
-	width: min(100%, var(--lottie-btn-w));
-}
-
-.service-slider .lottie-button__anim {
-	inset: calc(-4 * var(--u));
-}
-
-.service-slider .lottie-button__label {
-	width: 100%;
-	font-size: calc(18 * var(--u));
-	font-weight: 400;
-	line-height: 1.35;
-	text-align: center;
-}
-
-.single-post .service-slider .lottie-button__label {
-	font-size: 14px;
-}
-
-.service-slider .lottie-button--primary .lottie-button__label {
-	padding-inline: calc(12 * var(--u));
-	white-space: nowrap;
 }
 
 .event-article__body .service-slider {
@@ -184,21 +116,6 @@
 	line-height: 1.2;
 }
 
-.event-article__body .service-slider .service-card__title {
-	margin: 0;
-	font-size: calc(22 * var(--u));
-	line-height: 1.1;
-}
-
-.event-article__body .service-slider img {
-	width: 100%;
-	height: 100%;
-	aspect-ratio: auto;
-	margin: 0;
-	border-radius: 0;
-	object-fit: cover;
-}
-
 @media (max-width: 1279px) {
 	.service-slider {
 		gap: 28px;
@@ -211,7 +128,7 @@
 	}
 
 	.service-slider__track {
-		--service-slide: min(398px, calc(100cqw - 48px));
+		--service-slide: calc((100cqw - 16px) / 2);
 		--service-slide-gap: 16px;
 	}
 
@@ -224,74 +141,8 @@
 		gap: 32px;
 	}
 
-	.service-slider .service-card {
-		gap: 16px;
-		height: auto;
-		min-height: 460px;
-		padding: 20px;
-		border-radius: 14px;
-	}
-
-	.service-slider .service-card__head,
-	.service-slider .service-card__title {
-		height: auto;
-		max-height: none;
-		min-height: 96px;
-	}
-
-	.service-slider .service-card__title {
-		font-size: 22px;
-		line-height: 1.1;
-	}
-
-	.service-slider .service-card__media {
-		gap: 10px;
-	}
-
-	.service-slider .service-card__line {
-		flex-basis: auto;
-		height: auto;
-	}
-
-	.service-slider .service-card__photo {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 356 / 227;
-		border-radius: 140px;
-	}
-
-	.service-slider .service-card .lottie-button--primary {
-		--lottie-btn-w: 260px;
-		--lottie-btn-h: 58px;
-	}
-
-	.service-slider .lottie-button__anim {
-		inset: -4px;
-	}
-
-	.service-slider .lottie-button__label {
-		font-size: 14px;
-	}
-
-	.service-slider .lottie-button--primary .lottie-button__label {
-		padding-inline: 12px;
-		white-space: normal;
-	}
-
 	.event-article__body h2.service-slider__title {
 		font-size: 28px;
-	}
-
-	.event-article__body .service-slider .service-card__title {
-		font-size: 22px;
-	}
-}
-
-@media (max-width: 1279px) and (min-width: 768px) {
-	.service-slider .service-card__line {
-		height: 6px;
-		aspect-ratio: auto;
-		background-image: url("../../images/service-slider-line-tablet.svg");
 	}
 }
 
@@ -307,6 +158,11 @@
 		gap: 16px;
 	}
 
+	.service-slider__track {
+		--service-slide: 100cqw;
+		--service-slide-gap: 16px;
+	}
+
 	.service-slider__title,
 	.event-article__body h2.service-slider__title {
 		font-size: 24px;
@@ -314,31 +170,6 @@
 
 	.service-slider__controls {
 		gap: 24px;
-	}
-
-	.service-slider .service-card {
-		min-height: 0;
-		padding: 16px;
-	}
-
-	.service-slider .service-card__head,
-	.service-slider .service-card__title {
-		min-height: 0;
-	}
-
-	.service-slider .service-card__title,
-	.event-article__body .service-slider .service-card__title {
-		font-size: 20px;
-	}
-
-	.service-slider .service-card__photo {
-		border-radius: 100px;
-	}
-
-	.service-slider .service-card .lottie-button--primary {
-		--lottie-btn-w: 100%;
-		--lottie-btn-h: 58px;
-		width: 100%;
 	}
 
 	:is(.single-post, .single-event) .event-article__body .service-slider {
@@ -370,56 +201,5 @@
 		flex-basis: 33px;
 		width: 33px;
 		height: 22px;
-	}
-
-	:is(.single-post, .single-event) .service-slider__track {
-		--service-slide: 304px;
-		--service-slide-gap: 8px;
-	}
-
-	:is(.single-post, .single-event) .service-slider .service-card {
-		gap: 10px;
-		min-height: 386px;
-		padding: 14px 16px;
-		border-radius: 12px;
-	}
-
-	:is(.single-post, .single-event) .service-slider .service-card__head,
-	:is(.single-post, .single-event) .service-slider .service-card__title,
-	:is(.single-post, .single-event) .event-article__body .service-slider .service-card__title {
-		max-height: 102px;
-		font-size: 18px;
-		font-weight: 500;
-		line-height: 1.22;
-	}
-
-	:is(.single-post, .single-event) .service-slider .service-card__media {
-		gap: 8px;
-	}
-
-	:is(.single-post, .single-event) .service-slider .service-card__photo {
-		aspect-ratio: 272 / 160;
-		border-radius: 174px;
-	}
-
-	:is(.single-post, .single-event) .service-slider .service-card .lottie-button--primary {
-		--lottie-btn-w: 223px;
-		--lottie-btn-h: 43px;
-		width: 223px;
-		min-width: 0;
-	}
-
-	.single-event .service-slider .lottie-button__label {
-		font-size: 10px;
-		line-height: 1.26;
-	}
-
-	.single-post .service-slider .lottie-button__label {
-		font-size: 14px;
-		line-height: 1.26;
-	}
-
-	:is(.single-post, .single-event) .service-slider .lottie-button--primary .lottie-button__label {
-		padding-inline: 8px;
 	}
 }

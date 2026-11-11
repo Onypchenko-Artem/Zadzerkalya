@@ -6,8 +6,8 @@
 	z-index: 35;
 	display: flex;
 	flex-direction: column;
-	height: calc(1046 * var(--u));
-	max-height: 100vh;
+	height: calc(946 * var(--u));
+	max-height: calc(100vh - 100 * var(--u));
 	padding-top: calc(156.525 * var(--u));
 	background: var(--color-lemon-cream);
 	opacity: 0;
@@ -22,9 +22,18 @@
 	pointer-events: auto;
 }
 
-.services-mega::before,
-.services-mega::after {
+.services-mega::before {
 	content: none;
+}
+
+.services-mega::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	background: color-mix(in srgb, var(--color-night-sky) 50%, transparent);
 }
 
 .services-mega__close {
@@ -103,9 +112,13 @@ body.services-mega-open {
 .services-mega__visual {
 	grid-column: 7;
 	grid-row: 1;
-	align-self: start;
+	align-self: stretch;
+	justify-self: end;
 	position: relative;
-	width: 100%;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: calc(693 * var(--u));
 	margin-top: calc(55 * var(--u));
 	aspect-ratio: 911 / 693;
 	border-radius: calc(300 * var(--u));
@@ -143,7 +156,7 @@ body.services-mega-open {
 
 .services-mega__service {
 	font-family: var(--font-family-body);
-	font-weight: 400;
+	font-weight: 300;
 	font-size: calc(26 * var(--u));
 	line-height: 1.35;
 }

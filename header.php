@@ -14,7 +14,6 @@ $phones     = zadzerkalya_phones();
 $instagram  = zadzerkalya_social_url( 'instagram' );
 $telegram   = zadzerkalya_social_url( 'telegram' );
 $facebook   = zadzerkalya_social_url( 'facebook' );
-$contacts   = zadzerkalya_get_page_url( 'contacts' );
 $nav_socials = array(
 	'instagram' => $instagram,
 	'telegram'  => $telegram,
@@ -93,10 +92,17 @@ $nav_socials = array(
 				<?php
 				zadzerkalya_button(
 					array(
-						'label'   => __( 'звʼяжіться з нами', 'zadzerkalya' ),
-						'url'     => $contacts,
-						'variant' => 'secondary',
-						'anim'    => 'button-secondary-mobile',
+						'label'      => __( 'звʼяжіться з нами', 'zadzerkalya' ),
+						'variant'    => 'secondary',
+						'anim'       => 'button-secondary-mobile',
+						'type'       => 'button',
+						'attributes' => array(
+							'data-contact-popup-open'   => 'true',
+							'data-contact-popup-label'  => __( 'звʼяжіться з нами', 'zadzerkalya' ),
+							'data-contact-popup-source' => 'header',
+							'aria-haspopup'             => 'dialog',
+							'aria-controls'             => 'contact-popup',
+						),
 					)
 				);
 				?>
@@ -149,10 +155,17 @@ $nav_socials = array(
 				<?php
 				zadzerkalya_button(
 					array(
-						'label'   => __( 'звʼяжіться з нами', 'zadzerkalya' ),
-						'url'     => $contacts,
-						'variant' => 'secondary',
-						'anim'    => 'button-secondary-mobile',
+						'label'      => __( 'звʼяжіться з нами', 'zadzerkalya' ),
+						'variant'    => 'secondary',
+						'anim'       => 'button-secondary-mobile',
+						'type'       => 'button',
+						'attributes' => array(
+							'data-contact-popup-open'   => 'true',
+							'data-contact-popup-label'  => __( 'звʼяжіться з нами', 'zadzerkalya' ),
+							'data-contact-popup-source' => 'header',
+							'aria-haspopup'             => 'dialog',
+							'aria-controls'             => 'contact-popup',
+						),
 					)
 				);
 				?>

@@ -223,8 +223,11 @@
 
 .service-cta__line {
 	display: block;
+	flex: none;
 	width: 100%;
+	max-width: none;
 	height: auto;
+	aspect-ratio: 915 / 16;
 }
 
 .service-cta__controls {

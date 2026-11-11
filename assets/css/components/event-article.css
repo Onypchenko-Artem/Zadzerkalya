@@ -129,6 +129,10 @@
 	margin-top: var(--event-gap-copy);
 }
 
+.event-article__body > :is(pre, blockquote, p:has(> code:only-child)) + p:not(:has(img)) {
+	margin-top: var(--event-gap-section);
+}
+
 .event-article__body > :is(h2, h3) + p:not(:has(img)) {
 	margin-top: var(--event-gap-heading-text);
 }
@@ -154,6 +158,35 @@
 	letter-spacing: 0;
 	text-transform: none;
 	color: var(--color-night-sky);
+}
+
+.single-post .event-article__body h3 {
+	align-self: stretch;
+	flex: none;
+	width: 100%;
+	font-family: var(--font-family-body);
+	font-size: calc(22 * var(--u));
+	font-weight: 500;
+	font-style: normal;
+	line-height: 1.1;
+	letter-spacing: 0;
+	color: var(--color-night-sky);
+}
+
+.single-post .event-article__body > * + h3 {
+	margin-top: calc(40 * var(--u));
+}
+
+.single-post .event-article__body > h3 + p:not(:has(img)) {
+	margin-top: calc(16 * var(--u));
+}
+
+.single-post .event-article__body > :not(blockquote) + ul {
+	margin-top: calc(40 * var(--u));
+}
+
+.single-post .event-article__body > blockquote:has(+ ul) {
+	margin-top: calc(40 * var(--u));
 }
 
 .event-article__body p {
@@ -218,7 +251,6 @@
 
 .event-article__body blockquote,
 .event-article__excerpt,
-.event-article__body pre,
 .event-article__body p:has(> code:only-child) {
 	display: flex;
 	flex-direction: column;
@@ -228,6 +260,16 @@
 	padding: 0;
 	border: 0;
 	background: none;
+}
+
+.event-article__body pre {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	overflow: visible;
 }
 
 .event-article__body blockquote::before,
@@ -248,6 +290,14 @@
 	background: url("../../images/event-excerpt-line.svg") left center / 100% 100% no-repeat;
 }
 
+.event-article__body pre::before {
+	margin-bottom: calc(24 * var(--u));
+}
+
+.event-article__body pre::after {
+	margin-top: calc(24 * var(--u));
+}
+
 .event-article__body blockquote p,
 .event-article__excerpt p,
 .event-article__body pre,
@@ -263,11 +313,39 @@
 	color: var(--color-night-sky);
 }
 
+.event-article__body pre,
+.event-article__body pre code {
+	font-size: calc(28 * var(--u));
+	white-space: pre-line;
+}
+
 .event-article__body blockquote p,
 .event-article__excerpt p,
 .event-article__body pre code,
 .event-article__body p:has(> code:only-child) code {
 	margin: 0;
+}
+
+/* Кілька pre підряд = одна цитата з абзацами, без зайвих смужок */
+.event-article__body > pre + pre,
+.event-article__body > p:has(> code:only-child) + p:has(> code:only-child),
+.event-article__body > pre + p:has(> code:only-child),
+.event-article__body > p:has(> code:only-child) + pre {
+	margin-top: calc(24 * var(--u));
+}
+
+.event-article__body > pre:has(+ pre)::after,
+.event-article__body > pre:has(+ p > code:only-child)::after,
+.event-article__body > p:has(> code:only-child):has(+ pre)::after,
+.event-article__body > p:has(> code:only-child):has(+ p > code:only-child)::after {
+	display: none;
+}
+
+.event-article__body > pre + pre::before,
+.event-article__body > p:has(> code:only-child) + pre::before,
+.event-article__body > pre + p:has(> code:only-child)::before,
+.event-article__body > p:has(> code:only-child) + p:has(> code:only-child)::before {
+	display: none;
 }
 
 .event-article__body > blockquote:has(+ ul) {
@@ -329,9 +407,10 @@
 }
 
 .single-event .event-article__aside {
-	flex: 0 0 370px;
-	width: 370px;
-	max-width: 370px;
+	flex: 0 0 var(--event-col-aside);
+	width: var(--event-col-aside);
+	min-width: var(--event-col-aside);
+	max-width: var(--event-col-aside);
 }
 
 .event-article__meta {
@@ -465,9 +544,9 @@
 }
 
 .single-event .event-article__aside .lottie-button--primary {
-	width: 370px;
-	min-width: 370px;
-	max-width: 370px;
+	width: var(--event-col-aside);
+	min-width: var(--event-col-aside);
+	max-width: var(--event-col-aside);
 	margin-left: 0;
 }
 
@@ -595,6 +674,25 @@
 		line-height: 1.2;
 	}
 
+	.single-post .event-article__body h3 {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 1.1;
+	}
+
+	.single-post .event-article__body > * + h3 {
+		margin-top: 40px;
+	}
+
+	.single-post .event-article__body > h3 + p:not(:has(img)) {
+		margin-top: 16px;
+	}
+
+	.single-post .event-article__body > :not(blockquote) + ul,
+	.single-post .event-article__body > blockquote:has(+ ul) {
+		margin-top: 40px;
+	}
+
 	.event-article__body p,
 	.event-article__body li {
 		font-size: 20px;
@@ -627,9 +725,23 @@
 
 	.event-article__body blockquote,
 	.event-article__excerpt,
-	.event-article__body pre,
 	.event-article__body p:has(> code:only-child) {
 		gap: 24px;
+	}
+
+	.event-article__body pre::before {
+		margin-bottom: 24px;
+	}
+
+	.event-article__body pre::after {
+		margin-top: 24px;
+	}
+
+	.event-article__body > pre + pre,
+	.event-article__body > p:has(> code:only-child) + p:has(> code:only-child),
+	.event-article__body > pre + p:has(> code:only-child),
+	.event-article__body > p:has(> code:only-child) + pre {
+		margin-top: 24px;
 	}
 
 	.event-article__body blockquote::before,
@@ -813,9 +925,23 @@
 
 	.event-article__body blockquote,
 	.event-article__excerpt,
-	.event-article__body pre,
 	.event-article__body p:has(> code:only-child) {
 		gap: 16px;
+	}
+
+	.event-article__body pre::before {
+		margin-bottom: 16px;
+	}
+
+	.event-article__body pre::after {
+		margin-top: 16px;
+	}
+
+	.event-article__body > pre + pre,
+	.event-article__body > p:has(> code:only-child) + p:has(> code:only-child),
+	.event-article__body > pre + p:has(> code:only-child),
+	.event-article__body > p:has(> code:only-child) + pre {
+		margin-top: 16px;
 	}
 
 	.event-article__body > blockquote:has(+ ul) {
@@ -942,6 +1068,12 @@
 		line-height: 1.22;
 	}
 
+	.single-post .event-article__body h3 {
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.1;
+	}
+
 	:is(.single-post, .single-event) .event-article__body p,
 	:is(.single-post, .single-event) .event-article__body li {
 		font-size: 15px;
@@ -970,9 +1102,23 @@
 
 	:is(.single-post, .single-event) .event-article__body blockquote,
 	:is(.single-post, .single-event) .event-article__excerpt,
-	:is(.single-post, .single-event) .event-article__body pre,
 	:is(.single-post, .single-event) .event-article__body p:has(> code:only-child) {
 		gap: 24px;
+	}
+
+	:is(.single-post, .single-event) .event-article__body pre::before {
+		margin-bottom: 24px;
+	}
+
+	:is(.single-post, .single-event) .event-article__body pre::after {
+		margin-top: 24px;
+	}
+
+	:is(.single-post, .single-event) .event-article__body > pre + pre,
+	:is(.single-post, .single-event) .event-article__body > p:has(> code:only-child) + p:has(> code:only-child),
+	:is(.single-post, .single-event) .event-article__body > pre + p:has(> code:only-child),
+	:is(.single-post, .single-event) .event-article__body > p:has(> code:only-child) + pre {
+		margin-top: 24px;
 	}
 
 	:is(.single-post, .single-event) .event-article__body blockquote::before,

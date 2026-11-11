@@ -29,7 +29,7 @@ $open = ! empty( $args['open'] );
 
 	<div class="contact-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="contact-popup-title">
 		<div class="contact-popup__clip" aria-hidden="true">
-			<img class="contact-popup__bg" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/Popup-background.jpg' ); ?>" alt="">
+			<img class="contact-popup__bg" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/Popup-background.jpg?ver=' . ZADZERKALYA_VERSION ); ?>" alt="">
 		</div>
 
 		<img class="contact-popup__rabbit" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/running rabbit.png' ); ?>" alt="" aria-hidden="true">
@@ -79,11 +79,12 @@ $open = ! empty( $args['open'] );
 			<?php
 			zadzerkalya_button(
 				array(
-					'label'   => $args['button_label'],
-					'variant' => 'primary',
-					'type'    => 'submit',
-					'name'    => 'zadzerkalya_contact_submit',
-					'value'   => '1',
+					'label'      => $args['button_label'],
+					'variant'    => 'primary',
+					'type'       => 'submit',
+					'name'       => 'zadzerkalya_contact_submit',
+					'value'      => '1',
+					'attributes' => array( 'data-anim-desktop' => 'button-primary-desktop-short' ),
 				)
 			);
 			?>

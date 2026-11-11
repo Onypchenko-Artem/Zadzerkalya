@@ -98,16 +98,6 @@ get_header();
 				'source'       => 'events',
 			)
 		);
-		if ( $event_passed ) {
-			get_template_part(
-				'template-parts/popup',
-				'contact',
-				array(
-					'event_title' => get_the_title(),
-					'open'        => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				)
-			);
-		}
 	endwhile;
 	?>
 </main>
