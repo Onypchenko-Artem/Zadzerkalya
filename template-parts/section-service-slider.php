@@ -31,7 +31,8 @@ if ( ! $query instanceof WP_Query || ! $query->have_posts() ) {
 	</div>
 
 	<div class="service-slider__viewport">
-		<div class="service-slider__track">
+		<div class="service-slider__mover">
+			<div class="service-slider__track">
 			<?php
 			while ( $query->have_posts() ) :
 				$query->the_post();
@@ -51,6 +52,7 @@ if ( ! $query instanceof WP_Query || ! $query->have_posts() ) {
 				<?php
 			endwhile;
 			?>
+			</div>
 		</div>
 	</div>
 </section>

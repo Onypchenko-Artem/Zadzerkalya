@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	width: calc(572 * var(--u));
 	height: auto;
-	padding: calc(32 * var(--u)) calc(32 * var(--u)) calc(24 * var(--u));
+	padding: calc(28 * var(--u)) calc(28 * var(--u)) calc(24 * var(--u));
 	color: var(--color-night-sky);
 	background: #fff;
 	border: 1px solid var(--color-night-sky);
@@ -63,9 +63,9 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: calc(20 * var(--u));
+	gap: calc(10 * var(--u));
 	width: 100%;
-	height: calc(390 * var(--u));
+	height: auto;
 	overflow: hidden;
 	background: var(--color-lemon-cream);
 	border-radius: calc(17.69 * var(--u));
@@ -88,9 +88,9 @@
 
 .article-card__photo {
 	display: block;
-	flex: 0 0 calc(325 * var(--u));
+	flex: 0 0 calc(270 * var(--u));
 	width: 100%;
-	height: calc(325 * var(--u));
+	height: calc(270 * var(--u));
 	overflow: hidden;
 	border-radius: 50%;
 }
@@ -130,14 +130,108 @@
 	height: calc(12 * var(--u));
 }
 
-@media (max-width: 1279px) {
+.article-card .lottie-button--primary {
+	--lottie-btn-w: calc(360 * var(--u));
+	--lottie-btn-h: calc(70 * var(--u));
+	min-width: calc(360 * var(--u));
+	max-width: 100%;
+}
+
+.article-card .lottie-button--primary .lottie-button__label {
+	padding-inline: calc(24 * var(--u));
+	font-size: calc(18 * var(--u));
+}
+
+@media (max-width: 1279px) and (min-width: 768px) {
 	.article-card {
-		flex-basis: min(440px, calc(50vw - 40px));
+		flex-basis: 353px;
 		gap: 24px;
-		width: min(440px, calc(50vw - 40px));
+		width: 353px;
 		height: auto;
-		padding: 24px;
-		border-radius: 18px;
+		padding: 26px 26px 24px;
+		border-radius: 16px;
+	}
+
+	.article-card__content {
+		gap: 24px;
+	}
+
+	.article-card__main {
+		gap: 24px;
+	}
+
+	.article-card__title {
+		height: auto;
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 1.2;
+		-webkit-line-clamp: 4;
+	}
+
+	.article-card__media {
+		gap: 20px;
+		height: auto;
+		border-radius: 17.69px;
+	}
+
+	.article-card__line {
+		flex-basis: 12px;
+		height: 12px;
+		aspect-ratio: auto;
+	}
+
+	.article-card__line--reverse {
+		flex-basis: 13px;
+		height: 13px;
+		aspect-ratio: auto;
+	}
+
+	.article-card__photo {
+		flex-basis: 184px;
+		width: 100%;
+		height: 184px;
+		aspect-ratio: auto;
+		border-radius: 50%;
+	}
+
+	.article-card__info {
+		gap: 12px;
+		height: 20px;
+		font-size: 14px;
+		line-height: 1.4;
+	}
+
+	.article-card__clock {
+		flex-basis: 12px;
+		width: 12px;
+		height: 12px;
+	}
+
+	.article-card .lottie-button--primary {
+		--lottie-btn-w: 293px;
+		--lottie-btn-h: 66px;
+		min-width: 293px;
+		max-width: 100%;
+	}
+
+	.article-card .lottie-button__label {
+		font-size: 14px;
+		line-height: 1.35;
+	}
+
+	.article-card .lottie-button--primary .lottie-button__label {
+		padding-inline: 18px;
+	}
+}
+
+@media (max-width: 767px) {
+	.article-card {
+		flex-basis: calc(100vw - 32px);
+		gap: 24px;
+		width: calc(100vw - 32px);
+		height: auto;
+		padding: 20px 20px 24px;
+		border-radius: 16px;
 	}
 
 	.article-card__content {
@@ -151,63 +245,38 @@
 	.article-card__title {
 		height: auto;
 		min-height: 0;
-		font-size: var(--text-h3-med-size);
+		font-size: 22px;
 		-webkit-line-clamp: 3;
 	}
 
 	.article-card__media {
-		gap: 14px;
+		gap: 12px;
 		height: auto;
 		border-radius: 14px;
 	}
 
 	.article-card__line,
 	.article-card__line--reverse {
-		align-self: stretch;
-		flex-basis: 12px;
-		width: 100%;
-		height: 12px;
-	}
-
-	.article-card__line--reverse {
-		flex-basis: 13px;
-		height: 13px;
+		flex-basis: auto;
+		height: auto;
+		aspect-ratio: 508 / 17;
 	}
 
 	.article-card__photo {
 		flex-basis: auto;
 		height: auto;
-		aspect-ratio: 504 / 325;
+		aspect-ratio: 504 / 280;
 		border-radius: 50%;
 	}
 
 	.article-card__info {
-		gap: 16px;
 		height: auto;
 		font-size: var(--text-body-xs-size);
 	}
 
-	.article-card__time {
-		gap: 6px;
-	}
-
-	.article-card__clock {
-		flex-basis: 12px;
-		width: 12px;
-		height: 12px;
-	}
-}
-
-@media (max-width: 767px) {
-	.article-card {
-		flex-basis: calc(100vw - 32px);
-		gap: 24px;
-		width: calc(100vw - 32px);
-		padding: 20px 20px 24px;
-		border-radius: 16px;
-	}
-
-	.article-card__media {
-		gap: 12px;
+	.article-card .lottie-button--primary {
+		--lottie-btn-w: 240px;
+		--lottie-btn-h: 62px;
+		min-width: 240px;
 	}
 }

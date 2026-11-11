@@ -10,24 +10,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Повертає на сторінку форми. wp_get_referer() порожній, коли форма відправлена на ту саму адресу.
+ * Повертає на ту саму сторінку й прокручує до форми, яку щойно відправили.
  *
  * @param string $status sent|error|invalid.
+ * @param array  $args   Query-аргументи редіректу. contact_form — id форми.
  */
 function zadzerkalya_contact_redirect( $status, $args = array() ) {
-	$target = wp_get_referer();
-
-	if ( ! $target ) {
-		$raw    = wp_get_raw_referer();
-		$target = $raw ? wp_validate_redirect( $raw, false ) : false;
-	}
-
-	if ( ! $target ) {
-		$target = home_url( '/' );
+	$anchor = '';
+	if ( ! empty( $args['contact_form'] ) ) {
+		$anchor = sanitize_html_class( $args['contact_form'] );
 	}
 
 	$args['contact'] = $status;
-	wp_safe_redirect( add_query_arg( $args, $target ) );
+	$target          = remove_query_arg( array( 'contact', 'contact_form', 'contact_popup', 'popup_src' ) );
+	$target          = add_query_arg( $args, $target );
+
+	if ( $anchor ) {
+		$target .= '#' . $anchor;
+	}
+
+	wp_safe_redirect( $target );
 	exit;
 }
 
@@ -41,7 +43,18 @@ function zadzerkalya_handle_contact_form() {
 	$is_prices     = 'price-popup' === $source;
 	$is_header     = 'header' === $source;
 	$is_popup      = $is_event_next || $is_prices || $is_header;
-	$redirect_args = $is_popup ? array( 'contact_popup' => '1', 'popup_src' => $source ) : array();
+	$anchor        = isset( $_POST['zadzerkalya_return'] ) ? sanitize_html_class( wp_unslash( $_POST['zadzerkalya_return'] ) ) : '';
+	$anchors       = array( 'contact-form', 'hero-form', 'form-service', 'contact-popup' );
+
+	if ( ! in_array( $anchor, $anchors, true ) ) {
+		$anchor = $is_popup ? 'contact-popup' : 'contact-form';
+	}
+
+	$redirect_args = array( 'contact_form' => $anchor );
+	if ( $is_popup ) {
+		$redirect_args['contact_popup'] = '1';
+		$redirect_args['popup_src']     = $source;
+	}
 
 	if ( ! isset( $_POST['zadzerkalya_contact_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['zadzerkalya_contact_nonce'] ) ), 'zadzerkalya_contact' ) ) {
 		zadzerkalya_contact_redirect( 'invalid', $redirect_args );
@@ -128,15 +141,26 @@ function zadzerkalya_contact_notice( $context = '' ) {
 		return;
 	}
 
+	if ( 'popup' !== $context ) {
+		$target = isset( $_GET['contact_form'] ) ? sanitize_html_class( wp_unslash( $_GET['contact_form'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( $target && $target !== $context ) {
+			return;
+		}
+	}
+
 	if ( empty( $_GET['contact'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return;
 	}
 
 	$status = sanitize_text_field( wp_unslash( $_GET['contact'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	$map    = array(
-		'sent'    => array( 'success', __( 'Дякуємо. Ми звʼяжемося з вами найближчим часом.', 'zadzerkalya' ) ),
-		'error'   => array( 'error', __( 'Перевірте поля форми і спробуйте ще раз.', 'zadzerkalya' ) ),
-		'invalid' => array( 'error', __( 'Сесію форми вичерпано. Оновіть сторінку.', 'zadzerkalya' ) ),
+
+	// Помилкові статуси тимчасово не показуємо — не роздувають форми/попап.
+	if ( in_array( $status, array( 'error', 'invalid' ), true ) ) {
+		return;
+	}
+
+	$map = array(
+		'sent' => array( 'success', __( 'Дякуємо. Ми звʼяжемося з вами найближчим часом.', 'zadzerkalya' ) ),
 	);
 
 	if ( ! isset( $map[ $status ] ) ) {

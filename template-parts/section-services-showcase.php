@@ -34,7 +34,7 @@ if ( is_array( $rows ) ) {
 
 		$items[] = array(
 			'title' => get_the_title( $service_id ),
-			'url'   => get_permalink( $service_id ),
+			'url'   => zadzerkalya_service_url( $service_id ),
 			'image' => zadzerkalya_service_showcase_image( $service_id ),
 		);
 	}
@@ -47,7 +47,7 @@ if ( ! $items ) {
 		$services->the_post();
 		$items[] = array(
 			'title' => get_the_title(),
-			'url'   => get_permalink(),
+			'url'   => zadzerkalya_service_url(),
 			'image' => zadzerkalya_service_showcase_image( get_the_ID() ),
 		);
 	}

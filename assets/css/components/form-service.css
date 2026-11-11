@@ -151,6 +151,7 @@
 	gap: calc(20 * var(--u));
 	width: calc(735 * var(--u));
 	margin: 0;
+	scroll-margin-top: calc(148 * var(--u));
 }
 
 .form-service__field {
@@ -314,6 +315,7 @@
 
 	.form-service__form {
 		gap: 20px;
+		scroll-margin-top: 100px;
 	}
 
 	.form-service__field,
@@ -415,6 +417,10 @@
 	.form-service__note,
 	.form-service__form {
 		width: 100%;
+	}
+
+	.form-service__form {
+		scroll-margin-top: 96px;
 	}
 
 	.form-service__note {

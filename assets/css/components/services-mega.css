@@ -6,8 +6,8 @@
 	z-index: 35;
 	display: flex;
 	flex-direction: column;
-	height: calc(946 * var(--u));
-	max-height: calc(100vh - 100 * var(--u));
+	height: calc(980 * var(--u));
+	max-height: calc(100vh - 40 * var(--u));
 	padding-top: calc(156.525 * var(--u));
 	background: var(--color-lemon-cream);
 	opacity: 0;
@@ -85,7 +85,12 @@ body.services-mega-open {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: calc(24 * var(--u));
+	gap: calc(18 * var(--u));
+	max-height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding-bottom: calc(12 * var(--u));
 }
 
 .services-mega__rule {
@@ -159,6 +164,14 @@ body.services-mega-open {
 	font-weight: 300;
 	font-size: calc(26 * var(--u));
 	line-height: 1.35;
+}
+
+.services-mega__service--static {
+	cursor: default;
+}
+
+.services-mega__service--static::after {
+	content: none;
 }
 
 .services-mega__all::after,

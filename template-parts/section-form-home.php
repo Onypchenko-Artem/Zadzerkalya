@@ -37,9 +37,10 @@ $args = wp_parse_args(
 		</header>
 
 		<form class="form-home__form" method="post" action="">
-			<?php zadzerkalya_contact_notice(); ?>
+			<?php zadzerkalya_contact_notice( 'contact-form' ); ?>
 			<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 			<input type="hidden" name="zadzerkalya_form_source" value="<?php echo esc_attr( $args['source'] ); ?>">
+			<input type="hidden" name="zadzerkalya_return" value="contact-form">
 			<input type="hidden" name="zadzerkalya_service" value="<?php echo esc_attr( $args['service'] ); ?>" data-service-field>
 
 			<p class="hp-field" aria-hidden="true">

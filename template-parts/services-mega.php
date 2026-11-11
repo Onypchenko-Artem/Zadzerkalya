@@ -42,22 +42,20 @@ if ( empty( $mega['categories'] ) ) {
 
 		<div class="services-mega__services">
 			<?php
-			$all_services = get_posts(
-				array(
-					'post_type'      => 'service',
-					'post_status'    => 'publish',
-					'posts_per_page' => -1,
-					'orderby'        => array(
-						'menu_order' => 'ASC',
-						'title'      => 'ASC',
-					),
-					'no_found_rows'  => true,
-				)
-			);
+			if ( ! empty( $mega['all_services'] ) && is_array( $mega['all_services'] ) ) {
+				$all_services = $mega['all_services'];
+			} elseif ( function_exists( 'zadzerkalya_all_services_listing_items' ) ) {
+				$all_services = zadzerkalya_all_services_listing_items();
+			} else {
+				$all_services = array();
+			}
 			?>
 			<div class="services-mega__panel is-active" id="services-mega-all">
 				<?php foreach ( $all_services as $service ) : ?>
-					<a class="services-mega__service" href="<?php echo esc_url( get_permalink( $service ) ); ?>"><?php echo esc_html( zadzerkalya_service_menu_title( $service->ID ) ); ?></a>
+					<?php if ( empty( $service['url'] ) ) : ?>
+						<?php continue; ?>
+					<?php endif; ?>
+					<a class="services-mega__service" href="<?php echo esc_url( $service['url'] ); ?>"><?php echo esc_html( $service['title'] ); ?></a>
 				<?php endforeach; ?>
 			</div>
 			<?php foreach ( $mega['categories'] as $category ) : ?>
@@ -66,6 +64,9 @@ if ( empty( $mega['categories'] ) ) {
 					id="services-mega-<?php echo esc_attr( (string) $category['id'] ); ?>"
 				>
 					<?php foreach ( $category['services'] as $service ) : ?>
+						<?php if ( empty( $service['url'] ) ) : ?>
+							<?php continue; ?>
+						<?php endif; ?>
 						<a class="services-mega__service" href="<?php echo esc_url( $service['url'] ); ?>"><?php echo esc_html( $service['title'] ); ?></a>
 					<?php endforeach; ?>
 				</div>

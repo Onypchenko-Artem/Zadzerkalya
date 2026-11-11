@@ -177,6 +177,7 @@
 	gap: calc(32 * var(--u));
 	width: calc(434 * var(--u));
 	min-height: calc(410 * var(--u));
+	scroll-margin-top: calc(148 * var(--u));
 }
 
 .hero-form .hero-field,
@@ -408,6 +409,7 @@
 		width: auto;
 		max-width: none;
 		min-height: 320px;
+		scroll-margin-top: 100px;
 	}
 
 	.hero-field-stack {
@@ -600,6 +602,7 @@
 		max-width: none;
 		min-height: 0;
 		margin-top: 24px;
+		scroll-margin-top: 96px;
 	}
 
 	.hero-field-stack {

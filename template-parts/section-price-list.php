@@ -32,7 +32,7 @@ if ( is_array( $rows ) ) {
 		$items[] = array(
 			'title' => $item_title,
 			'price' => $item_price,
-			'url'   => $service_id ? get_permalink( $service_id ) : '',
+			'url'   => $service_id ? zadzerkalya_service_url( $service_id ) : '',
 		);
 	}
 }

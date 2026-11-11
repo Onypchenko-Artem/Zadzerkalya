@@ -1,4 +1,5 @@
 .service-slider {
+	container-type: inline-size;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -67,11 +68,19 @@
 
 .service-slider__viewport {
 	position: relative;
-	container-type: inline-size;
 	width: 100%;
 	min-width: 0;
+	/* Safari зрізає рамку картки, якщо overflow і transform на одному flex-боксі */
+	padding: 2px 0;
+	margin: -2px 0;
 	overflow: hidden;
+	overflow: clip;
 	overflow-anchor: none;
+}
+
+.service-slider__mover {
+	width: max-content;
+	overflow: visible;
 }
 
 .service-slider__track {

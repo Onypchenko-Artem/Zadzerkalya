@@ -107,7 +107,8 @@ function zadzerkalya_register_post_types() {
 add_action( 'init', 'zadzerkalya_register_post_types' );
 
 /**
- * У «Зовнішній вигляд → Меню» WordPress ховає всі типи записів, крім сторінок і записів.
+ * У «Зовнішній вигляд → Меню» WordPress ховає всі типи записів і таксономії,
+ * крім сторінок, записів і рубрик.
  */
 function zadzerkalya_show_post_types_in_nav_menus( $hidden, $screen ) {
 	if ( ! $screen instanceof WP_Screen || 'nav-menus' !== $screen->id ) {
@@ -118,6 +119,7 @@ function zadzerkalya_show_post_types_in_nav_menus( $hidden, $screen ) {
 		'add-post-type-service',
 		'add-post-type-specialist',
 		'add-post-type-event',
+		'add-service_type',
 	);
 
 	return array_values( array_diff( (array) $hidden, $visible ) );
@@ -168,6 +170,144 @@ function zadzerkalya_sync_services_rewrites() {
 	flush_rewrite_rules( false );
 }
 add_action( 'init', 'zadzerkalya_sync_services_rewrites', 99 );
+
+/**
+ * Query var для фільтра типу послуг у ЧПУ /services/{slug}/.
+ *
+ * @param string[] $vars Query vars.
+ * @return string[]
+ */
+function zadzerkalya_service_type_query_vars( $vars ) {
+	$vars[] = 'zdk_service_type';
+
+	return $vars;
+}
+add_filter( 'query_vars', 'zadzerkalya_service_type_query_vars' );
+
+/**
+ * Базовий slug сторінки / архіву послуг.
+ *
+ * @return string
+ */
+function zadzerkalya_get_services_base_slug() {
+	$page_id = zadzerkalya_get_services_page_id();
+	if ( $page_id ) {
+		$slug = get_post_field( 'post_name', $page_id );
+		if ( is_string( $slug ) && '' !== $slug ) {
+			return $slug;
+		}
+	}
+
+	return 'services';
+}
+
+/**
+ * Правила ЧПУ: /services/{type-slug}/ → сторінка послуг з фільтром типу.
+ * Не перехоплює slug опублікованої послуги.
+ */
+function zadzerkalya_register_service_type_rewrites() {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'service_type',
+			'hide_empty' => false,
+			'fields'     => 'id=>slug',
+		)
+	);
+
+	if ( is_wp_error( $terms ) || ! $terms ) {
+		return;
+	}
+
+	$base    = zadzerkalya_get_services_base_slug();
+	$page_id = zadzerkalya_get_services_page_id();
+
+	foreach ( $terms as $slug ) {
+		$slug = sanitize_title( (string) $slug );
+		if ( '' === $slug ) {
+			continue;
+		}
+
+		$collision = get_posts(
+			array(
+				'post_type'              => 'service',
+				'name'                   => $slug,
+				'post_status'            => 'publish',
+				'posts_per_page'         => 1,
+				'fields'                 => 'ids',
+				'no_found_rows'          => true,
+				'update_post_meta_cache' => false,
+				'update_post_term_cache' => false,
+			)
+		);
+		if ( $collision ) {
+			continue;
+		}
+
+		$regex = '^' . preg_quote( $base, '/' ) . '/' . preg_quote( $slug, '/' ) . '/?$';
+
+		if ( $page_id ) {
+			add_rewrite_rule(
+				$regex,
+				'index.php?page_id=' . (int) $page_id . '&zdk_service_type=' . $slug,
+				'top'
+			);
+		} else {
+			add_rewrite_rule(
+				$regex,
+				'index.php?post_type=service&zdk_service_type=' . $slug,
+				'top'
+			);
+		}
+	}
+}
+add_action( 'init', 'zadzerkalya_register_service_type_rewrites', 20 );
+
+/**
+ * Після змін типів — перезібрати ЧПУ на наступному init (коли правила вже з новим slug).
+ */
+function zadzerkalya_flush_service_type_rewrites() {
+	delete_option( 'zadzerkalya_service_type_rewrite_v2' );
+}
+add_action( 'created_service_type', 'zadzerkalya_flush_service_type_rewrites' );
+add_action( 'edited_service_type', 'zadzerkalya_flush_service_type_rewrites' );
+add_action( 'delete_service_type', 'zadzerkalya_flush_service_type_rewrites' );
+
+/**
+ * Одноразове підключення ЧПУ типів послуг.
+ */
+function zadzerkalya_sync_service_type_rewrites() {
+	if ( get_option( 'zadzerkalya_service_type_rewrite_v2' ) ) {
+		return;
+	}
+
+	update_option( 'zadzerkalya_service_type_rewrite_v2', 1 );
+	flush_rewrite_rules( false );
+}
+add_action( 'init', 'zadzerkalya_sync_service_type_rewrites', 99 );
+
+/**
+ * Старі ?type=slug → /services/slug/.
+ */
+function zadzerkalya_redirect_service_type_query() {
+	if ( is_admin() || empty( $_GET['type'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return;
+	}
+
+	$on_services = is_page_template( 'page-templates/services.php' ) || is_post_type_archive( 'service' );
+	if ( ! $on_services ) {
+		return;
+	}
+
+	$slug = sanitize_title( wp_unslash( $_GET['type'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	$term = $slug ? get_term_by( 'slug', $slug, 'service_type' ) : null;
+	if ( ! $term || is_wp_error( $term ) || ! function_exists( 'zadzerkalya_get_service_type_url' ) ) {
+		return;
+	}
+
+	wp_safe_redirect( zadzerkalya_get_service_type_url( $term ), 301 );
+	exit;
+}
+add_action( 'template_redirect', 'zadzerkalya_redirect_service_type_query', 5 );
 
 /**
  * Назва запису — імʼя спеціаліста.
@@ -233,11 +373,10 @@ function zadzerkalya_register_taxonomies() {
 			),
 			'public'            => true,
 			'hierarchical'      => true,
+			'show_in_nav_menus' => true,
 			'show_in_rest'      => true,
-			'rewrite'           => array(
-				'slug'       => 'service-type',
-				'with_front' => false,
-			),
+			// ЧПУ типів — /services/{slug}/, див. zadzerkalya_register_service_type_rewrites().
+			'rewrite'           => false,
 		)
 	);
 
@@ -328,6 +467,7 @@ function zadzerkalya_service_admin_columns( $columns ) {
 
 		if ( 'title' === $key ) {
 			$next['zdk_order'] = __( 'Порядок', 'zadzerkalya' );
+			$next['zdk_page']  = __( 'Сторінка', 'zadzerkalya' );
 		}
 	}
 
@@ -336,11 +476,19 @@ function zadzerkalya_service_admin_columns( $columns ) {
 add_filter( 'manage_service_posts_columns', 'zadzerkalya_service_admin_columns' );
 
 function zadzerkalya_service_admin_column_content( $column, $post_id ) {
-	if ( 'zdk_order' !== $column ) {
+	if ( 'zdk_order' === $column ) {
+		echo (int) get_post_field( 'menu_order', $post_id );
 		return;
 	}
 
-	echo (int) get_post_field( 'menu_order', $post_id );
+	if ( 'zdk_page' !== $column ) {
+		return;
+	}
+
+	$enabled = ! function_exists( 'zadzerkalya_service_has_page' ) || zadzerkalya_service_has_page( $post_id );
+	echo $enabled
+		? esc_html__( 'Увімкнено', 'zadzerkalya' )
+		: esc_html__( 'Вимкнено', 'zadzerkalya' );
 }
 add_action( 'manage_service_posts_custom_column', 'zadzerkalya_service_admin_column_content', 10, 2 );
 
@@ -376,3 +524,28 @@ function zadzerkalya_service_admin_list_order( $query ) {
 add_action( 'pre_get_posts', 'zadzerkalya_service_admin_list_order' );
 add_action( 'pre_get_posts', 'zadzerkalya_event_archive_query' );
 add_action( 'pre_get_posts', 'zadzerkalya_blog_home_query' );
+
+/**
+ * Вимкнена сторінка послуги недоступна напряму (лістинг лишається).
+ */
+function zadzerkalya_block_disabled_service_page() {
+	if ( is_admin() || ! is_singular( 'service' ) ) {
+		return;
+	}
+
+	$service_id = (int) get_queried_object_id();
+	if ( ! $service_id || ! function_exists( 'zadzerkalya_service_has_page' ) || zadzerkalya_service_has_page( $service_id ) ) {
+		return;
+	}
+
+	global $wp_query;
+	$wp_query->set_404();
+	status_header( 404 );
+	nocache_headers();
+	$template = get_query_template( '404' );
+	if ( $template ) {
+		include $template;
+	}
+	exit;
+}
+add_action( 'template_redirect', 'zadzerkalya_block_disabled_service_page' );

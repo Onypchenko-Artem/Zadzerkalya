@@ -137,21 +137,6 @@
 	height: auto;
 }
 
-.articles-feed .article-card .lottie-button--primary {
-	--lottie-btn-w: calc(356 * var(--u));
-	--lottie-btn-h: calc(70 * var(--u));
-	width: calc(356 * var(--u));
-	min-width: 0;
-	max-width: 100%;
-}
-
-.articles-feed .article-card .lottie-button--primary .lottie-button__label {
-	padding-inline: calc(16 * var(--u));
-	font-size: calc(18 * var(--u));
-	font-weight: 400;
-	line-height: 1.4;
-}
-
 .articles-feed__pagination {
 	display: flex;
 	flex-direction: column;
@@ -307,21 +292,6 @@
 		height: auto;
 	}
 
-	.articles-feed .article-card .lottie-button--primary {
-		--lottie-btn-w: 293px;
-		--lottie-btn-h: 66px;
-		width: max-content;
-		min-width: var(--lottie-btn-w);
-		max-width: 100%;
-	}
-
-	.articles-feed .article-card .lottie-button--primary .lottie-button__label {
-		padding-inline: 18px;
-		font-size: 14px;
-		font-weight: 400;
-		line-height: 1.35;
-	}
-
 	.articles-feed__pagination {
 		gap: 32px;
 	}
@@ -401,83 +371,8 @@
 	}
 
 	.articles-feed__row .article-card {
-		gap: 24px;
 		width: 100%;
 		height: auto;
-		padding: 20px 20px 24px;
-		background: #fff;
-		border-radius: 12px;
-	}
-
-	.articles-feed .article-card__content {
-		gap: 24px;
-	}
-
-	.articles-feed .article-card__main {
-		gap: 24px;
-	}
-
-	.articles-feed .article-card__title {
-		height: auto;
-		min-height: 0;
-		font-family: var(--font-family-body);
-		font-size: 18px;
-		font-weight: 400;
-		line-height: 1.22;
-		-webkit-line-clamp: 3;
-	}
-
-	.articles-feed .article-card__media {
-		gap: 14px;
-		height: auto;
-		background: var(--color-lemon-cream);
-		border-radius: 13px;
-	}
-
-	.articles-feed .article-card__line,
-	.articles-feed .article-card__line--reverse {
-		align-self: stretch;
-		flex-basis: 7px;
-		width: 100%;
-		height: 7px;
-		aspect-ratio: auto;
-		background-image: url("../../images/article-card-line-mobile.svg?v=2");
-		background-repeat: no-repeat;
-		background-position: left center;
-		background-size: 100% 100%;
-	}
-
-	.articles-feed .article-card__line--reverse {
-		transform: scaleY(-1);
-	}
-
-	.articles-feed .article-card__photo {
-		flex-basis: auto;
-		height: auto;
-		aspect-ratio: 504 / 325;
-		border-radius: 50%;
-	}
-
-	.articles-feed .article-card__info {
-		height: auto;
-		font-size: 15px;
-		font-weight: 400;
-		line-height: 1.4;
-	}
-
-	.articles-feed .article-card__time {
-		gap: 4px;
-	}
-
-	.articles-feed .article-card__clock {
-		flex-basis: 12px;
-		width: 12px;
-		height: 12px;
-	}
-
-	.articles-feed .article-card .lottie-button--primary {
-		--lottie-btn-w: 215px;
-		--lottie-btn-h: 62px;
 	}
 
 	.articles-feed__pagination {

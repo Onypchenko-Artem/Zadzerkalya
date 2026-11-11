@@ -19,21 +19,31 @@
 .policy__toc {
 	position: sticky;
 	top: calc(148 * var(--u));
-	align-self: flex-start;
+	align-self: start;
 	z-index: 2;
-}
-
-.policy__toc {
 	display: flex;
 	grid-column: 1;
 	flex: 0 0 calc(325 * var(--u));
 	flex-direction: column;
 	align-items: flex-start;
 	gap: calc(16 * var(--u));
+	box-sizing: border-box;
 	width: calc(325 * var(--u));
+	min-height: 0;
+	max-height: calc(100vh - (148 * var(--u)) - (48 * var(--u)));
+	max-height: calc(100dvh - (148 * var(--u)) - (48 * var(--u)));
+	overflow-x: hidden;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: none;
+}
+
+.policy__toc::-webkit-scrollbar {
+	display: none;
 }
 
 .policy__toc-title {
+	flex: none;
 	margin: 0;
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
@@ -44,6 +54,7 @@
 
 .policy__toc-line {
 	display: block;
+	flex: none;
 	align-self: stretch;
 	width: 100%;
 	height: 1px;
@@ -51,6 +62,7 @@
 }
 
 .policy__toc-link {
+	flex: none;
 	font-family: var(--font-family-body);
 	font-size: calc(16 * var(--u));
 	font-weight: 400;

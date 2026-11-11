@@ -52,6 +52,10 @@
 	border-radius: calc(44 * var(--u));
 }
 
+.service-specialists__card:not(:has(.service-specialists__text)) {
+	justify-content: center;
+}
+
 .service-specialists__card::before {
 	position: absolute;
 	left: calc(100% * -0.84375 / 575);
@@ -161,7 +165,8 @@
 		max-width: none;
 	}
 
-	.service-specialists__card {
+	.service-specialists__card,
+	.service-specialists__card:not(:has(.service-specialists__text)) {
 		justify-content: flex-start;
 		isolation: isolate;
 		gap: 24px;

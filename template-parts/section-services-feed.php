@@ -10,7 +10,6 @@
  *     @type string       $all_label    Підпис фільтра «усі».
  *     @type string       $all_url      URL без фільтра.
  *     @type string       $taxonomy     Таксономія фільтрів.
- *     @type string       $topic_param  GET-параметр фільтра.
  *     @type WP_Term|null $current_term Активний термін.
  *     @type WP_Query     $query        Запит послуг.
  *     @type string       $button_label Текст кнопки картки.
@@ -22,7 +21,6 @@ $heading_id   = $args['heading_id'] ?? 'services-feed-title';
 $all_label    = $args['all_label'] ?? __( 'Всі послуги', 'zadzerkalya' );
 $all_url      = $args['all_url'] ?? '';
 $taxonomy     = $args['taxonomy'] ?? 'service_type';
-$topic_param  = $args['topic_param'] ?? 'type';
 $current_term = $args['current_term'] ?? null;
 $query        = $args['query'] ?? null;
 $button_label = $args['button_label'] ?? __( 'забронювати первинну консультацію', 'zadzerkalya' );
@@ -33,23 +31,31 @@ if ( ! $query instanceof WP_Query ) {
 
 $terms = array();
 if ( $all_url && taxonomy_exists( $taxonomy ) ) {
-	$terms = get_terms(
-		array(
-			'taxonomy'   => $taxonomy,
-			'hide_empty' => true,
-		)
-	);
-	if ( is_wp_error( $terms ) ) {
-		$terms = array();
+	if ( 'service_type' === $taxonomy && function_exists( 'zadzerkalya_service_type_terms_for_filters' ) ) {
+		$terms = zadzerkalya_service_type_terms_for_filters();
+	} else {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => true,
+			)
+		);
+		if ( is_wp_error( $terms ) ) {
+			$terms = array();
+		}
 	}
 }
 
-$filter_url = static function ( $term = null ) use ( $all_url, $topic_param ) {
+$filter_url = static function ( $term = null ) use ( $all_url, $taxonomy ) {
 	if ( ! $term || ! $all_url ) {
 		return $all_url;
 	}
 
-	return add_query_arg( $topic_param, $term->slug, $all_url );
+	if ( 'service_type' === $taxonomy && function_exists( 'zadzerkalya_get_service_type_url' ) ) {
+		return zadzerkalya_get_service_type_url( $term );
+	}
+
+	return add_query_arg( 'type', $term->slug, $all_url );
 };
 
 $has_posts = $query->have_posts();

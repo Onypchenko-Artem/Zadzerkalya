@@ -45,6 +45,16 @@
 	background: var(--color-gentle-blue);
 }
 
+.service-card--nolink {
+	cursor: default;
+}
+
+.service-card--nolink .service-card__title {
+	align-self: stretch;
+	display: flex;
+	justify-content: center;
+}
+
 .service-card:hover .lottie-button--primary .lottie-button__anim path[fill],
 .service-card:focus-within .lottie-button--primary .lottie-button__anim path[fill] {
 	fill: var(--color-lemon-cream);

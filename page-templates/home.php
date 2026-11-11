@@ -71,10 +71,11 @@ if ( ! $hero_btn ) {
 							</div>
 						</div>
 
-						<form class="hero-form" method="post" action="">
-							<?php zadzerkalya_contact_notice(); ?>
+						<form class="hero-form" id="hero-form" method="post" action="">
+							<?php zadzerkalya_contact_notice( 'hero-form' ); ?>
 							<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 							<input type="hidden" name="zadzerkalya_form_source" value="hero">
+							<input type="hidden" name="zadzerkalya_return" value="hero-form">
 							<p class="hp-field" aria-hidden="true">
 								<label><?php esc_html_e( 'Сайт', 'zadzerkalya' ); ?>
 									<input type="text" name="zadzerkalya_website" tabindex="-1" autocomplete="off">

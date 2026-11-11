@@ -84,7 +84,7 @@ $total = count( $items );
 					<?php endif; ?>
 				</div>
 				<?php if ( '' !== $item['description'] ) : ?>
-					<p class="service-specialists__text"><?php echo esc_html( $item['description'] ); ?></p>
+					<p class="service-specialists__text"><?php echo wp_kses( nl2br( esc_html( $item['description'] ) ), array( 'br' => array() ) ); ?></p>
 				<?php endif; ?>
 			</article>
 		<?php endforeach; ?>

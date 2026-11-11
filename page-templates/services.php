@@ -19,32 +19,8 @@ $hero_title      = $field( 'services_hero_title', "Дізнайтеся біль
 $hero_quote      = $field( 'services_hero_quote', 'Кожна велика історія починається з рішення і волі однієї людини' );
 $hero_scene      = $field( 'services_hero_scene' );
 $hero_background = $field( 'services_hero_background' );
-$type_slug    = isset( $_GET['type'] ) ? sanitize_title( wp_unslash( $_GET['type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-$current_term = $type_slug ? get_term_by( 'slug', $type_slug, 'service_type' ) : null;
-if ( ! $current_term || is_wp_error( $current_term ) ) {
-	$current_term = null;
-}
-
-$query_args = array(
-	'post_type'      => 'service',
-	'posts_per_page' => -1,
-	'orderby'        => array(
-		'menu_order' => 'ASC',
-		'date'       => 'DESC',
-	),
-);
-
-if ( $current_term ) {
-	$query_args['tax_query'] = array(
-		array(
-			'taxonomy' => 'service_type',
-			'field'    => 'term_id',
-			'terms'    => (int) $current_term->term_id,
-		),
-	);
-}
-
-$services = new WP_Query( $query_args );
+$current_term = zadzerkalya_get_current_service_type();
+$services     = zadzerkalya_query_services_feed( $current_term );
 ?>
 <main id="content" class="site-main services-page">
 	<?php
@@ -70,7 +46,6 @@ $services = new WP_Query( $query_args );
 			'all_label'     => __( 'Всі послуги', 'zadzerkalya' ),
 			'all_url'       => $services_url,
 			'taxonomy'      => 'service_type',
-			'topic_param'   => 'type',
 			'current_term'  => $current_term,
 			'query'         => $services,
 			'button_label'  => $field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) ),

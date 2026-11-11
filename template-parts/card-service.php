@@ -20,22 +20,28 @@ $is_custom    = isset( $args['title'] ) || isset( $args['url'] ) || array_key_ex
 
 if ( $is_custom ) {
 	$title     = $args['title'] ?? '';
-	$permalink = $args['url'] ?? '#';
+	$permalink = $args['url'] ?? '';
 	$image     = $args['image'] ?? null;
 } else {
 	$title     = get_the_title();
-	$permalink = get_permalink();
+	$permalink = function_exists( 'zadzerkalya_service_url' ) ? zadzerkalya_service_url() : get_permalink();
 	$image     = null;
 }
+
+$has_link = is_string( $permalink ) && '' !== $permalink && '#' !== $permalink;
 ?>
 <?php if ( $is_custom ) : ?>
-<article class="service-card">
+<article class="service-card<?php echo $has_link ? '' : ' service-card--nolink'; ?>">
 <?php else : ?>
-<article <?php post_class( 'service-card' ); ?>>
+<article <?php post_class( 'service-card' . ( $has_link ? '' : ' service-card--nolink' ) ); ?>>
 <?php endif; ?>
-	<a class="service-card__link" href="<?php echo esc_url( $permalink ); ?>">
+	<?php if ( $has_link ) : ?>
+		<a class="service-card__link" href="<?php echo esc_url( $permalink ); ?>">
+			<h3 class="service-card__title"><?php echo esc_html( $title ); ?></h3>
+		</a>
+	<?php else : ?>
 		<h3 class="service-card__title"><?php echo esc_html( $title ); ?></h3>
-	</a>
+	<?php endif; ?>
 	<span class="service-card__line" aria-hidden="true"></span>
 	<div class="service-card__photo">
 		<?php

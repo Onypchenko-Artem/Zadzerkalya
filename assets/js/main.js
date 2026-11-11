@@ -533,8 +533,15 @@
 				return;
 			}
 
-			const start = shell.getBoundingClientRect().top + window.scrollY - stickyOffset;
+			const shellTop = shell.getBoundingClientRect().top;
+			const start = shellTop + window.scrollY - stickyOffset;
 			const linked = Math.min(Math.max(window.scrollY - start, 0), scrollDistance);
+
+			// Drop stale reveal before the section pins — off-screen
+			// measure() used to inflate it against the viewport.
+			if (linked <= 0 && shellTop > stickyOffset + 0.5) {
+				reveal = 0;
+			}
 
 			if (!hasLinked) {
 				lastLinked = linked;
@@ -568,8 +575,15 @@
 				return;
 			}
 
-			const listBottom = list.getBoundingClientRect().bottom;
-			const limit = Math.min(listBottom, window.innerHeight - 16);
+			const listRect = list.getBoundingClientRect();
+
+			// Answers below the fold are not "clipped" — only shift the
+			// track once the list actually intersects the viewport.
+			if (listRect.bottom <= 0 || listRect.top >= window.innerHeight) {
+				return;
+			}
+
+			const limit = Math.min(listRect.bottom, window.innerHeight - 16);
 			let overflow = 0;
 
 			track.querySelectorAll('.faq__item[open]:not(.is-collapsed)').forEach((item) => {
@@ -935,11 +949,12 @@
 	const initServiceSliders = () => {
 		document.querySelectorAll('[data-service-slider]').forEach((section) => {
 			const viewport = section.querySelector('.service-slider__viewport');
+			const mover = section.querySelector('.service-slider__mover');
 			const track = section.querySelector('.service-slider__track');
 			const previous = section.querySelector('.service-slider__arrow--prev');
 			const next = section.querySelector('.service-slider__arrow--next');
 
-			if (!viewport || !track || !previous || !next) {
+			if (!viewport || !mover || !track || !previous || !next) {
 				return;
 			}
 
@@ -962,30 +977,20 @@
 				});
 			};
 
-			const loopWidth = () => {
-				const first = originals()[0];
-				const clone = track.querySelector('.service-slider__slide[data-clone]');
-				if (!first || !clone) {
-					return 0;
-				}
-
-				const size = clone.offsetLeft - first.offsetLeft;
-				return size > 1 ? size : 0;
-			};
-
 			const stepSize = () => {
-				const items = originals();
-				if (items.length > 1) {
-					return items[1].offsetLeft - items[0].offsetLeft;
-				}
-
-				const slide = items[0];
+				const slide = originals()[0];
 				if (!slide) {
 					return 0;
 				}
 
 				const margin = Number.parseFloat(getComputedStyle(slide).marginRight) || 0;
 				return slide.getBoundingClientRect().width + margin;
+			};
+
+			const loopWidth = () => {
+				const count = originals().length;
+				const step = stepSize();
+				return count > 1 && step > 1 ? count * step : 0;
 			};
 
 			let position = 0;
@@ -996,7 +1001,9 @@
 			const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 			const apply = () => {
-				track.style.transform = `translateX(${position}px)`;
+				const ratio = window.devicePixelRatio || 1;
+				const x = Math.round(position * ratio) / ratio;
+				mover.style.transform = `translate3d(${x}px, 0, 0)`;
 			};
 
 			const contain = (value) => {
@@ -1272,31 +1279,36 @@
 	const align = (section) => {
 		const aside = section.querySelector('.service-benefits__aside');
 		const foot = section.querySelector('.service-benefits__aside-foot');
-		const main = section.querySelector('.service-benefits__main');
+		const button = aside ? aside.querySelector('.lottie-button') : null;
+		const rows = [...section.querySelectorAll('.service-benefits__rows > .service-benefits__row')];
+		const cards = section.querySelectorAll('.service-benefits__card');
+		const secondRow = rows[1] || rows[0];
 
-		if (!aside || !foot || !main) {
+		if (!aside || !foot || !button || !secondRow) {
 			return;
 		}
 
 		if (!desktop.matches) {
 			aside.style.marginTop = '';
+			foot.style.marginTop = '';
 			section.style.paddingBottom = '';
 			return;
 		}
 
 		aside.style.marginTop = '0px';
-		section.style.paddingBottom = '0px';
+		foot.style.marginTop = '0px';
+		section.style.paddingBottom = '';
 
-		const fs = Math.min(1, Math.max(1280 / 1920, window.innerWidth / 1920));
-		const gap = 110 * fs;
-		const room = main.getBoundingClientRect().height - aside.getBoundingClientRect().height;
-
-		if (room >= gap) {
-			aside.style.marginTop = `${room - gap}px`;
+		// >3 cards: pin aside top to the second card row.
+		// ≤3 cards: pin button bottom to that row's bottom edge.
+		if (cards.length > 3) {
+			const delta = secondRow.getBoundingClientRect().top - aside.getBoundingClientRect().top;
+			aside.style.marginTop = `${Math.max(0, delta)}px`;
 			return;
 		}
 
-		section.style.paddingBottom = `${gap - Math.max(0, room)}px`;
+		const delta = secondRow.getBoundingClientRect().bottom - button.getBoundingClientRect().bottom;
+		foot.style.marginTop = `${delta}px`;
 	};
 
 	const alignAll = () => {
@@ -1334,6 +1346,15 @@
 			link.classList.toggle('is-active', active);
 			if (active) {
 				link.setAttribute('aria-current', 'true');
+				const tocRect = toc.getBoundingClientRect();
+				const linkRect = link.getBoundingClientRect();
+				const linkTop = linkRect.top - tocRect.top + toc.scrollTop;
+				const linkBottom = linkTop + linkRect.height;
+				if (linkTop < toc.scrollTop) {
+					toc.scrollTop = linkTop;
+				} else if (linkBottom > toc.scrollTop + toc.clientHeight) {
+					toc.scrollTop = linkBottom - toc.clientHeight;
+				}
 			} else {
 				link.removeAttribute('aria-current');
 			}
@@ -1971,4 +1992,20 @@
 
 	boot();
 	window.addEventListener('load', boot);
+})();
+
+(() => {
+	const params = new URLSearchParams(window.location.search);
+	if (!params.get('contact') || params.get('contact_popup')) {
+		return;
+	}
+
+	const target = document.getElementById(params.get('contact_form') || 'contact-form');
+	if (!target) {
+		return;
+	}
+
+	const reveal = () => target.scrollIntoView({ block: 'start' });
+	reveal();
+	window.addEventListener('load', reveal, { once: true });
 })();

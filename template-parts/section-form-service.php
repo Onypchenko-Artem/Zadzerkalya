@@ -111,10 +111,11 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 			<img class="form-service__divider form-service__divider--desktop" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-divider.svg' ); ?>" alt="" aria-hidden="true">
 			<img class="form-service__divider form-service__divider--tablet" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-service-divider-tablet.svg' ); ?>" alt="" aria-hidden="true">
 
-			<form class="form-service__form" method="post" action="">
-				<?php zadzerkalya_contact_notice(); ?>
+			<form class="form-service__form" id="form-service" method="post" action="">
+				<?php zadzerkalya_contact_notice( 'form-service' ); ?>
 				<?php wp_nonce_field( 'zadzerkalya_contact', 'zadzerkalya_contact_nonce' ); ?>
 				<input type="hidden" name="zadzerkalya_form_source" value="service">
+				<input type="hidden" name="zadzerkalya_return" value="form-service">
 				<input type="hidden" name="zadzerkalya_service" value="<?php echo esc_attr( get_the_title() ); ?>" data-service-field>
 
 				<p class="hp-field" aria-hidden="true">

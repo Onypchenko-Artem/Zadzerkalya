@@ -8,7 +8,7 @@
             "name": "service_menu_title",
             "aria-label": "",
             "type": "text",
-            "instructions": "Текст у випадаючому меню «Послуги». Якщо порожньо, показується назва послуги.",
+            "instructions": "Використовується лише коли послуги не додані в головне меню. Якщо структура зібрана в меню — береться назва пункту меню. Якщо порожньо, показується назва послуги.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -22,6 +22,27 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_zadzerkalya_service_page_enabled",
+            "label": "Сторінка послуги",
+            "name": "service_page_enabled",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Якщо вимкнено, послуга лишається в лістингах і меню, але перейти на її сторінку не можна.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Дозволити перехід на сторінку",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ui_on_text": "Увімкнено",
+            "ui_off_text": "Вимкнено"
         }
     ],
     "location": [
@@ -40,10 +61,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Коротка назва послуги для випадаючого меню.",
+    "description": "Назва для автоматичного меню (якщо послуги не зібрані в WP-меню) та доступність сторінки.",
     "show_in_rest": 0,
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1792022400
+    "modified": 1794700800
 }

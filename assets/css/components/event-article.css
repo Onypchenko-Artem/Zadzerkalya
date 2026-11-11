@@ -119,7 +119,7 @@
 }
 
 .event-article__body > * + :is(h2, h3, img, figure, blockquote, pre),
-.event-article__body > * + :is(p, figure):has(img),
+.event-article__body > * + :is(p, figure, div):has(img),
 .event-article__body > * + p:has(> code:only-child),
 .event-article__body > * + .event-article__excerpt {
 	margin-top: var(--event-gap-section);
@@ -187,6 +187,16 @@
 
 .single-post .event-article__body > blockquote:has(+ ul) {
 	margin-top: calc(40 * var(--u));
+}
+
+/* Навколо картинки завжди великий крок, навіть якщо далі абзац, список чи заголовок іншого рівня. */
+.event-article__body > :is(img, figure, p:has(img), div:has(img)) + * {
+	margin-top: var(--event-gap-section);
+}
+
+.single-post .event-article__body > :is(img, figure, p:has(img), div:has(img)) + *,
+.single-event .event-article__body > :is(img, figure, p:has(img), div:has(img)) + * {
+	margin-top: var(--event-gap-section);
 }
 
 .event-article__body p {
@@ -544,10 +554,14 @@
 }
 
 .single-event .event-article__aside .lottie-button--primary {
-	width: var(--event-col-aside);
+	width: max-content;
 	min-width: var(--event-col-aside);
-	max-width: var(--event-col-aside);
+	max-width: none;
 	margin-left: 0;
+}
+
+.single-event .event-article__aside .lottie-button__label {
+	white-space: nowrap;
 }
 
 @media (max-width: 1279px) {
@@ -691,6 +705,11 @@
 	.single-post .event-article__body > :not(blockquote) + ul,
 	.single-post .event-article__body > blockquote:has(+ ul) {
 		margin-top: 40px;
+	}
+
+	.single-post .event-article__body > :is(img, figure, p:has(img), div:has(img)) + *,
+	.single-event .event-article__body > :is(img, figure, p:has(img), div:has(img)) + * {
+		margin-top: var(--event-gap-section);
 	}
 
 	.event-article__body p,
@@ -1172,9 +1191,9 @@
 		align-self: center;
 		--lottie-btn-w: 226px;
 		--lottie-btn-h: 60px;
-		width: 226px;
+		width: max-content;
 		min-width: 226px;
-		max-width: 226px;
+		max-width: 100%;
 	}
 
 	.single-event .event-article__body {

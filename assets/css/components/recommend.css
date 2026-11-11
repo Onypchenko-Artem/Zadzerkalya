@@ -91,61 +91,8 @@
 	scroll-snap-align: start;
 }
 
-.recommend__track .article-card__media {
-	height: auto;
-}
-
 :is(.single-post, .single-event) .recommend {
 	gap: calc(40 * var(--u));
-}
-
-:is(.single-post, .single-event) .recommend__track .article-card {
-	height: auto;
-	gap: calc(24 * var(--u));
-	padding: calc(28 * var(--u)) calc(28 * var(--u)) calc(24 * var(--u));
-}
-
-:is(.single-post, .single-event) .recommend .article-card__content {
-	gap: calc(24 * var(--u));
-}
-
-:is(.single-post, .single-event) .recommend .article-card__main {
-	gap: calc(24 * var(--u));
-}
-
-:is(.single-post, .single-event) .recommend .article-card__title {
-	height: auto;
-	font-size: calc(28 * var(--u));
-	-webkit-line-clamp: 3;
-}
-
-:is(.single-post, .single-event) .recommend .article-card__media {
-	gap: calc(10 * var(--u));
-	height: auto;
-}
-
-:is(.single-post, .single-event) .recommend .article-card__photo {
-	flex-basis: calc(270 * var(--u));
-	height: calc(270 * var(--u));
-}
-
-:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary {
-	--lottie-btn-w: calc(360 * var(--u));
-	--lottie-btn-h: calc(70 * var(--u));
-	min-width: calc(360 * var(--u));
-	max-width: 100%;
-}
-
-.single-event .recommend .article-card .lottie-button__label {
-	font-size: calc(18 * var(--u));
-}
-
-.single-post .recommend .article-card .lottie-button__label {
-	font-size: 14px;
-}
-
-:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary .lottie-button__label {
-	padding-inline: calc(24 * var(--u));
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
@@ -195,128 +142,10 @@
 	.recommend__track .article-card {
 		flex-basis: 353px;
 		width: 353px;
-		height: auto;
-		gap: 24px;
-		padding: 26px 26px 24px;
-		border-radius: 16px;
-	}
-
-	.recommend .article-card__content {
-		gap: 24px;
-	}
-
-	.recommend .article-card__main {
-		gap: 24px;
-	}
-
-	.recommend .article-card__title {
-		height: auto;
-		font-size: 24px;
-		font-weight: 400;
-		line-height: 1.2;
-		-webkit-line-clamp: 4;
-	}
-
-	.recommend .article-card__media {
-		gap: 20px;
-		height: auto;
-		border-radius: 17.69px;
-	}
-
-	.recommend .article-card__line {
-		flex-basis: 12px;
-		height: 12px;
-		aspect-ratio: auto;
-	}
-
-	.recommend .article-card__line--reverse {
-		flex-basis: 13px;
-		height: 13px;
-		aspect-ratio: auto;
-	}
-
-	.recommend .article-card__photo {
-		flex-basis: 184px;
-		width: 100%;
-		height: 184px;
-		aspect-ratio: auto;
-		border-radius: 50%;
-	}
-
-	.recommend .article-card__info {
-		gap: 12px;
-		height: 20px;
-		font-size: 14px;
-		line-height: 1.4;
-	}
-
-	.recommend .article-card__clock {
-		flex-basis: 12px;
-		width: 12px;
-		height: 12px;
-	}
-
-	.recommend .article-card .lottie-button--primary {
-		--lottie-btn-w: 293px;
-		--lottie-btn-h: 66px;
-		min-width: 293px;
-		max-width: 100%;
-	}
-
-	.recommend .article-card .lottie-button__label {
-		font-size: 14px;
-		line-height: 1.35;
-	}
-
-	.recommend .article-card .lottie-button--primary .lottie-button__label {
-		padding-inline: 18px;
 	}
 
 	:is(.single-post, .single-event) .recommend {
 		gap: 56px;
-	}
-
-	:is(.single-post, .single-event) .recommend__track .article-card {
-		height: auto;
-		gap: 24px;
-		padding: 26px 26px 24px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__content {
-		gap: 24px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__title {
-		height: auto;
-		font-size: 24px;
-		-webkit-line-clamp: 4;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__media {
-		gap: 20px;
-		height: auto;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__photo {
-		flex-basis: 184px;
-		width: 100%;
-		height: 184px;
-		aspect-ratio: auto;
-		border-radius: 50%;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary {
-		--lottie-btn-w: 293px;
-		--lottie-btn-h: 66px;
-		min-width: 293px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button__label {
-		font-size: 14px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary .lottie-button__label {
-		padding-inline: 18px;
 	}
 }
 
@@ -354,83 +183,6 @@
 	.recommend__track .article-card {
 		flex-basis: var(--recommend-card);
 		width: var(--recommend-card);
-		height: auto;
-		gap: 24px;
-		padding: 20px 20px 24px;
-		border-radius: 16px;
-	}
-
-	.recommend .article-card__content {
-		gap: 24px;
-	}
-
-	.recommend .article-card__main {
-		gap: 24px;
-	}
-
-	.recommend .article-card__title {
-		height: auto;
-		min-height: 0;
-		font-size: 22px;
-		-webkit-line-clamp: 3;
-	}
-
-	.recommend .article-card__media {
-		gap: 12px;
-		height: auto;
-		border-radius: 14px;
-	}
-
-	.recommend .article-card__line,
-	.recommend .article-card__line--reverse {
-		flex-basis: auto;
-		height: auto;
-		aspect-ratio: 508 / 17;
-	}
-
-	.recommend .article-card__photo {
-		flex-basis: auto;
-		height: auto;
-		aspect-ratio: 504 / 280;
-		border-radius: 50%;
-	}
-
-	.recommend .article-card__info {
-		height: auto;
-		font-size: var(--text-body-xs-size);
-	}
-
-	.recommend .article-card .lottie-button--primary {
-		--lottie-btn-w: 240px;
-		--lottie-btn-h: 62px;
-		min-width: 240px;
-	}
-
-	:is(.single-post, .single-event) .recommend__track .article-card {
-		height: auto;
-		gap: 24px;
-		padding: 20px 20px 24px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__title {
-		height: auto;
-		font-size: 22px;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__media {
-		height: auto;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card__photo {
-		flex-basis: auto;
-		height: auto;
-		aspect-ratio: 504 / 280;
-	}
-
-	:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary {
-		--lottie-btn-w: 240px;
-		--lottie-btn-h: 62px;
-		min-width: 240px;
 	}
 
 	:is(.single-post, .single-event) .recommend {
@@ -475,17 +227,14 @@
 		gap: 24px;
 	}
 
+	/* Вузькі картки каруселі на single — компактніша типографіка */
 	:is(.single-post, .single-event) .recommend__track .article-card {
-		height: auto;
 		gap: 24px;
 		padding: 16px 16px 24px;
 		border-radius: 8px;
 	}
 
-	:is(.single-post, .single-event) .recommend .article-card__content {
-		gap: 24px;
-	}
-
+	:is(.single-post, .single-event) .recommend .article-card__content,
 	:is(.single-post, .single-event) .recommend .article-card__main {
 		gap: 24px;
 	}
@@ -541,16 +290,9 @@
 		min-width: 153px;
 	}
 
-	.single-event .recommend .article-card .lottie-button__label,
-	.single-event .recommend .article-card .lottie-button--primary .lottie-button__label {
+	:is(.single-post, .single-event) .recommend .article-card .lottie-button__label,
+	:is(.single-post, .single-event) .recommend .article-card .lottie-button--primary .lottie-button__label {
 		font-size: 10px;
-		line-height: 1.26;
-		padding-inline: 8px;
-	}
-
-	.single-post .recommend .article-card .lottie-button__label,
-	.single-post .recommend .article-card .lottie-button--primary .lottie-button__label {
-		font-size: 14px;
 		line-height: 1.26;
 		padding-inline: 8px;
 	}

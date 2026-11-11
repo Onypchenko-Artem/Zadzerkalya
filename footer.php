@@ -140,7 +140,7 @@ $popup_src = isset( $_GET['popup_src'] ) ? sanitize_key( wp_unslash( $_GET['popu
 $popup_labels = array(
 	'header'      => __( 'звʼяжіться з нами', 'zadzerkalya' ),
 	'price-popup' => __( 'забронювати консультацію', 'zadzerkalya' ),
-	'event-next'  => __( "повідомити про наступну\nподію", 'zadzerkalya' ),
+	'event-next'  => __( 'повідомити про наступну подію', 'zadzerkalya' ),
 );
 $popup_label = $popup_labels[ $popup_src ] ?? $popup_labels['header'];
 $popup_src   = isset( $popup_labels[ $popup_src ] ) ? $popup_src : 'header';
