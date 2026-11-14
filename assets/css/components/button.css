@@ -93,6 +93,7 @@ a.lottie-button:hover {
 
 	.lottie-button--primary .lottie-button__label {
 		padding-inline: 18px;
+		transform: none;
 	}
 
 	.lottie-button--secondary .lottie-button__label {
@@ -119,6 +120,7 @@ a.lottie-button:hover {
 
 	.lottie-button--primary .lottie-button__label {
 		padding-inline: 19px;
+		transform: translateY(2px);
 	}
 
 	.lottie-button--primary[data-mobile-rows="2"] .lottie-button__label {

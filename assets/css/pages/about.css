@@ -362,6 +362,7 @@
 
 .about-story__lead p {
 	margin: 0;
+	white-space: pre-line;
 	font-family: var(--text-h3-family);
 	font-size: calc(28 * var(--u));
 	font-weight: 400;
@@ -415,6 +416,7 @@
 
 .about-mission p {
 	margin: 0;
+	white-space: pre-line;
 	font-family: var(--text-body-l-family);
 	font-size: calc(22 * var(--u));
 	font-weight: 400;
@@ -993,8 +995,8 @@
 	.about-hero {
 		height: auto;
 		min-height: 1068px;
-		margin-top: -170px;
-		padding: 205px 24px 0;
+		margin-top: -107px;
+		padding: 167px 24px 0;
 		background-size: 96px 100%, 100% 100%;
 	}
 

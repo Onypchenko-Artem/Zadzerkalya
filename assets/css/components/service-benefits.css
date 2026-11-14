@@ -259,6 +259,9 @@
 
 .service-benefits__card p {
 	width: 100%;
+	min-width: 0;
+	overflow-wrap: anywhere;
+	white-space: pre-line;
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
 	font-weight: 300;
@@ -360,7 +363,6 @@
 		padding-inline: 12px;
 		font-size: 14px;
 		line-height: 1.35;
-		transform: translateY(2px);
 	}
 
 	.service-benefits__card,

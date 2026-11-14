@@ -139,6 +139,8 @@
 
 .service-specialists__text {
 	width: 100%;
+	min-width: 0;
+	overflow-wrap: anywhere;
 	font-family: var(--font-family-body);
 	font-size: calc(22 * var(--u));
 	font-weight: 400;
@@ -165,18 +167,26 @@
 		max-width: none;
 	}
 
-	.service-specialists__card,
-	.service-specialists__card:not(:has(.service-specialists__text)) {
+	.service-specialists__card {
 		justify-content: flex-start;
 		isolation: isolate;
 		gap: 24px;
-		height: 285px;
+		height: auto;
 		min-height: 285px;
 		padding: 28px;
 		overflow: visible;
 		background: var(--color-chewing-gum);
 		border: 1px solid var(--color-sky-blue);
 		border-radius: 44px;
+	}
+
+	.service-specialists__card:not(:has(.service-specialists__text)) {
+		height: 285px;
+		min-height: 285px;
+	}
+
+	.service-specialists__card:has(.service-specialists__text) {
+		min-height: 457px;
 	}
 
 	.service-specialists__card::before,
@@ -211,6 +221,18 @@
 		transform: matrix(1, -0.01, 0.02, 1, 0, 0);
 	}
 
+	.service-specialists__card:has(.service-specialists__text)::before {
+		top: -9.68px;
+		bottom: 4.85px;
+		transform: matrix(1, 0.02, -0.01, 1, 0, 0);
+	}
+
+	.service-specialists__card:has(.service-specialists__text)::after {
+		top: -6.2px;
+		bottom: 7.38px;
+		transform: matrix(1, -0.02, 0.01, 1, 0, 0);
+	}
+
 	.service-specialists__head {
 		flex-direction: column;
 		align-items: flex-start;
@@ -243,7 +265,10 @@
 	}
 
 	.service-specialists__text {
-		display: none;
+		align-self: stretch;
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 }
 

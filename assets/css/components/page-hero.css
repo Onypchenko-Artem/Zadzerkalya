@@ -168,7 +168,7 @@
 		height: auto;
 		min-height: 620px;
 		margin-top: -107px;
-		padding: 142px 24px 32px;
+		padding: 167px 24px 32px;
 	}
 
 	.page-hero__inner {
@@ -235,8 +235,8 @@
 		align-items: stretch;
 		justify-content: flex-start;
 		min-height: 0;
-		margin-top: -170px;
-		padding: 205px 24px 0;
+		margin-top: -107px;
+		padding: 167px 24px 0;
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__inner {

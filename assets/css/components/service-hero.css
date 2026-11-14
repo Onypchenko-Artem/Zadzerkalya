@@ -127,6 +127,10 @@
 	color: var(--color-night-sky);
 }
 
+.service-hero__title-flow {
+	display: none;
+}
+
 .service-hero__copy {
 	display: flex;
 	flex-direction: column;
@@ -253,7 +257,7 @@
 		height: auto;
 		min-height: 0;
 		margin-top: -107px;
-		padding: 142px 24px 0;
+		padding: 167px 24px 0;
 	}
 
 	.service-hero__inner {
@@ -319,11 +323,21 @@
 	}
 
 	.service-hero h1 {
+		width: 100%;
+		max-width: 720px;
 		height: auto;
 		font-size: 44px;
 		font-weight: 500;
 		line-height: 1.06;
 		letter-spacing: -0.04em;
+	}
+
+	.service-hero__title-lines {
+		display: none;
+	}
+
+	.service-hero__title-flow {
+		display: inline;
 	}
 
 	.service-hero__copy {
@@ -362,7 +376,6 @@
 		padding-inline: 12px;
 		font-size: 14px;
 		line-height: 1.35;
-		transform: translateY(2px);
 	}
 
 	.service-hero__bottom-line {

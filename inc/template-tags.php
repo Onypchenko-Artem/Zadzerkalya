@@ -701,6 +701,26 @@ function zadzerkalya_field( $name, $fallback = '' ) {
 }
 
 /**
+ * Текст із дозволеними переносами (Enter або br у полі).
+ *
+ * Повертає текст з реальними \\n — для показу потрібен white-space: pre-line
+ * на контейнері, або обгортка через nl2br().
+ *
+ * @param string $text Сирий текст.
+ * @return string Екранований текст із збереженими переносами рядка.
+ */
+function zadzerkalya_kses_br( $text ) {
+	$text = html_entity_decode( (string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+
+	$normalized = preg_replace( '/<\s*br\s*\/?\s*>\R?/i', "\n", $text );
+	$text       = is_string( $normalized ) ? $normalized : $text;
+	$text       = wp_strip_all_tags( $text );
+	$text       = str_replace( array( "\r\n", "\r" ), "\n", $text );
+
+	return esc_html( $text );
+}
+
+/**
  * Текстові рядки репітера ACF.
  *
  * @param string $name Імʼя репітера.
@@ -2391,7 +2411,7 @@ function zadzerkalya_node_is_pre( $node ) {
 }
 
 /**
- * Порожній вузол між абзацами однієї цитати: пробіл, br або порожній p.
+ * Порожній вузол між фрагментами однієї цитати: пробіл, br або порожній p.
  *
  * @param DOMNode $node Вузол.
  * @return bool
@@ -2440,7 +2460,26 @@ function zadzerkalya_node_is_quote_bridge( $node ) {
 }
 
 /**
- * Текст цитати з переносами замість br.
+ * Чи міст між pre — абзац (порожній p / зайвий br), а не лише пробіл.
+ *
+ * @param array<int, DOMNode> $bridge Вузли між pre.
+ * @return bool
+ */
+function zadzerkalya_quote_bridge_is_paragraph( array $bridge ) {
+	foreach ( $bridge as $node ) {
+		if ( $node instanceof DOMElement ) {
+			$tag = strtolower( $node->nodeName );
+			if ( 'p' === $tag || 'br' === $tag ) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Текст цитати: мʼякий перенос (br) → міжрядковий \n; подвійний Enter → абзац \n\n.
  *
  * @param DOMElement $pre Цитата.
  * @return string
@@ -2451,17 +2490,22 @@ function zadzerkalya_pre_plain_text( DOMElement $pre ) {
 		$html .= $pre->ownerDocument->saveHTML( $child );
 	}
 
+	// Shift+Enter / Cmd+Shift+Enter → <br>: звичайний міжрядковий перенос.
 	$html = preg_replace( '/<br\s*\/?\s*>/i', "\n", $html );
 	$html = wp_strip_all_tags( (string) $html );
 	$html = html_entity_decode( $html, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 	$html = str_replace( "\xC2\xA0", ' ', $html );
+	$html = str_replace( array( "\r\n", "\r" ), "\n", $html );
 	$html = preg_replace( "/\n{3,}/", "\n\n", $html );
+	$html = preg_replace( '/[ \t\x0B\f]+/', ' ', $html );
+	$html = preg_replace( "/ *\n */", "\n", $html );
 
 	return trim( (string) $html );
 }
 
 /**
- * Кілька pre підряд — одна цитата. Абзаци всередині, без окремих смужок.
+ * Кілька pre підряд — одна цитата без зайвих смужок.
+ * Суміжні pre → міжрядковий перенос; порожній p між ними → абзац.
  *
  * @param string $html HTML статті.
  * @return string
@@ -2492,10 +2536,11 @@ function zadzerkalya_merge_consecutive_pres( $html ) {
 
 	$rebuild = array();
 	$quotes  = array();
+	$joins   = array();
 	$bridge  = array();
 	$changed = false;
 
-	$flush = static function () use ( &$rebuild, &$quotes, &$bridge, &$changed, $dom ) {
+	$flush = static function () use ( &$rebuild, &$quotes, &$joins, &$bridge, &$changed, $dom ) {
 		if ( ! $quotes ) {
 			foreach ( $bridge as $node ) {
 				$rebuild[] = $node;
@@ -2504,24 +2549,41 @@ function zadzerkalya_merge_consecutive_pres( $html ) {
 			return;
 		}
 
-		if ( count( $quotes ) > 1 ) {
-			$changed = true;
-			$parts   = array();
-			foreach ( $quotes as $quote ) {
-				$text = zadzerkalya_pre_plain_text( $quote );
-				if ( '' !== $text ) {
-					$parts[] = $text;
+		$parts = array();
+		foreach ( $quotes as $quote ) {
+			$parts[] = zadzerkalya_pre_plain_text( $quote );
+		}
+
+		$merged = '';
+		$count  = count( $parts );
+		for ( $i = 0; $i < $count; $i++ ) {
+			$text = $parts[ $i ];
+			if ( '' === $text ) {
+				// Порожній pre між фрагментами = абзац.
+				if ( '' !== $merged && $i < $count - 1 && ! str_ends_with( $merged, "\n\n" ) ) {
+					$merged .= "\n\n";
+				}
+				continue;
+			}
+			if ( '' !== $merged ) {
+				if ( ! str_ends_with( $merged, "\n\n" ) ) {
+					// Порожній p/br між pre → абзац; інакше міжрядковий перенос.
+					$merged .= ! empty( $joins[ $i - 1 ] ) ? "\n\n" : "\n";
 				}
 			}
+			$merged .= $text;
+		}
+		$merged = trim( $merged );
+		$merged = preg_replace( "/\n{3,}/", "\n\n", (string) $merged );
 
-			$pre = $dom->createElement( 'pre' );
+		if ( '' !== $merged ) {
+			$changed = true;
+			$pre     = $dom->createElement( 'pre' );
 			if ( $quotes[0]->hasAttribute( 'class' ) ) {
 				$pre->setAttribute( 'class', $quotes[0]->getAttribute( 'class' ) );
 			}
-			$pre->appendChild( $dom->createTextNode( implode( "\n\n", $parts ) ) );
+			$pre->appendChild( $dom->createTextNode( $merged ) );
 			$rebuild[] = $pre;
-		} else {
-			$rebuild[] = $quotes[0];
 		}
 
 		foreach ( $bridge as $node ) {
@@ -2529,11 +2591,15 @@ function zadzerkalya_merge_consecutive_pres( $html ) {
 		}
 
 		$quotes = array();
+		$joins  = array();
 		$bridge = array();
 	};
 
 	foreach ( $nodes as $node ) {
 		if ( zadzerkalya_node_is_pre( $node ) ) {
+			if ( $quotes ) {
+				$joins[] = zadzerkalya_quote_bridge_is_paragraph( $bridge );
+			}
 			$quotes[] = $node;
 			$bridge   = array();
 			continue;

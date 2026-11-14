@@ -80,11 +80,11 @@ $total = count( $items );
 						<span class="service-specialists__counter-current"><?php echo esc_html( (string) ( $index + 1 ) ); ?>/</span><span class="service-specialists__counter-total"><?php echo esc_html( (string) $total ); ?></span>
 					</p>
 					<?php if ( '' !== $item['title'] ) : ?>
-						<h3><?php echo esc_html( $item['title'] ); ?></h3>
+						<h3><?php echo wp_kses( nl2br( $item['title'] ), array( 'br' => array() ) ); ?></h3>
 					<?php endif; ?>
 				</div>
 				<?php if ( '' !== $item['description'] ) : ?>
-					<p class="service-specialists__text"><?php echo wp_kses( nl2br( esc_html( $item['description'] ) ), array( 'br' => array() ) ); ?></p>
+					<p class="service-specialists__text"><?php echo wp_kses( nl2br( $item['description'] ), array( 'br' => array() ) ); ?></p>
 				<?php endif; ?>
 			</article>
 		<?php endforeach; ?>

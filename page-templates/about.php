@@ -172,7 +172,7 @@ get_header();
 							<h2 id="about-story-title"><?php echo wp_kses( $story_title, array( 'br' => array() ) ); ?></h2>
 							<div class="about-story__lead">
 								<span class="about-story__rule" aria-hidden="true"></span>
-								<p><?php echo esc_html( $story_lead ); ?></p>
+								<p><?php echo zadzerkalya_kses_br( $story_lead ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 								<span class="about-story__rule" aria-hidden="true"></span>
 							</div>
 						</div>
@@ -208,7 +208,7 @@ get_header();
 
 		<section class="about-mission">
 			<div class="about-mission__inner">
-				<p><?php echo esc_html( $mission_text ); ?></p>
+				<p><?php echo zadzerkalya_kses_br( $mission_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 				<?php if ( $mission_img ) : ?>
 					<?php zadzerkalya_acf_image( $mission_img, 'large', array( 'class' => 'about-mission__image' ) ); ?>
 				<?php else : ?>

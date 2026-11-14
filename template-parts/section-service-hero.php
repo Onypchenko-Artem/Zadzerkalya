@@ -36,6 +36,8 @@ $current          = $args['current'] ?? get_the_title();
 $crumb_label      = $args['crumb_label'] ?? __( 'Послуги', 'zadzerkalya' );
 $crumb_url        = $args['crumb_url'] ?? '';
 $heading_id       = $args['heading_id'] ?? 'service-hero-title';
+$flow_title       = preg_replace( '/\s+/u', ' ', trim( (string) $title ) );
+$flow_title       = preg_replace( '/\s+(та)\s+/u', '<br>$1 ', (string) $flow_title, 1 );
 
 if ( ! $crumb_url ) {
 	$crumb_url = zadzerkalya_get_services_url();
@@ -78,7 +80,10 @@ if ( $background_url ) {
 						</nav>
 
 						<div class="service-hero__title">
-							<h1 id="<?php echo esc_attr( $heading_id ); ?>"><?php echo wp_kses( nl2br( $title ), array( 'br' => array() ) ); ?></h1>
+							<h1 id="<?php echo esc_attr( $heading_id ); ?>">
+								<span class="service-hero__title-lines"><?php echo wp_kses( nl2br( $title ), array( 'br' => array() ) ); ?></span>
+								<span class="service-hero__title-flow"><?php echo wp_kses( (string) $flow_title, array( 'br' => array() ) ); ?></span>
+							</h1>
 
 							<?php if ( $show_description || $show_button ) : ?>
 								<div class="service-hero__copy">

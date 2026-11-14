@@ -229,14 +229,6 @@
 
 		all.addEventListener('mouseenter', showAll);
 		all.addEventListener('focus', showAll);
-		all.addEventListener('click', (event) => {
-			if (!tablet.matches) {
-				return;
-			}
-
-			event.preventDefault();
-			activate(all.dataset.megaTarget);
-		});
 	}
 
 	mega.querySelectorAll('.services-mega__service').forEach((service) => {

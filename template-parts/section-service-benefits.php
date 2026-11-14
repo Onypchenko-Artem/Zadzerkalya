@@ -212,7 +212,7 @@ $render_card = static function ( $card ) {
 				</picture>
 			</div>
 			<?php if ( '' !== $card['title'] ) : ?>
-				<h3><?php echo esc_html( $card['title'] ); ?></h3>
+				<h3><?php echo wp_kses( nl2br( $card['title'] ), array( 'br' => array() ) ); ?></h3>
 			<?php endif; ?>
 		</div>
 		<?php if ( $card['show_description'] && '' !== $card['description'] ) : ?>
