@@ -16,9 +16,42 @@ $defaults    = array(
 	__( 'Нейродіагностика: від аналізу до дії', 'zadzerkalya' ),
 );
 
-$title       = zadzerkalya_field( 'services_title', __( "Понад 25 корекційних, освітніх\nта реабілітаційних послуг,\nзібраних в одному центрі!", 'zadzerkalya' ) );
-$text        = zadzerkalya_field( 'services_text', __( 'В «Задзеркаллі» пропонуємо як психоемоційну, так і фізичну корекцію в межах одного простору для вашої зручності.', 'zadzerkalya' ) );
-$illustration = zadzerkalya_field( 'services_illustration' );
+$title                 = zadzerkalya_field( 'services_title', __( "Понад 25 корекційних, освітніх\nта реабілітаційних послуг,\nзібраних в одному центрі!", 'zadzerkalya' ) );
+$text                  = zadzerkalya_field( 'services_text', __( 'В «Задзеркаллі» пропонуємо як психоемоційну, так і фізичну корекцію в межах одного простору для вашої зручності.', 'zadzerkalya' ) );
+$illustration          = zadzerkalya_field( 'services_illustration' );
+$illustration_mobile   = zadzerkalya_field( 'services_illustration_mobile' );
+$illustration_fallback = ZADZERKALYA_URI . '/assets/images/alice.png';
+$illustration_url      = '';
+$illustration_mobile_url = '';
+
+if ( is_numeric( $illustration ) ) {
+	$illustration_url = (string) wp_get_attachment_image_url( (int) $illustration, 'large' );
+} elseif ( is_array( $illustration ) ) {
+	$illustration_url = ! empty( $illustration['ID'] )
+		? (string) wp_get_attachment_image_url( (int) $illustration['ID'], 'large' )
+		: (string) ( $illustration['url'] ?? '' );
+} elseif ( is_string( $illustration ) && '' !== $illustration ) {
+	$illustration_url = $illustration;
+}
+
+if ( '' === $illustration_url ) {
+	$illustration_url = $illustration_fallback;
+}
+
+if ( is_numeric( $illustration_mobile ) ) {
+	$illustration_mobile_url = (string) wp_get_attachment_image_url( (int) $illustration_mobile, 'large' );
+} elseif ( is_array( $illustration_mobile ) ) {
+	$illustration_mobile_url = ! empty( $illustration_mobile['ID'] )
+		? (string) wp_get_attachment_image_url( (int) $illustration_mobile['ID'], 'large' )
+		: (string) ( $illustration_mobile['url'] ?? '' );
+} elseif ( is_string( $illustration_mobile ) && '' !== $illustration_mobile ) {
+	$illustration_mobile_url = $illustration_mobile;
+}
+
+if ( '' === $illustration_mobile_url ) {
+	$illustration_mobile_url = $illustration_url;
+}
+
 $card_button = zadzerkalya_field( 'services_card_button', __( 'забронювати первинну консультацію', 'zadzerkalya' ) );
 $all_label   = zadzerkalya_field( 'services_all_label', __( 'переглянути всі послуги', 'zadzerkalya' ) );
 $all_url     = zadzerkalya_field( 'services_all_url', $archive_url );
@@ -33,6 +66,7 @@ if ( is_array( $rows ) ) {
 		}
 
 		$items[] = array(
+			'id'    => $service_id,
 			'title' => get_the_title( $service_id ),
 			'url'   => zadzerkalya_service_url( $service_id ),
 			'image' => zadzerkalya_service_showcase_image( $service_id ),
@@ -46,6 +80,7 @@ if ( ! $items ) {
 	while ( $services->have_posts() ) {
 		$services->the_post();
 		$items[] = array(
+			'id'    => get_the_ID(),
 			'title' => get_the_title(),
 			'url'   => zadzerkalya_service_url(),
 			'image' => zadzerkalya_service_showcase_image( get_the_ID() ),
@@ -55,6 +90,7 @@ if ( ! $items ) {
 
 	for ( $index = count( $items ); $index < 7; ++$index ) {
 		$items[] = array(
+			'id'    => 0,
 			'title' => $defaults[ $index ],
 			'url'   => $archive_url,
 			'image' => null,
@@ -71,9 +107,10 @@ if ( ! $items ) {
 	<div class="services-showcase__grid">
 		<div class="services-showcase__cards">
 			<div class="services-showcase__illustration-placeholder">
-				<?php if ( ! zadzerkalya_acf_image( $illustration, 'large', array( 'alt' => '' ) ) ) : ?>
-					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/alice.png' ); ?>" alt="" aria-hidden="true">
-				<?php endif; ?>
+				<picture>
+					<source media="(max-width: 767px)" srcset="<?php echo esc_url( $illustration_mobile_url ); ?>">
+					<img src="<?php echo esc_url( $illustration_url ); ?>" alt="" aria-hidden="true">
+				</picture>
 			</div>
 
 			<?php foreach ( $items as $item ) : ?>
@@ -82,6 +119,7 @@ if ( ! $items ) {
 					'template-parts/card',
 					'service',
 					array(
+						'service_id'   => $item['id'] ?? 0,
 						'title'        => $item['title'],
 						'url'          => $item['url'],
 						'image'        => $item['image'],

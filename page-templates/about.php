@@ -28,7 +28,12 @@ get_header();
 		$story_art      = $about_field( 'about_story_illustration' );
 		$story_art_top  = $about_field( 'about_story_illustration_top' );
 		$story_title  = $about_field( 'about_story_title', 'Історія, що почалася з любові — і стала місією. Моя дорога до «Задзеркалля»' );
-		$story_lead   = $about_field( 'about_story_lead', 'Мій шлях у професію почався не з теорії, а з самого життя — з реальних історій дітей, які потребували більше, аніж просто стандартних рішень. І від моменту мого знайомства з ТІММІ, хто сприймає наш світ інакше, я зрозуміла, що хочу бути поруч — і допомагати їм знайти у цьому світі шлях свій, унікальний.' );
+		$story_lead_default = 'Мій шлях у професію почався не з теорії, а з самого життя — з реальних історій дітей, які потребували більше, аніж просто стандартних рішень. І від моменту мого знайомства з ТІММІ, хто сприймає наш світ інакше, я зрозуміла, що хочу бути поруч — і допомагати їм знайти у цьому світі шлях свій, унікальний.';
+		$story_lead         = $about_field( 'about_story_lead', $story_lead_default );
+		$story_lead_tablet  = $about_field( 'about_story_lead_tablet', '' );
+		if ( '' === trim( wp_strip_all_tags( (string) $story_lead_tablet ) ) ) {
+			$story_lead_tablet = $story_lead;
+		}
 		$mission_text = $about_field( 'about_mission_text', 'Так і зʼявилося «Задзеркалля» — простір, у якому дітки з особливостями розвитку отримують підтримку, необхідні навички, можливість стати самостійнішими та щасливішими у цьому світі.' );
 		$mission_img  = $about_field( 'about_mission_image' );
 		$relocation_text = $about_field( 'about_relocation_text', '' );
@@ -170,9 +175,14 @@ get_header();
 					<div class="about-story__text">
 						<div class="about-story__intro">
 							<h2 id="about-story-title"><?php echo wp_kses( $story_title, array( 'br' => array() ) ); ?></h2>
-							<div class="about-story__lead">
+							<div class="about-story__lead about-story__lead--desktop">
 								<span class="about-story__rule" aria-hidden="true"></span>
 								<p><?php echo zadzerkalya_kses_br( $story_lead ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+								<span class="about-story__rule" aria-hidden="true"></span>
+							</div>
+							<div class="about-story__lead about-story__lead--tablet">
+								<span class="about-story__rule" aria-hidden="true"></span>
+								<p><?php echo zadzerkalya_kses_br( $story_lead_tablet ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 								<span class="about-story__rule" aria-hidden="true"></span>
 							</div>
 						</div>
@@ -313,7 +323,7 @@ get_header();
 							</text>
 						<?php endforeach; ?>
 					</svg>
-					<svg class="about-ending__curve-text about-ending__curve-text--tablet" viewBox="0 0 721 119" fill="none" aria-hidden="true">
+					<svg class="about-ending__curve-text about-ending__curve-text--tablet" viewBox="0 0 721 150" fill="none" aria-hidden="true">
 						<path class="about-ending__curve-stroke" d="M20.1973 118C20.3675 117.908 31.2305 109.516 67.4919 91.5945C92.0226 79.4706 132.849 71.4624 177.958 64.7899C223.068 58.1174 272.209 55.6478 303.267 55.2919C334.324 54.9361 345.809 56.7688 360.334 59.8865C374.859 63.0041 392.076 67.3511 406.127 70.1204C430.394 74.9031 444.852 76.0627 460.097 81.8582C471.815 86.313 491.179 95.1275 504.634 100.021C524.562 107.268 534.918 107.533 554.943 108.487C572.029 109.302 603.222 109.25 622.072 108.681C646.561 107.941 657.805 101.883 667.897 95.7189C688.887 82.931 710.727 72.4981 714.663 70.8522C716.497 70.1359 718 69.661 720 69.1718" stroke="currentColor" stroke-linecap="round" />
 						<defs>
 							<path id="about-ending-text-path-tablet" d="M20.1973 118C20.3675 117.908 31.2305 109.516 67.4919 91.5945C92.0226 79.4706 132.849 71.4624 177.958 64.7899C223.068 58.1174 272.209 55.6478 303.267 55.2919C334.324 54.9361 345.809 56.7688 360.334 59.8865C374.859 63.0041 392.076 67.3511 406.127 70.1204C430.394 74.9031 444.852 76.0627 460.097 81.8582C471.815 86.313 491.179 95.1275 504.634 100.021C524.562 107.268 534.918 107.533 554.943 108.487C572.029 109.302 603.222 109.25 622.072 108.681C646.561 107.941 657.805 101.883 667.897 95.7189C688.887 82.931 710.727 72.4981 714.663 70.8522C716.497 70.1359 718 69.661 720 69.1718" />
@@ -323,7 +333,7 @@ get_header();
 								? 1.5 + ( $ending_index / ( $ending_count - 1 ) ) * 97
 								: 50;
 							?>
-							<text dy="-10" text-anchor="middle">
+							<text dy="-16" text-anchor="middle">
 								<textPath href="#about-ending-text-path-tablet" startOffset="<?php echo esc_attr( number_format( $ending_offset, 4, '.', '' ) ); ?>%"><?php echo esc_html( $ending_char ); ?></textPath>
 							</text>
 						<?php endforeach; ?>

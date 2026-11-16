@@ -22,8 +22,9 @@
 .service-card__link {
 	align-self: stretch;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	color: inherit;
+	text-align: left;
 	text-decoration: none;
 }
 
@@ -52,7 +53,8 @@
 .service-card--nolink .service-card__title {
 	align-self: stretch;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	text-align: left;
 }
 
 .service-card:hover .lottie-button--primary .lottie-button__anim path[fill],
@@ -64,6 +66,7 @@
 .event-article__body .service-card h3.service-card__title {
 	align-self: stretch;
 	width: min(100%, calc(512 * var(--u)));
+	text-align: left;
 	/* 3 рядки 28×1.2 = 100.8; +2px, щоб overflow не зрізав хвостики р, у, д */
 	height: calc(100.8 * var(--u) + 2px);
 	max-height: calc(100.8 * var(--u) + 2px);
@@ -145,6 +148,7 @@
 	}
 
 	.service-card__link {
+		justify-content: center;
 		width: 100%;
 		margin-bottom: 12px;
 	}
@@ -203,25 +207,28 @@
 	.service-card {
 		align-items: center;
 		justify-content: center;
+		/* 8px між лініями і фото; +4px у title/button → 12px до блоків як у макеті */
 		gap: 8px;
 		width: 100%;
-		max-width: none;
-		height: auto;
+		max-width: 361px;
+		height: 432px;
 		padding: 20px;
 		border-radius: 16px;
 	}
 
 	.service-card__link {
 		align-self: stretch;
+		justify-content: flex-start;
 		width: 100%;
+		height: 90px;
 		margin: 0 0 4px;
 	}
 
 	.service-card h3.service-card__title,
 	.event-article__body .service-card h3.service-card__title {
 		width: 100%;
-		height: auto;
-		max-height: calc(18px * 1.22 * 5 + 4px);
+		height: 90px;
+		max-height: 116px;
 		margin: 0;
 		overflow: hidden;
 		font-family: var(--font-family-body);
@@ -230,7 +237,12 @@
 		line-height: 1.22;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 5;
+		-webkit-line-clamp: 4;
+	}
+
+	.service-card--nolink .service-card__title {
+		height: 90px;
+		margin: 0 0 4px;
 	}
 
 	.service-card__line,
@@ -241,9 +253,10 @@
 		max-width: none;
 		height: 10px;
 		aspect-ratio: auto;
+		background-image: url("../../images/services-showcase-line-tablet.svg");
 		background-repeat: no-repeat;
-		background-position: center top 1px;
-		background-size: 100% 5px;
+		background-position: center;
+		background-size: 100% 100%;
 	}
 
 	.service-card__photo {
@@ -258,6 +271,7 @@
 
 	.service-card .lottie-button {
 		align-self: center;
+		flex: 0 0 60px;
 		margin-top: 4px;
 	}
 

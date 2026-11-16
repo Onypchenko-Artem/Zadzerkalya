@@ -622,8 +622,19 @@
 
 @media (max-width: 767px) {
 	.hero {
-		margin-top: -64px;
-		padding: 115px 16px 24px;
+		height: auto;
+		margin-top: -72px;
+		padding: 104px 16px 24px;
+		overflow: visible;
+	}
+
+	.hero-inner {
+		display: block;
+		height: auto;
+	}
+
+	.hero-top-lines {
+		display: none;
 	}
 
 	.hero-layout {
@@ -631,30 +642,36 @@
 		flex-direction: column;
 		align-items: stretch;
 		gap: 0;
+		height: auto;
 		margin-top: 0;
 	}
 
 	.hero-copy,
-	.hero-details {
+	.hero-details,
+	.hero-lead {
 		display: contents;
 	}
 
 	.hero-kicker {
 		order: 0;
 		margin: 0 0 8px;
-		font-size: 15px;
-		font-weight: 400;
-		line-height: 1.35;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.18;
 	}
 
 	.hero h1 {
 		order: 1;
 		min-height: 0;
-		margin: 0 0 40px;
+		margin: 0 0 5px;
 		font-size: 34px;
 		font-weight: 500;
 		line-height: 1.1;
 		letter-spacing: -0.03em;
+	}
+
+	.hero-divider {
+		display: none;
 	}
 
 	.hero-media {
@@ -663,12 +680,12 @@
 		flex-direction: column;
 		align-items: stretch;
 		justify-content: flex-start;
+		gap: 4px;
 		width: 100%;
 		height: auto;
 		aspect-ratio: auto;
 		overflow: visible;
 		border-radius: 0;
-		gap: 4px;
 	}
 
 	.hero-media::before,
@@ -677,17 +694,22 @@
 		display: block;
 		flex: none;
 		width: 100%;
-		height: 0;
-		border-top: 1px solid var(--color-night-sky);
 	}
 
 	.hero-media::before {
-		margin: 8px 0 0;
+		height: 34px;
+		margin: 0;
+		background: linear-gradient(
+			to bottom,
+			transparent 16px,
+			var(--color-night-sky) 16px,
+			var(--color-night-sky) 17px,
+			transparent 17px
+		);
 	}
 
 	.hero-media::after {
 		height: 25px;
-		border-top: 0;
 		background: linear-gradient(
 			to bottom,
 			transparent 14px,
@@ -705,93 +727,88 @@
 		border-radius: 20px;
 	}
 
-	.hero-divider {
-		display: none;
-	}
-
 	.hero-description {
 		order: 3;
+		display: flex;
 		flex: none;
 		flex-direction: row;
+		flex-wrap: wrap;
 		align-items: flex-end;
 		justify-content: center;
-		gap: 28px;
+		gap: 24px 28px;
 		width: 100%;
+		height: auto;
 		max-width: none;
-		min-height: 0;
+		min-height: 125px;
 		padding-top: 0;
-		margin-top: 0;
+		margin-top: 24px;
 	}
 
 	.hero-illustration {
 		order: 0;
+		position: relative;
 		flex: none;
 		width: 136px;
 		height: 125px;
 		margin-top: 0;
+		transform: none;
+	}
+
+	.hero-illustration img {
+		position: static;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		transform: scaleX(-1);
+	}
+
+	.hero-illustration__line {
+		display: block;
+		left: 0;
+		top: 114px;
+		width: 136px;
+		height: 11px;
 	}
 
 	.hero-description p {
 		order: 1;
-		flex: 1 1 auto;
+		flex: 1 1 0;
+		width: 197px;
 		min-width: 0;
 		min-height: 0;
-		font-size: 13px;
-		font-weight: 300;
-		line-height: 1.4;
-	}
-
-	.hero-form {
-		order: 4;
-		flex: none;
-		align-items: stretch;
-		justify-content: flex-start;
-		gap: 24px;
-		width: 100%;
-		max-width: none;
-		min-height: 0;
-		margin-top: 24px;
-		scroll-margin-top: 96px;
-	}
-
-	.hero-field-stack {
-		gap: 6px;
-		margin-top: 0;
-	}
-
-	.hero-form .lottie-button {
-		align-self: center;
-		width: 260px;
-		min-width: 260px;
-		margin-top: 0;
-		--lottie-btn-w: 260px;
-		--lottie-btn-h: 62px;
-	}
-
-	.hero-form .lottie-button .lottie-button__label {
-		padding-inline: 16px;
-		font-size: 13px;
-		line-height: 1.26;
-	}
-
-	.hero-form .form-consent {
-		width: 100%;
+		height: auto;
 		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.4;
 	}
 
-	.hero-field label {
-		font-size: 11px;
-		line-height: 1.4;
+	.hero-cta {
+		order: 2;
+		display: flex;
+		flex: 1 1 100%;
+		justify-content: center;
+		width: 100%;
 	}
 
-	.hero-field input {
-		height: 48px;
-		padding: 12px 16px;
-		border-radius: 8px;
-		font-size: 16px;
-		line-height: 1.35;
+	.hero-cta .lottie-button--primary {
+		--lottie-btn-w: 260px;
+		--lottie-btn-h: 62px;
+		width: 260px;
+		min-width: 260px;
+		height: 62px;
+		min-height: 62px;
+	}
+
+	.hero-cta .lottie-button__label {
+		padding-inline: 16px;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.26;
+		white-space: nowrap;
+	}
+
+	.hero-form {
+		display: none;
 	}
 
 	.hero-bottom-line {

@@ -1096,6 +1096,26 @@ function zadzerkalya_service_has_page( $service_id = 0 ) {
 }
 
 /**
+ * Текст кнопки з головного банера сторінки послуги.
+ *
+ * @param int    $service_id ID послуги.
+ * @param string $fallback   Підпис, якщо в банері нічого не задано.
+ * @return string
+ */
+function zadzerkalya_service_hero_button_label( $service_id = 0, $fallback = '' ) {
+	$service_id = (int) ( $service_id ? $service_id : get_the_ID() );
+	$fallback   = '' !== trim( (string) $fallback ) ? (string) $fallback : __( 'забронювати первинну консультацію', 'zadzerkalya' );
+
+	if ( ! $service_id || 'service' !== get_post_type( $service_id ) || ! function_exists( 'get_field' ) ) {
+		return $fallback;
+	}
+
+	$label = trim( (string) get_field( 'service_hero_button_label', $service_id ) );
+
+	return '' !== $label ? $label : $fallback;
+}
+
+/**
  * Permalink послуги або порожній рядок, якщо сторінку вимкнено.
  *
  * @param int|WP_Post $service ID або обʼєкт послуги.

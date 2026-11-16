@@ -245,7 +245,8 @@
 	.article-card__title {
 		height: auto;
 		min-height: 0;
-		font-size: 22px;
+		font-size: 18px;
+		line-height: 1.22;
 		-webkit-line-clamp: 3;
 	}
 
@@ -271,12 +272,27 @@
 
 	.article-card__info {
 		height: auto;
-		font-size: var(--text-body-xs-size);
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.article-card__clock {
+		flex-basis: 12px;
+		width: 12px;
+		height: 12px;
 	}
 
 	.article-card .lottie-button--primary {
-		--lottie-btn-w: 240px;
-		--lottie-btn-h: 62px;
-		min-width: 240px;
+		--lottie-btn-w: 200px;
+		--lottie-btn-h: 48px;
+		min-width: 200px;
+		max-width: 100%;
+	}
+
+	.article-card .lottie-button--primary .lottie-button__label {
+		padding-inline: 14px;
+		font-size: 13px;
+		line-height: 1.26;
 	}
 }

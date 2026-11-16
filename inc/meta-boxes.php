@@ -203,3 +203,119 @@ function zadzerkalya_save_meta_boxes( $post_id ) {
 	}
 }
 add_action( 'save_post', 'zadzerkalya_save_meta_boxes' );
+
+/**
+ * Числовий ID запису з формату ACF.
+ *
+ * @param mixed $post_id ID запису.
+ * @return int
+ */
+function zadzerkalya_service_cta_post_id( $post_id ) {
+	if ( is_numeric( $post_id ) ) {
+		return (int) $post_id;
+	}
+
+	if ( is_string( $post_id ) && preg_match( '/(\d+)$/', $post_id, $matches ) ) {
+		return (int) $matches[1];
+	}
+
+	return 0;
+}
+
+/**
+ * Рядки зі старої структури «слайд → рядки». Старі ключі не змінює.
+ *
+ * @param mixed $post_id ID послуги.
+ * @return array<int, array<string, mixed>>
+ */
+function zadzerkalya_service_cta_legacy_rows( $post_id ) {
+	$post_id = zadzerkalya_service_cta_post_id( $post_id );
+	if ( $post_id < 1 || ! metadata_exists( 'post', $post_id, 'service_cta_slides_0_rows' ) ) {
+		return array();
+	}
+
+	$items = array();
+	for ( $slide = 0; $slide < 50; $slide++ ) {
+		if ( ! metadata_exists( 'post', $post_id, "service_cta_slides_{$slide}_rows" ) ) {
+			break;
+		}
+
+		$row_count = (int) get_post_meta( $post_id, "service_cta_slides_{$slide}_rows", true );
+		for ( $row = 0; $row < $row_count; $row++ ) {
+			$prefix  = "service_cta_slides_{$slide}_rows_{$row}_";
+			$items[] = array(
+				'title'            => (string) get_post_meta( $post_id, $prefix . 'title', true ),
+				'show_description' => get_post_meta( $post_id, $prefix . 'show_description', true ),
+				'description'      => (string) get_post_meta( $post_id, $prefix . 'description', true ),
+			);
+		}
+	}
+
+	return $items;
+}
+
+/**
+ * Старі пункти, якщо новий список ще не збережений.
+ *
+ * @param mixed $post_id ID послуги.
+ * @return array<int, array<string, mixed>>|null
+ */
+function zadzerkalya_service_cta_legacy_items( $post_id ) {
+	$post_id = zadzerkalya_service_cta_post_id( $post_id );
+	if ( $post_id < 1 || metadata_exists( 'post', $post_id, 'service_cta_slides_0_title' ) || metadata_exists( 'post', $post_id, 'service_cta_slides_0_description' ) ) {
+		return null;
+	}
+
+	$items = zadzerkalya_service_cta_legacy_rows( $post_id );
+	return $items ? $items : null;
+}
+
+/**
+ * Записує старі рядки в плоский список, не стираючи попередні ключі.
+ *
+ * @param mixed $post_id ID послуги.
+ * @return bool
+ */
+function zadzerkalya_persist_service_cta_items( $post_id ) {
+	$post_id = zadzerkalya_service_cta_post_id( $post_id );
+	$items   = zadzerkalya_service_cta_legacy_items( $post_id );
+	if ( ! $items ) {
+		return false;
+	}
+
+	update_post_meta( $post_id, 'service_cta_slides', count( $items ) );
+	foreach ( $items as $index => $item ) {
+		update_post_meta( $post_id, "service_cta_slides_{$index}_title", $item['title'] );
+		update_post_meta( $post_id, "_service_cta_slides_{$index}_title", 'field_zadzerkalya_service_cta_row_title' );
+		update_post_meta( $post_id, "service_cta_slides_{$index}_show_description", $item['show_description'] );
+		update_post_meta( $post_id, "_service_cta_slides_{$index}_show_description", 'field_zadzerkalya_service_cta_row_show_description' );
+		update_post_meta( $post_id, "service_cta_slides_{$index}_description", $item['description'] );
+		update_post_meta( $post_id, "_service_cta_slides_{$index}_description", 'field_zadzerkalya_service_cta_row_description' );
+	}
+
+	return true;
+}
+
+/**
+ * Після синхронізації поля показує і зберігає старі рядки як окремі пункти.
+ *
+ * @param mixed $value   Значення поля.
+ * @param mixed $post_id ID запису.
+ * @param array $field   Налаштування поля.
+ * @return mixed
+ */
+function zadzerkalya_load_service_cta_items( $value, $post_id, $field ) {
+	$names = array_column( (array) ( $field['sub_fields'] ?? array() ), 'name' );
+	if ( in_array( 'rows', $names, true ) ) {
+		return $value;
+	}
+
+	$legacy = zadzerkalya_service_cta_legacy_items( $post_id );
+	if ( null === $legacy ) {
+		return $value;
+	}
+
+	zadzerkalya_persist_service_cta_items( $post_id );
+	return $legacy;
+}
+add_filter( 'acf/load_value/name=service_cta_slides', 'zadzerkalya_load_service_cta_items', 10, 3 );

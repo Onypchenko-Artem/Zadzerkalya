@@ -52,7 +52,14 @@
 }
 
 @media (max-width: 767px) {
+	.contacts-page .contacts-info {
+		position: relative;
+		z-index: 2;
+		background: transparent;
+	}
+
 	.contacts-page .form-home {
-		margin-top: 80px;
+		z-index: 1;
+		margin-top: -100px;
 	}
 }

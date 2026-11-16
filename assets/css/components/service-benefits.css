@@ -268,6 +268,11 @@
 	line-height: 1.35;
 }
 
+/* На десктопі intro лишається біля першої картки; fallback біля ілюстрації — лише tablet/mobile. */
+.service-benefits__aside-text--from-intro {
+	display: none;
+}
+
 @media (max-width: 1279px) and (min-width: 768px) {
 	.service-benefits {
 		display: grid;
@@ -319,9 +324,18 @@
 		max-width: 100%;
 		min-height: 0;
 		padding-top: 0;
+		white-space: normal;
 		font-size: 18px;
 		font-weight: 400;
 		line-height: 1.35;
+	}
+
+	.service-benefits__aside-text--from-intro {
+		display: flex;
+	}
+
+	.service-benefits--intro-as-aside .service-benefits__intro {
+		display: none;
 	}
 
 	.service-benefits__rows {
@@ -346,9 +360,15 @@
 		margin-top: 48px;
 		margin-bottom: 10px;
 		justify-self: center;
+		white-space: normal;
 		font-size: 18px;
 		font-weight: 400;
 		line-height: 1.35;
+	}
+
+	.service-benefits__aside-text br,
+	.service-benefits__intro br {
+		display: none;
 	}
 
 	.service-benefits__aside .lottie-button {
@@ -425,99 +445,164 @@
 
 @media (max-width: 767px) {
 	.service-benefits {
-		display: flex;
-		flex-direction: column;
-		gap: 32px;
+		display: grid;
+		grid-template-columns: 102px minmax(0, 1fr);
+		align-items: start;
+		column-gap: 16px;
+		row-gap: 36px;
 		padding: 0 16px;
 	}
 
 	.service-benefits__aside,
-	.service-benefits__main {
-		display: flex;
-		flex-basis: auto;
-		flex-direction: column;
-		width: 100%;
-	}
-
-	.service-benefits__aside {
-		align-items: center;
-	}
-
-	.service-benefits__aside .lottie-button--primary {
-		--lottie-btn-w: 240px;
-		--lottie-btn-h: 62px;
-	}
-
-	.service-benefits__aside .lottie-button--primary .lottie-button__label {
-		padding-inline: 16px;
-	}
-
-	.service-benefits__main {
-		order: -1;
-		gap: 28px;
+	.service-benefits__aside-foot,
+	.service-benefits__main,
+	.service-benefits__rows,
+	.service-benefits__row,
+	.service-benefits__row--lead {
+		display: contents;
 	}
 
 	.service-benefits__main h2 {
-		font-size: var(--text-h2-size);
+		grid-column: 1 / -1;
+		grid-row: 1;
+		order: 1;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
 		text-align: center;
 	}
 
-	.service-benefits__rows {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 20px;
-		width: 100%;
-	}
-
-	.service-benefits__row,
-	.service-benefits__row--lead {
-		flex-wrap: wrap;
-		gap: 20px;
-	}
-
-	.service-benefits__intro,
-	.service-benefits__card,
-	.service-benefits__row--lead .service-benefits__card {
-		width: 100%;
-		max-width: none;
-		flex-basis: 100%;
-	}
-
-	.service-benefits__aside-text {
-		min-height: 0;
-		max-width: 560px;
-		padding-top: 0;
-	}
-
-	.service-benefits__aside-text,
-	.service-benefits__intro,
-	.service-benefits__card p {
-		font-size: 16px;
-	}
-
-	.service-benefits__aside-foot {
-		gap: 32px;
-	}
-
-	.service-benefits__card {
-		min-height: 0;
-		padding: 24px;
-		gap: 20px;
-	}
-
-	.service-benefits__card h3 {
-		font-size: 20px;
-	}
-
 	.service-benefits__figure {
-		width: 200px;
-		height: 200px;
+		grid-column: 1;
+		grid-row: 2;
+		order: 2;
+		width: 102px;
+		height: 102px;
 	}
 
 	.service-benefits__figure-line {
-		left: 24px;
-		top: 184px;
-		width: 156px;
+		left: 0;
+		top: auto;
+		bottom: -15px;
+		width: 84px;
+		height: 9px;
+	}
+
+	.service-benefits__aside-text {
+		grid-column: 2;
+		grid-row: 2;
+		order: 2;
+		align-self: center;
+		width: auto;
+		max-width: none;
+		min-height: 0;
+		padding-top: 0;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.service-benefits__aside-text--from-intro {
+		display: flex;
+	}
+
+	.service-benefits--intro-as-aside .service-benefits__intro {
+		display: none;
+	}
+
+	.service-benefits__aside-text :is(p, ul, ol) + :is(p, ul, ol),
+	.service-benefits__intro :is(p, ul, ol) + :is(p, ul, ol) {
+		margin-top: 12px;
+	}
+
+	.service-benefits__card,
+	.service-benefits__row--lead .service-benefits__card {
+		grid-column: 1 / -1;
+		order: 3;
+		flex: none;
+		flex-basis: auto;
+		justify-content: space-between;
+		gap: 16px;
+		width: 100%;
+		max-width: none;
+		min-height: 0;
+		padding: 24px 14px;
+		border-radius: 20px;
+	}
+
+	.service-benefits__card ~ .service-benefits__card {
+		margin-top: -12px;
+	}
+
+	.service-benefits__card-top {
+		gap: 24px;
+	}
+
+	.service-benefits__card h3 {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.22;
+	}
+
+	.service-benefits__card p {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.service-benefits__mark {
+		gap: 12px;
+		height: 40px;
+		min-height: 40px;
+	}
+
+	.service-benefits__spiral {
+		flex: none;
+		width: 40px;
+		min-width: 40px;
+		height: 16px;
+		aspect-ratio: auto;
+	}
+
+	.service-benefits__digits {
+		flex: 0 0 198px;
+		width: 198px;
+		max-width: 198px;
+		height: 40px;
+		aspect-ratio: auto;
+	}
+
+	.service-benefits__digits span {
+		font-size: 20px;
+		line-height: 1;
+		letter-spacing: 0;
+		transform: translateY(calc(var(--y) * 1px)) rotate(calc(var(--rt) * 1deg));
+	}
+
+	.service-benefits__intro {
+		grid-column: 1 / -1;
+		order: 4;
+		width: 100%;
+		max-width: none;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.service-benefits__aside .lottie-button {
+		grid-column: 1 / -1;
+		order: 5;
+		justify-self: center;
+		margin-top: -4px;
+		--lottie-btn-w: 255px;
+		--lottie-btn-h: 60px;
+	}
+
+	.service-benefits__aside .lottie-button--primary .lottie-button__label {
+		padding-inline: 12px;
+		font-size: 13px;
+		line-height: 1.26;
+		transform: none;
 	}
 }

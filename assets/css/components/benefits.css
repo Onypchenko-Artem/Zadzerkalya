@@ -397,20 +397,26 @@
 	}
 
 	.benefits__image-placeholder {
+		position: relative;
 		grid-column: 1;
 		grid-row: 1 / -1;
 		flex: none;
 		align-self: center;
 		width: 92px;
 		height: 189px;
+		overflow: hidden;
 		border-radius: 0;
 	}
 
 	.benefits__image-placeholder img {
+		position: absolute;
+		inset: 0;
+		display: block;
 		width: 100%;
 		height: 100%;
-		object-fit: contain;
-		object-position: center;
+		max-width: none;
+		object-fit: cover;
+		object-position: center bottom;
 	}
 
 	.benefits__intro-text {
@@ -437,6 +443,11 @@
 		width: 100%;
 		max-width: 255px;
 		min-width: 0;
+	}
+
+	.benefits__intro > .lottie-button--primary .lottie-button__label {
+		padding-inline: 10px;
+		white-space: nowrap;
 	}
 
 	.benefits__list {

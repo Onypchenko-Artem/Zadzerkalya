@@ -18,14 +18,27 @@ $args = wp_parse_args(
 ?>
 <section class="form-home" aria-labelledby="form-home-title">
 	<div class="form-home__background" aria-hidden="true">
+		<picture class="form-home__background-full-picture">
+			<source media="(max-width: 767px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/Form-Home.png' ); ?>">
+			<img
+				class="form-home__background-full"
+				src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+				width="786"
+				height="1790"
+				alt=""
+				decoding="async"
+			>
+		</picture>
 		<picture>
-			<source media="(max-width: 767px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-bg-left-mobile.png' ); ?>">
-			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-left.png' ); ?>">
+			<source media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+			<source media="(min-width: 768px) and (max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-left.png' ); ?>">
+			<source media="(min-width: 1280px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/left-bg-img.png' ); ?>">
 			<img class="form-home__background-left" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/left-bg-img.png' ); ?>" alt="">
 		</picture>
 		<picture>
-			<source media="(max-width: 767px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-bg-right-mobile.png' ); ?>">
-			<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-right.png' ); ?>">
+			<source media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+			<source media="(min-width: 768px) and (max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/form-tablet-right.png' ); ?>">
+			<source media="(min-width: 1280px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>">
 			<img class="form-home__background-right" src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/right-bg-img.png' ); ?>" alt="">
 		</picture>
 	</div>

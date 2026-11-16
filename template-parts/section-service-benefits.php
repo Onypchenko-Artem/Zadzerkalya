@@ -124,6 +124,7 @@ if ( ! $has_custom ) {
 
 $intro_html = $format_html( $intro );
 $aside_html = $format_html( $aside );
+$intro_as_aside = ! $aside_html && (bool) $intro_html;
 
 if ( '' === trim( (string) $args['button_label'] ) ) {
 	$args['button_label'] = __( 'забронювати первинну консультацію', 'zadzerkalya' );
@@ -191,7 +192,7 @@ $render_card = static function ( $card ) {
 		<div class="service-benefits__card-top">
 			<div class="service-benefits__mark" aria-hidden="true">
 				<picture class="service-benefits__spiral service-benefits__spiral--left">
-					<source media="(max-width: 1279px) and (min-width: 768px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
+					<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
 					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="" width="136" height="55">
 				</picture>
 				<span class="service-benefits__digits">
@@ -207,7 +208,7 @@ $render_card = static function ( $card ) {
 					<?php endfor; ?>
 				</span>
 				<picture class="service-benefits__spiral">
-					<source media="(max-width: 1279px) and (min-width: 768px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
+					<source media="(max-width: 1279px)" srcset="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote-tablet.svg' ); ?>">
 					<img src="<?php echo esc_url( ZADZERKALYA_URI . '/assets/images/service-benefits-quote.svg' ); ?>" alt="" width="136" height="55">
 				</picture>
 			</div>
@@ -222,11 +223,15 @@ $render_card = static function ( $card ) {
 	<?php
 };
 ?>
-<section class="service-benefits" aria-labelledby="service-benefits-title">
+<section class="service-benefits<?php echo $intro_as_aside ? ' service-benefits--intro-as-aside' : ''; ?>" aria-labelledby="service-benefits-title">
 	<div class="service-benefits__aside">
 		<?php if ( $aside_html ) : ?>
 			<div class="service-benefits__aside-text">
 				<?php echo $aside_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			</div>
+		<?php elseif ( $intro_as_aside ) : ?>
+			<div class="service-benefits__aside-text service-benefits__aside-text--from-intro">
+				<?php echo $intro_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
 		<?php endif; ?>
 		<div class="service-benefits__aside-foot">

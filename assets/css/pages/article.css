@@ -65,13 +65,18 @@
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		gap: 80px;
+		gap: 60px;
+	}
+
+	:is(.single-post, .single-event) .event-article,
+	:is(.single-post, .single-event) .recommend {
+		z-index: 2;
 	}
 
 	:is(.single-post, .single-event) .form-home {
 		position: relative;
-		z-index: 0;
-		margin-top: 0;
+		z-index: 1;
+		margin-top: -100px;
 	}
 
 	.single-event .recommend {

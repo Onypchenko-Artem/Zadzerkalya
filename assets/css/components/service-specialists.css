@@ -274,56 +274,97 @@
 
 @media (max-width: 767px) {
 	.service-specialists {
-		gap: 28px;
+		gap: 36px;
 		padding: 0 16px;
 	}
 
 	.service-specialists h2 {
 		width: 100%;
-		font-size: var(--text-h2-size);
-		line-height: 1.08;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
 		letter-spacing: -0.03em;
 	}
 
 	.service-specialists__cards {
 		grid-template-columns: minmax(0, 1fr);
-		gap: 20px;
+		gap: 24px;
 		max-width: none;
 	}
 
 	.service-specialists__card {
-		width: auto;
+		justify-content: flex-start;
+		isolation: isolate;
+		width: 100%;
+		height: auto;
 		min-height: 0;
-		padding: 24px;
-		gap: 20px;
-		border-radius: 28px;
+		padding: 28px 16px;
+		gap: 16px;
+		overflow: visible;
+		background: var(--color-chewing-gum);
+		border: 0;
+		border-radius: 24px;
+	}
+
+	.service-specialists__card:not(:has(.service-specialists__text)) {
+		justify-content: flex-start;
+		min-height: 0;
+	}
+
+	.service-specialists__card::before {
+		left: calc(100% * -1.94922 / 360);
+		top: calc(100% * -7.8418 / 210.519);
+		right: auto;
+		bottom: auto;
+		z-index: 1;
+		width: calc(100% * 363 / 360);
+		height: calc(100% * 221 / 210.519);
+		background: url("../../images/service-specialists-stroke-mobile.svg") 0 0 / 100% 100% no-repeat;
+		transform: none;
+	}
+
+	.service-specialists__card::after {
+		display: none;
+		content: none;
 	}
 
 	.service-specialists__head {
+		flex-direction: column;
+		align-items: flex-start;
+		align-self: stretch;
 		gap: 16px;
 	}
 
 	.service-specialists__counter {
-		width: 40px;
-		height: 64px;
-		padding: 20px 8px 14px;
+		width: 32px;
+		height: 42px;
+		padding: 5px 3px;
 	}
 
 	.service-specialists__counter-current {
-		font-size: 24px;
-		line-height: 30px;
+		font-size: 18px;
+		line-height: 23px;
 	}
 
 	.service-specialists__counter-total {
-		font-size: 21px;
-		line-height: 26px;
+		font-size: 16px;
+		line-height: 20px;
 	}
 
 	.service-specialists__head h3 {
-		font-size: 20px;
+		flex: none;
+		align-self: stretch;
+		width: 100%;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.22;
 	}
 
 	.service-specialists__text {
-		font-size: 16px;
+		display: block;
+		align-self: stretch;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 }

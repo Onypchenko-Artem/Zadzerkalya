@@ -876,6 +876,10 @@
 		margin-top: 0;
 	}
 
+	.event-article__author-info {
+		width: 100%;
+	}
+
 	.event-article__aside {
 		order: 0;
 		width: 100%;
@@ -1027,12 +1031,13 @@
 
 	:is(.single-post, .single-event) .event-article__author-info {
 		order: 2;
+		width: 100%;
 		gap: 8px;
 	}
 
 	:is(.single-post, .single-event) .event-article__body {
 		order: 3;
-		margin-top: 44px;
+		/*margin-top: 44px;*/
 		--event-gap-section: 36px;
 		--event-gap-heading-text: 24px;
 		--event-gap-heading-list: 24px;
@@ -1111,7 +1116,6 @@
 		width: 28px;
 		height: 20px;
 		background-position: left 4px;
-		background-size: 26px 12px;
 	}
 
 	:is(.single-post, .single-event) .event-article__body img {

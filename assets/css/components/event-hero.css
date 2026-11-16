@@ -612,7 +612,8 @@
 		width: 100%;
 		height: auto;
 		aspect-ratio: 362 / 194;
-		border-radius: 0;
+		border-radius: 50%;
+		overflow: hidden;
 	}
 
 	:is(.single-post, .single-event) .event-hero__photo-line {

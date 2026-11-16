@@ -15,33 +15,32 @@
 	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
 		margin-top: 120px;
 	}
-
-	.home .site-main > .faq-scroll + .form-home {
-		margin-top: -120px;
-	}
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.home .site-main > .faq-scroll + .form-home {
-		margin-top: -160px;
-	}
-
-	.home .site-main > .faq-scroll + .form-home .form-home__content {
-		top: auto;
-		margin-top: 240px;
+		margin-top: -69px;
 	}
 }
 
 @media (max-width: 767px) {
 	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
-		margin-top: 80px;
+		margin-top: 60px;
+	}
+
+	.home .site-main > .faq-scroll {
+		z-index: auto;
+		background: transparent;
+	}
+
+	.home .site-main > .faq-scroll .faq {
+		position: relative;
+		z-index: 2;
+		background: transparent;
 	}
 
 	.home .site-main > .faq-scroll + .form-home {
-		margin-top: 80px;
-	}
-
-	.home .site-footer {
-		margin-top: 80px;
+		z-index: 1;
+		margin-top: -100px;
 	}
 }

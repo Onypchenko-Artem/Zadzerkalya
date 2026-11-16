@@ -182,13 +182,13 @@
 .policy__body.event-article__body ol > li {
 	display: grid;
 	grid-template-columns: auto minmax(0, 1fr);
-	column-gap: 8px;
+	column-gap: 4px;
 	align-items: baseline;
 	counter-increment: policy-item;
 }
 
 .policy__body.event-article__body ol > li::before {
-	content: counters(policy-item, ".") ". ";
+	content: counters(policy-item, ".") ".";
 	grid-column: 1;
 	grid-row: 1;
 	flex: none;
@@ -377,7 +377,8 @@
 		margin-top: 0;
 	}
 
-	.policy__body h2 {
+	.policy__body h2,
+	.policy__body.event-article__body ol > li:has(> h2)::before {
 		font-family: var(--font-family-heading);
 		font-size: 40px;
 		font-weight: 500;
@@ -386,7 +387,7 @@
 	}
 
 	.policy__body h3,
-	.policy__body.event-article__body ol > li:has(:is(h2, h3, h4))::before {
+	.policy__body.event-article__body ol > li:has(> :is(h3, h4))::before {
 		font-family: var(--font-family-body);
 		font-size: 24px;
 		font-weight: 500;
@@ -503,6 +504,7 @@
 		flex-direction: column;
 		align-items: stretch;
 		gap: 0;
+		margin-top: 80px;
 		padding: 0 16px;
 	}
 
@@ -510,8 +512,15 @@
 		display: none;
 	}
 
+	.policy-page .policy {
+		position: relative;
+		z-index: 2;
+		background: transparent;
+	}
+
 	.policy-page .form-home {
-		margin-top: 80px;
+		z-index: 1;
+		margin-top: -100px;
 	}
 
 	.policy__main {
@@ -624,7 +633,12 @@
 		margin-bottom: 8px;
 	}
 
-	.policy__body.event-article__body ol ol,
+	.policy__body.event-article__body ol ol {
+		margin-top: 0;
+		padding-left: 0;
+		gap: 12px;
+	}
+
 	.policy__body .policy-sub {
 		margin-top: 0;
 		padding-left: 16px;
@@ -632,7 +646,7 @@
 	}
 
 	.policy__body.event-article__body ol ol ol {
-		padding-left: 16px;
+		padding-left: 0;
 	}
 
 	.policy__body ul {

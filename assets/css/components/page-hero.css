@@ -328,7 +328,7 @@
 	}
 
 	.page-hero__content {
-		gap: 56px;
+		gap: 32px;
 	}
 
 	.page-hero__title {
@@ -357,6 +357,10 @@
 
 	.page-hero__photo-image {
 		border-radius: 160px;
+	}
+
+	.page-hero .about-hero__right-line {
+		aspect-ratio: auto;
 	}
 
 }

@@ -9,13 +9,15 @@
  *     @type string $title        Заголовок. Якщо не передано — назва поточного запису.
  *     @type string $url          Посилання заголовка. Якщо не передано — permalink.
  *     @type mixed  $image        Зображення ACF або ID вкладення. Ключ має бути лише для картки поза циклом.
- *     @type string $button_label Текст кнопки.
+ *     @type int    $service_id    ID послуги. Для картки поза циклом, щоб взяти текст кнопки з банера.
+ *     @type string $button_label Текст кнопки, якщо в банері послуги його не задано.
  *     @type string $button_url   Посилання кнопки.
  * }
  */
 
 $button_label = $args['button_label'] ?? __( 'забронювати первинну консультацію', 'zadzerkalya' );
 $button_url   = $args['button_url'] ?? '#contact-form';
+$service_id   = isset( $args['service_id'] ) ? (int) $args['service_id'] : 0;
 $is_custom    = isset( $args['title'] ) || isset( $args['url'] ) || array_key_exists( 'image', $args );
 
 if ( $is_custom ) {
@@ -23,9 +25,14 @@ if ( $is_custom ) {
 	$permalink = $args['url'] ?? '';
 	$image     = $args['image'] ?? null;
 } else {
-	$title     = get_the_title();
-	$permalink = function_exists( 'zadzerkalya_service_url' ) ? zadzerkalya_service_url() : get_permalink();
-	$image     = null;
+	$title      = get_the_title();
+	$permalink  = function_exists( 'zadzerkalya_service_url' ) ? zadzerkalya_service_url() : get_permalink();
+	$image      = null;
+	$service_id = (int) get_the_ID();
+}
+
+if ( $service_id && function_exists( 'zadzerkalya_service_hero_button_label' ) ) {
+	$button_label = zadzerkalya_service_hero_button_label( $service_id, $button_label );
 }
 
 $has_link = is_string( $permalink ) && '' !== $permalink && '#' !== $permalink;

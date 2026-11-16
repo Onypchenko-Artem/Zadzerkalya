@@ -416,8 +416,7 @@
 		box-sizing: border-box;
 		width: auto;
 		height: 37px;
-		margin-left: 0;
-		/*padding: 8px;*/
+		margin-inline: -16px;
 		aspect-ratio: auto;
 		background-origin: content-box;
 		background-clip: content-box;
@@ -426,81 +425,158 @@
 
 @media (max-width: 767px) {
 	.service-hero {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
 		height: auto;
 		min-height: 0;
 		margin-top: -80px;
-		padding: 112px 16px 24px;
+		padding: 116px 16px 0;
+		overflow: visible;
 	}
 
 	.service-hero__inner {
-		grid-template-columns: 1fr;
-		gap: 32px;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		width: 100%;
+		max-width: none;
 		height: auto;
 		min-height: 0;
 	}
 
-	.service-hero__main {
-		display: block;
+	.service-hero--no-photo .service-hero__inner {
+		display: flex;
+	}
+
+	.service-hero__main,
+	.service-hero__container,
+	.service-hero__content,
+	.service-hero__breadcrumbs-container {
+		width: 100%;
+		height: auto;
 		min-height: 0;
+		align-items: stretch;
 	}
 
 	.service-hero__container {
-		gap: 28px;
-		min-height: 0;
+		align-items: center;
+		gap: 36px;
 	}
 
 	.service-hero__content {
+		flex: none;
 		padding: 0;
 	}
 
 	.service-hero__breadcrumbs-container {
-		gap: 32px;
+		align-items: flex-start;
+		gap: 24px;
+	}
+
+	.service-hero__breadcrumbs {
+		align-items: baseline;
+		width: 100%;
+		max-width: 100%;
+		min-height: 21px;
+		gap: 8px;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	/* Mobile layout: Головна → поточна сторінка */
+	.service-hero__breadcrumbs > a:nth-child(3),
+	.service-hero__breadcrumbs > .service-hero__crumb-arrow:nth-child(4) {
+		display: none;
+	}
+
+	.service-hero__breadcrumbs > [aria-current="page"] {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.service-hero__crumb-arrow {
+		width: 20px;
+		height: 12px;
+		aspect-ratio: auto;
 	}
 
 	.service-hero__title {
-		gap: 20px;
+		gap: 32px;
 		height: auto;
+		min-height: 0;
+		justify-content: flex-start;
 	}
 
 	.service-hero h1 {
+		width: 100%;
 		height: auto;
-		font-size: 36px;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+	}
+
+	.service-hero__title-lines {
+		display: none;
+	}
+
+	.service-hero__title-flow {
+		display: inline;
 	}
 
 	.service-hero__copy {
 		flex-direction: column;
+		justify-content: flex-start;
 		align-items: flex-start;
-		gap: 20px;
+		gap: 24px;
 		width: 100%;
 		height: auto;
+		max-width: none;
+		margin-top: 0;
 	}
 
 	.service-hero__description {
+		width: 100%;
 		height: auto;
-		font-size: 16px;
+		max-width: 420px;
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
 	}
 
-	.service-hero__copy .lottie-button--primary {
-		--lottie-btn-w: 240px;
-		--lottie-btn-h: 62px;
+	.service-hero__copy > .lottie-button {
+		margin-top: 0;
+	}
+
+	.service-hero__copy .lottie-button--primary,
+	.service-hero__copy .lottie-button--secondary {
+		flex: 0 0 auto;
+		--lottie-btn-w: 255px;
+		--lottie-btn-h: 60px;
 	}
 
 	.service-hero__copy .lottie-button--primary .lottie-button__label {
-		padding-inline: 16px;
+		padding-inline: 12px;
+		font-size: 13px;
+		font-weight: 400;
+		line-height: 1.26;
+		transform: none;
 	}
 
 	.service-hero__bottom-line {
-		max-width: none;
-		height: auto;
-		aspect-ratio: 875 / 16;
-	}
-
-	.service-hero__photo-line {
 		align-self: stretch;
-		width: 100%;
-		height: auto;
-		margin-left: 0;
-		aspect-ratio: 895 / 34;
+		box-sizing: border-box;
+		width: auto;
+		max-width: none;
+		height: 4px;
+		margin: 0;
+		aspect-ratio: auto;
+		background-origin: content-box;
+		background-clip: content-box;
 	}
 
 	.service-hero__vertical-line {
@@ -510,12 +586,28 @@
 	.service-hero__photo {
 		width: 100%;
 		height: auto;
-		padding: 0;
-		gap: 16px;
+		align-items: stretch;
+		justify-content: flex-start;
+		padding: 32px 0 0;
+		gap: 30px;
 	}
 
 	.service-hero__image {
-		border-radius: 160px;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 361 / 205;
+		border-radius: 154px;
 	}
 
+	.service-hero__photo-line {
+		align-self: stretch;
+		box-sizing: border-box;
+		width: auto;
+		height: 31px;
+		margin-left: 0;
+		padding: 8px 0;
+		aspect-ratio: auto;
+		background-origin: content-box;
+		background-clip: content-box;
+	}
 }

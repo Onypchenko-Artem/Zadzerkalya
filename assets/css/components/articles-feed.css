@@ -329,10 +329,23 @@
 }
 
 @media (max-width: 767px) {
+	.articles-feed + .form-home {
+		margin-top: -100px;
+	}
+
 	.articles-feed {
+		z-index: auto;
 		align-items: stretch;
 		gap: 32px;
 		padding: 48px 0 0;
+		background: transparent;
+	}
+
+	.articles-feed__title,
+	.articles-feed__articles,
+	.articles-feed__pagination {
+		position: relative;
+		z-index: 2;
 	}
 
 	.articles-feed__title {
@@ -357,7 +370,7 @@
 
 	.articles-feed__articles {
 		align-items: stretch;
-		gap: 80px;
+		gap: 60px;
 	}
 
 	.articles-feed__list {

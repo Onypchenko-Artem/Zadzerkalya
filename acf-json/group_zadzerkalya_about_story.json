@@ -139,19 +139,39 @@
         },
         {
             "key": "field_zadzerkalya_about_story_lead",
-            "label": "Вступний текст",
+            "label": "Вступний текст (Desktop)",
             "name": "about_story_lead",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Текст для десктопу та мобайлу.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "Мій шлях у професію почався не з теорії, а з самого життя — з реальних історій дітей, які потребували більше, аніж просто стандартних рішень.",
+            "rows": 5,
+            "new_lines": "br",
+            "maxlength": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_zadzerkalya_about_story_lead_tablet",
+            "label": "Вступний текст (Tablet)",
+            "name": "about_story_lead_tablet",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "Текст для планшета. Якщо порожньо — використовується вступний текст Desktop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
             "rows": 5,
             "new_lines": "br",
             "maxlength": "",
@@ -259,5 +279,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1793536254
+    "modified": 1793557200
 }

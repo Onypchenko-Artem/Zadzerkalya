@@ -187,6 +187,14 @@
 	display: none;
 }
 
+.service-cta.is-paged .service-cta__slide {
+	overflow: hidden;
+}
+
+.service-cta.is-paged .service-cta__slide.is-overflowing {
+	overflow-y: auto;
+}
+
 .service-cta__row {
 	display: flex;
 	flex-direction: column;
@@ -373,6 +381,7 @@
 	.service-cta__slider {
 		flex: none;
 		width: 100%;
+		max-height: 766px;
 		gap: 24px;
 	}
 
@@ -405,12 +414,14 @@
 		gap: 12px;
 	}
 
-	.service-cta__row h3 {
+	.service-cta__row h3,
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text h3 {
 		font-size: 24px;
 		line-height: 1.2;
 	}
 
-	.service-cta__row p {
+	.service-cta__row p,
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text p {
 		font-family: var(--text-body-l-family);
 		font-size: 20px;
 		line-height: 1.35;
@@ -448,25 +459,29 @@
 @media (max-width: 767px) {
 	.service-cta {
 		flex-direction: column;
-		gap: 32px;
+		align-items: stretch;
+		gap: 36px;
 		padding: 0 16px;
 	}
 
 	.service-cta__panel {
-		flex-basis: auto;
+		flex: none;
 		width: 100%;
-		min-height: 560px;
+		height: 370px;
+		min-height: 0;
+		border-radius: 24px;
 	}
 
 	.service-cta__circle {
-		width: min(92%, 520px);
+		width: calc(100% - 6px);
 		height: auto;
 		aspect-ratio: 1;
+		max-height: calc(100% - 10px);
 	}
 
 	.service-cta__content {
-		gap: 32px;
-		width: min(88%, 320px);
+		gap: 24px;
+		width: min(305px, calc(100% - 40px));
 	}
 
 	.service-cta__illustration {
@@ -475,62 +490,159 @@
 	}
 
 	.service-cta__text {
-		gap: 16px;
-	}
-
-	.service-cta__description {
-		font-size: 16px;
-	}
-
-	.service-cta__content .lottie-button--primary {
-		--lottie-btn-w: 260px;
-		--lottie-btn-h: 66px;
-	}
-
-	.service-cta__slide,
-	.service-cta__track {
-		gap: 20px;
-	}
-
-	.service-cta__counter {
-		width: 44px;
-		height: 68px;
+		gap: 32px;
 	}
 
 	.service-cta__text h2 {
-		font-size: 28px;
+		font-size: 26px;
+		font-weight: 500;
+		line-height: 1.12;
+		letter-spacing: -0.03em;
+	}
+
+	.service-cta__description {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.service-cta__content .lottie-button--primary,
+	.service-cta__content .lottie-button--secondary {
+		--lottie-btn-w: 181px;
+		--lottie-btn-h: 43px;
+	}
+
+	.service-cta__content .lottie-button--primary .lottie-button__label,
+	.service-cta__content .lottie-button--secondary .lottie-button__label {
+		padding-inline: 8px;
+		font-size: 10px;
+		font-weight: 400;
+		line-height: 1.26;
+		transform: none;
 	}
 
 	.service-cta__slider {
+		flex: none;
 		width: 100%;
+		gap: 12px;
 	}
 
 	.service-cta__viewport {
-		height: 480px;
+		height: 603px;
+	}
+
+	.service-cta__track {
+		gap: 16px;
+		height: 100%;
+	}
+
+	.service-cta__slide {
+		gap: 24px;
+		height: 100%;
+	}
+
+	.service-cta__row {
+		gap: 8px;
+	}
+
+	.service-cta__row-text {
+		gap: 12px;
 	}
 
 	.service-cta__row h3 {
-		font-size: 20px;
-	}
-
-	.service-cta--custom-background {
-		height: calc(100dvh - 104px);
-		max-height: calc(100dvh - 104px);
-	}
-
-	.service-cta--custom-background .service-cta__panel {
-		flex: 1 1 0;
-		height: auto;
-		max-height: 52%;
-	}
-
-	.service-cta--custom-background .service-cta__slider {
-		flex: 1 1 0;
-		height: auto;
-		width: 100%;
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.22;
 	}
 
 	.service-cta__row p {
-		font-size: 14px;
+		font-family: var(--text-body-l-family);
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1.35;
+	}
+
+	.service-cta__line {
+		height: 8px;
+		aspect-ratio: auto;
+		object-fit: fill;
+	}
+
+	.service-cta__controls {
+		min-height: 42px;
+	}
+
+	.service-cta__arrow {
+		flex-basis: 24px;
+		width: 24px;
+		height: 16px;
+	}
+
+	.service-cta__counter {
+		flex-basis: 32px;
+		width: 32px;
+		height: 42px;
+		padding: 0 2px;
+	}
+
+	.service-cta__counter-current {
+		font-size: 18px;
+		line-height: 23px;
+	}
+
+	.service-cta__counter-total {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.service-cta--custom-background {
+		height: auto;
+		max-height: none;
+	}
+
+	.service-cta--custom-background .service-cta__panel {
+		flex: none;
+		height: 370px;
+		max-height: none;
+	}
+
+	.service-cta--custom-background .service-cta__circle {
+		width: calc(100% - 6px);
+		height: auto;
+		max-height: calc(100% - 10px);
+	}
+
+	.service-cta--custom-background .service-cta__slider {
+		flex: none;
+		width: 100%;
+		height: auto;
+		min-height: 0;
+		gap: 12px;
+	}
+
+	.service-cta--custom-background .service-cta__viewport {
+		flex: none;
+		height: 603px;
+		min-height: 0;
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text h3 {
+		font-size: 18px;
+		line-height: 1.22;
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text p {
+		font-size: 15px;
+		line-height: 1.35;
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-current {
+		font-size: 18px;
+		line-height: 23px;
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-total {
+		font-size: 16px;
+		line-height: 20px;
 	}
 }

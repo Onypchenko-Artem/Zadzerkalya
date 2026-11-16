@@ -65,6 +65,12 @@ $format_text = static function ( $value ) {
 };
 
 $title      = trim( (string) $args['title'] );
+$title_html = wp_kses(
+	$title,
+	array(
+		'br' => array(),
+	)
+);
 $text_left  = $format_text( $args['text_left'] );
 $text_right = $format_text( $args['text_right'] );
 $note       = $format_text( $args['note'] );
@@ -81,7 +87,7 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 		<?php if ( $title || $text_left || $text_right ) : ?>
 			<header class="form-service__intro">
 				<?php if ( $title ) : ?>
-					<h2 id="form-service-title"><?php echo esc_html( $title ); ?></h2>
+					<h2 id="form-service-title"><?php echo $title_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
 				<?php endif; ?>
 
 				<?php if ( $text_left || $text_right ) : ?>
@@ -99,7 +105,7 @@ $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 
 		<?php if ( ! empty( $args['photo'] ) ) : ?>
 			<div class="form-service__photo">
-				<?php zadzerkalya_acf_image( $args['photo'], 'full', array( 'alt' => $title ) ); ?>
+				<?php zadzerkalya_acf_image( $args['photo'], 'full', array( 'alt' => wp_strip_all_tags( $title ) ) ); ?>
 			</div>
 		<?php endif; ?>
 

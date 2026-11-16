@@ -168,7 +168,8 @@
 	}
 
 	.service-slider__track {
-		--service-slide: 100cqw;
+		/* 361px картка — друга трохи виглядає справа */
+		--service-slide: min(361px, calc(100cqw - 32px));
 		--service-slide-gap: 16px;
 	}
 

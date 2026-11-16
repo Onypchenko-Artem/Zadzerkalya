@@ -33,7 +33,10 @@ $nav_socials = array(
 	<div class="header-bar">
 		<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
 			<span class="nav-toggle__open"><?php zadzerkalya_icon( 'burger' ); ?></span>
-			<span class="nav-toggle__close"><?php zadzerkalya_icon( 'close' ); ?></span>
+			<span class="nav-toggle__close">
+				<span class="nav-toggle__close-wide"><?php zadzerkalya_icon( 'close' ); ?></span>
+				<span class="nav-toggle__close-mobile"><?php zadzerkalya_icon( 'close-mobile' ); ?></span>
+			</span>
 			<span class="screen-reader-text"><?php esc_html_e( 'Меню', 'zadzerkalya' ); ?></span>
 		</button>
 

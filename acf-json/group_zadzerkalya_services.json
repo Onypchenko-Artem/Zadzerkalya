@@ -50,11 +50,37 @@
             "name": "services_illustration",
             "aria-label": "",
             "type": "image",
-            "instructions": "Аліса біля сітки. Якщо порожньо — стандартне зображення з теми.",
+            "instructions": "Аліса біля сітки (desktop / tablet). Якщо порожньо — стандартне зображення з теми.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp,svg",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_services_illustration_mobile",
+            "label": "Ілюстрація (мобільна)",
+            "name": "services_illustration_mobile",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Окреме зображення для екранів до 767px (макет 86×171). Якщо порожньо — використовується основна ілюстрація.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -186,5 +212,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1791830800
+    "modified": 1763307000
 }

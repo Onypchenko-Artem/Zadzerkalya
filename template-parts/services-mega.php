@@ -95,4 +95,39 @@ if ( empty( $mega['categories'] ) ) {
 			<?php endforeach; ?>
 		</div>
 	</div>
+
+	<div class="services-mega__mobile">
+		<div class="services-mega__acc is-open">
+			<button class="services-mega__acc-toggle" type="button" aria-expanded="true">
+				<span class="services-mega__acc-label"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></span>
+				<span class="services-mega__acc-arrow" aria-hidden="true"></span>
+			</button>
+			<div class="services-mega__acc-panel">
+				<?php foreach ( $all_services as $service ) : ?>
+					<?php if ( empty( $service['url'] ) ) : ?>
+						<?php continue; ?>
+					<?php endif; ?>
+					<a href="<?php echo esc_url( $service['url'] ); ?>"><?php echo esc_html( $service['title'] ); ?></a>
+				<?php endforeach; ?>
+			</div>
+			<span class="services-mega__acc-rule" aria-hidden="true"></span>
+		</div>
+		<?php foreach ( $mega['categories'] as $category ) : ?>
+			<div class="services-mega__acc">
+				<button class="services-mega__acc-toggle" type="button" aria-expanded="false">
+					<span class="services-mega__acc-label"><?php echo esc_html( $category['name'] ); ?></span>
+					<span class="services-mega__acc-arrow" aria-hidden="true"></span>
+				</button>
+				<div class="services-mega__acc-panel">
+					<?php foreach ( $category['services'] as $service ) : ?>
+						<?php if ( empty( $service['url'] ) ) : ?>
+							<?php continue; ?>
+						<?php endif; ?>
+						<a href="<?php echo esc_url( $service['url'] ); ?>"><?php echo esc_html( $service['title'] ); ?></a>
+					<?php endforeach; ?>
+				</div>
+				<span class="services-mega__acc-rule" aria-hidden="true"></span>
+			</div>
+		<?php endforeach; ?>
+	</div>
 </div>

@@ -8,7 +8,33 @@
             "name": "help_banner",
             "aria-label": "",
             "type": "image",
-            "instructions": "Велике зображення зліва. Якщо порожньо — стандартний банер з теми.",
+            "instructions": "Велике зображення зліва (desktop / tablet). Якщо порожньо — стандартний банер з теми.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg,jpeg,png,webp",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_zadzerkalya_help_banner_mobile",
+            "label": "Банер (мобільний)",
+            "name": "help_banner_mobile",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Окреме зображення для екранів до 767px. Якщо порожньо — використовується основний банер.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -38,7 +64,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -203,5 +229,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790951652
+    "modified": 1763307600
 }

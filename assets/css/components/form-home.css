@@ -30,6 +30,10 @@
 	object-fit: fill;
 }
 
+.form-home__background-full {
+	display: none;
+}
+
 .form-home__background-left {
 	top: calc(504 * var(--u));
 	left: calc(-17 * var(--u));
@@ -310,35 +314,38 @@
 
 @media (max-width: 767px) {
 	.form-home {
-		height: 716px;
-		margin-top: 80px;
+		z-index: 1;
+		height: auto;
+		aspect-ratio: 786 / 1790;
+		margin-top: -100px;
+		margin-bottom: 0;
+		overflow: hidden;
+	}
+
+	.site-main > .form-home:last-child {
+		margin-bottom: -40px;
 	}
 
 	.form-home__background {
 		opacity: 1;
 	}
 
+	.form-home__background-full {
+		display: block;
+		inset: 0;
+		width: 100%;
+		max-width: 100%;
+		height: 100%;
+		object-fit: fill;
+	}
+
 	.form-home__background-left,
 	.form-home__background-right {
-		top: 50%;
-		height: auto;
-		object-fit: contain;
-		transform: translateY(-50%);
-	}
-
-	.form-home__background-left {
-		left: 0;
-		width: 156px;
-	}
-
-	.form-home__background-right {
-		right: 0;
-		left: auto;
-		width: 176px;
+		display: none;
 	}
 
 	.form-home__content {
-		top: 67px;
+		/*top: 69px;*/
 		gap: 24px;
 		width: min(311px, calc(100% - 48px));
 		scroll-margin-top: 96px;
@@ -365,7 +372,7 @@
 
 	.form-home__form {
 		gap: 16px;
-		width: 230px;
+		width: min(255px, 100%);
 		max-width: 100%;
 		padding: 0;
 	}
@@ -373,6 +380,9 @@
 	.form-home__form > .lottie-button {
 		--lottie-btn-w: 255px;
 		--lottie-btn-h: 60px;
+		width: min(255px, 100%);
+		min-width: 0;
+		max-width: 100%;
 		margin-top: 0;
 	}
 
