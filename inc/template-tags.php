@@ -1116,6 +1116,74 @@ function zadzerkalya_service_hero_button_label( $service_id = 0, $fallback = '' 
 }
 
 /**
+ * Нормалізований ключ підпису кнопки для порівнянь.
+ *
+ * @param string $label Підпис кнопки.
+ * @return string
+ */
+function zadzerkalya_button_label_key( $label ) {
+	$text = trim( preg_replace( '/\s+/u', ' ', wp_strip_all_tags( (string) $label ) ) );
+
+	return function_exists( 'mb_strtolower' ) ? mb_strtolower( $text, 'UTF-8' ) : strtolower( $text );
+}
+
+/**
+ * Чи це стандартна кнопка запису на первинну консультацію.
+ *
+ * @param string $label Підпис кнопки.
+ * @return bool
+ */
+function zadzerkalya_is_primary_booking_label( $label ) {
+	return 'забронювати первинну консультацію' === zadzerkalya_button_label_key( $label );
+}
+
+/**
+ * Аргументи кнопки, що відкриває попап звʼязку (як «звʼяжіться з нами»).
+ *
+ * @param string $label Підпис кнопки / submit у попапі.
+ * @param array  $args  {
+ *     @type string $variant    primary|secondary.
+ *     @type string $source     Значення data-contact-popup-source.
+ *     @type string $service    Значення data-service.
+ *     @type array  $attributes Додаткові атрибути.
+ * }
+ * @return array
+ */
+function zadzerkalya_contact_popup_button_args( $label, $args = array() ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'variant'    => 'primary',
+			'source'     => 'services-popup',
+			'service'    => '',
+			'attributes' => array(),
+		)
+	);
+
+	$attributes = array_merge(
+		array(
+			'data-contact-popup-open'   => 'true',
+			'data-contact-popup-label'  => $label,
+			'data-contact-popup-source' => $args['source'],
+			'aria-haspopup'             => 'dialog',
+			'aria-controls'             => 'contact-popup',
+		),
+		(array) $args['attributes']
+	);
+
+	if ( '' !== trim( (string) $args['service'] ) ) {
+		$attributes['data-service'] = $args['service'];
+	}
+
+	return array(
+		'label'      => $label,
+		'variant'    => $args['variant'],
+		'type'       => 'button',
+		'attributes' => $attributes,
+	);
+}
+
+/**
  * Permalink послуги або порожній рядок, якщо сторінку вимкнено.
  *
  * @param int|WP_Post $service ID або обʼєкт послуги.

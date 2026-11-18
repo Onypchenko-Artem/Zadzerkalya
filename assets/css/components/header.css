@@ -334,8 +334,30 @@
 		content: none;
 	}
 
-	.nav-open {
+	html.nav-open {
 		overflow: hidden;
+	}
+
+	body.nav-open {
+		position: fixed;
+		left: 0;
+		right: 0;
+		width: 100%;
+		overflow: hidden;
+		touch-action: none;
+	}
+
+	/* sticky ламається при lock — тримаємо хедер у в’юпорті */
+	.nav-open .site-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
+
+	.nav-open .header-nav.is-open {
+		touch-action: pan-y;
 	}
 }
 
@@ -653,8 +675,12 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-start;
+		max-height: 100vh;
+		max-height: 100dvh;
 		padding: 125px 16px 24px;
 		overflow: auto;
+		overscroll-behavior: contain;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.header-nav .menu {
@@ -743,8 +769,14 @@
 
 	.header-nav__panel .lottie-button--secondary .lottie-button__label {
 		padding-inline: 4px;
-		font-size: 13px;
 		line-height: 1.26;
+	}
+}
+
+@media (max-width: 389px) {
+	.header-bar .header-address a,
+	.header-bar .header-phones a {
+		font-size: 11px;
 	}
 }
 

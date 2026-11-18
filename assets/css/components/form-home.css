@@ -3,7 +3,7 @@
 	width: 100%;
 	height: calc(2290 * var(--u));
 	margin-top: calc(-400 * var(--u));
-	margin-bottom: -50px;
+	margin-bottom: 0;
 	overflow: hidden;
 	color: var(--color-night-sky);
 	background: var(--color-chewing-gum);
@@ -323,7 +323,7 @@
 	}
 
 	.site-main > .form-home:last-child {
-		margin-bottom: -40px;
+		margin-bottom: 0;
 	}
 
 	.form-home__background {
@@ -339,8 +339,8 @@
 		object-fit: fill;
 	}
 
-	.form-home__background-left,
-	.form-home__background-right {
+	.form-home__background .form-home__background-left,
+	.form-home__background .form-home__background-right {
 		display: none;
 	}
 

@@ -12,10 +12,14 @@
 
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 body {
 	margin: 0;
+	overflow-x: hidden;
+	overflow-x: clip;
 	font-family: var(--text-body-m-family);
 	font-size: var(--text-body-m-size);
 	font-weight: var(--text-body-m-weight);

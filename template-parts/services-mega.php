@@ -28,13 +28,36 @@ if ( empty( $mega['categories'] ) ) {
 			</svg>
 		</button>
 		<div class="services-mega__cats">
-			<a class="services-mega__all is-active" href="<?php echo esc_url( $mega['all_url'] ); ?>" data-mega-target="services-mega-all"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></a>
+			<div class="services-mega__cat-row is-active">
+				<a class="services-mega__all is-active" href="<?php echo esc_url( $mega['all_url'] ); ?>" data-mega-target="services-mega-all"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></a>
+				<button
+					class="services-mega__cat-toggle"
+					type="button"
+					data-mega-target="services-mega-all"
+					aria-expanded="true"
+					aria-label="<?php esc_attr_e( 'Показати список послуг', 'zadzerkalya' ); ?>"
+				>
+					<span class="services-mega__cat-toggle-arrow" aria-hidden="true"></span>
+				</button>
+			</div>
 			<?php foreach ( $mega['categories'] as $category ) : ?>
-				<a
-					class="services-mega__cat"
-					href="<?php echo esc_url( $category['url'] ); ?>"
-					data-mega-target="services-mega-<?php echo esc_attr( (string) $category['id'] ); ?>"
-				><?php echo esc_html( $category['name'] ); ?></a>
+				<?php $cat_target = 'services-mega-' . (string) $category['id']; ?>
+				<div class="services-mega__cat-row">
+					<a
+						class="services-mega__cat"
+						href="<?php echo esc_url( $category['url'] ); ?>"
+						data-mega-target="<?php echo esc_attr( $cat_target ); ?>"
+					><?php echo esc_html( $category['name'] ); ?></a>
+					<button
+						class="services-mega__cat-toggle"
+						type="button"
+						data-mega-target="<?php echo esc_attr( $cat_target ); ?>"
+						aria-expanded="false"
+						aria-label="<?php esc_attr_e( 'Показати список послуг', 'zadzerkalya' ); ?>"
+					>
+						<span class="services-mega__cat-toggle-arrow" aria-hidden="true"></span>
+					</button>
+				</div>
 			<?php endforeach; ?>
 		</div>
 
@@ -97,12 +120,22 @@ if ( empty( $mega['categories'] ) ) {
 	</div>
 
 	<div class="services-mega__mobile">
-		<div class="services-mega__acc is-open">
-			<button class="services-mega__acc-toggle" type="button" aria-expanded="true">
-				<span class="services-mega__acc-label"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></span>
-				<span class="services-mega__acc-arrow" aria-hidden="true"></span>
+		<div class="services-mega__back">
+			<button class="services-mega__back-btn" type="button">
+				<span class="services-mega__back-arrow" aria-hidden="true"></span>
+				<span class="services-mega__back-label"><?php esc_html_e( 'Меню', 'zadzerkalya' ); ?></span>
 			</button>
-			<div class="services-mega__acc-panel">
+			<span class="services-mega__back-rule" aria-hidden="true"></span>
+		</div>
+		<div class="services-mega__acc is-open">
+			<div class="services-mega__acc-head">
+				<a class="services-mega__acc-label" href="<?php echo esc_url( $mega['all_url'] ); ?>"><?php esc_html_e( 'Всі послуги', 'zadzerkalya' ); ?></a>
+				<button class="services-mega__acc-toggle" type="button" aria-expanded="true" aria-controls="services-mega-acc-all">
+					<span class="screen-reader-text"><?php esc_html_e( 'Згорнути список', 'zadzerkalya' ); ?></span>
+					<span class="services-mega__acc-arrow" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="services-mega__acc-panel" id="services-mega-acc-all">
 				<?php foreach ( $all_services as $service ) : ?>
 					<?php if ( empty( $service['url'] ) ) : ?>
 						<?php continue; ?>
@@ -113,12 +146,16 @@ if ( empty( $mega['categories'] ) ) {
 			<span class="services-mega__acc-rule" aria-hidden="true"></span>
 		</div>
 		<?php foreach ( $mega['categories'] as $category ) : ?>
+			<?php $acc_id = 'services-mega-acc-' . (int) $category['id']; ?>
 			<div class="services-mega__acc">
-				<button class="services-mega__acc-toggle" type="button" aria-expanded="false">
-					<span class="services-mega__acc-label"><?php echo esc_html( $category['name'] ); ?></span>
-					<span class="services-mega__acc-arrow" aria-hidden="true"></span>
-				</button>
-				<div class="services-mega__acc-panel">
+				<div class="services-mega__acc-head">
+					<a class="services-mega__acc-label" href="<?php echo esc_url( $category['url'] ); ?>"><?php echo esc_html( $category['name'] ); ?></a>
+					<button class="services-mega__acc-toggle" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $acc_id ); ?>">
+						<span class="screen-reader-text"><?php esc_html_e( 'Розгорнути список', 'zadzerkalya' ); ?></span>
+						<span class="services-mega__acc-arrow" aria-hidden="true"></span>
+					</button>
+				</div>
+				<div class="services-mega__acc-panel" id="<?php echo esc_attr( $acc_id ); ?>">
 					<?php foreach ( $category['services'] as $service ) : ?>
 						<?php if ( empty( $service['url'] ) ) : ?>
 							<?php continue; ?>

@@ -130,13 +130,24 @@ if ( $background_url ) {
 
 			<?php if ( $show_button ) : ?>
 				<?php
-				zadzerkalya_button(
-					array(
-						'label'   => $button_label,
-						'url'     => $button_url,
-						'variant' => $button_variant,
-					)
-				);
+				if ( zadzerkalya_is_primary_booking_label( $button_label ) ) {
+					zadzerkalya_button(
+						array(
+							'label'   => $button_label,
+							'url'     => $button_url,
+							'variant' => $button_variant,
+						)
+					);
+				} else {
+					zadzerkalya_button(
+						zadzerkalya_contact_popup_button_args(
+							$button_label,
+							array(
+								'variant' => $button_variant,
+							)
+						)
+					);
+				}
 				?>
 			<?php endif; ?>
 		</div>

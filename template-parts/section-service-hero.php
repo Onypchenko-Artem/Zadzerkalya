@@ -37,7 +37,6 @@ $crumb_label      = $args['crumb_label'] ?? __( 'Послуги', 'zadzerkalya' 
 $crumb_url        = $args['crumb_url'] ?? '';
 $heading_id       = $args['heading_id'] ?? 'service-hero-title';
 $flow_title       = preg_replace( '/\s+/u', ' ', trim( (string) $title ) );
-$flow_title       = preg_replace( '/\s+(та)\s+/u', '<br>$1 ', (string) $flow_title, 1 );
 
 if ( ! $crumb_url ) {
 	$crumb_url = zadzerkalya_get_services_url();
@@ -93,14 +92,31 @@ if ( $background_url ) {
 
 									<?php if ( $show_button ) : ?>
 										<?php
-										zadzerkalya_button(
-											array(
-												'label'      => $button_label,
-												'url'        => $button_url,
-												'variant'    => $button_variant,
-												'attributes' => 'primary' === $button_variant ? array( 'data-anim-desktop' => 'button-primary-desktop-short' ) : array(),
-											)
-										);
+										$hero_button_attrs = 'primary' === $button_variant
+											? array( 'data-anim-desktop' => 'button-primary-desktop-short' )
+											: array();
+
+										if ( zadzerkalya_is_primary_booking_label( $button_label ) ) {
+											zadzerkalya_button(
+												array(
+													'label'      => $button_label,
+													'url'        => $button_url,
+													'variant'    => $button_variant,
+													'attributes' => $hero_button_attrs,
+												)
+											);
+										} else {
+											zadzerkalya_button(
+												zadzerkalya_contact_popup_button_args(
+													$button_label,
+													array(
+														'variant'    => $button_variant,
+														'service'    => $title,
+														'attributes' => $hero_button_attrs,
+													)
+												)
+											);
+										}
 										?>
 									<?php endif; ?>
 								</div>

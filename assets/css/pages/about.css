@@ -1073,7 +1073,7 @@
 	.about-hero__scene-image {
 		width: 100%;
 		height: auto;
-		max-height: 408px;
+		max-height: 462px;
 		aspect-ratio: auto;
 		border-radius: 24px;
 		object-fit: contain;
@@ -1186,13 +1186,13 @@
 		grid-column: 1;
 		grid-row: 2;
 		align-self: start;
-		padding-bottom: 352px;
 	}
 
 	.about-story__columns--right {
 		grid-column: 2;
 		grid-row: 2;
 		align-self: start;
+		padding-bottom: 352px;
 	}
 
 	.about-story__columns p {
@@ -1207,10 +1207,10 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 12px;
-		grid-column: 1;
+		grid-column: 2;
 		grid-row: 2;
 		align-self: end;
-		justify-self: start;
+		justify-self: end;
 		width: 178px;
 		z-index: 1;
 		pointer-events: none;
@@ -1472,7 +1472,7 @@
 	.about-gallery {
 		z-index: 2;
 		gap: 56px;
-		padding: 120px 24px 0;
+		padding: 80px 24px 0;
 	}
 
 	.about-gallery + .form-home {
@@ -1542,6 +1542,13 @@
 }
 
 @media (max-width: 1279px) {
+	.about-story br {
+		display: none;
+	}
+
+	.about-story__lead p {
+		white-space: normal;
+	}
 
 	.about-content {
 		padding-block: 80px;
@@ -1578,7 +1585,7 @@
 		min-height: 722px;
 		margin-top: -72px;
 		padding: 100px 16px 0;
-		overflow: visible;
+		overflow: hidden;
 		background-size: 64px 100%, 100% 100%;
 	}
 
@@ -1606,10 +1613,27 @@
 	}
 
 	.about-hero__breadcrumbs {
+		width: 100%;
+		max-width: 100%;
 		gap: 4px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
 		font-size: 15px;
 		font-weight: 400;
 		line-height: 1.4;
+		white-space: nowrap;
+	}
+
+	.about-hero__breadcrumbs::-webkit-scrollbar {
+		display: none;
+	}
+
+	.about-hero__breadcrumbs a,
+	.about-hero__breadcrumbs span {
+		flex: 0 0 auto;
 	}
 
 	.about-hero__crumb-arrow {
@@ -1649,7 +1673,7 @@
 
 	.about-hero__line {
 		box-sizing: border-box;
-		width: calc(100% - 8px);
+		width: calc(100%);
 		height: 4px;
 		margin: 0;
 		aspect-ratio: auto;
@@ -1668,7 +1692,7 @@
 		gap: 0;
 		width: 100%;
 		height: 325px;
-		padding: 32px 0 0;
+		padding: 16px 0 0;
 		overflow: visible;
 	}
 
@@ -1686,6 +1710,7 @@
 		width: 100%;
 		height: 266px;
 		aspect-ratio: auto;
+		padding-bottom: 16px;
 		border-radius: 0;
 		object-fit: contain;
 	}
@@ -1725,10 +1750,6 @@
 		font-weight: 500;
 		line-height: 1.12;
 		letter-spacing: -0.03em;
-	}
-
-	.about-story h2 br {
-		display: none;
 	}
 
 	.about-story__person {
@@ -1827,7 +1848,7 @@
 
 	.about-story__side {
 		display: grid;
-		grid-template-columns: 142px minmax(0, 1fr);
+		grid-template-columns: minmax(0, 1fr) 142px;
 		grid-template-rows: auto auto;
 		align-items: center;
 		column-gap: 23px;
@@ -1840,7 +1861,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		grid-column: 2;
+		grid-column: 1;
 		grid-row: 1 / -1;
 		gap: 16px;
 		width: auto;
@@ -1856,10 +1877,10 @@
 		left: auto;
 		top: auto;
 		bottom: auto;
-		grid-column: 1;
+		grid-column: 2;
 		align-self: center;
-		width: 142px;
-		height: 152px;
+		width: 152px;
+		height: 163px;
 		margin-left: 0;
 		border-radius: 0;
 		object-fit: contain;
@@ -1867,7 +1888,7 @@
 	}
 
 	.about-mission {
-		padding: 60px 16px 0;
+		padding: 24px 16px 0;
 	}
 
 	.about-mission__inner {
@@ -1955,7 +1976,7 @@
 	}
 
 	.about-values {
-		padding: 60px 16px 0;
+		padding: 24px 16px 0;
 	}
 
 	.about-values__inner {

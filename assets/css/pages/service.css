@@ -24,6 +24,14 @@
 		margin-top: 80px;
 	}
 
+	.service-page br {
+		display: none;
+	}
+
+	.service-page .service-benefits__card p {
+		white-space: normal;
+	}
+
 	.service-page .service-benefits + .form-home {
 		margin-top: -69px;
 	}
@@ -32,6 +40,14 @@
 @media (max-width: 767px) {
 	.service-page > * + * {
 		margin-top: 60px;
+	}
+
+	.service-page br {
+		display: none;
+	}
+
+	.service-page .service-benefits__card p {
+		white-space: normal;
 	}
 
 	.service-page .service-benefits {

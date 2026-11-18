@@ -367,7 +367,6 @@
 	.services-showcase__all .lottie-button--primary .lottie-button__label {
 		padding-inline: 18px;
 		font-family: var(--font-family-body);
-		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.26;
 	}

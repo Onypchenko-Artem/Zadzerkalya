@@ -380,7 +380,7 @@
 	.policy__body h2,
 	.policy__body.event-article__body ol > li:has(> h2)::before {
 		font-family: var(--font-family-heading);
-		font-size: 40px;
+		font-size: 24px;
 		font-weight: 500;
 		line-height: 1.08;
 		letter-spacing: -0.03em;
@@ -431,7 +431,7 @@
 	}
 
 	.policy__body.event-article__body ol {
-		gap: 16px;
+		gap: 40px;
 	}
 
 	.policy__body.event-article__body ol > li {
@@ -622,7 +622,7 @@
 	}
 
 	.policy__body.event-article__body ol {
-		gap: 12px;
+		gap: 36px;
 	}
 
 	.policy__body.event-article__body ol > li {

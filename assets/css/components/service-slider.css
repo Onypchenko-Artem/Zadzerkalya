@@ -76,6 +76,18 @@
 	overflow: hidden;
 	overflow: clip;
 	overflow-anchor: none;
+	touch-action: pan-y;
+	cursor: grab;
+}
+
+.service-slider__viewport.is-dragging {
+	cursor: grabbing;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.service-slider__viewport.is-dragging a {
+	pointer-events: none;
 }
 
 .service-slider__mover {
@@ -106,6 +118,12 @@
 
 .service-slider .service-card {
 	max-width: none;
+	justify-content: flex-start;
+}
+
+/* Заголовок зверху; лінії, фото і кнопка — однією групою знизу */
+.service-slider .service-card > :is(.service-card__link, .service-card__title) + .service-card__line {
+	margin-top: auto;
 }
 
 .event-article__body .service-slider {
@@ -165,6 +183,23 @@
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 16px;
+	}
+
+	.service-slider .service-card {
+		height: auto;
+		min-height: 386px;
+	}
+
+	.service-slider .service-card__link,
+	.service-slider .service-card--nolink .service-card__title {
+		height: auto;
+	}
+
+	.event-article__body .service-slider .service-card h3.service-card__title {
+		height: auto;
+		max-height: none;
+		display: block;
+		-webkit-line-clamp: unset;
 	}
 
 	.service-slider__track {

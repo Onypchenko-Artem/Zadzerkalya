@@ -259,8 +259,26 @@
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__breadcrumbs {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
 		font-size: 16px;
 		line-height: 1.4;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__breadcrumbs::-webkit-scrollbar {
+		display: none;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__breadcrumbs a,
+	:is(.prices-page, .contacts-page) .page-hero__breadcrumbs span {
+		flex: 0 0 auto;
+		overflow: visible;
+		text-overflow: unset;
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__title {
@@ -329,6 +347,27 @@
 
 	.page-hero__content {
 		gap: 32px;
+	}
+
+	.page-hero__breadcrumbs {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+	}
+
+	.page-hero__breadcrumbs::-webkit-scrollbar {
+		display: none;
+	}
+
+	.page-hero__breadcrumbs a,
+	.page-hero__breadcrumbs span {
+		flex: 0 0 auto;
+		overflow: visible;
+		text-overflow: unset;
 	}
 
 	.page-hero__title {

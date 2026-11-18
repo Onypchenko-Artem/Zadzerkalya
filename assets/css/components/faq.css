@@ -322,6 +322,7 @@
 		column-gap: 0;
 		height: auto;
 		padding: 0 16px;
+		overflow-x: clip;
 		background: var(--color-chewing-gum);
 	}
 
@@ -341,7 +342,7 @@
 	.faq__image-placeholder {
 		position: absolute;
 		top: 0;
-		left: -18px;
+		left: -16px;
 		width: 108px;
 		height: 150px;
 	}

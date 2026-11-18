@@ -16,7 +16,7 @@
  */
 
 $button_label = $args['button_label'] ?? __( 'забронювати первинну консультацію', 'zadzerkalya' );
-$button_url   = $args['button_url'] ?? '#contact-form';
+$button_url   = array_key_exists( 'button_url', $args ) ? trim( (string) $args['button_url'] ) : '';
 $service_id   = isset( $args['service_id'] ) ? (int) $args['service_id'] : 0;
 $is_custom    = isset( $args['title'] ) || isset( $args['url'] ) || array_key_exists( 'image', $args );
 
@@ -33,6 +33,18 @@ if ( $is_custom ) {
 
 if ( $service_id && function_exists( 'zadzerkalya_service_hero_button_label' ) ) {
 	$button_label = zadzerkalya_service_hero_button_label( $service_id, $button_label );
+}
+
+if ( '' === $button_url && $service_id && function_exists( 'get_field' ) && 'service' === get_post_type( $service_id ) ) {
+	$button_url = trim( (string) get_field( 'service_hero_button_url', $service_id ) );
+}
+
+$is_booking_button = function_exists( 'zadzerkalya_is_primary_booking_label' )
+	? zadzerkalya_is_primary_booking_label( $button_label )
+	: ( 'забронювати первинну консультацію' === strtolower( trim( wp_strip_all_tags( (string) $button_label ) ) ) );
+
+if ( $is_booking_button && '' === $button_url ) {
+	$button_url = '#contact-form';
 }
 
 $has_link = is_string( $permalink ) && '' !== $permalink && '#' !== $permalink;
@@ -74,15 +86,26 @@ $has_link = is_string( $permalink ) && '' !== $permalink && '#' !== $permalink;
 	</div>
 	<span class="service-card__line service-card__line--reverse" aria-hidden="true"></span>
 	<?php
-	zadzerkalya_button(
-		array(
-			'label'      => $button_label,
-			'url'        => $button_url,
-			'variant'    => 'primary',
-			'attributes' => array(
-				'data-service' => $title,
-			),
-		)
-	);
+	if ( $is_booking_button ) {
+		zadzerkalya_button(
+			array(
+				'label'      => $button_label,
+				'url'        => $button_url,
+				'variant'    => 'primary',
+				'attributes' => array(
+					'data-service' => $title,
+				),
+			)
+		);
+	} else {
+		zadzerkalya_button(
+			zadzerkalya_contact_popup_button_args(
+				$button_label,
+				array(
+					'service' => $title,
+				)
+			)
+		);
+	}
 	?>
 </article>

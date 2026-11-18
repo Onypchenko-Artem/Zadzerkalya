@@ -41,14 +41,16 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
+	isolation: isolate;
 	gap: calc(46 * var(--u));
 	box-sizing: border-box;
 	width: auto;
 	min-width: 0;
 	min-height: calc(390 * var(--u));
 	padding: calc(44 * var(--u));
+	overflow: visible;
 	background: transparent;
-	border: 0;
+	border: 1px solid var(--color-sky-blue);
 	border-radius: calc(44 * var(--u));
 }
 
@@ -56,16 +58,36 @@
 	justify-content: center;
 }
 
-.service-specialists__card::before {
+.service-specialists__card::before,
+.service-specialists__card::after {
 	position: absolute;
-	left: calc(100% * -0.84375 / 575);
-	top: calc(100% * -9.8208 / 389);
-	z-index: 1;
-	width: calc(100% * 582 / 575);
-	height: calc(100% * 406 / 389);
+	box-sizing: border-box;
+	border: 1px solid var(--color-sky-blue);
+	border-radius: inherit;
+	background: none;
 	content: "";
-	background: url("../../images/service-specialists-stroke.svg") 0 0 / 100% 100% no-repeat;
 	pointer-events: none;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	transform: translateZ(0);
+}
+
+.service-specialists__card::before {
+	left: calc(100% * -0.84 / 575);
+	top: calc(100% * -9.82 / 389);
+	right: calc(100% * 1.16 / 575);
+	bottom: calc(100% * -0.18 / 389);
+	z-index: 1;
+	transform: matrix(1, 0.019, -0.016, 1, 0, 0) translateZ(0);
+}
+
+.service-specialists__card::after {
+	left: calc(100% * -0.31 / 575);
+	top: calc(100% * -0.37 / 389);
+	right: calc(100% * -0.81 / 575);
+	bottom: calc(100% * 5.37 / 389);
+	z-index: 1;
+	transform: matrix(1, -0.019, 0.016, 1, 0, 0) translateZ(0);
 }
 
 .service-specialists__head,
@@ -169,14 +191,11 @@
 
 	.service-specialists__card {
 		justify-content: flex-start;
-		isolation: isolate;
 		gap: 24px;
 		height: auto;
 		min-height: 285px;
 		padding: 28px;
-		overflow: visible;
 		background: var(--color-chewing-gum);
-		border: 1px solid var(--color-sky-blue);
 		border-radius: 44px;
 	}
 
@@ -189,17 +208,6 @@
 		min-height: 457px;
 	}
 
-	.service-specialists__card::before,
-	.service-specialists__card::after {
-		position: absolute;
-		box-sizing: border-box;
-		border: 1px solid var(--color-sky-blue);
-		border-radius: 44px;
-		background: none;
-		content: "";
-		pointer-events: none;
-	}
-
 	.service-specialists__card::before {
 		left: calc(100% * -1.15 / 353);
 		top: calc(100% * -9.68 / 285);
@@ -208,29 +216,30 @@
 		z-index: 2;
 		width: calc(100% * 351.92 / 353);
 		height: auto;
-		transform: matrix(1, 0.01, -0.02, 1, 0, 0);
+		transform: matrix(1, 0.01, -0.02, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__card::after {
 		left: calc(100% * -0.67 / 353);
 		top: calc(100% * -6.2 / 285);
+		right: auto;
 		bottom: calc(100% * 4.38 / 285);
 		z-index: 3;
 		width: calc(100% * 351.64 / 353);
 		height: auto;
-		transform: matrix(1, -0.01, 0.02, 1, 0, 0);
+		transform: matrix(1, -0.01, 0.02, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__card:has(.service-specialists__text)::before {
 		top: -9.68px;
 		bottom: 4.85px;
-		transform: matrix(1, 0.02, -0.01, 1, 0, 0);
+		transform: matrix(1, 0.02, -0.01, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__card:has(.service-specialists__text)::after {
 		top: -6.2px;
 		bottom: 7.38px;
-		transform: matrix(1, -0.02, 0.01, 1, 0, 0);
+		transform: matrix(1, -0.02, 0.01, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__head {
@@ -294,15 +303,12 @@
 
 	.service-specialists__card {
 		justify-content: flex-start;
-		isolation: isolate;
 		width: 100%;
 		height: auto;
 		min-height: 0;
 		padding: 28px 16px;
 		gap: 16px;
-		overflow: visible;
 		background: var(--color-chewing-gum);
-		border: 0;
 		border-radius: 24px;
 	}
 
@@ -312,20 +318,26 @@
 	}
 
 	.service-specialists__card::before {
-		left: calc(100% * -1.94922 / 360);
-		top: calc(100% * -7.8418 / 210.519);
-		right: auto;
-		bottom: auto;
+		left: -2px;
+		top: -8px;
+		right: -1px;
+		bottom: -3px;
 		z-index: 1;
-		width: calc(100% * 363 / 360);
-		height: calc(100% * 221 / 210.519);
-		background: url("../../images/service-specialists-stroke-mobile.svg") 0 0 / 100% 100% no-repeat;
-		transform: none;
+		width: auto;
+		height: auto;
+		transform: matrix(1, 0.015, -0.02, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__card::after {
-		display: none;
-		content: none;
+		left: -1px;
+		top: -4px;
+		right: -2px;
+		bottom: 1px;
+		z-index: 1;
+		width: auto;
+		height: auto;
+		display: block;
+		transform: matrix(1, -0.015, 0.02, 1, 0, 0) translateZ(0);
 	}
 
 	.service-specialists__head {

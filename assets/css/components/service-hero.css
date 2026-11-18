@@ -433,7 +433,7 @@
 		min-height: 0;
 		margin-top: -80px;
 		padding: 116px 16px 0;
-		overflow: visible;
+		overflow: hidden;
 	}
 
 	.service-hero__inner {
@@ -482,20 +482,31 @@
 		max-width: 100%;
 		min-height: 21px;
 		gap: 8px;
+		overflow-x: auto;
+		overflow-y: hidden;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
 		font-size: 15px;
 		font-weight: 400;
 		line-height: 1.4;
+	}
+
+	.service-hero__breadcrumbs::-webkit-scrollbar {
+		display: none;
+	}
+
+	.service-hero__breadcrumbs a,
+	.service-hero__breadcrumbs span {
+		flex: 0 0 auto;
+		overflow: visible;
+		text-overflow: unset;
 	}
 
 	/* Mobile layout: Головна → поточна сторінка */
 	.service-hero__breadcrumbs > a:nth-child(3),
 	.service-hero__breadcrumbs > .service-hero__crumb-arrow:nth-child(4) {
 		display: none;
-	}
-
-	.service-hero__breadcrumbs > [aria-current="page"] {
-		flex: 1 1 auto;
-		min-width: 0;
 	}
 
 	.service-hero__crumb-arrow {
@@ -561,7 +572,6 @@
 
 	.service-hero__copy .lottie-button--primary .lottie-button__label {
 		padding-inline: 12px;
-		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.26;
 		transform: none;

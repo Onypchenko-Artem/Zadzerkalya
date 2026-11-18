@@ -131,3 +131,9 @@ a.lottie-button:hover {
 		padding-inline: 3px;
 	}
 }
+
+@media (max-width: 389px) {
+	.lottie-button__label {
+		font-size: 12px;
+	}
+}

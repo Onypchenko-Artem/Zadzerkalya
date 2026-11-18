@@ -275,19 +275,21 @@
 .service-cta__counter {
 	position: relative;
 	display: flex;
-	flex: 0 0 calc(50 * var(--u));
+	flex: 0 0 auto;
 	align-items: center;
 	justify-content: center;
 	box-sizing: border-box;
-	width: calc(50 * var(--u));
+	width: max-content;
+	min-width: calc(50 * var(--u));
 	height: calc(78 * var(--u));
 	margin: 0;
-	padding: 0 calc(4 * var(--u));
+	padding: 0 calc(8 * var(--u));
 	font-family: var(--text-slider-family);
 	font-weight: 700;
 	line-height: 1;
 	letter-spacing: 0.03em;
 	color: var(--color-night-sky);
+	white-space: nowrap;
 }
 
 .service-cta__counter::before {
@@ -442,16 +444,17 @@
 	}
 
 	.service-cta__counter {
-		flex-basis: 50px;
-		width: 50px;
+		flex-basis: auto;
+		width: max-content;
+		min-width: 50px;
 		height: 78px;
+		padding: 0 8px;
 	}
 
-	.service-cta__counter-current {
-		font-size: 24px;
-	}
-
-	.service-cta__counter-total {
+	.service-cta__counter-current,
+	.service-cta__counter-total,
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-current,
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-total {
 		font-size: 21px;
 	}
 }
@@ -522,13 +525,25 @@
 	}
 
 	.service-cta__slider {
+		--service-cta-header-h: 72px;
+		--service-cta-safe-gap: 30px;
+		--service-cta-slider-gap: 12px;
+		--service-cta-controls-h: 42px;
 		flex: none;
 		width: 100%;
-		gap: 12px;
+		gap: var(--service-cta-slider-gap);
+		max-height: calc(100vh - var(--service-cta-header-h) - var(--service-cta-safe-gap));
+		max-height: calc(100dvh - var(--service-cta-header-h) - var(--service-cta-safe-gap));
+		max-height: calc(100svh - var(--service-cta-header-h) - var(--service-cta-safe-gap));
+		min-height: 0;
 	}
 
 	.service-cta__viewport {
-		height: 603px;
+		/* Слайдер вміщається під sticky-хедером: viewport + gap + controls + запас */
+		height: min(603px, calc(100vh - var(--service-cta-header-h) - var(--service-cta-safe-gap) - var(--service-cta-slider-gap) - var(--service-cta-controls-h)));
+		height: min(603px, calc(100dvh - var(--service-cta-header-h) - var(--service-cta-safe-gap) - var(--service-cta-slider-gap) - var(--service-cta-controls-h)));
+		height: min(603px, calc(100svh - var(--service-cta-header-h) - var(--service-cta-safe-gap) - var(--service-cta-slider-gap) - var(--service-cta-controls-h)));
+		min-height: 0;
 	}
 
 	.service-cta__track {
@@ -579,10 +594,11 @@
 	}
 
 	.service-cta__counter {
-		flex-basis: 32px;
-		width: 32px;
+		flex-basis: auto;
+		width: max-content;
+		min-width: 32px;
 		height: 42px;
-		padding: 0 2px;
+		padding: 0 6px;
 	}
 
 	.service-cta__counter-current {
@@ -616,13 +632,18 @@
 		flex: none;
 		width: 100%;
 		height: auto;
+		max-height: calc(100vh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px));
+		max-height: calc(100dvh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px));
+		max-height: calc(100svh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px));
 		min-height: 0;
-		gap: 12px;
+		gap: var(--service-cta-slider-gap, 12px);
 	}
 
 	.service-cta--custom-background .service-cta__viewport {
 		flex: none;
-		height: 603px;
+		height: min(603px, calc(100vh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px) - var(--service-cta-slider-gap, 12px) - var(--service-cta-controls-h, 42px)));
+		height: min(603px, calc(100dvh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px) - var(--service-cta-slider-gap, 12px) - var(--service-cta-controls-h, 42px)));
+		height: min(603px, calc(100svh - var(--service-cta-header-h, 72px) - var(--service-cta-safe-gap, 30px) - var(--service-cta-slider-gap, 12px) - var(--service-cta-controls-h, 42px)));
 		min-height: 0;
 	}
 

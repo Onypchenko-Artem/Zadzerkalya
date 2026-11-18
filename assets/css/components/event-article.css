@@ -1098,6 +1098,11 @@
 		line-height: 1.1;
 	}
 
+	.single-post .event-article__body > :not(blockquote) + ul,
+	.single-post .event-article__body > blockquote:has(+ ul) {
+		margin-top: 24px;
+	}
+
 	:is(.single-post, .single-event) .event-article__body p,
 	:is(.single-post, .single-event) .event-article__body li {
 		font-size: 15px;

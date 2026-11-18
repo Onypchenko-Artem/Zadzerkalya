@@ -277,6 +277,41 @@ body.services-mega-open {
 		padding-bottom: 24px;
 	}
 
+	.services-mega__cat-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		width: 100%;
+	}
+
+	.services-mega__cat-toggle {
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin: -10px -10px -10px 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		cursor: pointer;
+	}
+
+	.services-mega__cat-toggle-arrow {
+		display: block;
+		width: 21px;
+		height: 24px;
+		background: url("../../images/left-arrow.svg") center / 20px 11px no-repeat;
+		transform: rotate(-90deg);
+		transition: transform 0.3s ease;
+	}
+
+	.services-mega__cat-row.is-active .services-mega__cat-toggle-arrow {
+		transform: rotate(90deg);
+	}
+
 	.services-mega__rule {
 		grid-column: 3;
 		grid-row: 1 / -1;
@@ -348,6 +383,14 @@ body.services-mega-open {
 	}
 }
 
+.services-mega__cat-row {
+	display: contents;
+}
+
+.services-mega__cat-toggle {
+	display: none;
+}
+
 .services-mega__mobile {
 	display: none;
 }
@@ -386,6 +429,47 @@ body.services-mega-open {
 		margin: 0 auto;
 	}
 
+	.services-mega__back {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+		width: 100%;
+	}
+
+	.services-mega__back-btn {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--color-night-sky);
+		font-family: var(--font-family-body);
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.35;
+		cursor: pointer;
+	}
+
+	.services-mega__back-arrow {
+		flex: none;
+		width: 24px;
+		height: 16px;
+		background: url("../../images/left-arrow.svg") center / contain no-repeat;
+	}
+
+	.services-mega__back-label {
+		flex: none;
+	}
+
+	.services-mega__back-rule {
+		display: block;
+		width: 100%;
+		height: 5px;
+		background: url("../../images/services-mega-back-rule.svg") left center / 100% 100% no-repeat;
+	}
+
 	.services-mega__acc {
 		display: flex;
 		flex-direction: column;
@@ -398,23 +482,13 @@ body.services-mega-open {
 		gap: 24px;
 	}
 
-	.services-mega__acc-toggle {
+	.services-mega__acc-head {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
 		width: 100%;
 		min-height: 24px;
-		padding: 0;
-		border: 0;
-		background: none;
-		color: var(--color-night-sky);
-		font-family: var(--font-family-body);
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 1.35;
-		text-align: left;
-		cursor: pointer;
 	}
 
 	.services-mega__acc-label {
@@ -422,6 +496,14 @@ body.services-mega-open {
 		flex-direction: column;
 		align-items: flex-start;
 		gap: 2px;
+		min-width: 0;
+		color: var(--color-night-sky);
+		font-family: var(--font-family-body);
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.35;
+		text-align: left;
+		text-decoration: none;
 	}
 
 	.services-mega__acc-label::after {
@@ -438,6 +520,21 @@ body.services-mega-open {
 	.services-mega__acc.is-open .services-mega__acc-label::after {
 		opacity: 1;
 		transform: scaleX(1);
+	}
+
+	.services-mega__acc-toggle {
+		display: flex;
+		flex: none;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin: -10px -10px -10px 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--color-night-sky);
+		cursor: pointer;
 	}
 
 	.services-mega__acc-arrow {
@@ -486,12 +583,12 @@ body.services-mega-open {
 		height: 0;
 		overflow: hidden;
 		opacity: 0;
-		background: url("../../images/menu-underline.svg") left center / 100% 100% no-repeat;
+		background: url("../../images/services-mega-back-rule.svg") left center / 100% 100% no-repeat;
 		transition: height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
 	}
 
 	.services-mega__acc.is-open .services-mega__acc-rule {
-		height: 6px;
+		height: 5px;
 		margin-top: -8px;
 		opacity: 1;
 	}
@@ -506,7 +603,8 @@ body.services-mega-open {
 	.services-mega__acc,
 	.services-mega__acc-label::after,
 	.services-mega__acc-arrow,
-	.services-mega__acc-rule {
+	.services-mega__acc-rule,
+	.services-mega__cat-toggle-arrow {
 		transition: none;
 	}
 }

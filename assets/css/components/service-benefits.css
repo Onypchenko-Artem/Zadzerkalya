@@ -531,8 +531,16 @@
 		border-radius: 20px;
 	}
 
-	.service-benefits__card ~ .service-benefits__card {
+	/*
+	 * display:contents + row-gap:36px: картки з різних .row не є DOM-siblings,
+	 * тож ~ не вирівнює всі зазори. Тримаємо 24px між усіма картками.
+	 */
+	.service-benefits__card {
 		margin-top: -12px;
+	}
+
+	.service-benefits__row--lead > .service-benefits__card {
+		margin-top: 0;
 	}
 
 	.service-benefits__card-top {
@@ -601,7 +609,6 @@
 
 	.service-benefits__aside .lottie-button--primary .lottie-button__label {
 		padding-inline: 12px;
-		font-size: 13px;
 		line-height: 1.26;
 		transform: none;
 	}

@@ -241,14 +241,30 @@ $render_card = static function ( $card ) {
 				<?php endif; ?>
 			</div>
 			<?php
-			zadzerkalya_button(
-				array(
-					'label'      => $args['button_label'],
-					'url'        => $button_url,
-					'variant'    => $args['button_variant'],
-					'attributes' => 'primary' === $args['button_variant'] ? array( 'data-anim-desktop' => 'button-primary-desktop-short' ) : array(),
-				)
-			);
+			$benefits_button_attrs = 'primary' === $args['button_variant']
+				? array( 'data-anim-desktop' => 'button-primary-desktop-short' )
+				: array();
+
+			if ( zadzerkalya_is_primary_booking_label( $args['button_label'] ) ) {
+				zadzerkalya_button(
+					array(
+						'label'      => $args['button_label'],
+						'url'        => $button_url,
+						'variant'    => $args['button_variant'],
+						'attributes' => $benefits_button_attrs,
+					)
+				);
+			} else {
+				zadzerkalya_button(
+					zadzerkalya_contact_popup_button_args(
+						$args['button_label'],
+						array(
+							'variant'    => $args['button_variant'],
+							'attributes' => $benefits_button_attrs,
+						)
+					)
+				);
+			}
 			?>
 		</div>
 	</div>
