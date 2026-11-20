@@ -388,7 +388,7 @@
 	}
 
 	.numbers__photo {
-		height: 180px;
+		height: auto;
 		border-radius: 16px;
 	}
 }

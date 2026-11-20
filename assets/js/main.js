@@ -239,11 +239,11 @@ const zadzerkalyaNavScrollLock = (() => {
 		item.classList.add('is-open');
 		link.setAttribute('aria-expanded', 'true');
 		document.body.classList.add('services-mega-open');
+		zadzerkalyaNavScrollLock.lock();
 
 		if (!desktop.matches) {
 			nav?.classList.remove('is-open');
 			toggle?.setAttribute('aria-expanded', 'true');
-			zadzerkalyaNavScrollLock.lock();
 		}
 	};
 
@@ -258,6 +258,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		item.classList.remove('is-open');
 		link.setAttribute('aria-expanded', 'false');
 		document.body.classList.remove('services-mega-open');
+		zadzerkalyaNavScrollLock.unlock({ restore: restoreScroll });
 
 		if (!desktop.matches) {
 			if (returnToNav) {
@@ -266,7 +267,6 @@ const zadzerkalyaNavScrollLock = (() => {
 				zadzerkalyaNavScrollLock.lock();
 			} else {
 				toggle?.setAttribute('aria-expanded', 'false');
-				zadzerkalyaNavScrollLock.unlock({ restore: restoreScroll });
 			}
 		}
 

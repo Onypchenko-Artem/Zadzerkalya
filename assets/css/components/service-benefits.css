@@ -598,6 +598,23 @@
 		line-height: 1.35;
 	}
 
+	.service-benefits--swap-mobile-copy .service-benefits__intro {
+		grid-column: 2;
+		grid-row: 2;
+		order: 2;
+		align-self: center;
+		font-size: 13px;
+		line-height: 1.4;
+	}
+
+	.service-benefits--swap-mobile-copy .service-benefits__aside-text {
+		grid-column: 1 / -1;
+		grid-row: auto;
+		order: 4;
+		font-size: 16px;
+		line-height: 1.35;
+	}
+
 	.service-benefits__aside .lottie-button {
 		grid-column: 1 / -1;
 		order: 5;

@@ -511,14 +511,18 @@
 
 	.service-cta__content .lottie-button--primary,
 	.service-cta__content .lottie-button--secondary {
-		--lottie-btn-w: 181px;
-		--lottie-btn-h: 43px;
+		--lottie-btn-w: 260px;
+		--lottie-btn-h: 62px;
+		width: 260px;
+		min-width: 260px;
+		height: 62px;
+		min-height: 62px;
 	}
 
 	.service-cta__content .lottie-button--primary .lottie-button__label,
 	.service-cta__content .lottie-button--secondary .lottie-button__label {
-		padding-inline: 8px;
-		font-size: 10px;
+		padding-inline: 16px;
+		font-size: 13px;
 		font-weight: 400;
 		line-height: 1.26;
 		transform: none;

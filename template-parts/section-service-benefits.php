@@ -125,6 +125,7 @@ if ( ! $has_custom ) {
 $intro_html = $format_html( $intro );
 $aside_html = $format_html( $aside );
 $intro_as_aside = ! $aside_html && (bool) $intro_html;
+$swap_mobile_copy = (bool) $intro_html && (bool) $aside_html;
 
 if ( '' === trim( (string) $args['button_label'] ) ) {
 	$args['button_label'] = __( 'забронювати первинну консультацію', 'zadzerkalya' );
@@ -223,7 +224,7 @@ $render_card = static function ( $card ) {
 	<?php
 };
 ?>
-<section class="service-benefits<?php echo $intro_as_aside ? ' service-benefits--intro-as-aside' : ''; ?>" aria-labelledby="service-benefits-title">
+<section class="service-benefits<?php echo $intro_as_aside ? ' service-benefits--intro-as-aside' : ''; ?><?php echo $swap_mobile_copy ? ' service-benefits--swap-mobile-copy' : ''; ?>" aria-labelledby="service-benefits-title">
 	<div class="service-benefits__aside">
 		<?php if ( $aside_html ) : ?>
 			<div class="service-benefits__aside-text">

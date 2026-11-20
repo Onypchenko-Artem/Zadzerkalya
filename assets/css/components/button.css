@@ -113,7 +113,7 @@ a.lottie-button:hover {
 	}
 
 	.lottie-button__label {
-		font-size: 13px;
+		font-size: 13px !important;
 		line-height: 1.26;
 		text-align: center;
 	}
@@ -132,8 +132,3 @@ a.lottie-button:hover {
 	}
 }
 
-@media (max-width: 389px) {
-	.lottie-button__label {
-		font-size: 12px;
-	}
-}
