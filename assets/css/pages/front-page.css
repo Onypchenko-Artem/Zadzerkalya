@@ -17,7 +17,7 @@
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	/* Fluid tablet rhythm: 1x at the reference 768px, capped on wide tablets. */
 	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
 		margin-top: clamp(82px, 14.32vw, 138px);
@@ -53,7 +53,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
 		margin-top: 60px;
 	}

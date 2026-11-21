@@ -115,7 +115,7 @@
 	opacity: 0.65;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.contacts-info {
 		display: flex;
 		flex-direction: column;
@@ -196,7 +196,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.contacts-info {
 		display: flex;
 		flex-direction: column;

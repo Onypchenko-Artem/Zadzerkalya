@@ -174,15 +174,6 @@
 		width: 100%;
 	}
 
-	.service-when__row,
-	.service-when__row:not(:first-child) {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		justify-content: stretch;
-		align-items: stretch;
-		gap: clamp(12px, 2.08vw, 20px);
-	}
-
 	.service-when__card,
 	.service-when__row:not(:first-child) .service-when__card {
 		flex: none;
@@ -235,7 +226,16 @@
 	}
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (min-width: 701px) and (max-width: 1279px) {
+	.service-when__row,
+	.service-when__row:not(:first-child) {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		justify-content: stretch;
+		align-items: stretch;
+		gap: clamp(12px, 2.08vw, 20px);
+	}
+
 	.service-when__row:last-child > .service-when__card:last-child:nth-child(odd) {
 		grid-column: 1 / -1;
 		justify-self: center;
@@ -243,7 +243,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.service-when {
 		gap: 36px;
 		padding: 0 16px;
@@ -280,8 +280,10 @@
 
 	.service-when__row,
 	.service-when__row:not(:first-child) {
+		display: flex;
 		flex-direction: column;
 		flex-wrap: nowrap;
+		justify-content: flex-start;
 		align-items: stretch;
 		gap: 24px;
 	}

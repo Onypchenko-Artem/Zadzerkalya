@@ -108,7 +108,7 @@ if ( ! $items ) {
 		<div class="services-showcase__cards">
 			<div class="services-showcase__illustration-placeholder">
 				<picture>
-					<source media="(max-width: 767px)" srcset="<?php echo esc_url( $illustration_mobile_url ); ?>">
+					<source media="(max-width: 700px)" srcset="<?php echo esc_url( $illustration_mobile_url ); ?>">
 					<img src="<?php echo esc_url( $illustration_url ); ?>" alt="" aria-hidden="true">
 				</picture>
 			</div>

@@ -852,7 +852,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.event-article {
 		display: flex;
 		flex-direction: column;

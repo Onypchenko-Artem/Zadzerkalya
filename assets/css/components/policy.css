@@ -330,7 +330,7 @@
 	color: inherit;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.policy {
 		display: flex;
 		flex-direction: column;
@@ -498,7 +498,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.policy {
 		display: flex;
 		flex-direction: column;

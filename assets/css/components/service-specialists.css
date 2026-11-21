@@ -169,7 +169,7 @@
 	line-height: 1.35;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.service-specialists {
 		gap: 64px;
 		padding: 0 24px;
@@ -281,7 +281,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.service-specialists {
 		gap: 36px;
 		padding: 0 16px;

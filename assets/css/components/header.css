@@ -391,7 +391,7 @@
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.header-bar {
 		align-items: center;
 		min-height: 107px;
@@ -590,7 +590,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.header-bar {
 		justify-content: flex-end;
 		align-items: center;

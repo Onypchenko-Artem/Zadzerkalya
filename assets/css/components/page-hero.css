@@ -163,7 +163,7 @@
 	object-fit: cover;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.page-hero {
 		height: auto;
 		min-height: clamp(465px, 80.73vw, 775px);
@@ -329,21 +329,26 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.page-hero {
+		height: auto;
 		min-height: 0;
 		margin-top: -80px;
 		padding: 112px 16px 32px;
+		overflow: hidden;
 	}
 
 	.page-hero__inner {
-		grid-template-columns: 1fr;
+		display: flex;
+		flex-direction: column;
+		grid-template-columns: none;
 		gap: 32px;
 		min-height: 0;
 	}
 
 	.page-hero__main {
 		display: block;
+		width: 100%;
 	}
 
 	.page-hero__content {
@@ -386,6 +391,10 @@
 		font-size: 16px;
 	}
 
+	.page-hero__line {
+		max-width: none;
+	}
+
 	.page-hero__vertical-line {
 		display: none;
 	}
@@ -393,14 +402,78 @@
 	.page-hero__photo {
 		align-items: stretch;
 		gap: 16px;
+		width: 100%;
 	}
 
 	.page-hero__photo-image {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 817 / 496;
 		border-radius: 160px;
 	}
 
 	.page-hero .about-hero__right-line {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 895 / 34;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: flex-start;
+		padding: 112px 16px 0;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__inner {
+		align-items: center;
+		gap: 0;
+		width: 100%;
+		max-width: none;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__content {
+		gap: 16px;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__title {
+		gap: 24px;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero h1 {
+		font-size: 32px;
+		line-height: 1.06;
+		letter-spacing: -0.04em;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__line {
+		width: calc(100% - 12px);
+		height: 8px;
+		margin: 0 6px;
 		aspect-ratio: auto;
 	}
 
+	:is(.prices-page, .contacts-page) .page-hero__photo {
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		width: 100%;
+		min-height: 0;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero__photo-image {
+		flex: none;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 361 / 280;
+		border-radius: 160px;
+	}
+
+	:is(.prices-page, .contacts-page) .page-hero .about-hero__right-line {
+		flex: none;
+		width: 100%;
+		margin: 8px 0;
+		aspect-ratio: auto;
+	}
 }

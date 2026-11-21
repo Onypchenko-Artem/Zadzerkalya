@@ -88,7 +88,7 @@ const zadzerkalyaNavScrollLock = (() => {
 	const toggle = document.querySelector('.nav-toggle');
 	const nav = document.querySelector('.header-nav');
 	const desktop = window.matchMedia('(min-width: 1280px)');
-	const tablet = window.matchMedia('(min-width: 768px) and (max-width: 1279px)');
+	const tablet = window.matchMedia('(min-width: 701px) and (max-width: 1279px)');
 
 	if (!toggle || !nav) {
 		return;
@@ -170,8 +170,8 @@ const zadzerkalyaNavScrollLock = (() => {
 	const nav = document.querySelector('.header-nav');
 	const toggle = document.querySelector('.nav-toggle');
 	const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1280px)');
-	const tablet = window.matchMedia('(min-width: 768px) and (max-width: 1279px)');
-	const mobile = window.matchMedia('(max-width: 767px)');
+	const tablet = window.matchMedia('(min-width: 701px) and (max-width: 1279px)');
+	const mobile = window.matchMedia('(max-width: 700px)');
 
 	if (!item || !mega || !link) {
 		return;
@@ -700,7 +700,7 @@ const zadzerkalyaNavScrollLock = (() => {
 
 		const breakpoint = () => {
 			const width = window.innerWidth;
-			if (width <= 767) {
+			if (width <= 700) {
 				return 'mobile';
 			}
 			if (width <= 1279) {
@@ -804,7 +804,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		const isFaq = shell.classList.contains('faq-scroll');
 		// Benefits shows every card on tablet; pin-scroll only from desktop.
 		const media = window.matchMedia(
-			shell.classList.contains('benefits-scroll') ? '(min-width: 1280px)' : '(min-width: 768px)'
+			shell.classList.contains('benefits-scroll') ? '(min-width: 1280px)' : '(min-width: 701px)'
 		);
 		let scrollDistance = 0;
 		let desiredDistance = 0;
@@ -1819,7 +1819,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		return;
 	}
 
-	const mobile = window.matchMedia('(max-width: 767px)');
+	const mobile = window.matchMedia('(max-width: 700px)');
 
 	const equalizeCards = (section) => {
 		const cards = [...section.querySelectorAll('.service-specialists__card')];
@@ -1857,7 +1857,7 @@ const zadzerkalyaNavScrollLock = (() => {
 	}
 
 	const desktop = window.matchMedia('(min-width: 1280px)');
-	const mobile = window.matchMedia('(max-width: 767px)');
+	const mobile = window.matchMedia('(max-width: 700px)');
 
 	const equalizeCards = (section) => {
 		const cards = [...section.querySelectorAll('.service-benefits__card')];
@@ -2321,7 +2321,7 @@ const zadzerkalyaNavScrollLock = (() => {
 
 	const breakpoint = () => {
 		const width = window.innerWidth;
-		if (width <= 767) {
+		if (width <= 700) {
 			return 'mobile';
 		}
 		if (width <= 1279) {
@@ -2459,7 +2459,7 @@ const zadzerkalyaNavScrollLock = (() => {
 
 	const breakpoint = () => {
 		const width = window.innerWidth;
-		if (width <= 767) {
+		if (width <= 700) {
 			return 'mobile';
 		}
 		if (width <= 1279) {

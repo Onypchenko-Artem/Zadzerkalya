@@ -142,7 +142,7 @@
 	font-size: calc(18 * var(--u));
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.article-card {
 		flex-basis: clamp(264.75px, 45.96vw, 441.25px);
 		gap: clamp(18px, 3.12vw, 30px);
@@ -228,7 +228,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.article-card {
 		align-self: start;
 		flex-basis: calc(100vw - 32px);

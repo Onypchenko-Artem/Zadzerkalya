@@ -12,11 +12,11 @@
 | Файл | Кадр | Тривалість | Що всередині |
 |---|---|---|---|
 | `logo-only-desktop.json` | 462×485 | 5,82 с | лише лого, десктоп (≥ 1280 px) |
-| `logo-only-tablet.json` | 221×234 | 5,82 с | лише лого, планшет (768–1279 px) |
-| `logo-only-mobile.json` | 71×76 | 5,82 с | лише лого, мобільний (< 768 px) |
+| `logo-only-tablet.json` | 221×234 | 5,82 с | лише лого, планшет (701–1279 px) |
+| `logo-only-mobile.json` | 71×76 | 5,82 с | лише лого, мобільний (≤ 700 px) |
 | `tagline-only-desktop.json` | 557×76 | 1,77 с | лише слоган, десктоп (≥ 1280 px) |
-| `tagline-only-tablet.json` | 356×48 | 1,77 с | лише слоган, планшет (768–1279 px) |
-| `tagline-only-mobile.json` | 361×32 | 1,77 с | лише слоган, мобільний (< 768 px) |
+| `tagline-only-tablet.json` | 356×48 | 1,77 с | лише слоган, планшет (701–1279 px) |
+| `tagline-only-mobile.json` | 361×32 | 1,77 с | лише слоган, мобільний (≤ 700 px) |
 | `manifest.json` | — | — | розміри, тривалість, вага, позиції з макета |
 
 - **Лого і слоган — по файлу на кожен брейкпоінт.** Кадр лого = блок лого з макета Figma для цього екрана; кадр слогана — рядок тексту на всю ширину блоку, текст по центру. Анімація не виходить за межі свого кадру. Фінал лого — затверджений: дзеркало повертається, лого як у Figma.
@@ -32,7 +32,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script>
-  const bp = matchMedia('(min-width:1280px)').matches ? 'desktop' : matchMedia('(min-width:768px)').matches ? 'tablet' : 'mobile';
+  const bp = matchMedia('(min-width:1280px)').matches ? 'desktop' : matchMedia('(min-width:701px)').matches ? 'tablet' : 'mobile';
   const opts = (el, file) => ({ container: el, renderer: 'svg', loop: false, autoplay: false, path: '/animations/' + file });
   const logo = lottie.loadAnimation(opts(document.querySelector('.zl-logo'), `logo-only-${bp}.json`));
   const tagline = lottie.loadAnimation(opts(document.querySelector('.zl-tagline'), `tagline-only-${bp}.json`));
@@ -51,7 +51,7 @@
 .zl-tagline { width: 100%; max-width: 557px; aspect-ratio: 557 / 76;  margin-inline: auto; }
 .zl-logo svg, .zl-tagline svg { display: block; }                 /* без відступу знизу, як у рядкового елемента */
 @media (max-width: 1279px) { .zl-logo { max-width: 221px; aspect-ratio: 221 / 234; } .zl-tagline { max-width: 356px; aspect-ratio: 356 / 48; } }
-@media (max-width: 767px)  { .zl-logo { max-width: 71px;  aspect-ratio: 71 / 76; }   .zl-tagline { max-width: 361px; aspect-ratio: 361 / 32; } }
+@media (max-width: 700px)  { .zl-logo { max-width: 71px;  aspect-ratio: 71 / 76; }   .zl-tagline { max-width: 361px; aspect-ratio: 361 / 32; } }
 ```
 
 - **Рендерер** — тільки `svg`: `canvas` не підтримує маски, на яких побудовані промальовування й уламки лого.

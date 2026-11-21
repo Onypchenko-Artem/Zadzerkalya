@@ -19,7 +19,7 @@
 	pointer-events: auto;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.service-page > * + * {
 		margin-top: 80px;
 	}
@@ -37,7 +37,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.service-page > * + * {
 		margin-top: 60px;
 	}

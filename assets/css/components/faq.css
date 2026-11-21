@@ -200,7 +200,7 @@
 	text-decoration: underline;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.faq-scroll.is-scroll-driven .faq {
 		top: 88px;
 	}
@@ -301,7 +301,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.faq-scroll.is-scroll-driven {
 		height: auto;
 	}

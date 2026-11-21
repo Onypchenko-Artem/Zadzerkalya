@@ -100,7 +100,7 @@
 	color: var(--color-night-sky);
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.specialist-slot__link {
 		gap: clamp(18px, 3.12vw, 30px);
 		min-height: clamp(447.75px, 77.73vw, 746.25px);
@@ -139,7 +139,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.specialist-slot__link {
 		gap: 16px;
 		min-height: 0;

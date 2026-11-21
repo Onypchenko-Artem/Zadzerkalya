@@ -273,7 +273,7 @@
 	display: none;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.service-benefits {
 		display: grid;
 		grid-template-columns: clamp(178.5px, 30.99vw, 297.5px) minmax(0, clamp(270.75px, 47.01vw, 451.25px));
@@ -455,7 +455,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.service-benefits {
 		display: grid;
 		grid-template-columns: 102px minmax(0, 1fr);

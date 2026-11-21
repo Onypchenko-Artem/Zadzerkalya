@@ -268,7 +268,7 @@
 	background: url("../../images/right-arrow.svg") center / 100% 100% no-repeat;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.reviews {
 		gap: 56px;
 		padding: 0 24px;
@@ -392,7 +392,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.reviews {
 		gap: 28px;
 		padding: 0 20px;

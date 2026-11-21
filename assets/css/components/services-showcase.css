@@ -132,7 +132,7 @@
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.services-showcase {
 		display: flex;
 		flex-flow: row wrap;
@@ -261,7 +261,7 @@
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.services-showcase.is-copy-aligned {
 		row-gap: clamp(24px, 4.17vw, 40px);
 		padding: clamp(90px, 15.625vw, 150px) clamp(18px, 3.125vw, 30px);
@@ -367,7 +367,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.services-showcase {
 		--showcase-illu: 86px;
 		display: grid;

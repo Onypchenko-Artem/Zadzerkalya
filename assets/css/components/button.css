@@ -101,7 +101,7 @@ a.lottie-button:hover {
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.lottie-button--primary {
 		--lottie-btn-w: 240px;
 		--lottie-btn-h: 62px;

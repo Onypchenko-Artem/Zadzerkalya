@@ -1,6 +1,6 @@
 /**
  * Колекція Typography.
- * Desktop (1280–1920, clamp) → Tablet (max 1279px) → Mobile (max 767px).
+ * Desktop (1280–1920, clamp) → Tablet (max 1279px) → Mobile (max 700px).
  */
 
 :root {
@@ -165,7 +165,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	:root {
 		--text-h1-size: 32px;
 		--text-h1-tracking: -0.01em;

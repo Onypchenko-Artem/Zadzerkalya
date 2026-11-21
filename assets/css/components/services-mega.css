@@ -230,7 +230,7 @@ body.services-mega-open {
 	clip-path: inset(0 0 0 0);
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.services-mega {
 		bottom: 0;
 		z-index: 38;
@@ -395,7 +395,7 @@ body.services-mega-open {
 	display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.services-mega {
 		z-index: 30;
 		display: block;

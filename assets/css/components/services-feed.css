@@ -60,7 +60,7 @@
 	display: none;
 }
 
-@media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 1279px) and (min-width: 701px) {
 	.services-feed {
 		z-index: 2;
 		align-items: flex-start;
@@ -99,7 +99,7 @@
 	}
 }
 
-@media (max-width: 767px) {
+@media (max-width: 700px) {
 	.services-feed {
 		align-items: center;
 		gap: 36px;

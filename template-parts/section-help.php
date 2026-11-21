@@ -58,7 +58,7 @@ if ( '' === $banner_mobile_url ) {
 <section class="help">
 	<div class="help__support">
 		<picture>
-			<source media="(max-width: 767px)" srcset="<?php echo esc_url( $banner_mobile_url ); ?>">
+			<source media="(max-width: 700px)" srcset="<?php echo esc_url( $banner_mobile_url ); ?>">
 			<img
 				src="<?php echo esc_url( $banner_url ); ?>"
 				width="816"
