@@ -177,25 +177,25 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.numbers {
-		gap: 56px;
+		gap: clamp(42px, 7.29vw, 70px);
 		height: auto;
-		padding: 0 24px;
+		padding: 0 clamp(18px, 3.12vw, 30px);
 	}
 
 	.numbers__content {
 		align-items: stretch;
-		gap: 56px;
+		gap: clamp(42px, 7.29vw, 70px);
 		width: 100%;
 		height: auto;
 	}
 
 	.numbers__main {
 		display: grid;
-		grid-template-columns: repeat(3, 190px);
+		grid-template-columns: repeat(3, clamp(142.5px, 24.74vw, 237.5px));
 		justify-content: space-between;
 		align-items: start;
 		align-content: start;
-		row-gap: 16px;
+		row-gap: clamp(12px, 2.08vw, 20px);
 		width: 100%;
 		height: auto;
 	}
@@ -211,10 +211,10 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: flex-start;
-		gap: 32px;
+		gap: clamp(24px, 4.17vw, 40px);
 		grid-column: 1 / -1;
 		width: 100%;
-		margin-bottom: 40px;
+		margin-bottom: clamp(30px, 5.21vw, 50px);
 	}
 
 	.numbers__heading h2,
@@ -225,44 +225,44 @@
 	}
 
 	.numbers__heading h2 {
-		max-width: 320px;
-		font-size: 40px;
+		max-width: clamp(240px, 41.67vw, 400px);
+		font-size: clamp(30px, 5.21vw, 50px);
 		font-weight: 500;
 		line-height: 1.08;
 		letter-spacing: -0.03em;
 	}
 
 	.numbers__heading p {
-		max-width: 368px;
-		font-size: 20px;
+		max-width: clamp(276px, 47.92vw, 460px);
+		font-size: clamp(15px, 2.6vw, 25px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
 
 	.numbers__stat {
 		flex: none;
-		gap: 12px;
-		width: 190px;
+		gap: clamp(9px, 1.56vw, 15px);
+		width: clamp(142.5px, 24.74vw, 237.5px);
 	}
 
 	.numbers__stat-frame {
 		height: auto;
-		padding: 16px 0;
+		padding: clamp(12px, 2.08vw, 20px) 0;
 		background: none;
 	}
 
 	.numbers__stat strong {
-		height: 68px;
-		border-radius: 16px;
+		height: clamp(51px, 8.85vw, 85px);
+		border-radius: clamp(12px, 2.08vw, 20px);
 		background: url("../../images/number–bg.png") center / 100% 100% no-repeat;
-		font-size: 54px;
+		font-size: clamp(40.5px, 7.03vw, 67.5px);
 		font-weight: 400;
-		line-height: 68px;
+		line-height: clamp(51px, 8.85vw, 85px);
 		letter-spacing: 0.1em;
 	}
 
 	.numbers__stat > span {
-		font-size: 20px;
+		font-size: clamp(15px, 2.6vw, 25px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
@@ -281,8 +281,8 @@
 	}
 
 	.numbers__photo {
-		height: 280px;
-		border-radius: 20px;
+		height: clamp(210px, 36.46vw, 350px);
+		border-radius: clamp(15px, 2.6vw, 25px);
 	}
 }
 

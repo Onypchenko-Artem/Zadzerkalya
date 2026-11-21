@@ -243,29 +243,29 @@
 	background: url("../../images/about-right-line.svg") center / 100% 100% no-repeat;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.event-hero {
 		height: auto;
-		min-height: 746px;
-		margin-top: -107px;
-		padding: 167px 24px 24px;
+		min-height: clamp(559.5px, 97.14vw, 932.5px);
+		margin-top: clamp(-133.75px, -13.93vw, -80.25px);
+		padding: clamp(125.25px, 21.74vw, 208.75px) clamp(18px, 3.12vw, 30px) clamp(18px, 3.12vw, 30px);
 	}
 
 	.event-hero__inner {
 		grid-template-columns: minmax(0, 1fr) minmax(0, 0.97fr);
 		height: auto;
-		min-height: 572px;
+		min-height: clamp(429px, 74.48vw, 715px);
 	}
 
 	.event-hero__main {
 		width: 100%;
-		min-height: 572px;
+		min-height: clamp(429px, 74.48vw, 715px);
 	}
 
 	.event-hero__container {
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 		width: 100%;
-		min-height: 540px;
+		min-height: clamp(405px, 70.31vw, 675px);
 	}
 
 	.event-hero__content,
@@ -274,25 +274,25 @@
 	}
 
 	.event-hero__breadcrumbs-container {
-		gap: 20px;
+		gap: clamp(15px, 2.6vw, 25px);
 	}
 
 	.event-hero__breadcrumbs {
-		min-height: 21px;
-		font-size: 15px;
+		min-height: clamp(15.75px, 2.73vw, 26.25px);
+		font-size: clamp(11.25px, 1.95vw, 18.75px);
 	}
 
 	.event-hero__title {
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.event-hero h1 {
-		font-size: 48px;
+		font-size: clamp(36px, 6.25vw, 60px);
 	}
 
 	.event-hero__description {
-		width: min(100%, 420px);
-		font-size: 18px;
+		width: min(100%, clamp(315px, 54.69vw, 525px));
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 	}
 
 	.event-hero__bottom-line {
@@ -300,14 +300,14 @@
 	}
 
 	.event-hero__vertical-line {
-		width: 23px;
+		width: clamp(17.25px, 2.99vw, 28.75px);
 	}
 
 	.event-hero__photo {
 		width: 100%;
 		height: 100%;
-		padding: 60px 0 0 24px;
-		gap: 24px;
+		padding: clamp(45px, 7.81vw, 75px) 0 0 clamp(18px, 3.12vw, 30px);
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.event-hero__image {
@@ -317,14 +317,11 @@
 		border-radius: 300px;
 	}
 
-}
-
-@media (max-width: 1279px) and (min-width: 768px) {
 	:is(.single-post, .single-event, .policy-page) .event-hero {
 		height: auto;
 		min-height: 0;
-		margin-top: -107px;
-		padding: 167px 24px 0;
+		margin-top: clamp(-133.75px, -13.93vw, -80.25px);
+		padding: clamp(125.25px, 21.74vw, 208.75px) clamp(18px, 3.12vw, 30px) 0;
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__inner {
@@ -348,7 +345,7 @@
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__container {
-		gap: 56px;
+		gap: clamp(42px, 7.29vw, 70px);
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__content {
@@ -358,15 +355,15 @@
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__breadcrumbs-container {
 		align-items: flex-start;
-		gap: 16px;
+		gap: clamp(12px, 2.08vw, 20px);
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__breadcrumbs {
 		width: auto;
 		max-width: 100%;
-		min-height: 22px;
-		gap: 4px;
-		font-size: 16px;
+		min-height: clamp(16.5px, 2.86vw, 27.5px);
+		gap: clamp(3px, 0.52vw, 5px);
+		font-size: clamp(12px, 2.08vw, 20px);
 		line-height: 1.4;
 	}
 
@@ -377,7 +374,7 @@
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__title {
-		gap: 27px;
+		gap: clamp(20.25px, 3.52vw, 33.75px);
 		min-height: 0;
 	}
 
@@ -386,7 +383,7 @@
 		min-height: 0;
 		justify-content: flex-start;
 		padding-top: 0;
-		font-size: 44px;
+		font-size: clamp(33px, 5.73vw, 55px);
 		font-weight: 500;
 		line-height: 1.06;
 		letter-spacing: -0.04em;
@@ -394,9 +391,9 @@
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__description {
 		width: 100%;
-		max-width: 443px;
+		max-width: clamp(332.25px, 57.68vw, 553.75px);
 		min-height: 0;
-		font-size: 20px;
+		font-size: clamp(15px, 2.6vw, 25px);
 		font-weight: 300;
 		line-height: 1.35;
 	}
@@ -405,7 +402,7 @@
 		align-self: stretch;
 		width: auto;
 		max-width: none;
-		height: 9px;
+		height: clamp(6.75px, 1.17vw, 11.25px);
 		aspect-ratio: auto;
 		margin: 0;
 	}
@@ -419,8 +416,8 @@
 		height: auto;
 		align-items: stretch;
 		justify-content: flex-start;
-		padding: 32px 16px 0;
-		gap: 30px;
+		padding: clamp(24px, 4.17vw, 40px) clamp(12px, 2.08vw, 20px) 0;
+		gap: clamp(22.5px, 3.91vw, 37.5px);
 	}
 
 	:is(.single-post, .single-event, .policy-page) .event-hero__image {
@@ -434,9 +431,9 @@
 		align-self: stretch;
 		box-sizing: border-box;
 		width: auto;
-		height: 38px;
+		height: clamp(28.5px, 4.95vw, 47.5px);
 		margin-inline: 0;
-		padding: 8px;
+		padding: clamp(6px, 1.04vw, 10px);
 		aspect-ratio: auto;
 		background-origin: content-box;
 		background-clip: content-box;

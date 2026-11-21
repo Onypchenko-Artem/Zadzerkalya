@@ -380,6 +380,36 @@
 		--lottie-btn-h: 66px;
 	}
 
+	@media (min-width: 901px) {
+		.service-cta__content {
+			gap: clamp(48px, 6vw, 80px);
+			width: min(clamp(606px, 62vw, 780px), calc(100% - 64px));
+		}
+
+		.service-cta__illustration {
+			width: clamp(220px, 24vw, 300px);
+			height: clamp(220px, 24vw, 300px);
+		}
+
+		.service-cta__text {
+			gap: clamp(32px, 4vw, 48px);
+		}
+
+		.service-cta__text h2 {
+			font-size: clamp(40px, 4.4vw, 56px);
+		}
+
+		.service-cta__description {
+			font-size: clamp(20px, 2.2vw, 24px);
+		}
+
+		.service-cta__content .lottie-button--primary,
+		.service-cta__content .lottie-button--secondary {
+			--lottie-btn-w: clamp(293px, 32vw, 360px);
+			--lottie-btn-h: clamp(66px, 6.5vw, 74px);
+		}
+	}
+
 	.service-cta__slider {
 		flex: none;
 		width: 100%;

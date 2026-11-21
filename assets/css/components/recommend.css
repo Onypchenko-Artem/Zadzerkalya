@@ -99,53 +99,53 @@
 	.recommend {
 		position: relative;
 		z-index: 2;
-		gap: 56px;
-		padding: 0 24px;
+		gap: clamp(42px, 7.29vw, 70px);
+		padding: 0 clamp(18px, 3.12vw, 30px);
 		overflow-x: clip;
 	}
 
 	.recommend__header {
-		gap: 64px;
-		min-height: 43px;
+		gap: clamp(48px, 8.33vw, 80px);
+		min-height: clamp(32.25px, 5.6vw, 53.75px);
 	}
 
 	.recommend__title {
-		font-size: 40px;
+		font-size: clamp(30px, 5.21vw, 50px);
 		font-weight: 500;
 		line-height: 1.08;
 		letter-spacing: -0.03em;
 	}
 
 	.recommend__controls {
-		gap: 64px;
-		width: 160px;
+		gap: clamp(48px, 8.33vw, 80px);
+		width: clamp(120px, 20.83vw, 200px);
 	}
 
 	.recommend__arrow {
-		flex-basis: 48px;
-		width: 48px;
-		height: 32px;
+		flex-basis: clamp(36px, 6.25vw, 60px);
+		width: clamp(36px, 6.25vw, 60px);
+		height: clamp(24px, 4.17vw, 40px);
 	}
 
 	.recommend__viewport {
-		width: calc(100% + 48px);
-		margin-inline: -24px;
-		scroll-padding-inline: 24px;
+		width: calc(100% + clamp(36px, 6.25vw, 60px));
+		margin-inline: clamp(-30px, -3.12vw, -18px);
+		scroll-padding-inline: clamp(18px, 3.12vw, 30px);
 	}
 
 	.recommend__track {
-		--recommend-card: 353px;
-		gap: 16px;
-		padding-inline: 24px;
+		--recommend-card: clamp(264.75px, 45.96vw, 441.25px);
+		gap: clamp(12px, 2.08vw, 20px);
+		padding-inline: clamp(18px, 3.12vw, 30px);
 	}
 
 	.recommend__track .article-card {
-		flex-basis: 353px;
-		width: 353px;
+		flex-basis: var(--recommend-card);
+		width: var(--recommend-card);
 	}
 
 	:is(.single-post, .single-event) .recommend {
-		gap: 56px;
+		gap: clamp(42px, 7.29vw, 70px);
 	}
 }
 

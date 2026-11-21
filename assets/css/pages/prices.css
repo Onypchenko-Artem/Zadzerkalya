@@ -299,9 +299,13 @@
 
 	.price-list .lottie-button--primary {
 		--lottie-btn-w: 240px;
+		--lottie-btn-h: 50px;
+		flex: none;
 		width: min(240px, 100%);
 		min-width: 0;
 		max-width: 100%;
+		height: 50px;
+		min-height: 50px;
 	}
 
 	.prices-page .price-list {

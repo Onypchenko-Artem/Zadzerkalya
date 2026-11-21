@@ -163,45 +163,49 @@
 	object-fit: cover;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.page-hero {
 		height: auto;
-		min-height: 620px;
-		margin-top: -107px;
-		padding: 167px 24px 32px;
+		min-height: clamp(465px, 80.73vw, 775px);
+		margin-top: clamp(-133.75px, -13.93vw, -80.25px);
+		padding: clamp(125.25px, 21.74vw, 208.75px) clamp(18px, 3.12vw, 30px) clamp(24px, 4.17vw, 40px);
 	}
 
 	.page-hero__inner {
 		grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
-		gap: 24px;
-		min-height: 448px;
+		gap: clamp(18px, 3.12vw, 30px);
+		min-height: clamp(336px, 58.33vw, 560px);
 	}
 
 	.page-hero__main {
-		grid-template-columns: minmax(0, 1fr) 23px;
-		gap: 8px;
+		grid-template-columns: minmax(0, 1fr) clamp(17.25px, 2.99vw, 28.75px);
+		gap: clamp(6px, 1.04vw, 10px);
 	}
 
 	.page-hero__content {
-		gap: 120px;
+		gap: clamp(90px, 15.62vw, 150px);
 	}
 
 	.page-hero__breadcrumbs {
-		font-size: 15px;
+		font-size: clamp(11.25px, 1.95vw, 18.75px);
+	}
+
+	.page-hero__crumb-arrow {
+		width: clamp(15px, 2.6vw, 25px);
 	}
 
 	.page-hero__title {
-		gap: 20px;
-		min-height: 290px;
+		gap: clamp(15px, 2.6vw, 25px);
+		min-height: clamp(217.5px, 37.76vw, 362.5px);
 	}
 
 	.page-hero h1 {
-		font-size: 48px;
+		font-size: clamp(36px, 6.25vw, 60px);
 	}
 
 	.page-hero__description {
-		max-width: 420px;
-		font-size: 17px;
+		max-width: clamp(315px, 54.69vw, 525px);
+		font-size: clamp(12.75px, 2.21vw, 21.25px);
 	}
 
 	.page-hero__line {
@@ -210,13 +214,13 @@
 
 	.page-hero__vertical-line {
 		top: 0;
-		width: 23px;
+		width: clamp(17.25px, 2.99vw, 28.75px);
 		height: 100%;
 		transform: translateX(-50%);
 	}
 
 	.page-hero__photo {
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.page-hero__photo-image {
@@ -226,17 +230,14 @@
 		border-radius: 300px;
 	}
 
-}
-
-@media (max-width: 1279px) and (min-width: 768px) {
 	:is(.prices-page, .contacts-page) .page-hero {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
 		justify-content: flex-start;
 		min-height: 0;
-		margin-top: -107px;
-		padding: 167px 24px 0;
+		margin-top: clamp(-133.75px, -13.93vw, -80.25px);
+		padding: clamp(125.25px, 21.74vw, 208.75px) clamp(18px, 3.12vw, 30px) 0;
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__inner {
@@ -245,7 +246,7 @@
 		align-items: center;
 		gap: 0;
 		width: 100%;
-		max-width: 720px;
+		max-width: none;
 		min-height: 0;
 	}
 
@@ -255,7 +256,7 @@
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__content {
-		gap: 16px;
+		gap: clamp(12px, 2.08vw, 20px);
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__breadcrumbs {
@@ -266,7 +267,7 @@
 		-webkit-overflow-scrolling: touch;
 		overscroll-behavior-x: contain;
 		scrollbar-width: none;
-		font-size: 16px;
+		font-size: clamp(12px, 2.08vw, 20px);
 		line-height: 1.4;
 	}
 
@@ -282,20 +283,20 @@
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__title {
-		gap: 36px;
+		gap: clamp(27px, 4.69vw, 45px);
 		min-height: 0;
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero h1 {
-		font-size: 44px;
+		font-size: clamp(33px, 5.73vw, 55px);
 		line-height: 1.06;
 		letter-spacing: -0.04em;
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__line {
-		width: calc(100% - 16px);
-		height: 9px;
-		margin: 0 8px;
+		width: calc(100% - clamp(12px, 2.08vw, 20px));
+		height: clamp(6.75px, 1.17vw, 11.25px);
+		margin: 0 clamp(6px, 1.04vw, 10px);
 		aspect-ratio: auto;
 	}
 
@@ -306,15 +307,15 @@
 	:is(.prices-page, .contacts-page) .page-hero__photo {
 		align-items: center;
 		justify-content: center;
-		gap: 38px;
+		gap: clamp(28.5px, 4.95vw, 47.5px);
 		width: 100%;
-		min-height: 565px;
+		min-height: clamp(423.75px, 73.57vw, 706.25px);
 	}
 
 	:is(.prices-page, .contacts-page) .page-hero__photo-image {
 		flex: none;
 		width: 100%;
-		height: 446px;
+		height: clamp(334.5px, 58.07vw, 557.5px);
 		aspect-ratio: auto;
 		border-radius: 300px;
 	}
@@ -322,8 +323,8 @@
 	:is(.prices-page, .contacts-page) .page-hero .about-hero__right-line {
 		flex: none;
 		width: 100%;
-		height: 22px;
-		margin: 8px 0;
+		height: clamp(16.5px, 2.86vw, 27.5px);
+		margin: clamp(6px, 1.04vw, 10px) 0;
 		aspect-ratio: auto;
 	}
 }

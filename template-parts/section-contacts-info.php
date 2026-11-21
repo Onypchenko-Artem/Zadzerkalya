@@ -26,7 +26,9 @@ $socials = array(
 	<div class="contacts-info__details">
 		<div class="contacts-info__row">
 			<h3><?php esc_html_e( 'Наша адреса', 'zadzerkalya' ); ?></h3>
-			<p><?php echo esc_html( $address ); ?></p>
+			<p>
+				<a href="https://maps.app.goo.gl/fbCkecw2nSCF9woS9" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $address ); ?></a>
+			</p>
 		</div>
 
 		<div class="contacts-info__row contacts-info__row--contacts">

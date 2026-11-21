@@ -792,8 +792,6 @@ const zadzerkalyaNavScrollLock = (() => {
 })();
 
 (() => {
-	const media = window.matchMedia('(min-width: 768px)');
-
 	document.querySelectorAll('[data-pinned-list]').forEach((shell) => {
 		const section = shell.querySelector('[data-scroll-section]');
 		const list = shell.querySelector('[data-scroll-list]');
@@ -804,6 +802,10 @@ const zadzerkalyaNavScrollLock = (() => {
 		}
 
 		const isFaq = shell.classList.contains('faq-scroll');
+		// Benefits shows every card on tablet; pin-scroll only from desktop.
+		const media = window.matchMedia(
+			shell.classList.contains('benefits-scroll') ? '(min-width: 1280px)' : '(min-width: 768px)'
+		);
 		let scrollDistance = 0;
 		let desiredDistance = 0;
 		let stickyOffset = 0;

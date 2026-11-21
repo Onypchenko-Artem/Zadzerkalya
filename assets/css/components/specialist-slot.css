@@ -102,24 +102,24 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.specialist-slot__link {
-		gap: 24px;
-		min-height: 597px;
-		padding: 28px;
-		border-radius: 14px;
+		gap: clamp(18px, 3.12vw, 30px);
+		min-height: clamp(447.75px, 77.73vw, 746.25px);
+		padding: clamp(21px, 3.65vw, 35px);
+		border-radius: clamp(10.5px, 1.82vw, 17.5px);
 	}
 
 	.specialist-slot__photo {
-		height: 346px;
+		height: clamp(259.5px, 45.05vw, 432.5px);
 		aspect-ratio: auto;
-		border-radius: 16px;
+		border-radius: clamp(12px, 2.08vw, 20px);
 	}
 
 	.specialist-slot__text {
-		gap: 8px;
+		gap: clamp(6px, 1.04vw, 10px);
 	}
 
 	.specialist-slot h3 {
-		font-size: 20px;
+		font-size: clamp(15px, 2.6vw, 25px);
 	}
 
 	.specialist-slot__line--desktop {
@@ -131,11 +131,11 @@
 	}
 
 	.specialist-slot__info {
-		gap: 4px;
+		gap: clamp(3px, 0.52vw, 5px);
 	}
 
 	.specialist-slot__info p {
-		font-size: 16px;
+		font-size: clamp(12px, 2.08vw, 20px);
 	}
 }
 

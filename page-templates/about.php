@@ -153,25 +153,6 @@ get_header();
 				</figure>
 
 				<div class="about-story__body">
-					<div class="about-story__side">
-						<?php if ( $story_art_top ) : ?>
-							<?php zadzerkalya_acf_image( $story_art_top, 'large', array( 'class' => 'about-story__art', 'alt' => '' ) ); ?>
-						<?php endif; ?>
-						<?php if ( $story_art ) : ?>
-							<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration', 'alt' => '' ) ); ?>
-						<?php else : ?>
-							<div class="about-story__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Ілюстрацію буде додано', 'zadzerkalya' ); ?>">
-								<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
-							</div>
-						<?php endif; ?>
-
-						<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_aside ) ) ) : ?>
-							<div class="about-story__side-text">
-								<?php echo wp_kses_post( $story_mobile_aside ); ?>
-							</div>
-						<?php endif; ?>
-					</div>
-
 					<div class="about-story__text">
 						<div class="about-story__intro">
 							<h2 id="about-story-title"><?php echo wp_kses( $story_title, array( 'br' => array() ) ); ?></h2>
@@ -196,8 +177,30 @@ get_header();
 						<div class="about-story__columns about-story__columns--left about-story__columns--tablet">
 							<?php echo wp_kses_post( $story_left_tablet ); ?>
 						</div>
-						<div class="about-story__columns about-story__columns--right about-story__columns--tablet">
-							<?php echo wp_kses_post( $story_right_tablet ); ?>
+
+						<div class="about-story__aside-block">
+							<div class="about-story__columns about-story__columns--right about-story__columns--tablet">
+								<?php echo wp_kses_post( $story_right_tablet ); ?>
+							</div>
+
+							<div class="about-story__side">
+								<?php if ( $story_art_top ) : ?>
+									<?php zadzerkalya_acf_image( $story_art_top, 'large', array( 'class' => 'about-story__art', 'alt' => '' ) ); ?>
+								<?php endif; ?>
+								<?php if ( $story_art ) : ?>
+									<?php zadzerkalya_acf_image( $story_art, 'large', array( 'class' => 'about-story__illustration', 'alt' => '' ) ); ?>
+								<?php else : ?>
+									<div class="about-story__illustration-placeholder" role="img" aria-label="<?php esc_attr_e( 'Ілюстрацію буде додано', 'zadzerkalya' ); ?>">
+										<span><?php esc_html_e( 'Ілюстрація', 'zadzerkalya' ); ?></span>
+									</div>
+								<?php endif; ?>
+
+								<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_aside ) ) ) : ?>
+									<div class="about-story__side-text">
+										<?php echo wp_kses_post( $story_mobile_aside ); ?>
+									</div>
+								<?php endif; ?>
+							</div>
 						</div>
 
 						<?php if ( '' !== trim( wp_strip_all_tags( $story_mobile_top ) ) ) : ?>

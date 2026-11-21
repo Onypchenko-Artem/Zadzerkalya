@@ -276,12 +276,12 @@
 @media (max-width: 1279px) and (min-width: 768px) {
 	.service-benefits {
 		display: grid;
-		grid-template-columns: 238px minmax(0, 361px);
+		grid-template-columns: clamp(178.5px, 30.99vw, 297.5px) minmax(0, clamp(270.75px, 47.01vw, 451.25px));
 		justify-content: space-between;
 		align-items: start;
-		column-gap: 40px;
-		row-gap: 32px;
-		padding: 0 24px;
+		column-gap: clamp(30px, 5.21vw, 50px);
+		row-gap: clamp(24px, 4.17vw, 40px);
+		padding: 0 clamp(18px, 3.12vw, 30px);
 	}
 
 	.service-benefits__aside,
@@ -293,8 +293,8 @@
 	.service-benefits__main h2 {
 		grid-column: 1 / -1;
 		grid-row: 1;
-		margin-bottom: 10px;
-		font-size: 40px;
+		margin-bottom: clamp(7.5px, 1.3vw, 12.5px);
+		font-size: clamp(30px, 5.21vw, 50px);
 		font-weight: 500;
 		line-height: 1.08;
 		letter-spacing: -0.03em;
@@ -304,28 +304,28 @@
 	.service-benefits__figure {
 		grid-column: 1;
 		grid-row: 2;
-		width: 238px;
-		height: 238px;
+		width: clamp(178.5px, 30.99vw, 297.5px);
+		height: clamp(178.5px, 30.99vw, 297.5px);
 	}
 
 	.service-benefits__figure-line {
-		left: 53px;
+		left: clamp(39.75px, 6.9vw, 66.25px);
 		top: auto;
-		bottom: 14px;
-		width: 150px;
-		height: 14px;
+		bottom: clamp(10.5px, 1.82vw, 17.5px);
+		width: clamp(112.5px, 19.53vw, 187.5px);
+		height: clamp(10.5px, 1.82vw, 17.5px);
 	}
 
 	.service-benefits__aside-text {
 		grid-column: 2;
 		grid-row: 2;
 		align-self: center;
-		width: 361px;
+		width: clamp(270.75px, 47.01vw, 451.25px);
 		max-width: 100%;
 		min-height: 0;
 		padding-top: 0;
 		white-space: normal;
-		font-size: 18px;
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
@@ -343,7 +343,7 @@
 		grid-column: 1 / -1;
 		grid-row: 3;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 16px;
+		gap: clamp(12px, 2.08vw, 20px);
 		width: 100%;
 	}
 
@@ -355,13 +355,13 @@
 	.service-benefits__intro {
 		grid-column: 1 / -1;
 		order: 100;
-		width: min(526px, 100%);
-		max-width: 526px;
-		margin-top: 48px;
-		margin-bottom: 10px;
+		width: min(clamp(394.5px, 68.49vw, 657.5px), 100%);
+		max-width: clamp(394.5px, 68.49vw, 657.5px);
+		margin-top: clamp(36px, 6.25vw, 60px);
+		margin-bottom: clamp(7.5px, 1.3vw, 12.5px);
 		justify-self: center;
 		white-space: normal;
-		font-size: 18px;
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
@@ -375,71 +375,83 @@
 		grid-column: 1 / -1;
 		grid-row: 4;
 		justify-self: center;
-		--lottie-btn-w: 293px;
-		--lottie-btn-h: 66px;
+		--lottie-btn-w: clamp(219.75px, 38.15vw, 366.25px);
+		--lottie-btn-h: clamp(49.5px, 8.59vw, 82.5px);
+		height: var(--lottie-btn-h);
+		min-height: var(--lottie-btn-h);
+		min-width: var(--lottie-btn-w);
 	}
 
+	.service-benefits__aside .lottie-button__anim {
+		inset: clamp(-7.5px, -0.78vw, -4.5px);
+	}
+
+	.service-benefits__aside .lottie-button__label,
 	.service-benefits__aside .lottie-button--primary .lottie-button__label {
-		padding-inline: 12px;
-		font-size: 14px;
+		padding-inline: clamp(9px, 1.56vw, 15px);
+		font-size: clamp(10.5px, 1.82vw, 17.5px);
 		line-height: 1.35;
+		transform: none;
 	}
 
 	.service-benefits__card,
 	.service-benefits__row--lead .service-benefits__card {
 		flex: none;
 		flex-basis: auto;
-		justify-content: flex-start;
-		gap: 24px;
+		justify-content: space-between;
+		gap: clamp(18px, 3.12vw, 30px);
 		width: 100%;
-		max-width: 361px;
-		min-height: 302px;
-		padding: 28px;
-		border-radius: 20px;
+		max-width: none;
+		min-height: clamp(226.5px, 39.32vw, 377.5px);
+		height: 100%;
+		padding: clamp(21px, 3.65vw, 35px);
+		border-radius: clamp(15px, 2.6vw, 25px);
 	}
 
 	.service-benefits__card-top {
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.service-benefits__card h3 {
-		font-size: 24px;
+		font-size: clamp(18px, 3.12vw, 30px);
 		line-height: 1.2;
 	}
 
 	.service-benefits__card p {
-		font-size: 18px;
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 		font-weight: 300;
 		line-height: 1.35;
 	}
 
 	.service-benefits__mark {
-		gap: 12px;
-		height: 40px;
-		min-height: 40px;
+		gap: clamp(9px, 1.56vw, 15px);
+		height: auto;
+		min-height: clamp(30px, 5.21vw, 50px);
 	}
 
 	.service-benefits__spiral {
-		flex: none;
-		width: 38px;
-		min-width: 38px;
-		height: 16px;
+		flex: 0 0 clamp(28.5px, 4.95vw, 47.5px);
+		width: clamp(28.5px, 4.95vw, 47.5px);
+		min-width: clamp(28.5px, 4.95vw, 47.5px);
+		height: clamp(12px, 2.08vw, 20px);
 		aspect-ratio: auto;
 	}
 
 	.service-benefits__digits {
-		flex: 0 0 198px;
-		width: 198px;
-		max-width: 198px;
-		height: 40px;
-		aspect-ratio: auto;
+		flex: 1 1 auto;
+		width: auto;
+		min-width: 0;
+		max-width: none;
+		height: auto;
+		aspect-ratio: 198 / 40;
+		container-type: inline-size;
 	}
 
 	.service-benefits__digits span {
-		font-size: 18px;
+		font-size: calc(100cqw / 198 * 18);
 		line-height: 1;
 		letter-spacing: 0;
-		transform: translateY(calc(var(--y) * 1px)) rotate(calc(var(--rt) * 1deg));
+		transform: translateY(calc(var(--y) * 100cqw / 198)) rotate(calc(var(--rt) * 1deg));
 	}
 }
 

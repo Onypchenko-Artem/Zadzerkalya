@@ -18,8 +18,38 @@
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
+	/* Fluid tablet rhythm: 1x at the reference 768px, capped on wide tablets. */
+	.home .site-main > :is(section, .benefits-scroll, .faq-scroll) + :is(section, .benefits-scroll, .faq-scroll) {
+		margin-top: clamp(82px, 14.32vw, 138px);
+	}
+
+	.home .benefits,
+	.home .recommend,
+	.home .reviews,
+	.home .faq {
+		padding-inline: clamp(16px, 3.125vw, 40px);
+	}
+
+	.home .benefits > h2,
+	.home .recommend__title,
+	.home .reviews__heading h2,
+	.home .faq__content h2 {
+		font-size: clamp(32px, 5.21vw, 48px);
+	}
+
+	.home .benefits__intro p,
+	.home .reviews__heading p {
+		font-size: clamp(16px, 2.6vw, 22px);
+	}
+
+	.home .benefits,
+	.home .recommend,
+	.home .reviews {
+		gap: clamp(32px, 7.3vw, 72px);
+	}
+
 	.home .site-main > .faq-scroll + .form-home {
-		margin-top: -69px;
+		margin-top: clamp(-86px, -8.98vw, -69px);
 	}
 }
 

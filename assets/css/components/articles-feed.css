@@ -238,51 +238,59 @@
 	outline-offset: 3px;
 }
 
-@media (max-width: 1279px) {
+@media (max-width: 1279px) and (min-width: 768px) {
 	.articles-feed {
-		gap: 80px;
-		padding: 200px 0 80px;
+		position: relative;
+		z-index: 1;
+		gap: clamp(60px, 10.42vw, 100px);
+		padding: clamp(60px, 10.42vw, 100px) 0;
+	}
+
+	.articles-feed + .form-home {
+		position: relative;
+		z-index: 0;
+		margin-top: clamp(-86.25px, -8.98vw, -51.75px);
 	}
 
 	.articles-feed__title {
-		scroll-margin-top: 104px;
-		font-size: var(--text-h2-size);
+		scroll-margin-top: clamp(78px, 13.54vw, 130px);
+		font-size: clamp(30px, 5.21vw, 50px);
 	}
 
 	.articles-feed__body {
-		gap: 32px;
+		gap: clamp(24px, 4.17vw, 40px);
 	}
 
 	.articles-feed__filters {
-		gap: 12px;
-		padding: 0 24px;
+		gap: clamp(9px, 1.56vw, 15px);
+		padding: 0 clamp(18px, 3.12vw, 30px);
 	}
 
 	.articles-filter {
-		padding: 4px 8px;
-		border-radius: 12px;
+		padding: clamp(3px, 0.52vw, 5px) clamp(6px, 1.04vw, 10px);
+		border-radius: clamp(9px, 1.56vw, 15px);
 	}
 
 	.articles-filter__label {
-		font-size: var(--text-body-m-size);
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 	}
 
 	.articles-filter__line {
-		height: 5px;
+		height: clamp(3.75px, 0.65vw, 6.25px);
 	}
 
 	.articles-feed__articles {
-		gap: 80px;
+		gap: clamp(60px, 10.42vw, 100px);
 	}
 
 	.articles-feed__list {
-		gap: 24px;
-		padding: 0 24px;
+		gap: clamp(18px, 3.12vw, 30px);
+		padding: 0 clamp(18px, 3.12vw, 30px);
 	}
 
 	.articles-feed__row {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.articles-feed__row .article-card {
@@ -293,38 +301,40 @@
 	}
 
 	.articles-feed__pagination {
-		gap: 32px;
+		gap: clamp(24px, 4.17vw, 40px);
+	}
+
+	.articles-feed__more .lottie-button--secondary {
+		--lottie-btn-w: clamp(135px, 23.44vw, 225px);
+		--lottie-btn-h: clamp(49.5px, 8.59vw, 82.5px);
+	}
+
+	.articles-feed__more .lottie-button--secondary .lottie-button__label {
+		padding-inline: clamp(1.5px, 0.26vw, 2.5px);
+		font-size: clamp(10.5px, 1.82vw, 17.5px);
 	}
 
 	.articles-feed__slider,
 	.articles-feed__pages {
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 	}
 
 	.articles-feed__slider {
-		min-height: 64px;
+		min-height: clamp(48px, 8.33vw, 80px);
+	}
+
+	.articles-feed__arrow {
+		flex-basis: clamp(36px, 6.25vw, 60px);
+		width: clamp(36px, 6.25vw, 60px);
+		height: clamp(24px, 4.17vw, 40px);
 	}
 
 	.articles-feed__page {
-		flex-basis: 40px;
-		width: 40px;
-		height: 64px;
-		font-size: 24px;
-		line-height: 30px;
-	}
-}
-
-@media (max-width: 1279px) and (min-width: 768px) {
-	.articles-feed {
-		position: relative;
-		z-index: 1;
-		padding-top: 80px;
-	}
-
-	.articles-feed + .form-home {
-		position: relative;
-		z-index: 0;
-		margin-top: -69px;
+		flex-basis: clamp(30px, 5.21vw, 50px);
+		width: clamp(30px, 5.21vw, 50px);
+		height: clamp(48px, 8.33vw, 80px);
+		font-size: clamp(18px, 3.12vw, 30px);
+		line-height: clamp(22.5px, 3.91vw, 37.5px);
 	}
 }
 

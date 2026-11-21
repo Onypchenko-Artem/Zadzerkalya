@@ -473,15 +473,15 @@
 
 @media (max-width: 1279px) and (min-width: 768px) {
 	.hero {
-		margin-top: -107px;
-		padding: 167px 24px 24px;
+		margin-top: clamp(-133.75px, -13.93vw, -80.25px);
+		padding: clamp(125.25px, 21.74vw, 208.75px) clamp(18px, 3.12vw, 30px) clamp(18px, 3.12vw, 30px);
 	}
 
 	.hero-inner {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
-		gap: 24px;
+		gap: clamp(18px, 3.12vw, 30px);
 		height: auto;
 	}
 
@@ -508,11 +508,17 @@
 	}
 
 	.hero-copy {
-		padding: 8px 0;
+		padding: clamp(6px, 1.04vw, 10px) 0;
+	}
+
+	.hero-kicker {
+		margin: 0 0 clamp(6px, 1.04vw, 10px);
+		font-size: clamp(13.5px, 2.34vw, 22.5px);
 	}
 
 	.hero h1 {
-		margin: 0 0 116px;
+		margin: 0 0 clamp(87px, 15.1vw, 145px);
+		font-size: clamp(33px, 5.73vw, 55px);
 	}
 
 	.hero-details {
@@ -532,17 +538,17 @@
 	}
 
 	.hero-cta .lottie-button--primary {
-		--lottie-btn-w: 293px;
-		--lottie-btn-h: 66px;
-		width: 293px;
-		min-width: 293px;
-		height: 66px;
-		min-height: 66px;
+		--lottie-btn-w: clamp(219.75px, 38.15vw, 366.25px);
+		--lottie-btn-h: clamp(49.5px, 8.59vw, 82.5px);
+		width: clamp(219.75px, 38.15vw, 366.25px);
+		min-width: clamp(219.75px, 38.15vw, 366.25px);
+		height: clamp(49.5px, 8.59vw, 82.5px);
+		min-height: clamp(49.5px, 8.59vw, 82.5px);
 	}
 
 	.hero-cta .lottie-button__label {
-		padding-inline: 18px;
-		font-size: 14px;
+		padding-inline: clamp(13.5px, 2.34vw, 22.5px);
+		font-size: clamp(10.5px, 1.82vw, 17.5px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
@@ -553,10 +559,10 @@
 		flex-direction: row;
 		align-items: flex-end;
 		justify-content: space-between;
-		gap: 27px;
+		gap: clamp(20.25px, 3.52vw, 33.75px);
 		width: 100%;
 		height: auto;
-		min-height: 198px;
+		min-height: clamp(148.5px, 25.78vw, 247.5px);
 		max-width: none;
 	}
 
@@ -565,14 +571,14 @@
 		flex: none;
 		flex-direction: column;
 		align-items: flex-start;
-		gap: 24px;
-		width: min(445px, calc(100% - 243px));
+		gap: clamp(18px, 3.12vw, 30px);
+		width: min(clamp(333.75px, 57.94vw, 556.25px), calc(100% - clamp(182.25px, 31.64vw, 303.75px)));
 	}
 
 	.hero-description p {
 		height: auto;
 		min-height: 0;
-		font-size: 20px;
+		font-size: clamp(15px, 2.6vw, 25px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
@@ -580,42 +586,42 @@
 	.hero-illustration {
 		position: relative;
 		flex: none;
-		width: 216px;
-		height: 198px;
+		width: clamp(162px, 28.12vw, 270px);
+		height: clamp(148.5px, 25.78vw, 247.5px);
 		margin-top: 0;
 	}
 
 	.hero-illustration img {
 		position: absolute;
-		left: 38px;
+		left: clamp(28.5px, 4.95vw, 47.5px);
 		top: 2px;
-		width: 140px;
-		height: 194px;
+		width: clamp(105px, 18.23vw, 175px);
+		height: clamp(145.5px, 25.26vw, 242.5px);
 		object-fit: contain;
 		transform: none;
 	}
 
 	.hero-illustration__line {
 		display: block;
-		left: 31px;
-		top: 187px;
-		width: 170px;
-		height: 11px;
+		left: clamp(23.25px, 4.04vw, 38.75px);
+		top: clamp(140.25px, 24.35vw, 233.75px);
+		width: clamp(127.5px, 22.14vw, 212.5px);
+		height: clamp(8.25px, 1.43vw, 13.75px);
 	}
 
 	.hero-divider {
-		height: 54px;
+		height: clamp(40.5px, 7.03vw, 67.5px);
 		margin: 0;
-		background-size: 100% 11px;
+		background-size: 100% clamp(8.25px, 1.43vw, 13.75px);
 	}
 
 	.hero-media {
 		aspect-ratio: 720 / 626;
-		border-radius: 40px;
+		border-radius: clamp(30px, 5.21vw, 50px);
 	}
 
 	.hero-bottom-line {
-		height: 12px;
+		height: clamp(9px, 1.56vw, 16px);
 		margin: 0;
 	}
 }

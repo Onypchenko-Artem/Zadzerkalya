@@ -142,53 +142,55 @@
 
 @media (max-width: 1279px) {
 	.service-when {
-		gap: 56px;
-		padding: 0 24px;
+		gap: clamp(42px, 7.29vw, 70px);
+		padding: 0 clamp(18px, 3.12vw, 30px);
 	}
 
 	.service-when__heading {
-		gap: 32px;
+		gap: clamp(24px, 4.17vw, 40px);
 		width: 100%;
 	}
 
 	.service-when__heading h2 {
-		font-size: 40px;
+		font-size: clamp(30px, 5.21vw, 50px);
 		line-height: 1.08;
 		letter-spacing: -0.03em;
 	}
 
 	.service-when__heading p,
 	.service-when__card p {
-		font-size: 20px;
+		font-size: clamp(15px, 2.6vw, 25px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
 
 	.service-when__heading p {
-		width: 377px;
+		width: clamp(282.75px, 49.09vw, 471.25px);
 	}
 
 	.service-when__cards {
 		align-items: center;
-		gap: 16px;
+		gap: clamp(12px, 2.08vw, 20px);
 		width: 100%;
 	}
 
 	.service-when__row,
 	.service-when__row:not(:first-child) {
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		gap: 16px;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		justify-content: stretch;
+		align-items: stretch;
+		gap: clamp(12px, 2.08vw, 20px);
 	}
 
 	.service-when__card,
 	.service-when__row:not(:first-child) .service-when__card {
-		flex: 0 0 calc((100% - 16px) / 2);
-		width: calc((100% - 16px) / 2);
-		height: 334px;
-		padding: 12px;
-		border-radius: 20px;
+		flex: none;
+		width: 100%;
+		min-width: 0;
+		height: clamp(250.5px, 43.49vw, 417.5px);
+		padding: clamp(9px, 1.56vw, 15px);
+		border-radius: clamp(15px, 2.6vw, 25px);
 	}
 
 	.service-when__card-content {
@@ -203,16 +205,16 @@
 	}
 
 	.service-when__card-inner {
-		gap: 16px;
-		padding: 8px 12px;
-		border-radius: 16px;
+		gap: clamp(12px, 2.08vw, 20px);
+		padding: clamp(6px, 1.04vw, 10px) clamp(9px, 1.56vw, 15px);
+		border-radius: clamp(12px, 2.08vw, 20px);
 	}
 
 	.service-when__line {
 		display: block;
 		flex-basis: auto;
 		width: 100%;
-		height: 9px;
+		height: clamp(6.75px, 1.17vw, 12px);
 		object-fit: fill;
 		content: url("../../images/service-when-line-tablet.svg");
 	}
@@ -222,14 +224,22 @@
 	}
 
 	.service-when__number {
-		flex-basis: 60px;
-		width: 60px;
-		height: 60px;
-		padding: 8px 24px;
-		font-size: 40px;
+		flex-basis: clamp(45px, 7.81vw, 75px);
+		width: clamp(45px, 7.81vw, 75px);
+		height: clamp(45px, 7.81vw, 75px);
+		padding: clamp(6px, 1.04vw, 10px) clamp(18px, 3.12vw, 30px);
+		font-size: clamp(30px, 5.21vw, 50px);
 		font-weight: 700;
 		line-height: 0.8;
-		border-radius: 8px;
+		border-radius: clamp(6px, 1.04vw, 10px);
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+	.service-when__row:last-child > .service-when__card:last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+		justify-self: center;
+		width: calc((100% - clamp(12px, 2.08vw, 20px)) / 2);
 	}
 }
 

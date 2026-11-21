@@ -214,8 +214,17 @@
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
+	.benefits-scroll.is-scroll-driven {
+		height: auto;
+	}
+
 	.benefits-scroll.is-scroll-driven .benefits {
-		top: 88px;
+		position: static;
+		top: auto;
+	}
+
+	.benefits-scroll.is-scroll-driven .benefits__list {
+		overflow: visible;
 	}
 
 	.benefits {
@@ -299,11 +308,13 @@
 	.benefits__list {
 		flex: none;
 		width: 100%;
-		height: 624px;
+		height: auto;
+		overflow: visible;
 	}
 
 	.benefits__track {
 		gap: 16px;
+		transform: none;
 	}
 
 	.benefits__item {

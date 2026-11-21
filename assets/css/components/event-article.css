@@ -1117,10 +1117,14 @@
 	}
 
 	:is(.single-post, .single-event) .event-article__body li::before {
-		flex-basis: 28px;
+		flex: 0 0 28px;
+		display: block;
 		width: 28px;
 		height: 20px;
+		background-image: url("../../images/marker.svg");
 		background-position: left 4px;
+		background-size: 28px 18px;
+		background-repeat: no-repeat;
 	}
 
 	:is(.single-post, .single-event) .event-article__body img {

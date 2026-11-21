@@ -271,10 +271,11 @@
 	}
 
 	.form-service__columns {
-		flex-direction: column;
-		align-items: center;
-		gap: 16px;
-		width: min(100%, 550px);
+		flex-direction: row;
+		align-items: flex-start;
+		align-self: stretch;
+		gap: clamp(24px, 5.21vw, 40px);
+		width: 100%;
 		white-space: normal;
 	}
 
@@ -283,14 +284,16 @@
 	}
 
 	.form-service__column {
-		font-size: 20px;
+		font-size: clamp(18px, 2.604vw, 20px);
 		font-weight: 400;
 		line-height: 1.35;
 	}
 
 	.form-service__column--left,
 	.form-service__column--right {
-		width: 100%;
+		flex: 1 1 0;
+		width: auto;
+		min-width: 0;
 	}
 
 	.form-service__photo {
