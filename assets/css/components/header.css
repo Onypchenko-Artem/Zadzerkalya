@@ -204,7 +204,7 @@
 	width: calc(225 * var(--u));
 	height: calc(6 * var(--u));
 	margin-top: calc(2 * var(--u));
-	background: url("../../images/header-address-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/header-address-line.svg?v=4") center / 100% 100% no-repeat;
 }
 
 .header-phones {
@@ -435,7 +435,7 @@
 		width: 198px;
 		height: 3px;
 		margin-top: 0;
-		background-image: url("../../images/header-address-line-tablet.svg");
+		background-image: url("../../images/header-address-line-tablet.svg?v=4");
 	}
 
 	.header-actions {
@@ -552,7 +552,7 @@
 		width: 198px;
 		height: 6px;
 		margin-top: 0;
-		background-image: url("../../images/header-address-line-tablet.svg");
+		background-image: url("../../images/header-address-line-tablet.svg?v=4");
 	}
 
 	.header-nav__end {

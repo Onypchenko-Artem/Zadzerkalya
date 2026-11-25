@@ -163,7 +163,28 @@
 	object-fit: cover;
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Широкий tablet у landscape: desktop-банер, масштаб від ширини екрана. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.page-hero {
+		--fs: calc(100vw / 1920px);
+		--u: calc(1px * var(--fs));
+		--hero-pad-top: clamp(168px, 17vw, 210px);
+		margin-top: -150px;
+		padding-top: var(--hero-pad-top);
+		height: calc((780 - 163) * var(--u) + var(--hero-pad-top));
+	}
+
+	.page-hero h1 {
+		font-size: 32px;
+	}
+
+	.page-hero__description {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.page-hero {
 		height: auto;
 		min-height: clamp(465px, 80.73vw, 775px);

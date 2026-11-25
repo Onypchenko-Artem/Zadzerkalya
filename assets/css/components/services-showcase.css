@@ -126,13 +126,24 @@
 	min-height: calc(623 * var(--u));
 }
 
-@media (max-width: 1279px) {
+/* Широкий tablet у landscape: той самий desktop-склад, масштаб від ширини екрана. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.services-showcase {
+		--fs: calc(100vw / 1920px);
+		--u: calc(1px * var(--fs));
+	}
+}
+
+@media (max-width: 1279px) and (orientation: portrait),
+	(max-width: 899px) {
 	.services-showcase__heading h2 br {
 		display: none;
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Portrait (навіть >900) і вузький landscape — tablet-верстка. */
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.services-showcase {
 		display: flex;
 		flex-flow: row wrap;
@@ -261,7 +272,8 @@
 	}
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.services-showcase.is-copy-aligned {
 		row-gap: clamp(24px, 4.17vw, 40px);
 		padding: clamp(90px, 15.625vw, 150px) clamp(18px, 3.125vw, 30px);
@@ -438,7 +450,7 @@
 		bottom: -10px;
 		width: 74px;
 		height: 5px;
-		background: url("../../images/services-showcase-line-mobile.svg") center / 100% 100% no-repeat;
+		background: url("../../images/services-showcase-line-mobile.svg?v=4") center / 100% 100% no-repeat;
 	}
 
 	.services-showcase__heading p,

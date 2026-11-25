@@ -330,12 +330,31 @@
 		line-height: 1.35;
 	}
 
+	/* Fallback intro біля зайця — лише коли aside порожній або обидва (swap). */
 	.service-benefits__aside-text--from-intro {
+		display: none;
+	}
+
+	.service-benefits--intro-as-aside .service-benefits__aside-text--from-intro,
+	.service-benefits--swap-mobile-copy .service-benefits__aside-text--from-intro {
 		display: flex;
 	}
 
-	.service-benefits--intro-as-aside .service-benefits__intro {
+	.service-benefits--intro-as-aside .service-benefits__intro,
+	.service-benefits--swap-mobile-copy .service-benefits__intro {
 		display: none;
+	}
+
+	/* Обидва тексти: intro біля зайця, aside — під картками. */
+	.service-benefits--swap-mobile-copy .service-benefits__aside-text:not(.service-benefits__aside-text--from-intro) {
+		grid-column: 1 / -1;
+		grid-row: 4;
+		align-self: stretch;
+		justify-self: center;
+		width: min(clamp(394.5px, 68.49vw, 657.5px), 100%);
+		max-width: clamp(394.5px, 68.49vw, 657.5px);
+		margin-top: clamp(36px, 6.25vw, 60px);
+		margin-bottom: clamp(7.5px, 1.3vw, 12.5px);
 	}
 
 	.service-benefits__rows {
@@ -380,6 +399,10 @@
 		height: var(--lottie-btn-h);
 		min-height: var(--lottie-btn-h);
 		min-width: var(--lottie-btn-w);
+	}
+
+	.service-benefits--swap-mobile-copy .service-benefits__aside .lottie-button {
+		grid-row: 5;
 	}
 
 	.service-benefits__aside .lottie-button__anim {
@@ -515,7 +538,12 @@
 		line-height: 1.4;
 	}
 
+	/* На mobile from-intro лише якщо aside порожній; при обох текстах працює order-swap. */
 	.service-benefits__aside-text--from-intro {
+		display: none;
+	}
+
+	.service-benefits--intro-as-aside .service-benefits__aside-text--from-intro {
 		display: flex;
 	}
 

@@ -248,7 +248,32 @@
 	background: url("../../images/about-right-line.svg") center / 100% 100% no-repeat;
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Широкий tablet у landscape: desktop-банер, масштаб від ширини екрана. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.service-hero {
+		--fs: calc(100vw / 1920px);
+		--u: calc(1px * var(--fs));
+		--hero-pad-top: clamp(168px, 17vw, 210px);
+		margin-top: -190px;
+		padding-top: var(--hero-pad-top);
+		height: calc((780 - 48) * var(--u) + var(--hero-pad-top));
+	}
+
+	.service-hero__breadcrumbs-container {
+		gap: 10px;
+	}
+
+	.service-hero h1 {
+		font-size: 32px;
+	}
+
+	.service-hero__description {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.service-hero {
 		display: flex;
 		flex-direction: column;

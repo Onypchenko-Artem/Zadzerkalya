@@ -88,7 +88,6 @@ const zadzerkalyaNavScrollLock = (() => {
 	const toggle = document.querySelector('.nav-toggle');
 	const nav = document.querySelector('.header-nav');
 	const desktop = window.matchMedia('(min-width: 1280px)');
-	const tablet = window.matchMedia('(min-width: 701px) and (max-width: 1279px)');
 
 	if (!toggle || !nav) {
 		return;
@@ -117,7 +116,8 @@ const zadzerkalyaNavScrollLock = (() => {
 			return;
 		}
 
-		if (tablet.matches && event.target.closest('.menu-item--services')) {
+		// Services opens the mega overlay — don't close the burger as a nav link.
+		if (event.target.closest('.menu-item--services')) {
 			return;
 		}
 
@@ -170,7 +170,13 @@ const zadzerkalyaNavScrollLock = (() => {
 	const nav = document.querySelector('.header-nav');
 	const toggle = document.querySelector('.nav-toggle');
 	const desktop = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1280px)');
-	const tablet = window.matchMedia('(min-width: 701px) and (max-width: 1279px)');
+	const wideDesktop = window.matchMedia('(min-width: 1280px)');
+	const megaDesktopLayout = window.matchMedia(
+		'(min-width: 1280px), (min-width: 900px) and (max-width: 1279px) and (orientation: landscape)'
+	);
+	const tablet = window.matchMedia(
+		'(min-width: 701px) and (max-width: 1279px) and (orientation: portrait), (min-width: 701px) and (max-width: 899px)'
+	);
 	const mobile = window.matchMedia('(max-width: 700px)');
 
 	if (!item || !mega || !link) {
@@ -183,7 +189,7 @@ const zadzerkalyaNavScrollLock = (() => {
 	const photos = Array.from(mega.querySelectorAll('.services-mega__photo'));
 	let isOpen = false;
 
-	const canOpen = () => desktop.matches || tablet.matches || mobile.matches;
+	const canOpen = () => megaDesktopLayout.matches || tablet.matches || mobile.matches;
 
 	const catRows = Array.from(mega.querySelectorAll('.services-mega__cat-row'));
 	const catToggles = Array.from(mega.querySelectorAll('.services-mega__cat-toggle'));
@@ -215,7 +221,7 @@ const zadzerkalyaNavScrollLock = (() => {
 	};
 
 	const syncOffset = () => {
-		if (!header || tablet.matches || mobile.matches) {
+		if (!header || !megaDesktopLayout.matches) {
 			mega.style.paddingTop = '';
 			return;
 		}
@@ -232,8 +238,17 @@ const zadzerkalyaNavScrollLock = (() => {
 			return;
 		}
 
+		// Burger nav sits above mega (header z-index). Swap in one paint:
+		// show mega without fade, then hide burger — no page flash underneath.
+		const fromBurger = !wideDesktop.matches && Boolean(nav?.classList.contains('is-open'));
+
 		syncOffset();
 		isOpen = true;
+
+		if (fromBurger) {
+			mega.classList.add('is-instant');
+		}
+
 		mega.classList.add('is-open');
 		mega.setAttribute('aria-hidden', 'false');
 		item.classList.add('is-open');
@@ -241,9 +256,15 @@ const zadzerkalyaNavScrollLock = (() => {
 		document.body.classList.add('services-mega-open');
 		zadzerkalyaNavScrollLock.lock();
 
-		if (!desktop.matches) {
+		if (!wideDesktop.matches) {
 			nav?.classList.remove('is-open');
 			toggle?.setAttribute('aria-expanded', 'true');
+		}
+
+		if (fromBurger) {
+			requestAnimationFrame(() => {
+				mega.classList.remove('is-instant');
+			});
 		}
 	};
 
@@ -253,6 +274,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		}
 
 		isOpen = false;
+		mega.classList.remove('is-instant');
 		mega.classList.remove('is-open');
 		mega.setAttribute('aria-hidden', 'true');
 		item.classList.remove('is-open');
@@ -260,7 +282,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		document.body.classList.remove('services-mega-open');
 		zadzerkalyaNavScrollLock.unlock({ restore: restoreScroll });
 
-		if (!desktop.matches) {
+		if (!wideDesktop.matches) {
 			if (returnToNav) {
 				nav?.classList.add('is-open');
 				toggle?.setAttribute('aria-expanded', 'true');
@@ -286,7 +308,7 @@ const zadzerkalyaNavScrollLock = (() => {
 			event.stopPropagation();
 		}
 
-		if (desktop.matches && isOpen) {
+		if (megaDesktopLayout.matches && isOpen) {
 			close();
 			return;
 		}
@@ -325,14 +347,14 @@ const zadzerkalyaNavScrollLock = (() => {
 	});
 
 	const closeWithNav = () => {
+		// Keep mega/nav overlays visible until the next page paints —
+		// closing them first flashes the current page (often the home).
 		zadzerkalyaNavScrollLock.markNextPageTop();
-		close({ restoreScroll: false });
-		toggle?.setAttribute('aria-expanded', 'false');
 	};
 
 	cats.forEach((cat) => {
 		const show = () => {
-			if (!desktop.matches) {
+			if (!megaDesktopLayout.matches) {
 				return;
 			}
 
@@ -343,7 +365,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		cat.addEventListener('mouseenter', show);
 		cat.addEventListener('focus', show);
 		cat.addEventListener('click', () => {
-			if (!tablet.matches && !mobile.matches) {
+			if (desktop.matches || (!megaDesktopLayout.matches && !tablet.matches && !mobile.matches)) {
 				return;
 			}
 
@@ -353,7 +375,7 @@ const zadzerkalyaNavScrollLock = (() => {
 
 	if (all) {
 		const showAll = () => {
-			if (!desktop.matches) {
+			if (!megaDesktopLayout.matches) {
 				return;
 			}
 
@@ -364,7 +386,7 @@ const zadzerkalyaNavScrollLock = (() => {
 		all.addEventListener('mouseenter', showAll);
 		all.addEventListener('focus', showAll);
 		all.addEventListener('click', () => {
-			if (!tablet.matches && !mobile.matches) {
+			if (desktop.matches || (!megaDesktopLayout.matches && !tablet.matches && !mobile.matches)) {
 				return;
 			}
 
@@ -384,6 +406,11 @@ const zadzerkalyaNavScrollLock = (() => {
 
 	mega.querySelectorAll('.services-mega__service, .services-mega__mobile a').forEach((service) => {
 		service.addEventListener('click', () => {
+			if (megaDesktopLayout.matches && !wideDesktop.matches) {
+				closeWithNav();
+				return;
+			}
+
 			if (!tablet.matches && !mobile.matches) {
 				return;
 			}
@@ -411,14 +438,22 @@ const zadzerkalyaNavScrollLock = (() => {
 
 		close();
 
-		if (tablet.matches || mobile.matches) {
-			toggle?.setAttribute('aria-expanded', 'false');
-			zadzerkalyaNavScrollLock.unlock();
+		if (!wideDesktop.matches) {
 			toggle?.focus();
 			return;
 		}
 
 		link.focus();
+	});
+
+	// After in-menu navigation the overlay stays up; reset if Safari restores
+	// this page from bfcache (Back) with the menu still open.
+	window.addEventListener('pageshow', (event) => {
+		if (!event.persisted || !isOpen) {
+			return;
+		}
+
+		close({ restoreScroll: false });
 	});
 
 	const onViewportChange = () => {
@@ -544,6 +579,8 @@ const zadzerkalyaNavScrollLock = (() => {
 	});
 
 	desktop.addEventListener('change', onViewportChange);
+	wideDesktop.addEventListener('change', onViewportChange);
+	megaDesktopLayout.addEventListener('change', onViewportChange);
 	tablet.addEventListener('change', onViewportChange);
 	mobile.addEventListener('change', onViewportChange);
 })();

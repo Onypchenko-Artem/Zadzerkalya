@@ -46,7 +46,8 @@
 	width: 100%;
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.specialists-page .about-hero {
 		display: flex;
 		flex-direction: column;
@@ -161,7 +162,9 @@
 		padding: 8px 0;
 		aspect-ratio: auto;
 	}
+}
 
+@media (max-width: 1279px) and (min-width: 701px) {
 	.specialists-page .form-home {
 		margin-top: -69px;
 	}
@@ -188,6 +191,36 @@
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		align-items: stretch;
 		gap: 16px;
+	}
+}
+
+/* Широкий tablet landscape: 4 картки в ряд, як на десктопі. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.specialists-team {
+		--fs: calc(100vw / 1920px);
+		--u: calc(1px * var(--fs));
+		align-items: center;
+		gap: calc(64 * var(--u));
+		margin-top: calc(110 * var(--u));
+		padding: 0 calc(48 * var(--u));
+	}
+
+	.specialists-team h2 {
+		font-size: calc(58 * var(--u));
+		font-weight: 500;
+		line-height: 1.1;
+		letter-spacing: -0.04em;
+		text-align: center;
+	}
+
+	.specialists-team__list {
+		gap: calc(44 * var(--u));
+	}
+
+	.specialists-team__row {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		align-items: stretch;
+		gap: calc(44 * var(--u));
 	}
 }
 

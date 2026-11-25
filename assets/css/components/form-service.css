@@ -250,7 +250,9 @@
 
 	.form-service__rule .form-service__rule-image--tablet {
 		display: block;
+		width: 100%;
 		height: auto;
+		object-fit: fill;
 	}
 
 	.form-service__content {
@@ -376,6 +378,18 @@
 
 	.form-service__form .lottie-button--primary .lottie-button__label {
 		padding-inline: 12px;
+	}
+}
+
+/* Планшет landscape: без фіксованої висоти — фото не обрізається. */
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: landscape) {
+	.form-service__photo {
+		height: auto;
+	}
+
+	.form-service__photo img {
+		height: auto;
+		object-fit: contain;
 	}
 }
 

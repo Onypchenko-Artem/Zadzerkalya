@@ -22,6 +22,11 @@
 	pointer-events: auto;
 }
 
+/* Swap from burger without fade — avoids a frame of the page underneath. */
+.services-mega.is-instant {
+	transition: none;
+}
+
 .services-mega::before {
 	content: none;
 }
@@ -230,7 +235,33 @@ body.services-mega-open {
 	clip-path: inset(0 0 0 0);
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Широкий tablet у landscape: desktop-меню, зменшене так, щоб влізло у висоту екрана. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.services-mega {
+		--fs: min(calc(100vw / 1920px), calc((100dvh - 50px) / 980px));
+		--u: calc(1px * var(--fs));
+		height: calc(100vh - 50px);
+		height: calc(100dvh - 50px);
+		max-height: none;
+		padding-bottom: 0;
+	}
+
+	.services-mega__layout {
+		padding-bottom: calc(28 * var(--u));
+	}
+
+	.services-mega__visual {
+		align-self: end;
+		width: min(100%, calc(911 * var(--u)));
+		max-height: 100%;
+		height: auto;
+		margin-top: 0;
+	}
+}
+
+/* Portrait (навіть >900) і вузький landscape — tablet-меню. */
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.services-mega {
 		bottom: 0;
 		z-index: 38;
@@ -354,7 +385,7 @@ body.services-mega-open {
 	.services-mega__cat::after {
 		bottom: -5px;
 		height: 3px;
-		background: url("../../images/menu-underline-tablet.svg") left center / 100% 100% no-repeat;
+		background: url("../../images/menu-underline-tablet.svg?v=4") left center / 100% 100% no-repeat;
 		clip-path: inset(0 100% 0 0);
 	}
 
@@ -467,7 +498,7 @@ body.services-mega-open {
 		display: block;
 		width: 100%;
 		height: 5px;
-		background: url("../../images/services-mega-back-rule.svg") left center / 100% 100% no-repeat;
+		background: url("../../images/services-mega-back-rule.svg?v=4") left center / 100% 100% no-repeat;
 	}
 
 	.services-mega__acc {
@@ -583,7 +614,7 @@ body.services-mega-open {
 		height: 0;
 		overflow: hidden;
 		opacity: 0;
-		background: url("../../images/services-mega-back-rule.svg") left center / 100% 100% no-repeat;
+		background: url("../../images/services-mega-back-rule.svg?v=4") left center / 100% 100% no-repeat;
 		transition: height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
 	}
 

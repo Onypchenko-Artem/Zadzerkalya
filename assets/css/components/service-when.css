@@ -206,8 +206,10 @@
 		flex-basis: auto;
 		width: 100%;
 		height: clamp(6.75px, 1.17vw, 12px);
+		/* Safari: content:url() + SVG often keeps intrinsic width; stretch via background. */
+		content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+		background: url("../../images/service-when-line-tablet.svg?v=4") center / 100% 100% no-repeat;
 		object-fit: fill;
-		content: url("../../images/service-when-line-tablet.svg");
 	}
 
 	.service-when__line--bottom {
@@ -310,6 +312,7 @@
 		height: 10px;
 		object-fit: fill;
 		content: normal;
+		background: none;
 		transform: none;
 	}
 

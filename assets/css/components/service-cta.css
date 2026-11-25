@@ -316,7 +316,34 @@
 	line-height: 1;
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Широкий tablet у landscape: desktop-ряд, масштаб від ширини екрана. */
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.service-cta {
+		--fs: calc(100vw / 1920px);
+		--u: calc(1px * var(--fs));
+	}
+
+	.service-cta__row-text h3,
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text h3 {
+		font-size: 18px;
+	}
+
+	.service-cta__row-text p,
+	.service-cta--custom-background .service-cta__slider .service-cta__row-text p {
+		font-size: 14px;
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-current {
+		font-size: calc(24 * var(--u));
+	}
+
+	.service-cta--custom-background .service-cta__slider .service-cta__counter-total {
+		font-size: calc(21 * var(--u));
+	}
+}
+
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.service-cta {
 		flex-direction: column;
 		align-items: stretch;

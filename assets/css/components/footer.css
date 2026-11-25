@@ -32,14 +32,14 @@
 	left: calc(64 * var(--u));
 	width: calc(819 * var(--u));
 	height: calc(7 * var(--u));
-	background-image: url("../../images/footer-left-line.svg");
+	background-image: url("../../images/footer-left-line.svg?v=4");
 }
 
 .site-footer__line--right {
 	right: calc(76 * var(--u));
 	width: calc(827 * var(--u));
 	height: calc(25 * var(--u));
-	background-image: url("../../images/footer-right-line.svg");
+	background-image: url("../../images/footer-right-line.svg?v=4");
 }
 
 .site-footer__divider {
@@ -47,7 +47,7 @@
 	left: calc(960 * var(--u));
 	width: calc(23 * var(--u));
 	height: calc(683 * var(--u));
-	background: url("../../images/footer-devider.svg") center / 100% 100% no-repeat;
+	background: url("../../images/footer-devider.svg?v=4") center / 100% 100% no-repeat;
 	transform: translateX(-50%);
 }
 
@@ -343,14 +343,14 @@
 		left: clamp(40px, 8.33vw, 64px);
 		width: calc((100% - 128px - 50px) / 2);
 		height: 3px;
-		background-image: url("../../images/footer-left-line-tablet.svg");
+		background-image: url("../../images/footer-left-line-tablet.svg?v=4");
 	}
 
 	.site-footer__line--right {
 		right: clamp(40px, 8.33vw, 64px);
 		width: calc((100% - 128px - 50px) / 2);
 		height: 9px;
-		background-image: url("../../images/footer-right-line-tablet.svg");
+		background-image: url("../../images/footer-right-line-tablet.svg?v=4");
 	}
 
 	.site-footer__divider {
@@ -366,7 +366,7 @@
 		height: auto;
 		min-height: 100%;
 		transform: none;
-		background: url("../../images/footer-devider-tablet.svg") center / 100% 100% no-repeat;
+		background: url("../../images/footer-devider-tablet.svg?v=4") center / 100% 100% no-repeat;
 	}
 
 	.site-footer__brand,
@@ -573,14 +573,14 @@
 		left: 47px;
 		width: 108px;
 		height: 1px;
-		background-image: url("../../images/footer-left-line-tablet.svg");
+		background-image: url("../../images/footer-left-line-tablet.svg?v=4");
 	}
 
 	.site-footer__line--right {
 		right: 47px;
 		width: 107px;
 		height: 4px;
-		background-image: url("../../images/footer-right-line-tablet.svg");
+		background-image: url("../../images/footer-right-line-tablet.svg?v=4");
 	}
 
 	.site-footer__divider {

@@ -100,7 +100,9 @@
 	color: var(--color-night-sky);
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Portrait і вузький landscape — tablet-картка. Широкий landscape лишає desktop. */
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.specialist-slot__link {
 		gap: clamp(18px, 3.12vw, 30px);
 		min-height: clamp(447.75px, 77.73vw, 746.25px);
@@ -136,6 +138,17 @@
 
 	.specialist-slot__info p {
 		font-size: clamp(12px, 2.08vw, 20px);
+	}
+}
+
+@media (min-width: 900px) and (max-width: 1279px) and (orientation: landscape) {
+	.specialist-slot__name h3,
+	.specialist-slot h3 {
+		font-size: 18px;
+	}
+
+	.specialist-slot__info p {
+		font-size: 14px;
 	}
 }
 

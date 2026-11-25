@@ -230,7 +230,8 @@ $render_card = static function ( $card ) {
 			<div class="service-benefits__aside-text">
 				<?php echo $aside_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>
-		<?php elseif ( $intro_as_aside ) : ?>
+		<?php endif; ?>
+		<?php if ( $intro_html ) : ?>
 			<div class="service-benefits__aside-text service-benefits__aside-text--from-intro">
 				<?php echo $intro_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</div>

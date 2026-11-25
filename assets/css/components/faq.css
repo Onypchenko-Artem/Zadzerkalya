@@ -166,7 +166,7 @@
 	width: 100%;
 	height: auto;
 	aspect-ratio: 1324 / 11;
-	background: url("../../images/faq-line.svg") center / 100% 100% no-repeat;
+	background: url("../../images/faq-line.svg?v=4") center / 100% 100% no-repeat;
 }
 
 .faq__item p,
@@ -288,7 +288,7 @@
 	.faq__line {
 		height: 6px;
 		aspect-ratio: auto;
-		background-image: url("../../images/faq-line-tablet.svg");
+		background-image: url("../../images/faq-line-tablet.svg?v=4");
 		background-size: 100% 100%;
 	}
 
@@ -409,7 +409,7 @@
 		bottom: -29px;
 		left: 0;
 		height: 2px;
-		background: url("../../images/faq-line-mobile.svg") center / 100% 100% no-repeat;
+		background: url("../../images/faq-line-mobile.svg?v=4") center / 100% 100% no-repeat;
 	}
 
 	.faq__item h3 {

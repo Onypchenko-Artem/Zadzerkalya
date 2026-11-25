@@ -144,7 +144,9 @@
 	line-height: 1.4;
 }
 
-@media (max-width: 1279px) and (min-width: 701px) {
+/* Portrait і вузький landscape — tablet-картка. Широкий landscape лишає desktop. */
+@media (max-width: 1279px) and (min-width: 701px) and (orientation: portrait),
+	(max-width: 899px) and (min-width: 701px) {
 	.service-card {
 		max-width: none;
 		height: clamp(380.25px, 66.02vw, 633.75px);
@@ -180,7 +182,7 @@
 		width: 100%;
 		height: clamp(7.5px, 1.3vw, 12.5px);
 		aspect-ratio: auto;
-		background-image: url("../../images/services-showcase-line-tablet.svg");
+		background-image: url("../../images/services-showcase-line-tablet.svg?v=4");
 		background-size: 100% 100%;
 	}
 
@@ -266,7 +268,7 @@
 		max-width: none;
 		height: 10px;
 		aspect-ratio: auto;
-		background-image: url("../../images/services-showcase-line-tablet.svg");
+		background-image: url("../../images/services-showcase-line-tablet.svg?v=4");
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100% 100%;
