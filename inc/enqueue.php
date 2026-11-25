@@ -51,6 +51,7 @@ function zadzerkalya_enqueue_assets() {
 		'zadzerkalya-faq'         => array( 'file' => '/assets/css/components/faq.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-form-home'   => array( 'file' => '/assets/css/components/form-home.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
 		'zadzerkalya-popup-contact' => array( 'file' => '/assets/css/components/popup-contact.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
+		'zadzerkalya-cookies-popup' => array( 'file' => '/assets/css/components/cookies-popup.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button' ) ),
 		'zadzerkalya-form-service'=> array( 'file' => '/assets/css/components/form-service.css', 'deps' => array( 'zadzerkalya-base', 'zadzerkalya-button', 'zadzerkalya-forms' ) ),
 		'zadzerkalya-specialist-slot' => array( 'file' => '/assets/css/components/specialist-slot.css', 'deps' => array( 'zadzerkalya-base' ) ),
 		'zadzerkalya-service-specialists'=> array( 'file' => '/assets/css/components/service-specialists.css', 'deps' => array( 'zadzerkalya-base' ) ),
@@ -110,6 +111,29 @@ function zadzerkalya_enqueue_assets() {
 			'strategy'  => 'defer',
 			'in_footer' => true,
 		)
+	);
+
+	wp_enqueue_script(
+		'zadzerkalya-cookies',
+		ZADZERKALYA_URI . '/assets/js/cookies.js',
+		array( 'zadzerkalya-main' ),
+		ZADZERKALYA_VERSION,
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
+	);
+
+	wp_add_inline_script(
+		'zadzerkalya-cookies',
+		'window.zadzerkalyaCookieConfig = ' . wp_json_encode(
+			array(
+				'consent' => ZADZERKALYA_CONSENT_COOKIE,
+				'visitor' => ZADZERKALYA_VISITOR_COOKIE,
+				'maxAge'  => YEAR_IN_SECONDS,
+			)
+		) . ';',
+		'before'
 	);
 
 	if ( is_home() || is_page_template( 'page-templates/events.php' ) || is_post_type_archive( 'event' ) ) {

@@ -168,6 +168,11 @@ foreach ( array( array( 1, 2 ), array( 3, 4 ), array( 5, 6, 7 ) ) as $group ) {
 }
 
 $render_card = static function ( $card ) {
+	$glue_hyphen = static function ( $text ) {
+		$glued = preg_replace( '/(?<=[\p{L}\p{N}])[-\x{2013}\x{2014}](?=[\p{L}\p{N}])/u', "\u{2011}", (string) $text );
+
+		return is_string( $glued ) ? $glued : (string) $text;
+	};
 	$number = (string) ( $card['number'] ?? 1 );
 	// Хвиля з макета: вертикаль центру кожної цифри (viewBox 242×40).
 	$wave_y = array( 23.85, 19.98, 16.93, 15.76, 15.40, 15.43, 15.67, 16.12, 16.70, 17.37, 18.05, 18.80, 19.48, 20.15, 20.70, 21.12, 21.26, 20.97, 20.00, 18.11 );
@@ -214,11 +219,11 @@ $render_card = static function ( $card ) {
 				</picture>
 			</div>
 			<?php if ( '' !== $card['title'] ) : ?>
-				<h3><?php echo wp_kses( nl2br( $card['title'] ), array( 'br' => array() ) ); ?></h3>
+				<h3><?php echo wp_kses( nl2br( $glue_hyphen( $card['title'] ) ), array( 'br' => array() ) ); ?></h3>
 			<?php endif; ?>
 		</div>
 		<?php if ( $card['show_description'] && '' !== $card['description'] ) : ?>
-			<p><?php echo esc_html( $card['description'] ); ?></p>
+			<p><?php echo esc_html( $glue_hyphen( $card['description'] ) ); ?></p>
 		<?php endif; ?>
 	</article>
 	<?php

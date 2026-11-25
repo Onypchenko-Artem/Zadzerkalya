@@ -393,6 +393,7 @@
 
 @media (max-width: 1279px) and (min-width: 701px) {
 	.header-bar {
+		justify-content: flex-start;
 		align-items: center;
 		min-height: 107px;
 		padding: 10px 24px 22px;
@@ -400,11 +401,13 @@
 		gap: 20px;
 	}
 
-	.header-aside {
+	.header-aside,
+	.header-actions {
 		display: contents;
 	}
 
 	.nav-toggle {
+		order: 4;
 		position: static;
 		flex: none;
 		width: 56px;
@@ -413,6 +416,7 @@
 	}
 
 	.header-place {
+		order: 2;
 		display: flex;
 		flex: none;
 		gap: 6px;
@@ -438,13 +442,9 @@
 		background-image: url("../../images/header-address-line-tablet.svg?v=4");
 	}
 
-	.header-actions {
-		flex: none;
-		gap: 16px;
-		margin-left: auto;
-	}
-
 	.header-socials {
+		order: 1;
+		flex: none;
 		gap: 0;
 	}
 
@@ -458,6 +458,8 @@
 	}
 
 	.header-bar .lottie-button--secondary {
+		order: 3;
+		margin-left: auto;
 		--lottie-btn-w: 183px;
 		--lottie-btn-h: 67px;
 	}

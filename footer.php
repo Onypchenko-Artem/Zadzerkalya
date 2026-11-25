@@ -155,6 +155,8 @@ get_template_part(
 		'open'         => ! empty( $_GET['contact_popup'] ), // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	)
 );
+
+get_template_part( 'template-parts/popup', 'cookies' );
 ?>
 <?php wp_footer(); ?>
 </body>

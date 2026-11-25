@@ -74,6 +74,18 @@ $title_html = wp_kses(
 $text_left  = $format_text( $args['text_left'] );
 $text_right = $format_text( $args['text_right'] );
 $note       = $format_text( $args['note'] );
+$glued_note = preg_replace_callback(
+	'/>([^<]+)</u',
+	static function ( $matches ) {
+		$glued = preg_replace( '/(?<=[\p{L}\p{N}])-(?=[\p{L}\p{N}])/u', "\u{2011}", $matches[1] );
+
+		return '>' . ( is_string( $glued ) ? $glued : $matches[1] ) . '<';
+	},
+	$note
+);
+if ( is_string( $glued_note ) ) {
+	$note = $glued_note;
+}
 $composition = '2' === (string) $args['composition'] ? '2' : '1';
 $form_id    = get_the_ID() ? (string) get_the_ID() : 'service';
 ?>

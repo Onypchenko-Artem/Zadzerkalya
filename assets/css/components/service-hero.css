@@ -527,12 +527,6 @@
 		text-overflow: unset;
 	}
 
-	/* Mobile layout: Головна → поточна сторінка */
-	.service-hero__breadcrumbs > a:nth-child(3),
-	.service-hero__breadcrumbs > .service-hero__crumb-arrow:nth-child(4) {
-		display: none;
-	}
-
 	.service-hero__crumb-arrow {
 		width: 20px;
 		height: 12px;
